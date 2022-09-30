@@ -1,0 +1,22 @@
+{
+  "name": "CrazyStack Admin Application",
+  "short_name": "CrazyStack",
+  "icons": [
+    {
+      "src": "images/logo.svg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#322659",
+  "background_color": "#322659",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
