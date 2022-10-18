@@ -1,0 +1,8 @@
+import { {{pascalCase name}} as {{pascalCase name}}Chakra, {{pascalCase name}}Props } from "@chakra-ui/react";
+export const {{pascalCase name}} = ({ children, ...rest }: {{pascalCase name}}Props) => {
+  return (
+    <{{pascalCase name}}Chakra {...rest} data-testid="{{pascalCase name}}TestId">
+      {children}
+    </{{pascalCase name}}Chakra>
+  );
+};

@@ -1,0 +1,10 @@
+import { renderWithTheme } from "test/testUtils";
+import { screen } from "@testing-library/react";
+import { {{pascalCase name}} } from "./{{pascalCase name}}";
+
+describe("<{{pascalCase name}}/>", () => {
+  it("should render the {{pascalCase name}} component", () => {
+    renderWithTheme(<{{pascalCase name}} />);
+    expect(screen.getByTestId("{{pascalCase name}}TestId")).toBeInTheDocument();
+  });
+});
