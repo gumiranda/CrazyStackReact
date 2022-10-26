@@ -1,6 +1,6 @@
 import Router from "next/router";
 import type { NextPage } from "next";
-import { Head, Flex, Text } from "shared/ui";
+import { Head, Flex } from "shared/ui";
 import { useAuth } from "shared/libs";
 import { useEffect } from "react";
 import { LoginForm } from "features/auth/login";
