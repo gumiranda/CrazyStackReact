@@ -1,7 +1,9 @@
 import { createContext, useEffect, useContext, ReactNode, useState, useMemo } from "react";
 import { setCookie, destroyCookie, parseCookies } from "nookies";
 import Router from "next/router";
+import { useUi } from "./UiContext";
 import { api } from "shared/api";
+import { Text } from "shared/ui";
 type User = {
   email: string;
   role: string;
@@ -22,6 +24,7 @@ type AuthContextData = {
 const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const { showModal } = useUi();
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
   const parseJSON = (json: string) => {
@@ -66,15 +69,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       setUser(userComing);
       api.defaults.timeout = 5000;
-      api.defaults.headers["Authorization"] = `Bearer ${token}`;
+      api.defaults.headers["authorization"] = `Bearer ${token}`;
       Router.push("/");
     } catch (error) {
-      alert("erro no servidor");
+      showModal({ newModalBody: <Text color="purple.700">Erro ao fazer login</Text> });
     }
   };
   const contextValue = useMemo(
     () => ({ login, isAuthenticated, user }),
-    [isAuthenticated, user]
+    [isAuthenticated, login, user]
   );
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }

@@ -1,5 +1,9 @@
 import { ProviderProps } from "./chakraProvider";
-import { AuthProvider } from "shared/libs";
+import { AuthProvider, UiProvider } from "shared/libs";
 export const OtherProviders = ({ children }: ProviderProps) => {
-  return <AuthProvider>{children}</AuthProvider>;
+  return (
+    <UiProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </UiProvider>
+  );
 };
