@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { Head, Flex, Text } from "shared/ui";
 import { useAuth } from "shared/libs";
 import { useEffect } from "react";
-
+import { LoginForm } from "features/auth/login";
 export const Login: NextPage = () => {
   const { isAuthenticated } = useAuth();
   useEffect(() => {
@@ -20,7 +20,7 @@ export const Login: NextPage = () => {
       <Flex minW="100%" justifyContent="center">
         {!isAuthenticated && (
           <Flex mt="15%">
-            <Text fontSize="6xl">CrazyStack ReactJs</Text>
+            <LoginForm />
           </Flex>
         )}
       </Flex>
