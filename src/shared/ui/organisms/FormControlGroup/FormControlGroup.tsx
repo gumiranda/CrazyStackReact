@@ -26,7 +26,7 @@ export const FormControlGroup = ({
             key={index}
             label={label}
             type={type}
-            error={formState?.errors?.[name] as any}
+            error={formState?.errors?.[name]}
             {...register(name)}
             name={name}
           />
