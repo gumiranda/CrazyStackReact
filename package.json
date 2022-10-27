@@ -30,6 +30,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.38.0",
     "react-icons": "^4.6.0",
+    "react-loading-overlay-ts": "^2.0.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

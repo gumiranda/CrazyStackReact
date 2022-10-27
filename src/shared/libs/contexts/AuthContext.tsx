@@ -3,7 +3,7 @@ import { setCookie, destroyCookie, parseCookies } from "nookies";
 import Router from "next/router";
 import { useUi } from "./UiContext";
 import { api } from "shared/api";
-import { Text } from "shared/ui";
+
 type User = {
   email: string;
   role: string;
@@ -24,7 +24,7 @@ type AuthContextData = {
 const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const { showModal } = useUi();
+  const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
   const parseJSON = (json: string) => {
@@ -49,6 +49,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const login = async ({ email, password }: LoginCredentials) => {
     try {
+      setLoading(true);
+
       const response = await api.post("auth/login", {
         email,
         password,
@@ -70,14 +72,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(userComing);
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
+      setLoading(false);
       showModal({
         newModalBody: null,
         type: "success",
         title: "Sucesso",
         content: "Login feito com sucesso.",
       });
+
       Router.push("/");
     } catch (error: any) {
+      setLoading(false);
       showModal({
         newModalBody: null,
         type: "error",

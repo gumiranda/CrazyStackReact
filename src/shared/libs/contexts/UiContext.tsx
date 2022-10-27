@@ -2,6 +2,8 @@ import { createContext, useContext, ReactNode, useState } from "react";
 import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react";
 import { Modal } from "widgets";
 import { Button, BoxError, BoxSuccess } from "shared/ui";
+import LoadingOverlay from "react-loading-overlay-ts";
+import { useIsMutating, useIsFetching } from "@tanstack/react-query";
 type UiProviderProps = {
   children: ReactNode;
 };
@@ -21,6 +23,8 @@ const CloseButton = ({ onClose }: any) => {
 };
 export function UiProvider({ children }: UiProviderProps) {
   const disclosure = useDisclosure();
+  const isFetching = useIsFetching();
+  const isMutating = useIsMutating();
   const { isOpen, onOpen, onClose } = disclosure;
   const [modalHeaderText, setModalHeaderText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -70,6 +74,17 @@ export function UiProvider({ children }: UiProviderProps) {
       >
         {modalBody}
       </Modal>
+      <LoadingOverlay
+        styles={{
+          spinner: (base) => ({ ...base }),
+          wrapper: { width: "100%", height: "100%" },
+          content: null,
+          overlay: (base) => ({ ...base, position: "fixed" }),
+        }}
+        active={!!isFetching || !!isMutating || loading}
+        spinner
+        text="Carregando..."
+      />
     </UiContext.Provider>
   );
 }
