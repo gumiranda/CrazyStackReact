@@ -2,7 +2,7 @@ import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Box, Heading } from "@chakra-ui/react";
 import { Flex, Text } from "shared/ui/atoms";
 type BoxSuccessProps = {
-  title: string;
+  title?: string;
   content: string;
   children?: React.ReactNode;
 };
@@ -10,9 +10,11 @@ export const BoxSuccess = ({ title, content, children, ...rest }: BoxSuccessProp
   return (
     <Box textAlign={"center"} py={4} px={2} {...rest} data-testid="BoxSuccessTestId">
       <CheckCircleIcon boxSize="50px" color="green.500" />
-      <Heading as="h2" size="xl" mt={6} mb={2} color="gray.500">
-        {title}
-      </Heading>
+      {title && (
+        <Heading as="h2" size="xl" mt={6} mb={2} color="gray.500">
+          {title}
+        </Heading>
+      )}
       <Text color="gray.500" mt={4}>
         {content}
       </Text>

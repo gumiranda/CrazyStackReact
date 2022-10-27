@@ -70,6 +70,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(userComing);
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
+      showModal({
+        newModalBody: null,
+        type: "success",
+        title: "Sucesso",
+        content: "Login feito com sucesso.",
+      });
       Router.push("/");
     } catch (error: any) {
       showModal({

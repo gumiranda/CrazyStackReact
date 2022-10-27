@@ -33,7 +33,7 @@ export function UiProvider({ children }: UiProviderProps) {
     newModalFooter = <CloseButton onClose={onClose} />,
     newModalBody = null,
     title = "Atenção",
-    subtitle = null,
+    subtitle = undefined,
     type = null,
     content = "",
   }) => {
