@@ -1,4 +1,4 @@
-import { createContext, useEffect, useContext, ReactNode, useState, useMemo } from "react";
+import { createContext, useEffect, useContext, ReactNode, useState } from "react";
 import { setCookie, destroyCookie, parseCookies } from "nookies";
 import Router from "next/router";
 import { useUi } from "./UiContext";
@@ -71,15 +71,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
       Router.push("/");
-    } catch (error) {
-      showModal({ newModalBody: <Text color="purple.700">Erro ao fazer login</Text> });
+    } catch (error: any) {
+      showModal({
+        newModalBody: null,
+        type: "error",
+        title: "Erro no servidor",
+        content:
+          error?.response?.data?.message ??
+          "Não foi possível concluir o login. Tente novamente mais tarde.",
+      });
     }
   };
-  const contextValue = useMemo(
-    () => ({ login, isAuthenticated, user }),
-    [isAuthenticated, login, user]
+
+  return (
+    <AuthContext.Provider value={{ login, isAuthenticated, user }}>
+      {children}
+    </AuthContext.Provider>
   );
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 export const useAuth = () => useContext(AuthContext);
 

@@ -1,7 +1,7 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react";
 import { Modal } from "widgets";
-import { Button } from "shared/ui";
+import { Button, BoxError, BoxSuccess } from "shared/ui";
 type UiProviderProps = {
   children: ReactNode;
 };
@@ -32,11 +32,20 @@ export function UiProvider({ children }: UiProviderProps) {
   const showModal = ({
     newModalFooter = <CloseButton onClose={onClose} />,
     newModalBody = null,
-    newModalHeaderText = "Atenção",
+    title = "Atenção",
+    subtitle = null,
+    type = null,
+    content = "",
   }) => {
     setModalFooter(newModalFooter);
-    setModalBody(newModalBody);
-    setModalHeaderText(newModalHeaderText);
+    setModalBody(
+      newModalBody ?? type === "error" ? (
+        <BoxError title={subtitle} content={content} />
+      ) : type === "success" ? (
+        <BoxSuccess title={subtitle} content={content} />
+      ) : null
+    );
+    setModalHeaderText(title);
     onOpen();
   };
   const clearModalProps = () => {
