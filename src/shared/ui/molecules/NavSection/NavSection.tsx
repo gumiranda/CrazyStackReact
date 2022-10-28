@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from "@chakra-ui/react";
+import { Box, Stack, Text } from "shared/ui/atoms";
 import { ReactNode } from "react";
 interface NavSectionProps {
   title: string;

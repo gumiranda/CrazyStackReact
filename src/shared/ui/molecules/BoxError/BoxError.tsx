@@ -1,6 +1,6 @@
 import { CloseIcon } from "@chakra-ui/icons";
-import { Box, Heading } from "@chakra-ui/react";
-import { Flex, Text } from "shared/ui/atoms";
+import { Heading } from "@chakra-ui/react";
+import { Box, Flex, Text } from "shared/ui/atoms";
 type BoxErrorProps = {
   title?: string;
   content: string;
