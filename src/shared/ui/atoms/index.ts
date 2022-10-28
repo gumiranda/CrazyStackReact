@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./Header";
 export * from "./Avatar";
 export * from "./Box";
 export * from "./ActiveLink";

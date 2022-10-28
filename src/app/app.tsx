@@ -1,11 +1,12 @@
 import { AllProviders } from "app/providers";
 import type { AppProps } from "next/app";
-import { SidebarPanel } from "widgets";
+import { SidebarPanel, NavBar } from "widgets";
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <AllProviders pageProps={pageProps}>
       <>
+        <NavBar />
         <SidebarPanel />
         <Component {...pageProps} />
       </>
