@@ -4,7 +4,7 @@ import { Profile } from "./Profile";
 
 describe("<Profile/>", () => {
   it("should render the Profile component", () => {
-    renderWithTheme(<Profile />);
+    renderWithTheme(<Profile showProfileData />);
     expect(screen.getByTestId("ProfileTestId")).toBeInTheDocument();
   });
 });

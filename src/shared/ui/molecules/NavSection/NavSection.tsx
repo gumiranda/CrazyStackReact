@@ -6,7 +6,7 @@ interface NavSectionProps {
 }
 export const NavSection = ({ title, children, ...rest }: NavSectionProps) => {
   return (
-    <Box {...rest} data-testid="NavSectionTestId">
+    <Box {...rest} datatestid="NavSectionTestId">
       <Text fontWeight={"bold"} color="purple.400" fontSize="small">
         {title}
       </Text>

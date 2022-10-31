@@ -8,7 +8,7 @@ type BoxErrorProps = {
 };
 export const BoxError = ({ title, content, children, ...rest }: BoxErrorProps) => {
   return (
-    <Box textAlign={"center"} py={4} px={2} {...rest} data-testid="BoxErrorTestId">
+    <Box textAlign={"center"} py={4} px={2} {...rest} datatestid="BoxErrorTestId">
       <Box display="inline-block">
         <Flex
           flexDir={"column"}

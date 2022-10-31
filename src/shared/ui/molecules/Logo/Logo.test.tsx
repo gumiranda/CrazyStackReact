@@ -5,6 +5,7 @@ import { Logo } from "./Logo";
 describe("<Logo/>", () => {
   it("should render the Logo component", () => {
     renderWithTheme(<Logo />);
-    expect(screen.getByTestId("LogoTestId")).toBeInTheDocument();
+    expect(screen.getByText("Belezix")).toBeInTheDocument();
+    expect(screen.getByText("Admin")).toBeInTheDocument();
   });
 });

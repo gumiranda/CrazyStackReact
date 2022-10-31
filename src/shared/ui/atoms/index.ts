@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./Table";
 export * from "./Header";
 export * from "./Avatar";
 export * from "./Box";
