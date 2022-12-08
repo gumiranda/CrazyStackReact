@@ -13,7 +13,7 @@ interface GenericTableProps {
   fields: Field[];
   setItems: Function;
   linkOnMouseEnter: Function;
-  deleteSelectedAction: Function;
+  deleteSelectedAction?: () => void;
   error: any;
   route: string;
   routeCreate: string;
@@ -42,7 +42,12 @@ export const GenericTable = ({
       flexGrow="1"
       data-testid="GenericTableTestId"
     >
-      <TableHead routeCreate={routeCreate} routeList={routeList} title={title} />
+      <TableHead
+        deleteSelectedAction={deleteSelectedAction}
+        routeCreate={routeCreate}
+        routeList={routeList}
+        title={title}
+      />
       <TableContent
         items={items}
         setItems={setItems}
