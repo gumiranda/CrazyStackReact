@@ -51,13 +51,11 @@ export const TableItems = ({
               colorScheme={"green"}
               isChecked={item?.value}
               onChange={(e) => {
-                setItems((prevState: any) =>
-                  prevState.map((prevState: any) => {
-                    const newArray = [...prevState];
-                    newArray[index].value = e.target.checked;
-                    return newArray;
-                  })
-                );
+                setItems((prevState: any) => {
+                  const newArray = [...prevState];
+                  newArray[index].value = e.target.checked;
+                  return newArray;
+                });
               }}
             />
           </Td>
