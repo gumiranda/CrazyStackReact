@@ -11,7 +11,7 @@ export const SidebarPanel = () => {
     <Sidebar title="Navegação">
       <Stack spacing="12" align="flex-start">
         <NavSection title="GERAL">
-          <NavLink icon={RiContactsLine} href="/categorys">
+          <NavLink icon={RiContactsLine} href="/categorys/1">
             Categorias
           </NavLink>
         </NavSection>

@@ -13,6 +13,7 @@ interface GenericTableProps {
   fields: Field[];
   setItems: Function;
   linkOnMouseEnter: Function;
+  deleteSelectedAction: Function;
   error: any;
   route: string;
   routeCreate: string;
@@ -31,6 +32,7 @@ export const GenericTable = ({
   routeCreate,
   routeList,
   title,
+  deleteSelectedAction,
   ...rest
 }: GenericTableProps) => {
   return (
