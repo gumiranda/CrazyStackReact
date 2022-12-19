@@ -1,4 +1,6 @@
 // IMPORT MODULE FILES
+export * from "./TableItems";
+export * from "./TableHead";
 export * from "./Profile";
 export * from "./NotificationsNav";
 export * from "./Logo";
