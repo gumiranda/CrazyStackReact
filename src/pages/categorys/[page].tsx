@@ -5,7 +5,6 @@ import { getCategorys } from "entidades/category/category.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const page = Number(context?.query?.page ?? 1);
   const data = await getCategorys(page, context);
-  console.log({ data });
   return {
     props: {
       data,
