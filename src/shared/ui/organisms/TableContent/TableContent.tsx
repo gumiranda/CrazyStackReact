@@ -30,43 +30,42 @@ export const TableContent = ({
 }: TableContentProps) => {
   return (
     <>
-      {isLoading ||
-        (items?.length === 0 ? (
-          <Stack>
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-            <Skeleton height={"40px"} />
-          </Stack>
-        ) : error ? (
-          <Flex justify="center">
-            <Text>Nenhum registro encontrado</Text>
-          </Flex>
-        ) : (
-          <TableItems
-            items={items}
-            setItems={setItems}
-            route={route}
-            fields={fields}
-            linkOnMouseEnter={linkOnMouseEnter}
-            {...rest}
-          >
-            {children}
-          </TableItems>
-        ))}
+      {isLoading || !items ? (
+        <Stack>
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+          <Skeleton height={"40px"} />
+        </Stack>
+      ) : error ? (
+        <Flex justify="center">
+          <Text>Nenhum registro encontrado</Text>
+        </Flex>
+      ) : (
+        <TableItems
+          items={items}
+          setItems={setItems}
+          route={route}
+          fields={fields}
+          linkOnMouseEnter={linkOnMouseEnter}
+          {...rest}
+        >
+          {children}
+        </TableItems>
+      )}
     </>
   );
 };
