@@ -1,4 +1,4 @@
-import { Box, GenericTable, Head } from "shared/ui";
+import { Box, GenericTable, Head, Pagination } from "shared/ui";
 import { GetCategorysResponse } from "entidades/category/category.api";
 import { useCategoryList } from "../categoryList.hook";
 type CategoryListTablePageProps = {
@@ -9,11 +9,17 @@ const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
 export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageProps) => {
-  const { categorys, setCategorys, handlePrefetchCategory, deleteSelectedAction } =
-    useCategoryList({
-      page,
-      initialData: data,
-    });
+  const {
+    categorys,
+    setCategorys,
+    handlePrefetchCategory,
+    deleteSelectedAction,
+    total,
+    setPage,
+  } = useCategoryList({
+    page,
+    initialData: data,
+  });
   return (
     <>
       <Head
@@ -41,6 +47,11 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
           routeCreate={"/categorys/create"}
           routeList={"/categorys/list"}
           title={"Categorias"}
+        />
+        <Pagination
+          onPageChange={setPage}
+          currentPage={page}
+          totalCountOfRegisters={total}
         />
       </Box>
     </>

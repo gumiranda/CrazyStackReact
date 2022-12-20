@@ -1,5 +1,5 @@
 import { GetCategorysResponse } from "entidades/category/category.api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUi } from "shared/libs";
 import { api, queryClientInstance } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
@@ -64,12 +64,19 @@ export const useCategoryList = (data: CategoryListHook) => {
       categorys.filter((category: CategoryProps) => category.value)
     );
   };
+  const changePage = (newpage: number) => {
+    router.replace(`/categorys/${newpage}`);
+  };
+  useEffect(() => {
+    setCategorys(data?.initialData?.categorys ?? []);
+  }, [data?.initialData?.categorys]);
   return {
     categorys,
     setCategorys,
     handlePrefetchCategory,
     deleteSelectedAction,
     page,
-    setPage,
+    setPage: changePage,
+    total: data?.initialData?.totalCount,
   };
 };
