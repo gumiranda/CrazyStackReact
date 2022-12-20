@@ -15,11 +15,11 @@ module.exports = function (plop) {
       },
     ],
     actions: [
-      {
-        type: "add",
-        path: "../src/shared/ui/{{camelCase type}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx",
-        templateFile: "templates/Component/Component.test.tsx.hbs",
-      },
+      // {
+      //   type: "add",
+      //   path: "../src/shared/ui/{{camelCase type}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx",
+      //   templateFile: "templates/Component/Component.test.tsx.hbs",
+      // },
       {
         type: "add",
         path: "../src/shared/ui/{{camelCase type}}/{{pascalCase name}}/{{pascalCase name}}.tsx",

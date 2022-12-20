@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./PaginationItem";
 export * from "./Table";
 export * from "./Header";
 export * from "./Avatar";
