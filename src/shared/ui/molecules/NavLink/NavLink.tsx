@@ -1,7 +1,7 @@
-import { Icon, Flex as NavLinkChakra, LinkProps } from "@chakra-ui/react";
+import { Icon, Flex as NavLinkChakra, FlexProps } from "@chakra-ui/react";
 import { ElementType } from "react";
 import { ActiveLink, Text } from "shared/ui/atoms";
-interface NavLinkProps extends LinkProps {
+interface NavLinkProps extends FlexProps {
   icon: ElementType;
   children: string;
   href: string;
