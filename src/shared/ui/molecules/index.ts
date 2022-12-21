@@ -1,4 +1,5 @@
 // IMPORT MODULE FILES
+export * from "./GenericListGrid";
 export * from "./PaginationGroupItems";
 export * from "./PageIndicator";
 export * from "./TableItems";
