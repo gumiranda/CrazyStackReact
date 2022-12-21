@@ -16,5 +16,5 @@ export const useGetCategorys = (
   } as any);
 };
 export const useGetInfiniteCategorys = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(["categorys"], () => getInfiniteCategorys, options as any);
+  return useInfiniteQuery(["categorys"], getInfiniteCategorys as any, options as any);
 };
