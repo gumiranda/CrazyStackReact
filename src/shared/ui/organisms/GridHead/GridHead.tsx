@@ -24,7 +24,7 @@ export const GridHead = ({
 }: GridHeadProps) => {
   return (
     <Flex p={["0", "8"]} justify="space-between" align="center" {...rest}>
-      <Heading>
+      <Heading size="lg" fontWeight="normal">
         {title}
         {!isLoading && isFetching && <Spinner size="sm" color="purple.500" ml="4" />}
       </Heading>

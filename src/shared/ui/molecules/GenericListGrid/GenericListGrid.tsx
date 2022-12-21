@@ -25,6 +25,7 @@ export const GenericListGrid = ({ items, renderItem, children }: GenericListProp
                 "1fr 1fr 1fr 1fr",
               ]}
               gridTemplateRows={["1fr", "1fr 1fr", "1fr 1fr 1fr", "1fr 1fr 1fr 1fr"]}
+              gap="8"
             >
               {items?.map?.((item, index) => (
                 <ListItem key={`${Math.random() * 10}-${index}`}>

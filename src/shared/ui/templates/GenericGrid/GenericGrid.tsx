@@ -34,7 +34,7 @@ export const GenericGrid = ({
   ...rest
 }: GenericGridProps) => {
   return (
-    <Flex>
+    <Flex margin={4} flexDir="column" flexGrow="1">
       <GridHead routeCreate={routeCreate} title={title} routeList={routeList} />
       <GridContent
         entityDisplayName={entityDisplayName}

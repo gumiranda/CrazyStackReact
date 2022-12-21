@@ -27,6 +27,7 @@ export const GridContent = ({
   error = null,
   route = "/",
   entityDisplayName,
+  ...rest
 }: GridContentProps) => {
   return (
     <>
@@ -53,7 +54,7 @@ export const GridContent = ({
           <Text>Falha ao obter {entityDisplayName}s</Text>
         </Flex>
       ) : (
-        <GenericListGrid items={items} renderItem={renderItem}>
+        <GenericListGrid items={items} renderItem={renderItem} {...rest}>
           {children}
         </GenericListGrid>
       )}

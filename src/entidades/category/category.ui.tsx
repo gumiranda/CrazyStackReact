@@ -36,7 +36,6 @@ export const useCategoryUi = ({ deleteSelectedAction }: any) => {
           </Button>
           <NextLink passHref href={`/categorys/edit/${item?._id}`}>
             <Button
-              as="a"
               colorScheme="purple"
               leftIcon={<Icon fontSize="20" as={RiEditLine} />}
               onClick={onClose}
