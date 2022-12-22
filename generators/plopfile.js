@@ -137,27 +137,27 @@ const features = [
 const pages = [
   {
     type: "add",
-    path: "../src/pages/{{camelCase name}}/create.tsx",
+    path: "../src/pages/{{camelCase name}}s/create.tsx",
     templateFile: "templates/crud/pages/create.tsx.hbs",
   },
   {
     type: "add",
-    path: "../src/pages/{{camelCase name}}/list.tsx",
+    path: "../src/pages/{{camelCase name}}s/list.tsx",
     templateFile: "templates/crud/pages/list.tsx.hbs",
   },
   {
     type: "add",
-    path: "../src/pages/{{camelCase name}}/[page].tsx",
+    path: "../src/pages/{{camelCase name}}s/[page].tsx",
     templateFile: "templates/crud/pages/[page].tsx.hbs",
   },
   {
     type: "add",
-    path: "../src/pages/{{camelCase name}}/details/[id].tsx",
+    path: "../src/pages/{{camelCase name}}s/details/[id].tsx",
     templateFile: "templates/crud/pages/details/[id].tsx.hbs",
   },
   {
     type: "add",
-    path: "../src/pages/{{camelCase name}}/edit/[id].tsx",
+    path: "../src/pages/{{camelCase name}}s/edit/[id].tsx",
     templateFile: "templates/crud/pages/edit/[id].tsx.hbs",
   },
 ];
