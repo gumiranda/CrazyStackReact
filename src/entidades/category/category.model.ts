@@ -13,6 +13,9 @@ class Category {
   public static build(props: CategoryProps) {
     return new Category(props);
   }
+  get _id(): string {
+    return this.props._id;
+  }
   get name(): string {
     return this.props.name;
   }

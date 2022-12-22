@@ -41,3 +41,19 @@ export const getInfiniteCategorys = async ({
 }: InfiniteProps): Promise<GetCategorysResponse> => {
   return getCategorys(pageParam, ctx);
 };
+export const getCategoryById = async (
+  id: string,
+  ctx: any
+): Promise<CategoryProps | null> => {
+  try {
+    const { data } = await setupAPIClient(ctx).get("/category/load", {
+      params: { _id: id },
+    });
+    if (!data) {
+      return null;
+    }
+    return categoryModel(data).format();
+  } catch (error) {
+    return null;
+  }
+};

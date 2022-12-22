@@ -66,15 +66,12 @@ export const TableItems = ({
               maxW={0}
               overflow="hidden"
               textOverflow="ellipsis"
-              onClick={() => {
-                router.push(`${route}/${item?._id}`);
-              }}
             >
               {field?.id === "name" ? (
                 <Box>
                   <Link
                     color="green.400"
-                    href={`/${route}/${item?._id}`}
+                    href={`${route}/${item?._id}`}
                     onMouseEnter={() => linkOnMouseEnter(item)}
                   >
                     <Text fontWeight={"bold"}>{item[field?.id]}</Text>
