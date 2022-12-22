@@ -16,6 +16,7 @@ interface TableContentProps {
   linkOnMouseEnter: Function;
   error: any;
   route: string;
+  routeDetails: string;
 }
 export const TableContent = ({
   children,
@@ -26,6 +27,7 @@ export const TableContent = ({
   setItems,
   route = "/",
   linkOnMouseEnter,
+  routeDetails,
   ...rest
 }: TableContentProps) => {
   return (
@@ -59,6 +61,7 @@ export const TableContent = ({
           items={items}
           setItems={setItems}
           route={route}
+          routeDetails={routeDetails}
           fields={fields}
           linkOnMouseEnter={linkOnMouseEnter}
           {...rest}

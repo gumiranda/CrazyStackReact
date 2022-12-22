@@ -18,6 +18,7 @@ interface GenericTableProps {
   route: string;
   routeCreate: string;
   routeList: string;
+  routeDetails: string;
   title: string;
 }
 export const GenericTable = ({
@@ -33,6 +34,7 @@ export const GenericTable = ({
   routeList,
   title,
   deleteSelectedAction,
+  routeDetails,
   ...rest
 }: GenericTableProps) => {
   return (
@@ -52,6 +54,7 @@ export const GenericTable = ({
         items={items}
         setItems={setItems}
         route={route}
+        routeDetails={routeDetails}
         fields={fields}
         linkOnMouseEnter={linkOnMouseEnter}
         isLoading={isLoading}

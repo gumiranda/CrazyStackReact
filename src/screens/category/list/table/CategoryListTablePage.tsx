@@ -43,7 +43,8 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
           setItems={setCategorys}
           linkOnMouseEnter={handlePrefetchCategory}
           error={undefined}
-          route={"/categorys/details"}
+          route={"/categorys"}
+          routeDetails={"/categorys/details"}
           routeCreate={"/categorys/create"}
           routeList={"/categorys/list"}
           title={"Categorias"}
