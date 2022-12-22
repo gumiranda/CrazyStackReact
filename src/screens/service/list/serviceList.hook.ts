@@ -18,7 +18,7 @@ export const useServiceList = (data: ServiceListHook) => {
     await queryClientInstance.prefetchQuery(
       ["service", serviceId],
       async () => {
-        const { data = null } = (await api.get(`/service/load?_id=${ serviceId}`)) || {};
+        const { data = null } = (await api.get(`/service/load?_id=${serviceId}`)) || {};
         return data;
       },
       { staleTime: 1000 * 60 * 10 }
@@ -30,7 +30,7 @@ export const useServiceList = (data: ServiceListHook) => {
         if (servicesToDelete?.length > 0) {
           return Promise.all(
             servicesToDelete?.map?.((service: any) =>
-              api.delete(`/service/delete?_id=${ service._id}`)
+              api.delete(`/service/delete?_id=${service._id}`)
             )
           );
         }
@@ -60,9 +60,7 @@ export const useServiceList = (data: ServiceListHook) => {
     }
   );
   const deleteSelectedAction = async () => {
-    deleteService.mutateAsync(
-      services.filter((service: ServiceProps) => service.value)
-    );
+    deleteService.mutateAsync(services.filter((service: ServiceProps) => service.value));
   };
   const changePage = (newpage: number) => {
     router.replace(`/services/${newpage}`);

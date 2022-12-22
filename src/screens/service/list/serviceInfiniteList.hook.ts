@@ -32,7 +32,7 @@ export const useServiceInfiniteList = () => {
         if (servicesToDelete?.length > 0) {
           return Promise.all(
             servicesToDelete?.map?.((service: any) =>
-              api.delete(`/service/delete?_id=${ service._id}`)
+              api.delete(`/service/delete?_id=${service._id}`)
             )
           );
         }

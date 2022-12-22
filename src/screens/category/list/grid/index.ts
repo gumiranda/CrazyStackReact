@@ -1,1 +1,1 @@
-export * from "./categoryListGridPage";
+export * from "./CategoryListGridPage";

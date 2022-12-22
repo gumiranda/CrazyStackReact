@@ -1,1 +1,1 @@
-export * from "./serviceListGridPage";
+export * from "./ServiceListGridPage";
