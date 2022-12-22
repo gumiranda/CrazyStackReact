@@ -1,4 +1,4 @@
-import { CategoryEditPage } from "screens/category/edit/CategoryEditPage";
+import { CategoryEditPage } from "screens/category/edit";
 import { getCategoryById } from "entidades/category/category.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";

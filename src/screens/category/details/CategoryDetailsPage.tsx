@@ -5,7 +5,7 @@ type CategoryDetailsProps = {
   data: CategoryProps;
   id: string;
 };
-export const CategoryDetailsPage = ({ data, id }: CategoryDetailsProps) => {
+export const CategoryDetailsPage = ({ data }: CategoryDetailsProps) => {
   const props = { category: data };
   return (
     <>

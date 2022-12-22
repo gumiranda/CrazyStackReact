@@ -1,4 +1,4 @@
-import { CategoryDetailsPage } from "screens/category/details/CategoryDetailsPage";
+import { CategoryDetailsPage } from "screens/category/details";
 import { getCategoryById } from "entidades/category/category.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";
