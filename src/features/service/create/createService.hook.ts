@@ -20,6 +20,9 @@ export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
   const [categorySelected, setCategorySelected] = useState<string>(
     categoryList?.categorys?.[0]?._id ?? ""
   );
+  const [havePromotionalPrice, setHavePromotionalPrice] = useState(false);
+  const [hasFidelityGenerator, setHasFidelityGenerator] = useState(false);
+  const [canPayWithFidelityPoints, setCanPayWithFidelityPoints] = useState(false);
   const createService = useMutation(async (service: CreateServiceFormData) => {
     try {
       const { data } = await api.post("/service/add", {
@@ -61,7 +64,15 @@ export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
       });
       return;
     }
-    await createService.mutateAsync({ ...values, active, categoryId: categorySelected });
+    await createService.mutateAsync({
+      ...values,
+      active,
+      categoryId: categorySelected,
+      havePromotionalPrice,
+      hasFidelityGenerator,
+      canPayWithFidelityPoints,
+      appointmentsTotal: 0,
+    });
   };
   const handleChangeCategorySelected = (event: any) => {
     event.preventDefault();
@@ -98,5 +109,11 @@ export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
     setActive,
     handleChangeCategorySelected,
     categorys,
+    havePromotionalPrice,
+    hasFidelityGenerator,
+    canPayWithFidelityPoints,
+    setHavePromotionalPrice,
+    setHasFidelityGenerator,
+    setCanPayWithFidelityPoints,
   };
 };
