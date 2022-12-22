@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./Select";
 export * from "./Card";
 export * from "./ListItem";
 export * from "./List";

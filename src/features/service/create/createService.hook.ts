@@ -7,11 +7,19 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-export const useCreateService = () => {
+import { useState, useEffect } from "react";
+import { CreateServiceFormProps } from "./CreateServiceForm";
+import { getCategorys } from "entidades/category";
+
+export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
+  const [page, setPage] = useState(1);
+  const [categorys, setCategorys] = useState(categoryList?.categorys ?? []);
+  const [categorySelected, setCategorySelected] = useState<string>(
+    categoryList?.categorys?.[0]?._id ?? ""
+  );
   const createService = useMutation(async (service: CreateServiceFormData) => {
     try {
       const { data } = await api.post("/service/add", {
@@ -45,7 +53,50 @@ export const useCreateService = () => {
   const handleCreateService: SubmitCreateServiceHandler = async (
     values: CreateServiceFormData
   ) => {
-    await createService.mutateAsync({ ...values, active });
+    if (categorySelected === "loadMore") {
+      showModal({
+        content: "Escolha uma categoria válida para prosseguir",
+        title: "Categoria inválida",
+        type: "error",
+      });
+      return;
+    }
+    await createService.mutateAsync({ ...values, active, categoryId: categorySelected });
   };
-  return { formState, register, handleSubmit, handleCreateService, active, setActive };
+  const handleChangeCategorySelected = (event: any) => {
+    event.preventDefault();
+    setCategorySelected(event.target.value);
+  };
+  const fetchCategoriesPaginated = async () => {
+    if (categoryList?.totalCount > categorys?.length && page > 1) {
+      const data = await getCategorys(page, null);
+      if (data?.totalCount > categorys?.length) {
+        setCategorySelected(data?.categorys?.[0]?._id ?? "");
+        setCategorys((prev) => [...prev, ...(data.categorys ?? [])]);
+      }
+    }
+  };
+  useEffect(() => {
+    setCategorys(categoryList?.categorys ?? []);
+  }, [categoryList?.categorys]);
+  useEffect(() => {
+    if (categorySelected === "loadMore") {
+      setPage((prev) => prev + 1);
+    }
+  }, [categorySelected]);
+  useEffect(() => {
+    fetchCategoriesPaginated();
+  }, [page]);
+  return {
+    categorySelected,
+    setCategorySelected,
+    formState,
+    register,
+    handleSubmit,
+    handleCreateService,
+    active,
+    setActive,
+    handleChangeCategorySelected,
+    categorys,
+  };
 };

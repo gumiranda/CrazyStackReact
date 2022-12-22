@@ -1,10 +1,22 @@
-import { ServiceProps } from "entidades/service";
 import { useCreateService } from "./createService.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
-
-export const CreateServiceForm = () => {
-  const { formState, register, handleSubmit, handleCreateService, active, setActive } =
-    useCreateService();
+import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
+import { GetCategorysResponse } from "entidades/category";
+export type CreateServiceFormProps = {
+  categoryList: GetCategorysResponse;
+};
+export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
+  const {
+    categorySelected,
+    setCategorySelected,
+    formState,
+    register,
+    handleSubmit,
+    handleCreateService,
+    active,
+    setActive,
+    handleChangeCategorySelected,
+    categorys,
+  } = useCreateService({ categoryList });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateService)}
@@ -14,10 +26,24 @@ export const CreateServiceForm = () => {
     >
       <GridForm>
         <FormControl
-          label="Nome da serviço"
+          label="Nome do serviço"
           error={formState.errors.name}
           {...register("name")}
         />
+        <Select
+          bg="purple.700"
+          name="categoryList"
+          label="Categoria"
+          list={categorys}
+          value={categorySelected}
+          onChange={handleChangeCategorySelected}
+          keyValue="_id"
+          keyLabel="name"
+        >
+          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
+            Carregar mais
+          </option>
+        </Select>
         <Checkbox
           label="Ativo"
           colorScheme="green"

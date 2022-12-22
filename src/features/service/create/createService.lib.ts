@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 export type CreateServiceFormData = {
   name: string;
   active?: boolean;
+  categoryId?: string;
 };
 
 export type SubmitCreateServiceHandler = SubmitHandler<CreateServiceFormData>;
