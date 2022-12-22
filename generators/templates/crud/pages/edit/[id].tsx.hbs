@@ -1,0 +1,20 @@
+import { {{pascalCase name}}EditPage } from "screens/{{camelCase name}}/edit";
+import { get{{pascalCase name}}ById } from "entidades/{{camelCase name}}/{{camelCase name}}.api";
+import { GetServerSideProps } from "next";
+import { withSSRAuth } from "shared/libs/utils";
+export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
+  const id = context?.query?.id;
+  if (!id || typeof id !== "string") {
+    return {
+      notFound: true,
+    };
+  }
+  const data = await get{{pascalCase name}}ById(id, context);
+  return {
+    props: {
+      data,
+      id,
+    },
+  };
+});
+export default {{pascalCase name}}EditPage;

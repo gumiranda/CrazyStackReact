@@ -1,0 +1,62 @@
+import { InfiniteList, GenericGrid, Head } from "shared/ui";
+import { use{{pascalCase name}}InfiniteList } from "../{{camelCase name}}InfiniteList.hook";
+import { use{{pascalCase name}}Ui } from "entidades/{{camelCase name}}/{{camelCase name}}.ui";
+
+export const {{pascalCase name}}GridPage = () => {
+  const {
+    isFetching,
+    error,
+    data: fetchData,
+    fetchNextPage,
+    hasNextPage,
+    deleteSelectedAction,
+    loading,
+  } = use{{pascalCase name}}InfiniteList();
+  const {{camelCase name}}GridProps = {
+    {{camelCase name}}s:
+      fetchData?.pages
+        ?.map?.((page: any) => page?.{{camelCase name}}s)
+        ?.reduce?.((a: any, b: any) => a.concat(b)) ??
+      fetchData ??
+      [],
+    isLoading: loading,
+    error,
+    isFetching,
+    deleteSelectedAction,
+    fields: [
+      { id: "name", label: "Nome", displayKeyText: true },
+      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+    ],
+  };
+  const items =
+    {{camelCase name}}GridProps?.{{camelCase name}}s?.map?.((item: any) => ({
+      item,
+      fields: {{camelCase name}}GridProps.fields,
+      mainField: "name",
+    })) ?? [];
+  const { renderItem } = use{{pascalCase name}}Ui({ deleteSelectedAction });
+  return (
+    <>
+      <Head
+        title={"Belezix Admin | {{pascalCase label}}s"}
+        description="Página de listagem de {{camelCase label}}s do painel de Admin Belezix"
+      />
+      <InfiniteList
+        hasNextPage={hasNextPage as any}
+        fetchNextPage={fetchNextPage}
+        entityName="{{camelCase label}}s"
+      >
+        <GenericGrid
+          items={items}
+          renderItem={renderItem}
+          route={"/{{camelCase name}}s/list"}
+          routeList={"/{{camelCase name}}s/1"}
+          routeCreate={"/{{camelCase name}}s/create"}
+          entityDisplayName={"{{pascalCase label}}"}
+          title={"{{pascalCase label}}s"}
+          {...{{camelCase name}}GridProps}
+        />
+      </InfiniteList>
+    </>
+  );
+};

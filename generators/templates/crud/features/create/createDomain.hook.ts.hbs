@@ -1,0 +1,51 @@
+import { useUi } from "shared/libs";
+import {
+  Create{{pascalCase name}}FormData,
+  SubmitCreate{{pascalCase name}}Handler,
+  useCreate{{pascalCase name}}Lib,
+} from "./create{{pascalCase name}}.lib";
+import { useRouter } from "next/router";
+import { api } from "shared/api";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+export const useCreate{{pascalCase name}} = () => {
+  const { showModal } = useUi();
+  const router = useRouter();
+  const [active, setActive] = useState(false);
+  const create{{pascalCase name}} = useMutation(async ({{camelCase name}}: Create{{pascalCase name}}FormData) => {
+    try {
+      const { data } = await api.post("/{{camelCase name}}/add", {
+        ...{{camelCase name}},
+      });
+      if (!data) {
+        showModal({
+          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          title: "Erro no servidor",
+          type: "error",
+        });
+        return;
+      }
+      showModal({
+        content:
+          "{{pascalCase label}} criada com sucesso, você será redirecionado para a lista de {{camelCase label}}s",
+        title: "Sucesso",
+        type: "success",
+      });
+      router.push("/{{camelCase name}}s/1");
+      return data;
+    } catch (error) {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    }
+  }, {});
+  const { register, handleSubmit, formState } = useCreate{{pascalCase name}}Lib();
+  const handleCreate{{pascalCase name}}: SubmitCreate{{pascalCase name}}Handler = async (
+    values: Create{{pascalCase name}}FormData
+  ) => {
+    await create{{pascalCase name}}.mutateAsync({ ...values, active });
+  };
+  return { formState, register, handleSubmit, handleCreate{{pascalCase name}}, active, setActive };
+};

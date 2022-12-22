@@ -1,0 +1,38 @@
+import { Flex, GenericDetailsItem, Text, Button } from "shared/ui";
+import { Heading, Icon } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { RiAddLine } from "react-icons/ri";
+import { {{pascalCase name}}Props } from "../{{camelCase name}}.model";
+type {{pascalCase name}}DetailsProps = {
+  {{camelCase name}}: {{pascalCase name}}Props;
+};
+
+export const {{pascalCase name}}Details = ({ {{camelCase name}} }: {{pascalCase name}}DetailsProps) => {
+  return (
+    <>
+      <Flex mb="8" justify="space-between" align="center">
+        <Heading size="lg" fontWeight={"normal"}>
+          {{pascalCase label}} { {{camelCase name}}?.name}
+        </Heading>
+        <NextLink passHref href={`/{{camelCase name}}s/edit/${ {{camelCase name}}?._id}`}>
+          <Button
+            size="sm"
+            fontSize={"sm"}
+            colorScheme="green"
+            leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+          >
+            Editar
+          </Button>
+        </NextLink>
+      </Flex>
+      <GenericDetailsItem
+        item={ {{camelCase name}} }
+        fields={[
+          { id: "name", label: "Nome" },
+          { id: "createdById", label: "Id do criador" },
+          { id: "createdAt", label: "Data de criação" },
+        ]}
+      />
+    </>
+  );
+};

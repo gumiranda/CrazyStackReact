@@ -1,0 +1,17 @@
+import { Box, Head } from "shared/ui";
+import { {{pascalCase name}}Props } from "entidades/{{camelCase name}}";
+import { Create{{pascalCase name}}Form } from "features/{{camelCase name}}/create";
+
+export const {{pascalCase name}}CreatePage = () => {
+  return (
+    <>
+      <Head
+        title={"Belezix Admin | {{pascalCase label}}s"}
+        description="Página de criação de {{camelCase label}}s do painel de Admin Belezix"
+      />
+      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+        <Create{{pascalCase name}}Form />
+      </Box>
+    </>
+  );
+};

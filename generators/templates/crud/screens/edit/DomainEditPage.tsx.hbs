@@ -1,0 +1,21 @@
+import { Box, Head } from "shared/ui";
+import { Edit{{pascalCase name}}Form } from "features/{{camelCase name}}/edit";
+import { {{pascalCase name}}Props } from "entidades/{{camelCase name}}";
+type {{pascalCase name}}EditProps = {
+  data: {{pascalCase name}}Props;
+  id: string;
+};
+export const {{pascalCase name}}EditPage = ({ data, id }: {{pascalCase name}}EditProps) => {
+  const props = { {{camelCase name}}: data };
+  return (
+    <>
+      <Head
+        title={"Belezix Admin | {{pascalCase label}}s"}
+        description="Página de edição de {{camelCase label}}s do painel de Admin Belezix"
+      />
+      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+        <Edit{{pascalCase name}}Form {...props} />
+      </Box>
+    </>
+  );
+};

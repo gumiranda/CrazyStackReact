@@ -1,0 +1,37 @@
+import { {{pascalCase name}}Props } from "entidades/{{camelCase name}}";
+import { useEdit{{pascalCase name}} } from "./edit{{pascalCase name}}.hook";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+
+export interface Edit{{pascalCase name}}FormProps {
+  {{camelCase name}}: {{pascalCase name}}Props;
+}
+export const Edit{{pascalCase name}}Form = ({ {{camelCase name}} }: Edit{{pascalCase name}}FormProps) => {
+  const { formState, register, handleSubmit, handleEdit{{pascalCase name}} } = useEdit{{pascalCase name}}({
+    {{camelCase name}},
+  });
+  return (
+    <BoxCreateItem
+      onSubmit={handleSubmit(handleEdit{{pascalCase name}})}
+      title={"Editar {{camelCase label}}"}
+      isLoadingSaveButton={formState.isSubmitting}
+      cancelRoute={"/{{camelCase name}}s/1"}
+    >
+      <GenericDetailsItem
+        item={ {{camelCase name}} }
+        fields={[
+          { id: "_id", label: "Id" },
+          { id: "name", label: "Nome" },
+          { id: "createdById", label: "Id do criador" },
+          { id: "createdAt", label: "Data de criação" },
+        ]}
+      />
+      <GridForm>
+        <FormControl
+          label="Nome da {{camelCase label}}"
+          error={formState.errors.name}
+          {...register("name")}
+        />
+      </GridForm>
+    </BoxCreateItem>
+  );
+};

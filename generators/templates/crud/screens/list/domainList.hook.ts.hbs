@@ -1,0 +1,82 @@
+import { Get{{pascalCase name}}sResponse } from "entidades/{{camelCase name}}/{{camelCase name}}.api";
+import { useState, useEffect } from "react";
+import { useUi } from "shared/libs";
+import { api, queryClientInstance } from "shared/api";
+import { useMutation } from "@tanstack/react-query";
+import { {{pascalCase name}}Props } from "entidades/{{camelCase name}}";
+import { useRouter } from "next/router";
+type {{pascalCase name}}ListHook = {
+  initialData: Get{{pascalCase name}}sResponse;
+  page: number;
+};
+export const use{{pascalCase name}}List = (data: {{pascalCase name}}ListHook) => {
+  const router = useRouter();
+  const { showModal } = useUi();
+  const [page, setPage] = useState(data.page);
+  const [{{camelCase name}}s, set{{pascalCase name}}s] = useState(data?.initialData?.{{camelCase name}}s ?? []);
+  const handlePrefetch{{pascalCase name}} = async ({ _id: {{camelCase name}}Id }: any) => {
+    await queryClientInstance.prefetchQuery(
+      ["{{camelCase name}}", {{camelCase name}}Id],
+      async () => {
+        const { data = null } = (await api.get(`/{{camelCase name}}/load?_id=${ {{camelCase name}}Id}`)) || {};
+        return data;
+      },
+      { staleTime: 1000 * 60 * 10 }
+    );
+  };
+  const delete{{pascalCase name}} = useMutation(
+    async ({{camelCase name}}sToDelete: any = []) => {
+      try {
+        if ({{camelCase name}}sToDelete?.length > 0) {
+          return Promise.all(
+            {{camelCase name}}sToDelete?.map?.(({{camelCase name}}: any) =>
+              api.delete(`/{{camelCase name}}/delete?_id=${ {{camelCase name}}._id}`)
+            )
+          );
+        }
+        return null;
+      } catch (error) {
+        showModal({
+          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          title: "Erro no servidor",
+          type: "error",
+        });
+      }
+    },
+    {
+      onSuccess: () => {
+        queryClientInstance.invalidateQueries(["{{camelCase name}}s", data.page]);
+        queryClientInstance.refetchQueries(["{{camelCase name}}s", data.page]);
+        router.reload();
+      },
+      onError: () => {
+        showModal({
+          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          title: "Erro no servidor",
+          type: "error",
+        });
+      },
+      retry: 3,
+    }
+  );
+  const deleteSelectedAction = async () => {
+    delete{{pascalCase name}}.mutateAsync(
+      {{camelCase name}}s.filter(({{camelCase name}}: {{pascalCase name}}Props) => {{camelCase name}}.value)
+    );
+  };
+  const changePage = (newpage: number) => {
+    router.replace(`/{{camelCase name}}s/${newpage}`);
+  };
+  useEffect(() => {
+    set{{pascalCase name}}s(data?.initialData?.{{camelCase name}}s ?? []);
+  }, [data?.initialData?.{{camelCase name}}s]);
+  return {
+    {{camelCase name}}s,
+    set{{pascalCase name}}s,
+    handlePrefetch{{pascalCase name}},
+    deleteSelectedAction,
+    page,
+    setPage: changePage,
+    total: data?.initialData?.totalCount,
+  };
+};

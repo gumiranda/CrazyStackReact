@@ -1,0 +1,24 @@
+import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Edit{{pascalCase name}}FormProps } from "./Edit{{pascalCase name}}Form";
+export type Edit{{pascalCase name}}FormData = {
+  name: string;
+};
+
+export type SubmitEdit{{pascalCase name}}Handler = SubmitHandler<Edit{{pascalCase name}}FormData>;
+
+export const edit{{pascalCase name}}FormSchema = yup.object().shape({
+  name: yup.string().required("Nome é obrigatório"),
+});
+
+export const useEdit{{pascalCase name}}Lib = (props: Edit{{pascalCase name}}FormProps) => {
+  const { {{camelCase name}}: current{{pascalCase name}} } = props;
+  const formProps = useForm<Edit{{pascalCase name}}FormData>({
+    resolver: yupResolver(edit{{pascalCase name}}FormSchema),
+    defaultValues: {
+      name: current{{pascalCase name}}?.name ?? "",
+    },
+  });
+  return { ...formProps };
+};

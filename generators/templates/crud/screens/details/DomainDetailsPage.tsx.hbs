@@ -1,0 +1,21 @@
+import { Box, Head } from "shared/ui";
+import { {{pascalCase name}}Details } from "entidades/{{camelCase name}}/details";
+import { {{pascalCase name}}Props } from "entidades/{{camelCase name}}";
+type {{pascalCase name}}DetailsProps = {
+  data: {{pascalCase name}}Props;
+  id: string;
+};
+export const {{pascalCase name}}DetailsPage = ({ data }: {{pascalCase name}}DetailsProps) => {
+  const props = { {{camelCase name}}: data };
+  return (
+    <>
+      <Head
+        title={"Belezix Admin | {{pascalCase label}}s"}
+        description="Página de detalhes de {{camelCase label}}s do painel de Admin Belezix"
+      />
+      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+        <{{pascalCase name}}Details {...props} />
+      </Box>
+    </>
+  );
+};
