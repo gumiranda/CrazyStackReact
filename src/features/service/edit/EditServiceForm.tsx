@@ -31,7 +31,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
     setHasFidelityGenerator,
     setCanPayWithFidelityPoints,
     categorySelected,
-  } = useEditService({
+  }: any = useEditService({
     service,
     categoryList,
   });

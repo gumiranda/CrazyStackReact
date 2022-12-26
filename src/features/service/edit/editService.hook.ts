@@ -19,7 +19,7 @@ export const useEditService = (props: EditServiceFormProps) => {
     setCategorySelected,
     handleChangeCategorySelected,
     categorys,
-  } = useCategoriesSelect({ categoryList });
+  } = useCategoriesSelect({ categoryList, currentService });
   const router = useRouter();
   const [active, setActive] = useState(false);
   const [havePromotionalPrice, setHavePromotionalPrice] = useState(false);

@@ -1,13 +1,18 @@
 import { GetCategorysResponse, getCategorys } from "entidades/category";
+import { ServiceProps } from "entidades/service";
 import { useState, useEffect } from "react";
 export type ServiceFormProps = {
   categoryList: GetCategorysResponse;
+  currentService?: ServiceProps;
 };
-export const useCategoriesSelect = ({ categoryList }: ServiceFormProps) => {
+export const useCategoriesSelect = ({
+  categoryList,
+  currentService,
+}: ServiceFormProps) => {
   const [page, setPage] = useState(1);
   const [categorys, setCategorys] = useState(categoryList?.categorys ?? []);
   const [categorySelected, setCategorySelected] = useState<string>(
-    categoryList?.categorys?.[0]?._id ?? ""
+    currentService?.categoryId ?? categoryList?.categorys?.[0]?._id ?? ""
   );
   const handleChangeCategorySelected = (event: any) => {
     event.preventDefault();
