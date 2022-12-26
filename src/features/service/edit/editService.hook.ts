@@ -8,7 +8,7 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useCategoriesSelect } from "../categoryList.hook";
+import { useCategoriesSelect } from "features/category/categoryList.hook";
 import { useState } from "react";
 
 export const useEditService = (props: EditServiceFormProps) => {

@@ -9,7 +9,7 @@ import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { CreateServiceFormProps } from "./CreateServiceForm";
-import { useCategoriesSelect } from "../categoryList.hook";
+import { useCategoriesSelect } from "features/category/categoryList.hook";
 export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
   const {
     categorySelected,
