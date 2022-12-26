@@ -10,8 +10,8 @@ export const UserEditPage = ({ data, id }: UserEditProps) => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Usuarios"}
-        description="Página de edição de usuarios do painel de Admin Belezix"
+        title={"Belezix Admin | Profissionais"}
+        description="Página de edição de profissionais do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
         <EditUserForm {...props} />

@@ -19,24 +19,24 @@ export const CreateUserForm = ({ serviceList }: CreateUserFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateUser)}
-      title={"Criar usuario"}
+      title={"Criar profissional"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/users/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome do usuario"
+          label="Nome do profissional"
           error={formState.errors.name}
           {...register("name")}
         />
         <FormControl
-          label="Email do usuario"
+          label="Email do profissional"
           error={formState.errors.email}
           type="email"
           {...register("email")}
         />
         <FormControl
-          label="Senha do usuario"
+          label="Senha do profissional"
           type="password"
           error={formState.errors.password}
           {...register("password")}

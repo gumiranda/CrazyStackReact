@@ -12,7 +12,7 @@ export const UserDetails = ({ user }: UserDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Usuario {user?.name}
+          Profissional {user?.name}
         </Heading>
         <NextLink passHref href={`/users/edit/${user?._id}`}>
           <Button

@@ -17,8 +17,8 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
   return (
     <>
       <Head
-        title={"Belezix Admin | Donos"}
-        description="Página de listagem de donos do painel de Admin Belezix"
+        title={"Belezix Admin | Estabelecimentos"}
+        description="Página de listagem de estabelecimentos do painel de Admin Belezix"
       />
       <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
         <GenericTable
@@ -41,7 +41,7 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
           routeDetails={"/owners/details"}
           routeCreate={"/owners/create"}
           routeList={"/owners/list"}
-          title={"Donos"}
+          title={"Estabelecimentos"}
         />
         <Pagination
           onPageChange={setPage}

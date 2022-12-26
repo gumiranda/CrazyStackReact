@@ -27,7 +27,8 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
         return;
       }
       showModal({
-        content: "Dono editada com sucesso, você será redirecionado para a lista de donos",
+        content:
+          "Estabelecimento editada com sucesso, você será redirecionado para a lista de estabelecimentos",
         title: "Sucesso",
         type: "success",
       });

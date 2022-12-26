@@ -12,7 +12,7 @@ export const EditUserForm = ({ user }: EditUserFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditUser)}
-      title={"Editar usuario"}
+      title={"Editar profissional"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/users/1"}
     >
@@ -27,7 +27,7 @@ export const EditUserForm = ({ user }: EditUserFormProps) => {
       />
       <GridForm>
         <FormControl
-          label="Nome da usuario"
+          label="Nome da profissional"
           error={formState.errors.name}
           {...register("name")}
         />

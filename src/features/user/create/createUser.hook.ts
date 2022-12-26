@@ -34,7 +34,7 @@ export const useCreateUser = ({ serviceList }: CreateUserFormProps) => {
       }
       showModal({
         content:
-          "Usuario criada com sucesso, você será redirecionado para a lista de usuarios",
+          "Profissional criada com sucesso, você será redirecionado para a lista de profissionais",
         title: "Sucesso",
         type: "success",
       });

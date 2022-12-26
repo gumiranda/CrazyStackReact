@@ -10,8 +10,8 @@ export const UserDetailsPage = ({ data }: UserDetailsProps) => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Usuarios"}
-        description="Página de detalhes de usuarios do painel de Admin Belezix"
+        title={"Belezix Admin | Profissionais"}
+        description="Página de detalhes de profissionais do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
         <UserDetails {...props} />

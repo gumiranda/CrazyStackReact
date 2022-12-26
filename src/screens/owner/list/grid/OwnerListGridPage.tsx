@@ -38,13 +38,13 @@ export const OwnerGridPage = () => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Donos"}
-        description="Página de listagem de donos do painel de Admin Belezix"
+        title={"Belezix Admin | Estabelecimentos"}
+        description="Página de listagem de estabelecimentos do painel de Admin Belezix"
       />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}
-        entityName="donos"
+        entityName="estabelecimentos"
       >
         <GenericGrid
           items={items}
@@ -52,8 +52,8 @@ export const OwnerGridPage = () => {
           route={"/owners/list"}
           routeList={"/owners/1"}
           routeCreate={"/owners/create"}
-          entityDisplayName={"Dono"}
-          title={"Donos"}
+          entityDisplayName={"Estabelecimento"}
+          title={"Estabelecimentos"}
           {...ownerGridProps}
         />
       </InfiniteList>

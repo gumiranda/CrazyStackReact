@@ -26,7 +26,8 @@ export const useCreateOwner = () => {
         return;
       }
       showModal({
-        content: "Dono criada com sucesso, você será redirecionado para a lista de donos",
+        content:
+          "Estabelecimento criada com sucesso, você será redirecionado para a lista de estabelecimentos",
         title: "Sucesso",
         type: "success",
       });

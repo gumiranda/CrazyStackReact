@@ -17,8 +17,8 @@ export const UserListTablePage = ({ page = 0, data }: UserListTablePageProps) =>
   return (
     <>
       <Head
-        title={"Belezix Admin | Usuarios"}
-        description="Página de listagem de usuarios do painel de Admin Belezix"
+        title={"Belezix Admin | Profissionais"}
+        description="Página de listagem de profissionais do painel de Admin Belezix"
       />
       <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
         <GenericTable
@@ -41,7 +41,7 @@ export const UserListTablePage = ({ page = 0, data }: UserListTablePageProps) =>
           routeDetails={"/users/details"}
           routeCreate={"/users/create"}
           routeList={"/users/list"}
-          title={"Usuarios"}
+          title={"Profissionais"}
         />
         <Pagination
           onPageChange={setPage}

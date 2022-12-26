@@ -24,7 +24,7 @@ export const useEditUser = (props: EditUserFormProps) => {
       }
       showModal({
         content:
-          "Usuario editada com sucesso, você será redirecionado para a lista de usuarios",
+          "Profissional editada com sucesso, você será redirecionado para a lista de profissionais",
         title: "Sucesso",
         type: "success",
       });

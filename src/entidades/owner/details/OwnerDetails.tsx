@@ -12,7 +12,7 @@ export const OwnerDetails = ({ owner }: OwnerDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Dono {owner?.name}
+          Estabelecimento {owner?.name}
         </Heading>
         <NextLink passHref href={`/owners/edit/${owner?._id}`}>
           <Button

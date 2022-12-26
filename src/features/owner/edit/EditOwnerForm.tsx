@@ -12,7 +12,7 @@ export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditOwner)}
-      title={"Editar dono"}
+      title={"Editar estabelecimento"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/owners/1"}
     >
@@ -27,7 +27,7 @@ export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
       />
       <GridForm>
         <FormControl
-          label="Nome da dono"
+          label="Nome da estabelecimento"
           error={formState.errors.name}
           {...register("name")}
         />

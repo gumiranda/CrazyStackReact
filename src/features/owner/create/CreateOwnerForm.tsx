@@ -8,15 +8,20 @@ export const CreateOwnerForm = () => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateOwner)}
-      title={"Criar dono"}
+      title={"Criar estabelecimento"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/owners/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome da dono"
+          label="Nome do estabelecimento"
           error={formState.errors.name}
           {...register("name")}
+        />
+        <FormControl
+          label="Descrição do estabelecimento"
+          error={formState.errors.description}
+          {...register("description")}
         />
         <Checkbox
           label="Ativo"
