@@ -8,10 +8,23 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
+import { useCategoriesSelect } from "../categoryList.hook";
+import { useState } from "react";
+
 export const useEditService = (props: EditServiceFormProps) => {
   const { showModal } = useUi();
-  const { service: currentService } = props;
+  const { service: currentService, categoryList } = props;
+  const {
+    categorySelected,
+    setCategorySelected,
+    handleChangeCategorySelected,
+    categorys,
+  } = useCategoriesSelect({ categoryList });
   const router = useRouter();
+  const [active, setActive] = useState(false);
+  const [havePromotionalPrice, setHavePromotionalPrice] = useState(false);
+  const [hasFidelityGenerator, setHasFidelityGenerator] = useState(false);
+  const [canPayWithFidelityPoints, setCanPayWithFidelityPoints] = useState(false);
   const editService = useMutation(async (service: EditServiceFormData) => {
     try {
       const { data } = await api.patch(`/service/update?_id=${currentService._id}`, {
@@ -46,7 +59,30 @@ export const useEditService = (props: EditServiceFormProps) => {
   const handleEditService: SubmitEditServiceHandler = async (
     values: EditServiceFormData
   ) => {
-    await editService.mutateAsync(values);
+    await editService.mutateAsync({
+      ...values,
+      categoryId: categorySelected,
+      havePromotionalPrice,
+      hasFidelityGenerator,
+      canPayWithFidelityPoints,
+    });
   };
-  return { formState, register, handleSubmit, handleEditService };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleEditService,
+    active,
+    setActive,
+    havePromotionalPrice,
+    hasFidelityGenerator,
+    canPayWithFidelityPoints,
+    setHavePromotionalPrice,
+    setHasFidelityGenerator,
+    setCanPayWithFidelityPoints,
+    categorySelected,
+    setCategorySelected,
+    handleChangeCategorySelected,
+    categorys,
+  };
 };
