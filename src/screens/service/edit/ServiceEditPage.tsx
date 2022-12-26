@@ -1,12 +1,14 @@
 import { Box, Head } from "shared/ui";
 import { EditServiceForm } from "features/service/edit";
 import { ServiceProps } from "entidades/service";
+import { GetCategorysResponse } from "entidades/category";
 type ServiceEditProps = {
   data: ServiceProps;
+  categorys: GetCategorysResponse;
   id: string;
 };
-export const ServiceEditPage = ({ data, id }: ServiceEditProps) => {
-  const props = { service: data };
+export const ServiceEditPage = ({ data, id, categorys }: ServiceEditProps) => {
+  const props = { service: data, categoryList: categorys };
   return (
     <>
       <Head
