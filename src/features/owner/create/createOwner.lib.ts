@@ -1,21 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { OptionBase } from "chakra-react-select";
-export interface DaysOptions extends OptionBase {
-  label: string;
-  value: string;
-}
-export type CreateOwnerFormData = {
-  name: string;
-  description: string;
-  minimumTimeForReSchedule?: number;
-  active?: boolean;
-  haveDelivery?: boolean;
-  days1Options?: DaysOptions[];
-  days2Options?: DaysOptions[];
-  days3Options?: DaysOptions[];
-};
+import { CreateOwnerFormData } from "entidades/owner";
 
 export type SubmitCreateOwnerHandler = SubmitHandler<CreateOwnerFormData>;
 
@@ -25,31 +11,15 @@ export const createOwnerFormSchema = yup.object().shape({
   days1Options: yup
     .array()
     .required("É necessário selecionar pelo menos um dia da semana")
-    .min(2, "É necessário selecionar pelo menos um dia da semana")
+    .min(1, "É necessário selecionar pelo menos um dia da semana")
     .of(
       yup.object().shape({
         label: yup.string().required(),
         value: yup.string().required(),
       })
     ),
-  days2Options: yup
-    .array()
-    .min(2, "É necessário selecionar pelo menos um dia da semana")
-    .of(
-      yup.object().shape({
-        label: yup.string().required(),
-        value: yup.string().required(),
-      })
-    ),
-  days3Options: yup
-    .array()
-    .min(2, "É necessário selecionar pelo menos um dia da semana")
-    .of(
-      yup.object().shape({
-        label: yup.string().required(),
-        value: yup.string().required(),
-      })
-    ),
+  days2Options: yup.array(),
+  days3Options: yup.array(),
   minimumTimeForReSchedule: yup.number().min(30).required("Descrição é obrigatória"),
 });
 

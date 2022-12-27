@@ -1,13 +1,10 @@
 import { useUi } from "shared/libs";
-import {
-  CreateOwnerFormData,
-  SubmitCreateOwnerHandler,
-  useCreateOwnerLib,
-} from "./createOwner.lib";
+import { SubmitCreateOwnerHandler, useCreateOwnerLib } from "./createOwner.lib";
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { CreateOwnerFormData } from "entidades/owner";
 type HourValidatorInput = {
   hourStart1: string;
   hourEnd1: string;
