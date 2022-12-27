@@ -13,8 +13,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.15",
-    "@chakra-ui/react": "^2.4.2",
+    "@chakra-ui/icons": "2.0.13",
+    "@chakra-ui/react": "2.4.2",
+    "@chakra-ui/theme-tools": "2.0.14",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@hookform/resolvers": "^2.9.10",
