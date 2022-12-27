@@ -24,7 +24,7 @@
     "axios": "^1.2.1",
     "chakra-react-select": "^4.4.3",
     "framer-motion": "^8",
-    "next": "13.1.1",
+    "next": "13.0.7",
     "next-pwa": "^5.6.0",
     "nookies": "^2.5.2",
     "plop": "^3.1.1",
