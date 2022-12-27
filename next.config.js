@@ -7,6 +7,9 @@ const withBundlerAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    esmExternals: false,
+  },
   pwa: { dest: "public", disable: !isProd },
 };
 
