@@ -26,7 +26,11 @@ type HourValidatorInput = {
 export const useCreateOwner = () => {
   const { showModal } = useUi();
   const router = useRouter();
-  const [haveLunchTime, setHaveLunchTime] = useState(false);
+  const [haveAlternativeHour, setHaveAlternativeHour] = useState(false);
+  const [haveAlternativeHour2, setHaveAlternativeHour2] = useState(false);
+  const [haveLunchTime1, setHaveLunchTime1] = useState(false);
+  const [haveLunchTime2, setHaveLunchTime2] = useState(false);
+  const [haveLunchTime3, setHaveLunchTime3] = useState(false);
   const [hourWork, setHourWork] = useState<HourValidatorInput>({
     hourStart1: "8:00",
     hourEnd1: "18:00",
@@ -63,22 +67,16 @@ export const useCreateOwner = () => {
     },
     {}
   );
-  const { register, handleSubmit, formState } = useCreateOwnerLib();
+  const { register, handleSubmit, formState, control } = useCreateOwnerLib();
   const handleCreateOwner: SubmitCreateOwnerHandler = async (
     values: CreateOwnerFormData
   ) => {
     await createOwner.mutateAsync({
       ...values,
       ...hourWork,
-      days1: {
-        monday1: false,
-        sunday1: false,
-        tuesday1: false,
-        thursday1: false,
-        friday1: false,
-        wednesday1: false,
-        saturday1: false,
-      },
+      days1: formatDays(values?.days1Options, "1"),
+      days2: formatDays(values?.days2Options, "2"),
+      days3: formatDays(values?.days3Options, "3"),
       haveDelivery: false,
     });
   };
@@ -86,20 +84,43 @@ export const useCreateOwner = () => {
     event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
-
+  const daysOptions1 = daysOptions.map((item) => ({ ...item, value: item?.value + "1" }));
+  const daysOptions2 = daysOptions.map((item) => ({ ...item, value: item?.value + "2" }));
+  const daysOptions3 = daysOptions.map((item) => ({ ...item, value: item?.value + "3" }));
   return {
     formState,
     register,
     handleSubmit,
     handleCreateOwner,
-    haveLunchTime,
-    setHaveLunchTime,
+    haveLunchTime1,
+    setHaveLunchTime1,
+    haveLunchTime2,
+    setHaveLunchTime2,
+    haveLunchTime3,
+    setHaveLunchTime3,
     hourWork,
     setHourWork,
     changeHour,
     listHours,
+    daysOptions1,
+    daysOptions2,
+    daysOptions3,
+    control,
+    haveAlternativeHour,
+    setHaveAlternativeHour,
+    haveAlternativeHour2,
+    setHaveAlternativeHour2,
   };
 };
+const daysOptions = [
+  { label: "Segunda-feira", value: "monday" },
+  { label: "Terça-feira", value: "tuesday" },
+  { label: "Quarta-feira", value: "wednesday" },
+  { label: "Quinta-feira", value: "thursday" },
+  { label: "Sexta-feira", value: "friday" },
+  { label: "Sábado", value: "saturday" },
+  { label: "Domingo", value: "sunday" },
+];
 const listHours = [
   { label: "7:00" },
   { label: "7:30" },
@@ -138,30 +159,27 @@ const listHours = [
 ];
 type Days = {
   days1: {
-    monday1: boolean;
-    sunday1: boolean;
-    tuesday1: boolean;
-    thursday1: boolean;
-    friday1: boolean;
-    wednesday1: boolean;
-    saturday1: boolean;
+    [x: string]: boolean;
   };
   days2?: {
-    monday2: boolean;
-    sunday2: boolean;
-    tuesday2: boolean;
-    thursday2: boolean;
-    friday2: boolean;
-    wednesday2: boolean;
-    saturday2: boolean;
+    [x: string]: boolean;
   };
   days3?: {
-    monday3: boolean;
-    sunday3: boolean;
-    tuesday3: boolean;
-    thursday3: boolean;
-    friday3: boolean;
-    wednesday3: boolean;
-    saturday3: boolean;
+    [x: string]: boolean;
   };
 };
+function formatDays(array: any, numberOfDay: string) {
+  return {
+    ["monday" + numberOfDay]: getDayOfWeek(array, "monday" + numberOfDay),
+    ["sunday" + numberOfDay]: getDayOfWeek(array, "sunday" + numberOfDay),
+    ["tuesday" + numberOfDay]: getDayOfWeek(array, "tuesday" + numberOfDay),
+    ["thursday" + numberOfDay]: getDayOfWeek(array, "thursday" + numberOfDay),
+    ["friday" + numberOfDay]: getDayOfWeek(array, "friday" + numberOfDay),
+    ["wednesday" + numberOfDay]: getDayOfWeek(array, "wednesday" + numberOfDay),
+    ["saturday" + numberOfDay]: getDayOfWeek(array, "saturday" + numberOfDay),
+  };
+}
+
+function getDayOfWeek(array: any, value: string): boolean {
+  return !!array?.find?.((item: any) => item?.value === value);
+}
