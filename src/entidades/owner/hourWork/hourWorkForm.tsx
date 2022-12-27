@@ -1,11 +1,34 @@
 import { Select, ControlledSelect, Checkbox } from "shared/ui";
 import { OptionBase } from "chakra-react-select";
-
+export type HourValidatorInput = {
+  hourStart1: string;
+  hourEnd1: string;
+  hourLunchStart1?: string;
+  hourLunchEnd1?: string;
+  hourStart2?: string;
+  hourEnd2?: string;
+  hourLunchStart2?: string;
+  hourLunchEnd2?: string;
+  hourStart3?: string;
+  hourEnd3?: string;
+  hourLunchStart3?: string;
+  hourLunchEnd3?: string;
+};
 export interface DaysOptions extends OptionBase {
   label: string;
   value: string;
 }
 export type CreateOwnerFormData = {
+  name: string;
+  description: string;
+  minimumTimeForReSchedule?: number;
+  active?: boolean;
+  haveDelivery?: boolean;
+  days1Options?: DaysOptions[];
+  days2Options?: DaysOptions[];
+  days3Options?: DaysOptions[];
+};
+export type EditOwnerFormData = {
   name: string;
   description: string;
   minimumTimeForReSchedule?: number;
@@ -360,3 +383,86 @@ export const HourWorkForm = ({
     </>
   );
 };
+
+export const daysOptions = [
+  { label: "Segunda-feira", value: "monday" },
+  { label: "Terça-feira", value: "tuesday" },
+  { label: "Quarta-feira", value: "wednesday" },
+  { label: "Quinta-feira", value: "thursday" },
+  { label: "Sexta-feira", value: "friday" },
+  { label: "Sábado", value: "saturday" },
+  { label: "Domingo", value: "sunday" },
+];
+export const listHours = [
+  { label: "7:00" },
+  { label: "7:30" },
+  { label: "8:00" },
+  { label: "8:30" },
+  { label: "9:00" },
+  { label: "9:30" },
+  { label: "10:00" },
+  { label: "10:30" },
+  { label: "11:00" },
+  { label: "11:30" },
+  { label: "12:00" },
+  { label: "12:30" },
+  { label: "13:00" },
+  { label: "13:30" },
+  { label: "14:00" },
+  { label: "14:30" },
+  { label: "15:00" },
+  { label: "15:30" },
+  { label: "16:00" },
+  { label: "16:30" },
+  { label: "17:00" },
+  { label: "17:30" },
+  { label: "18:00" },
+  { label: "18:30" },
+  { label: "19:00" },
+  { label: "19:30" },
+  { label: "20:00" },
+  { label: "20:30" },
+  { label: "21:00" },
+  { label: "21:30" },
+  { label: "22:00" },
+  { label: "22:30" },
+  { label: "23:00" },
+  { label: "23:30" },
+];
+type Day = {
+  [x: string]: boolean;
+};
+export type Days = {
+  days1: Day;
+  days2?: Day;
+  days3?: Day;
+};
+export function formatOptions(day: Day | undefined) {
+  if (!day) return [];
+  const options = [];
+  for (const [dayOfWeek, value] of Object.entries(day)) {
+    if (value) {
+      const currentValue = dayOfWeek?.substring(0, dayOfWeek?.length - 1);
+      options.push({
+        label: daysOptions?.find?.((day) => day.value === currentValue)?.label,
+        value: currentValue,
+      });
+    }
+  }
+  return options;
+}
+export function formatDays(array: any, numberOfDay: string) {
+  return {
+    ["monday" + numberOfDay]: getDayOfWeek(array, "monday" + numberOfDay),
+    ["sunday" + numberOfDay]: getDayOfWeek(array, "sunday" + numberOfDay),
+    ["tuesday" + numberOfDay]: getDayOfWeek(array, "tuesday" + numberOfDay),
+    ["thursday" + numberOfDay]: getDayOfWeek(array, "thursday" + numberOfDay),
+    ["friday" + numberOfDay]: getDayOfWeek(array, "friday" + numberOfDay),
+    ["wednesday" + numberOfDay]: getDayOfWeek(array, "wednesday" + numberOfDay),
+    ["saturday" + numberOfDay]: getDayOfWeek(array, "saturday" + numberOfDay),
+  };
+}
+
+function getDayOfWeek(array: any, value: string): boolean {
+  return !!array?.find?.((item: any) => item?.value === value);
+}
