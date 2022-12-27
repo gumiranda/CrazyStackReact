@@ -1,5 +1,6 @@
-import { Box, Stack, Text } from "shared/ui/atoms";
+import { Box, Text } from "shared/ui/atoms";
 import { ReactNode } from "react";
+import { HStack } from "@chakra-ui/react";
 interface NavSectionProps {
   title: string;
   children: ReactNode;
@@ -10,9 +11,9 @@ export const NavSection = ({ title, children, ...rest }: NavSectionProps) => {
       <Text fontWeight={"bold"} color="purple.400" fontSize="small">
         {title}
       </Text>
-      <Stack spacing="4" mt="8" align="stretch">
+      <HStack spacing="4" mt="8" align="stretch">
         {children}
-      </Stack>
+      </HStack>
     </Box>
   );
 };
