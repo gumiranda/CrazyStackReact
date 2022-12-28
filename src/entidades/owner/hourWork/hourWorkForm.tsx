@@ -445,7 +445,7 @@ export function formatOptions(day: Day | undefined) {
       const currentValue = dayOfWeek?.substring(0, dayOfWeek?.length - 1);
       options.push({
         label: daysOptions?.find?.((day) => day.value === currentValue)?.label,
-        value: currentValue,
+        value: dayOfWeek,
       });
     }
   }

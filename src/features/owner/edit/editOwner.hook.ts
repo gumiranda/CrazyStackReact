@@ -84,14 +84,23 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     });
   };
   const daysOptions1 = daysOptions
-    .map((item) => ({ ...item, value: item?.value + "1" }))
-    ?.filter((item) => currentOwner?.days1[item?.value] === false);
+    ?.map?.((item) => ({
+      ...item,
+      value: item?.value + "1",
+    }))
+    ?.filter?.(
+      (item) => currentOwner?.days1?.[item?.value] === false || !currentOwner?.days1
+    );
   const daysOptions2 = daysOptions
     .map((item) => ({ ...item, value: item?.value + "2" }))
-    ?.filter((item) => currentOwner?.days2[item?.value] === false);
+    ?.filter(
+      (item) => currentOwner?.days2?.[item?.value] === false || !currentOwner?.days2
+    );
   const daysOptions3 = daysOptions
     .map((item) => ({ ...item, value: item?.value + "3" }))
-    ?.filter((item) => currentOwner?.days3[item?.value] === false);
+    ?.filter(
+      (item) => currentOwner?.days3?.[item?.value] === false || !currentOwner?.days3
+    );
   const changeHour = (event: any, nameField: string) => {
     event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
