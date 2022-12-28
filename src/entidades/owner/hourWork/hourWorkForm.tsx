@@ -186,7 +186,7 @@ export const HourWorks = ({
           <Checkbox
             colorScheme="green"
             isChecked={haveLunchTime2}
-            label="Possui horário de almoço?"
+            label="Possui horário de almoço alternativo?"
             onChange={(e) => {
               e.preventDefault();
               setHaveLunchTime2(e.target.checked);
@@ -242,7 +242,7 @@ export const HourWorks = ({
       <Checkbox
         colorScheme="green"
         isChecked={haveLunchTime3}
-        label="Possui horário de almoço?"
+        label="Possui terceiro horário de almoço?"
         onChange={(e) => {
           e.preventDefault();
           setHaveLunchTime3(e.target.checked);

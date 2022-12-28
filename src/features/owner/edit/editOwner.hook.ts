@@ -16,8 +16,12 @@ import {
 export const useEditOwner = (props: EditOwnerFormProps) => {
   const { showModal } = useUi();
   const { owner: currentOwner } = props;
-  const [haveAlternativeHour, setHaveAlternativeHour] = useState(!!currentOwner?.days2);
-  const [haveAlternativeHour2, setHaveAlternativeHour2] = useState(!!currentOwner?.days3);
+  const [haveAlternativeHour, setHaveAlternativeHour] = useState(
+    !!currentOwner?.hourStart2
+  );
+  const [haveAlternativeHour2, setHaveAlternativeHour2] = useState(
+    !!currentOwner?.hourStart3
+  );
   const [haveLunchTime1, setHaveLunchTime1] = useState(!!currentOwner?.hourLunchStart1);
   const [haveLunchTime2, setHaveLunchTime2] = useState(!!currentOwner?.hourLunchStart2);
   const [haveLunchTime3, setHaveLunchTime3] = useState(!!currentOwner?.hourLunchStart3);
@@ -79,9 +83,15 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
       days3: formatDays(values?.days3Options, "3"),
     });
   };
-  const daysOptions1 = daysOptions.map((item) => ({ ...item, value: item?.value + "1" }));
-  const daysOptions2 = daysOptions.map((item) => ({ ...item, value: item?.value + "2" }));
-  const daysOptions3 = daysOptions.map((item) => ({ ...item, value: item?.value + "3" }));
+  const daysOptions1 = daysOptions
+    .map((item) => ({ ...item, value: item?.value + "1" }))
+    ?.filter((item) => currentOwner?.days1[item?.value] === false);
+  const daysOptions2 = daysOptions
+    .map((item) => ({ ...item, value: item?.value + "2" }))
+    ?.filter((item) => currentOwner?.days2[item?.value] === false);
+  const daysOptions3 = daysOptions
+    .map((item) => ({ ...item, value: item?.value + "3" }))
+    ?.filter((item) => currentOwner?.days3[item?.value] === false);
   const changeHour = (event: any, nameField: string) => {
     event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
