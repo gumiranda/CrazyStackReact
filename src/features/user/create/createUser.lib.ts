@@ -8,6 +8,8 @@ export type CreateUserFormData = {
   password: string;
   passwordConfirmation: string;
   role?: string;
+  ownerId?: string;
+  myOwnerId?: string;
   serviceIds?: string[];
 };
 

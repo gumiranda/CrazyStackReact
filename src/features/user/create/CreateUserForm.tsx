@@ -1,10 +1,13 @@
 import { useCreateUser } from "./createUser.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
 import { GetServicesResponse } from "entidades/service";
+import { GetOwnersResponse } from "entidades/owner";
+
 type CreateUserFormProps = {
   serviceList: GetServicesResponse;
+  ownerList: GetOwnersResponse;
 };
-export const CreateUserForm = ({ serviceList }: CreateUserFormProps) => {
+export const CreateUserForm = ({ serviceList, ownerList }: CreateUserFormProps) => {
   const {
     formState,
     register,
@@ -15,7 +18,10 @@ export const CreateUserForm = ({ serviceList }: CreateUserFormProps) => {
     handleChangeServiceSelected,
     services,
     serviceSelected,
-  } = useCreateUser({ serviceList });
+    handleChangeOwnerSelected,
+    owners,
+    ownerSelected,
+  } = useCreateUser({ serviceList, ownerList });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateUser)}
@@ -54,6 +60,20 @@ export const CreateUserForm = ({ serviceList }: CreateUserFormProps) => {
           list={services}
           value={serviceSelected}
           onChange={handleChangeServiceSelected}
+          keyValue="_id"
+          keyLabel="name"
+        >
+          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
+            Carregar mais
+          </option>
+        </Select>
+        <Select
+          bg="purple.700"
+          name="ownerList"
+          label="Estabelecimento"
+          list={owners}
+          value={ownerSelected}
+          onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
         >

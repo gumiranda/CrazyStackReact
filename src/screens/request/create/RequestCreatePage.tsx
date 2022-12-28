@@ -1,5 +1,4 @@
 import { Box, Head } from "shared/ui";
-import { RequestProps } from "entidades/request";
 import { CreateRequestForm } from "features/request/create";
 
 export const RequestCreatePage = () => {

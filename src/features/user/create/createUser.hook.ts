@@ -9,14 +9,22 @@ import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { GetServicesResponse } from "entidades/service";
+import { GetOwnersResponse } from "entidades/owner";
 import { useServicesSelect } from "features/service/serviceList.hook";
+import { useOwnersSelect } from "features/owner/ownerList.hook";
+
 type CreateUserFormProps = {
   serviceList: GetServicesResponse;
+  ownerList: GetOwnersResponse;
 };
-export const useCreateUser = ({ serviceList }: CreateUserFormProps) => {
+export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) => {
   const { showModal } = useUi();
-  const { serviceSelected, setServiceSelected, handleChangeServiceSelected, services } =
-    useServicesSelect({ serviceList });
+  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
+    serviceList,
+  });
+  const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
+    ownerList,
+  });
   const router = useRouter();
   const [active, setActive] = useState(false);
   const createUser = useMutation(async (user: CreateUserFormData) => {
@@ -53,6 +61,8 @@ export const useCreateUser = ({ serviceList }: CreateUserFormProps) => {
     await createUser.mutateAsync({
       ...values,
       serviceIds: [serviceSelected],
+      ownerId: ownerSelected,
+      myOwnerId: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
       active,
       role: "professional",
     });
@@ -67,5 +77,8 @@ export const useCreateUser = ({ serviceList }: CreateUserFormProps) => {
     handleChangeServiceSelected,
     services,
     serviceSelected,
+    handleChangeOwnerSelected,
+    owners,
+    ownerSelected,
   };
 };

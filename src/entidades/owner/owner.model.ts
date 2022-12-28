@@ -28,6 +28,7 @@ export type OwnerProps = {
   hourEnd3?: string;
   hourLunchStart3?: string;
   hourLunchEnd3?: string;
+  createdById?: string;
 };
 
 class Owner {
@@ -76,6 +77,9 @@ class Owner {
   }
   get description(): string | undefined {
     return this.props.description;
+  }
+  get createdById(): string | undefined {
+    return this.props.createdById;
   }
   get days1(): any {
     return this.props.days1;
