@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+OWNERID A SER PASSADO EM LOADAVAILABLETIMES DEVE SER O MYOWNERID DO PROFISSIONAL E USERID DO OWNER
+
 First, run the development server:
 
 ```bash
