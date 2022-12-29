@@ -28,6 +28,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
     serviceSelected,
     handleChangeServiceSelected,
     services,
+    setDateSelected,
   } = useCreateRequest({ ownerList });
   return (
     <BoxCreateItem
@@ -46,7 +47,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           placeholder="Selecione uma data"
           name="date"
           label="Data de agendamento"
-          onChange={(date: string) => console.log(date)}
+          onChange={(date: string) => {
+            setDateSelected(date);
+          }}
         />
         <Select
           bg="purple.700"

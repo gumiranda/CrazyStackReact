@@ -18,6 +18,7 @@ type CreateRequestFormProps = {
 export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
+  const [dateSelected, setDateSelected] = useState(new Date().toISOString());
   const [active, setActive] = useState(false);
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
@@ -83,5 +84,7 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
         ?.find?.((user) => user?._id === userSelected)
         ?.serviceIds?.includes?.(service?._id)
     ),
+    dateSelected,
+    setDateSelected,
   };
 };
