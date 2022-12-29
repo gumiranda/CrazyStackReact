@@ -15,6 +15,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    userSelected,
+    handleChangeUserSelected,
+    users,
   } = useCreateRequest({ ownerList });
   return (
     <BoxCreateItem
@@ -36,6 +39,20 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           list={owners}
           value={ownerSelected}
           onChange={handleChangeOwnerSelected}
+          keyValue="_id"
+          keyLabel="name"
+        >
+          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
+            Carregar mais
+          </option>
+        </Select>
+        <Select
+          bg="purple.700"
+          name="userList"
+          label="Profissional prestador"
+          list={users}
+          value={userSelected}
+          onChange={handleChangeUserSelected}
           keyValue="_id"
           keyLabel="name"
         >

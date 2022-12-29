@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { GetOwnersResponse } from "entidades/owner";
 import { useOwnersSelect } from "features/owner/ownerList.hook";
+import { useUsersSelect } from "features/user/userList.hook";
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
 };
@@ -19,6 +20,9 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const [active, setActive] = useState(false);
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
+  });
+  const { userSelected, handleChangeUserSelected, users } = useUsersSelect({
+    ownerSelected,
   });
   const createRequest = useMutation(async (request: CreateRequestFormData) => {
     try {
@@ -65,5 +69,8 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    userSelected,
+    handleChangeUserSelected,
+    users,
   };
 };

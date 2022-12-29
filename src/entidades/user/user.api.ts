@@ -7,9 +7,13 @@ export type GetUsersResponse = {
   prev?: number;
 };
 const registerByPage = 10;
-export const getUsers = async (page: number, ctx: any): Promise<GetUsersResponse> => {
+export const getUsers = async (
+  page: number,
+  ctx: any,
+  params: any = {}
+): Promise<GetUsersResponse> => {
   const { data } = await setupAPIClient(ctx).get("/user/loadByPage", {
-    params: { page, sortBy: "createdAt", typeSort: "desc" },
+    params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { users, total } = data || {};
   const totalCount = Number(total ?? 0);
