@@ -20,7 +20,9 @@ export const getAppointments = async (
     ? totalCount / registerByPage
     : Math.floor(totalCount / registerByPage) + 1;
   const response = {
-    appointments: appointments?.map?.((props: AppointmentProps) => appointmentModel(props).format()),
+    appointments: appointments?.map?.((props: AppointmentProps) =>
+      appointmentModel(props).format()
+    ),
     totalCount,
   };
   if (lastPage > page) {

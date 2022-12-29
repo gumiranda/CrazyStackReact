@@ -17,7 +17,7 @@ export const EditAppointmentForm = ({ appointment }: EditAppointmentFormProps) =
       cancelRoute={"/appointments/1"}
     >
       <GenericDetailsItem
-        item={ appointment }
+        item={appointment}
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },

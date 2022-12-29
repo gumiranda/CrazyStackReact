@@ -32,7 +32,7 @@ export const useAppointmentInfiniteList = () => {
         if (appointmentsToDelete?.length > 0) {
           return Promise.all(
             appointmentsToDelete?.map?.((appointment: any) =>
-              api.delete(`/appointment/delete?_id=${ appointment._id}`)
+              api.delete(`/appointment/delete?_id=${appointment._id}`)
             )
           );
         }

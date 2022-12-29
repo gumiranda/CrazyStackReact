@@ -12,9 +12,9 @@ export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => 
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Agendamento { appointment?.name}
+          Agendamento {appointment?.name}
         </Heading>
-        <NextLink passHref href={`/appointments/edit/${ appointment?._id}`}>
+        <NextLink passHref href={`/appointments/edit/${appointment?._id}`}>
           <Button
             size="sm"
             fontSize={"sm"}
@@ -26,7 +26,7 @@ export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => 
         </NextLink>
       </Flex>
       <GenericDetailsItem
-        item={ appointment }
+        item={appointment}
         fields={[
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },
