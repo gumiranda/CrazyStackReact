@@ -1,15 +1,19 @@
-import { GetServicesResponse, getServices } from "entidades/service";
-import { UserProps } from "entidades/user";
+import { GetServicesResponse, getServices, ServiceProps } from "entidades/service";
 import { useState, useEffect } from "react";
-export type UserFormProps = {
-  serviceList: GetServicesResponse;
-  currentUser?: UserProps;
+export type ServiceFormProps = {
+  serviceList?: GetServicesResponse | null;
+  currentService?: ServiceProps;
+  ownerSelected?: string | null;
 };
-export const useServicesSelect = ({ serviceList, currentUser }: UserFormProps) => {
+export const useServicesSelect = ({
+  serviceList = null,
+  currentService,
+  ownerSelected = null,
+}: ServiceFormProps) => {
   const [page, setPage] = useState(1);
   const [services, setServices] = useState(serviceList?.services ?? []);
   const [serviceSelected, setServiceSelected] = useState<string>(
-    //currentUser?.servicesId ??
+    //currentService?.servicesId ??
     serviceList?.services?.[0]?._id ?? ""
   );
   const handleChangeServiceSelected = (event: any) => {
@@ -17,8 +21,20 @@ export const useServicesSelect = ({ serviceList, currentUser }: UserFormProps) =
     setServiceSelected(event.target.value);
   };
   const fetchServicesPaginated = async () => {
-    if (serviceList?.totalCount > services?.length && page > 1) {
-      const data = await getServices(page, null);
+    if (serviceList && serviceList?.totalCount > services?.length && page > 1) {
+      const params = {};
+      if (ownerSelected) {
+        Object.assign(params, { createdById: ownerSelected });
+      }
+      const data = await getServices(page, null, params);
+      if (data?.totalCount > services?.length) {
+        setServiceSelected(data?.services?.[0]?._id ?? "");
+        setServices((prev) => [...prev, ...(data.services ?? [])]);
+      }
+    } else if (!serviceList && ownerSelected) {
+      const data = await getServices(page, null, {
+        createdById: ownerSelected,
+      });
       if (data?.totalCount > services?.length) {
         setServiceSelected(data?.services?.[0]?._id ?? "");
         setServices((prev) => [...prev, ...(data.services ?? [])]);

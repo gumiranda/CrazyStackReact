@@ -11,6 +11,7 @@ import { useState } from "react";
 import { GetOwnersResponse } from "entidades/owner";
 import { useOwnersSelect } from "features/owner/ownerList.hook";
 import { useUsersSelect } from "features/user/userList.hook";
+import { useServicesSelect } from "features/service/serviceList.hook";
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
 };
@@ -23,6 +24,9 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   });
   const { userSelected, handleChangeUserSelected, users } = useUsersSelect({
     ownerSelected,
+  });
+  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
+    ownerSelected: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
   });
   const createRequest = useMutation(async (request: CreateRequestFormData) => {
     try {
@@ -72,5 +76,12 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     userSelected,
     handleChangeUserSelected,
     users,
+    serviceSelected,
+    handleChangeServiceSelected,
+    services: services.filter((service) =>
+      users
+        ?.find?.((user) => user?._id === userSelected)
+        ?.serviceIds?.includes?.(service?._id)
+    ),
   };
 };

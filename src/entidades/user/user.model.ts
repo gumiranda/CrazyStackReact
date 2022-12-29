@@ -4,6 +4,7 @@ export type UserProps = {
   createdAt: string;
   value?: boolean;
   active?: boolean;
+  serviceIds?: string[];
 };
 
 class User {
@@ -26,8 +27,12 @@ class User {
   get active(): boolean | undefined {
     return this.props.active;
   }
+  get serviceIds(): string[] | undefined {
+    return this.props.serviceIds;
+  }
   format(): UserProps {
     return {
+      ...this.props,
       _id: this.props._id,
       name: this.props.name,
       active: this.props.active,
