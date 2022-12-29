@@ -1,5 +1,12 @@
 import { useCreateRequest } from "./createRequest.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
+import {
+  BoxCreateItem,
+  FormControl,
+  Checkbox,
+  GridForm,
+  Select,
+  DatePicker,
+} from "shared/ui";
 import { GetOwnersResponse } from "entidades/owner";
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
@@ -34,6 +41,12 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           label="Nome da solicitação"
           error={formState.errors.name}
           {...register("name")}
+        />
+        <DatePicker
+          placeholder="Selecione uma data"
+          name="date"
+          label="Data de agendamento"
+          onChange={(date: string) => console.log(date)}
         />
         <Select
           bg="purple.700"
