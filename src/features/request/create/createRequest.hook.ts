@@ -12,13 +12,14 @@ import { GetOwnersResponse } from "entidades/owner";
 import { useOwnersSelect } from "features/owner/ownerList.hook";
 import { useUsersSelect } from "features/user/userList.hook";
 import { useServicesSelect } from "features/service/serviceList.hook";
+import { useTimeAvailable } from "features/appointment/timeAvailable.hook";
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
 };
 export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
-  const [dateSelected, setDateSelected] = useState(new Date().toISOString());
+  const [dateSelected, setDateSelected] = useState(null);
   const [active, setActive] = useState(false);
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
@@ -29,6 +30,13 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
     ownerSelected: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
   });
+  const { timeAvailable } = useTimeAvailable({
+    ownerId: owners?.find?.((owner) => ownerSelected === owner?._id)?.createdById ?? "",
+    professionalId: userSelected,
+    serviceId: serviceSelected,
+    date: dateSelected ?? null,
+  });
+  console.log({ timeAvailable });
   const createRequest = useMutation(async (request: CreateRequestFormData) => {
     try {
       const { data } = await api.post("/request/add", {

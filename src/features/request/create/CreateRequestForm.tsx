@@ -43,14 +43,19 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           error={formState.errors.name}
           {...register("name")}
         />
-        <DatePicker
-          placeholder="Selecione uma data"
-          name="date"
-          label="Data de agendamento"
-          onChange={(date: string) => {
-            setDateSelected(date);
-          }}
-        />
+        {ownerSelected?.length === 24 &&
+          serviceSelected?.length === 24 &&
+          userSelected?.length === 24 && (
+            <DatePicker
+              placeholder="Selecione uma data"
+              name="date"
+              label="Data de agendamento"
+              onChange={(date: string) => {
+                setDateSelected(date as any);
+              }}
+            />
+          )}
+
         <Select
           bg="purple.700"
           name="ownerList"
