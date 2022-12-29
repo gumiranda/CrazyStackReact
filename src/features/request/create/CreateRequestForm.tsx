@@ -1,10 +1,21 @@
-import { RequestProps } from "entidades/request";
 import { useCreateRequest } from "./createRequest.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
-
-export const CreateRequestForm = () => {
-  const { formState, register, handleSubmit, handleCreateRequest, active, setActive } =
-    useCreateRequest();
+import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
+import { GetOwnersResponse } from "entidades/owner";
+type CreateRequestFormProps = {
+  ownerList: GetOwnersResponse;
+};
+export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
+  const {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateRequest,
+    active,
+    setActive,
+    handleChangeOwnerSelected,
+    owners,
+    ownerSelected,
+  } = useCreateRequest({ ownerList });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRequest)}
@@ -18,6 +29,20 @@ export const CreateRequestForm = () => {
           error={formState.errors.name}
           {...register("name")}
         />
+        <Select
+          bg="purple.700"
+          name="ownerList"
+          label="Estabelecimento"
+          list={owners}
+          value={ownerSelected}
+          onChange={handleChangeOwnerSelected}
+          keyValue="_id"
+          keyLabel="name"
+        >
+          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
+            Carregar mais
+          </option>
+        </Select>
         <Checkbox
           label="Ativo"
           colorScheme="green"

@@ -8,10 +8,18 @@ import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-export const useCreateRequest = () => {
+import { GetOwnersResponse } from "entidades/owner";
+import { useOwnersSelect } from "features/owner/ownerList.hook";
+type CreateRequestFormProps = {
+  ownerList: GetOwnersResponse;
+};
+export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
+  const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
+    ownerList,
+  });
   const createRequest = useMutation(async (request: CreateRequestFormData) => {
     try {
       const { data } = await api.post("/request/add", {
@@ -47,5 +55,15 @@ export const useCreateRequest = () => {
   ) => {
     await createRequest.mutateAsync({ ...values, active });
   };
-  return { formState, register, handleSubmit, handleCreateRequest, active, setActive };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateRequest,
+    active,
+    setActive,
+    handleChangeOwnerSelected,
+    owners,
+    ownerSelected,
+  };
 };
