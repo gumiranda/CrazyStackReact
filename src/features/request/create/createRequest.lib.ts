@@ -33,7 +33,7 @@ export const useCreateRequestLib = (props: ExternalProps) => {
   const formProps = useForm<CreateRequestFormData>({
     resolver: yupResolver(createRequestFormSchema),
     defaultValues: {
-      message: "",
+      message: " ",
       ...props,
     },
   });

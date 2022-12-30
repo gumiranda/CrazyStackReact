@@ -1,5 +1,6 @@
 export type RequestProps = {
   _id: string;
+  status: number;
   message: string;
   createdAt: string;
   value?: boolean;
@@ -26,8 +27,12 @@ class Request {
   get active(): boolean | undefined {
     return this.props.active;
   }
+  get status(): number {
+    return this.props.status;
+  }
   format(): RequestProps {
     return {
+      ...this.props,
       _id: this.props._id,
       message: this.props.message,
       active: this.props.active,

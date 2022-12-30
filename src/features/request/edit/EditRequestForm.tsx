@@ -20,16 +20,21 @@ export const EditRequestForm = ({ request }: EditRequestFormProps) => {
         item={request}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "message", label: "Nome" },
+          { id: "message", label: "Obs" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome da solicitação"
+          label="Obs da solicitação"
           error={formState.errors.message}
           {...register("message")}
+        />
+        <FormControl
+          label="Status da solicitação"
+          error={formState.errors.message}
+          {...register("status")}
         />
       </GridForm>
     </BoxCreateItem>
