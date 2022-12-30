@@ -30,7 +30,7 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
     ownerSelected: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
   });
-  const { timeAvailable } = useTimeAvailable({
+  const { timeAvailable, timeSelected, handleChangeTimeSelected } = useTimeAvailable({
     ownerId: owners?.find?.((owner) => ownerSelected === owner?._id)?.createdById ?? "",
     professionalId: userSelected,
     serviceId: serviceSelected,
@@ -70,7 +70,13 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const handleCreateRequest: SubmitCreateRequestHandler = async (
     values: CreateRequestFormData
   ) => {
-    await createRequest.mutateAsync({ ...values, active });
+    await createRequest.mutateAsync({
+      ...values,
+      active,
+      serviceId: serviceSelected,
+      professionalId: userSelected,
+      ownerId: ownerSelected,
+    });
   };
   return {
     formState,
@@ -94,5 +100,8 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     ),
     dateSelected,
     setDateSelected,
+    timeAvailable,
+    timeSelected,
+    handleChangeTimeSelected,
   };
 };

@@ -29,6 +29,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
     handleChangeServiceSelected,
     services,
     setDateSelected,
+    timeAvailable,
+    timeSelected,
+    handleChangeTimeSelected,
   } = useCreateRequest({ ownerList });
   return (
     <BoxCreateItem
@@ -38,24 +41,6 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
       cancelRoute={"/requests/1"}
     >
       <GridForm>
-        <FormControl
-          label="Nome da solicitação"
-          error={formState.errors.name}
-          {...register("name")}
-        />
-        {ownerSelected?.length === 24 &&
-          serviceSelected?.length === 24 &&
-          userSelected?.length === 24 && (
-            <DatePicker
-              placeholder="Selecione uma data"
-              name="date"
-              label="Data de agendamento"
-              onChange={(date: string) => {
-                setDateSelected(date as any);
-              }}
-            />
-          )}
-
         <Select
           bg="purple.700"
           name="ownerList"
@@ -98,6 +83,35 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
             Carregar mais
           </option>
         </Select>
+        {ownerSelected?.length === 24 &&
+          serviceSelected?.length === 24 &&
+          userSelected?.length === 24 && (
+            <DatePicker
+              placeholder="Selecione uma data"
+              name="date"
+              label="Data de agendamento"
+              onChange={(date: string) => {
+                setDateSelected(date as any);
+              }}
+            />
+          )}
+        {timeAvailable?.timeAvailable?.length > 0 && (
+          <Select
+            bg="purple.700"
+            name="timeList"
+            label="Horário disponível"
+            list={timeAvailable?.timeAvailable ?? []}
+            value={timeSelected ?? ""}
+            onChange={handleChangeTimeSelected}
+            keyValue="label"
+            keyLabel="label"
+          />
+        )}
+        <FormControl
+          label="Observação"
+          error={formState.errors.message}
+          {...register("message")}
+        />
         <Checkbox
           label="Ativo"
           colorScheme="green"
