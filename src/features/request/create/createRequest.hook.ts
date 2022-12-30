@@ -14,6 +14,7 @@ import { useUsersSelect } from "features/user/userList.hook";
 import { useServicesSelect } from "features/service/serviceList.hook";
 import { useTimeAvailable } from "features/appointment/timeAvailable.hook";
 import { useClientsSelect } from "features/client/clientList.hook";
+import { addMinutes } from "date-fns";
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
 };
@@ -88,7 +89,10 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     clientUserId:
       clients?.find?.((client) => client?._id === clientSelected)?.userId ?? "",
     initDate: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
-    endDate: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
+    endDate: addMinutes(
+      new Date(timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value ?? null),
+      services?.find?.((service) => service?._id === serviceSelected)?.duration ?? 60
+    )?.toISOString?.(),
   };
   const { register, handleSubmit, formState } = useCreateRequestLib(requestObjectIds);
 

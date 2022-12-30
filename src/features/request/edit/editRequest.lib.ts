@@ -5,6 +5,18 @@ import { EditRequestFormProps } from "./EditRequestForm";
 export type EditRequestFormData = {
   message?: string;
   status: number;
+  clientId?: string;
+  professionalId?: string;
+  serviceId?: string;
+  ownerId?: string;
+  createdForId?: string;
+  initDate?: string;
+  endDate?: string;
+  date?: string;
+  haveRecurrence?: boolean;
+  haveRide?: boolean;
+  haveFidelity?: boolean;
+  haveDelivery?: boolean;
 };
 
 export type SubmitEditRequestHandler = SubmitHandler<EditRequestFormData>;
