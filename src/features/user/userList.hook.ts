@@ -28,18 +28,20 @@ export const useUsersSelect = ({
       }
       const data = await getUsers(page, null, params);
       if (data?.totalCount > users?.length) {
-        setUserSelected(data?.users?.[0]?._id ?? "");
         setUsers((prev) => [...prev, ...(data.users ?? [])]);
       }
+      setUserSelected(data?.users?.[0]?._id ?? users?.[0]?._id ?? "");
     } else if (!userList && ownerSelected) {
       const data = await getUsers(page, null, {
         ownerId: ownerSelected,
         role: "professional",
       });
       if (data?.totalCount > users?.length) {
-        setUserSelected(data?.users?.[0]?._id ?? "");
         setUsers((prev) => [...prev, ...(data.users ?? [])]);
       }
+      setUserSelected(data?.users?.[0]?._id ?? users?.[0]?._id ?? "");
+    } else {
+      setUserSelected(users?.[0]?._id ?? "");
     }
   };
   useEffect(() => {

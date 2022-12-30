@@ -112,18 +112,21 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
               }}
             />
           )}
-        {timeAvailable?.timeAvailable?.length > 0 && (
-          <Select
-            bg="purple.700"
-            name="timeList"
-            label="Horário disponível"
-            list={timeAvailable?.timeAvailable ?? []}
-            value={timeSelected ?? ""}
-            onChange={handleChangeTimeSelected}
-            keyValue="value"
-            keyLabel="label"
-          />
-        )}
+        {ownerSelected?.length === 24 &&
+          serviceSelected?.length === 24 &&
+          userSelected?.length === 24 &&
+          timeAvailable?.timeAvailable?.length > 0 && (
+            <Select
+              bg="purple.700"
+              name="timeList"
+              label="Horário disponível"
+              list={timeAvailable?.timeAvailable ?? []}
+              value={timeSelected ?? ""}
+              onChange={handleChangeTimeSelected}
+              keyValue="value"
+              keyLabel="label"
+            />
+          )}
         <FormControl
           label="Observação"
           error={formState.errors.message}

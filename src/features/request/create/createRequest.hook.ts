@@ -28,8 +28,11 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const { userSelected, handleChangeUserSelected, users } = useUsersSelect({
     ownerSelected,
   });
+
   const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
     ownerSelected: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
+    userSelected,
+    users,
   });
   const { clientSelected, handleChangeClientSelected, clients } = useClientsSelect({
     ownerSelected: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
@@ -40,7 +43,6 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     serviceId: serviceSelected,
     date: dateSelected ?? null,
   });
-  console.log({ timeAvailable });
   const createRequest = useMutation(async (request: CreateRequestFormData) => {
     try {
       const { data } = await api.post("/request/add", {
@@ -93,9 +95,6 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   const handleCreateRequest: SubmitCreateRequestHandler = async (
     values: CreateRequestFormData
   ) => {
-    console.log({ clients, clientSelected });
-
-    console.log(timeSelected);
     await createRequest.mutateAsync({
       ...values,
       active,

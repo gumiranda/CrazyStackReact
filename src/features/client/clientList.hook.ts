@@ -28,17 +28,19 @@ export const useClientsSelect = ({
       }
       const data = await getClients(page, null, params);
       if (data?.totalCount > clients?.length) {
-        setClientSelected(data?.clients?.[0]?._id ?? "");
         setClients((prev) => [...prev, ...(data.clients ?? [])]);
       }
+      setClientSelected(data?.clients?.[0]?._id ?? clients?.[0]?._id ?? "");
     } else if (!clientList && ownerSelected) {
       const data = await getClients(page, null, {
         createdById: ownerSelected,
       });
       if (data?.totalCount > clients?.length) {
-        setClientSelected(data?.clients?.[0]?._id ?? "");
         setClients((prev) => [...prev, ...(data.clients ?? [])]);
       }
+      setClientSelected(data?.clients?.[0]?._id ?? clients?.[0]?._id ?? "");
+    } else {
+      setClientSelected(clients?.[0]?._id ?? "");
     }
   };
   useEffect(() => {

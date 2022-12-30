@@ -6,12 +6,16 @@ export type ServiceFormProps = {
   currentService?: ServiceProps;
   currentUser?: UserProps;
   ownerSelected?: string | null;
+  userSelected?: string | null;
+  users?: UserProps[];
 };
 export const useServicesSelect = ({
   serviceList = null,
   currentService,
   currentUser,
+  userSelected = null,
   ownerSelected = null,
+  users = [],
 }: ServiceFormProps) => {
   const [page, setPage] = useState(1);
   const [services, setServices] = useState(serviceList?.services ?? []);
@@ -25,6 +29,14 @@ export const useServicesSelect = ({
     event.preventDefault();
     setServiceSelected(event.target.value);
   };
+  useEffect(() => {
+    if (userSelected && users?.length > 0) {
+      const user = users?.find?.((user) => user?._id === userSelected);
+      setServiceSelected(
+        services?.find?.((service) => user?.serviceIds?.includes(service._id))?._id ?? ""
+      );
+    }
+  }, [userSelected]);
   const fetchServicesPaginated = async () => {
     if (serviceList && serviceList?.totalCount > services?.length && page > 1) {
       const params = {};
@@ -33,17 +45,19 @@ export const useServicesSelect = ({
       }
       const data = await getServices(page, null, params);
       if (data?.totalCount > services?.length) {
-        setServiceSelected(data?.services?.[0]?._id ?? "");
         setServices((prev) => [...prev, ...(data.services ?? [])]);
       }
+      setServiceSelected(data?.services?.[0]?._id ?? services?.[0]?._id ?? "");
     } else if (!serviceList && ownerSelected) {
       const data = await getServices(page, null, {
         createdById: ownerSelected,
       });
       if (data?.totalCount > services?.length) {
-        setServiceSelected(data?.services?.[0]?._id ?? "");
         setServices((prev) => [...prev, ...(data.services ?? [])]);
       }
+      setServiceSelected(data?.services?.[0]?._id ?? services?.[0]?._id ?? "");
+    } else {
+      setServiceSelected(services?.[0]?._id ?? "");
     }
   };
   useEffect(() => {

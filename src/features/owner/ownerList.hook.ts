@@ -20,9 +20,13 @@ export const useOwnersSelect = ({ ownerList, currentUser }: UserFormProps) => {
     if (ownerList?.totalCount > owners?.length && page > 1) {
       const data = await getOwners(page, null);
       if (data?.totalCount > owners?.length) {
-        setOwnerSelected(data?.owners?.[0]?._id ?? "");
         setOwners((prev) => [...prev, ...(data.owners ?? [])]);
       }
+      setOwnerSelected(
+        data?.owners?.[0]?._id ?? owners?.[0]?._id ?? ownerList?.owners?.[0]?._id ?? ""
+      );
+    } else {
+      setOwnerSelected(owners?.[0]?._id ?? ownerList?.owners?.[0]?._id ?? "");
     }
   };
   useEffect(() => {
