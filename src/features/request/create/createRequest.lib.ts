@@ -5,6 +5,8 @@ export type CreateRequestFormData = {
   message: string;
   serviceId?: string;
   professionalId?: string;
+  ownerId?: string;
+  clientId?: string;
   userId?: string;
   active?: boolean;
 };
