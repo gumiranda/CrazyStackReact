@@ -1,20 +1,25 @@
 import { GetServicesResponse, getServices, ServiceProps } from "entidades/service";
+import { UserProps } from "entidades/user";
 import { useState, useEffect } from "react";
 export type ServiceFormProps = {
   serviceList?: GetServicesResponse | null;
   currentService?: ServiceProps;
+  currentUser?: UserProps;
   ownerSelected?: string | null;
 };
 export const useServicesSelect = ({
   serviceList = null,
   currentService,
+  currentUser,
   ownerSelected = null,
 }: ServiceFormProps) => {
   const [page, setPage] = useState(1);
   const [services, setServices] = useState(serviceList?.services ?? []);
   const [serviceSelected, setServiceSelected] = useState<string>(
     //currentService?.servicesId ??
-    serviceList?.services?.[0]?._id ?? ""
+    services?.find?.((service) => currentUser?.serviceIds?.includes(service._id))?._id ??
+      serviceList?.services?.[0]?._id ??
+      ""
   );
   const handleChangeServiceSelected = (event: any) => {
     event.preventDefault();

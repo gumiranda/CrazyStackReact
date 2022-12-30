@@ -4,6 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EditUserFormProps } from "./EditUserForm";
 export type EditUserFormData = {
   name: string;
+  active?: boolean;
+  role?: string;
+  ownerId?: string;
+  myOwnerId?: string;
+  serviceIds?: string[];
 };
 
 export type SubmitEditUserHandler = SubmitHandler<EditUserFormData>;

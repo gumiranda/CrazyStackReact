@@ -4,10 +4,24 @@ import { EditUserFormData, SubmitEditUserHandler, useEditUserLib } from "./editU
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
+import { useServicesSelect } from "features/service/serviceList.hook";
+import { useOwnersSelect } from "features/owner/ownerList.hook";
+import { useState } from "react";
+
 export const useEditUser = (props: EditUserFormProps) => {
   const { showModal } = useUi();
-  const { user: currentUser } = props;
+  const { user: currentUser, serviceList, ownerList } = props;
   const router = useRouter();
+  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
+    serviceList,
+    currentUser,
+  });
+  const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
+    ownerList,
+    currentUser,
+  });
+  const [active, setActive] = useState(false);
+
   const editUser = useMutation(async (user: EditUserFormData) => {
     try {
       const { data } = await api.patch(`/user/update?_id=${currentUser._id}`, {
@@ -40,7 +54,27 @@ export const useEditUser = (props: EditUserFormProps) => {
   }, {});
   const { register, handleSubmit, formState } = useEditUserLib(props);
   const handleEditUser: SubmitEditUserHandler = async (values: EditUserFormData) => {
-    await editUser.mutateAsync(values);
+    await editUser.mutateAsync({
+      ...values,
+      serviceIds: [serviceSelected],
+      ownerId: ownerSelected,
+      myOwnerId: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
+      active,
+      role: "professional",
+    });
   };
-  return { formState, register, handleSubmit, handleEditUser };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleEditUser,
+    active,
+    setActive,
+    handleChangeServiceSelected,
+    services,
+    serviceSelected,
+    handleChangeOwnerSelected,
+    owners,
+    ownerSelected,
+  };
 };

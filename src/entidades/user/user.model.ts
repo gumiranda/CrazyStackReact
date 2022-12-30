@@ -1,6 +1,11 @@
 export type UserProps = {
   _id: string;
   name: string;
+  email: string;
+  ownerId: string;
+  role: string;
+  myOwnerId: string;
+  createdById: string;
   createdAt: string;
   value?: boolean;
   active?: boolean;
@@ -29,6 +34,21 @@ class User {
   }
   get serviceIds(): string[] | undefined {
     return this.props.serviceIds;
+  }
+  get email(): string {
+    return this.props.email;
+  }
+  get ownerId(): string {
+    return this.props.ownerId;
+  }
+  get role(): string {
+    return this.props.role;
+  }
+  get myOwnerId(): string {
+    return this.props.myOwnerId;
+  }
+  get createdById(): string {
+    return this.props.createdById;
   }
   format(): UserProps {
     return {

@@ -29,9 +29,7 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
   const [active, setActive] = useState(false);
   const createUser = useMutation(async (user: CreateUserFormData) => {
     try {
-      const { data } = await api.post("/user/add", {
-        ...user,
-      });
+      const { data } = await api.post("/user/add", user);
       if (!data) {
         showModal({
           content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
