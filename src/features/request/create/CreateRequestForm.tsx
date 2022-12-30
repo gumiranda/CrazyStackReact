@@ -120,7 +120,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
             list={timeAvailable?.timeAvailable ?? []}
             value={timeSelected ?? ""}
             onChange={handleChangeTimeSelected}
-            keyValue="label"
+            keyValue="value"
             keyLabel="label"
           />
         )}

@@ -70,19 +70,39 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
       });
     }
   }, {});
-  const { register, handleSubmit, formState } = useCreateRequestLib();
+  const requestObjectIds = {
+    haveDelivery: false,
+    haveRecurrence: false,
+    haveFidelity: false,
+    haveRide: false,
+    type: "service",
+    status: 0,
+    serviceId: serviceSelected,
+    professionalId: userSelected,
+    createdForId:
+      owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById ?? "",
+    ownerId: ownerSelected,
+    clientId: clientSelected,
+    clientUserId:
+      clients?.find?.((client) => client?._id === clientSelected)?.userId ?? "",
+    initDate: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
+    endDate: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
+  };
+  const { register, handleSubmit, formState } = useCreateRequestLib(requestObjectIds);
+
   const handleCreateRequest: SubmitCreateRequestHandler = async (
     values: CreateRequestFormData
   ) => {
+    console.log({ clients, clientSelected });
+
+    console.log(timeSelected);
     await createRequest.mutateAsync({
       ...values,
       active,
-      serviceId: serviceSelected,
-      professionalId: userSelected,
-      ownerId: ownerSelected,
-      clientId: clientSelected,
+      ...requestObjectIds,
     });
   };
+
   return {
     formState,
     register,

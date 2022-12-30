@@ -17,7 +17,9 @@ export const cloneDate = (date: number | Date): Date => {
 export const useTimeAvailable = (params: Params) => {
   const { date } = params;
   const [timeAvailable, setTimeAvailable] = useState<any>(null);
-  const [timeSelected, setTimeSelected] = useState<any>(null);
+  const [timeSelected, setTimeSelected] = useState<any>(
+    timeAvailable?.timeAvailable?.[0]?.value
+  );
   useEffect(() => {
     if (date) {
       fetchTimeAvailables(date);

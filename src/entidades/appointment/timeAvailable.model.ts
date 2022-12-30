@@ -38,6 +38,7 @@ class TimeAvailable {
             minute: "2-digit",
           })
           ?.split?.(" ")?.[1],
+        value: new Date(time).toISOString(),
       })),
       timeAvailableProfessional: this.props.timeAvailableProfessional.map(
         ({ initDate, endDate }: any) => ({

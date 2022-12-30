@@ -45,7 +45,7 @@ export const useRequestUi = ({ deleteSelectedAction }: any) => {
           </NextLink>
         </>
       ),
-      content: item?.name,
+      content: item?.message,
     };
     showModal(modalProps);
   };

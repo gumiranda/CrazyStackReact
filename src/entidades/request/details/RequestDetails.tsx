@@ -12,7 +12,7 @@ export const RequestDetails = ({ request }: RequestDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Solicitação {request?.name}
+          Solicitação {request?.message}
         </Heading>
         <NextLink passHref href={`/requests/edit/${request?._id}`}>
           <Button
@@ -28,7 +28,7 @@ export const RequestDetails = ({ request }: RequestDetailsProps) => {
       <GenericDetailsItem
         item={request}
         fields={[
-          { id: "name", label: "Nome" },
+          { id: "message", label: "Nome" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
