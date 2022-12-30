@@ -24,7 +24,7 @@ export const AppointmentGridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
+      { id: "message", label: "Nome", displayKeyText: true },
       { id: "createdAt", label: "Data de criação", displayKeyText: true },
     ],
   };

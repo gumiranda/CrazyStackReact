@@ -35,7 +35,7 @@ export const AppointmentListTablePage = ({
           isLoading={false}
           items={appointments}
           fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
+            { id: "message", label: "Nome", displayKeyText: true },
             {
               id: "createdAt",
               label: "Data de criação",
