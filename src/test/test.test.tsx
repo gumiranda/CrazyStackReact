@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import Home from "../pages/index";
+import React from "react";
 
 describe("first test", () => {
   it("should render div", () => {
