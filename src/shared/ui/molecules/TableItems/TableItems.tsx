@@ -8,6 +8,7 @@ import { RiPencilLine } from "react-icons/ri";
 interface TableItemsProps {
   items: any[];
   route: string;
+  routeDetails: string;
   fields: Field[];
   setItems: Function;
   linkOnMouseEnter: Function;
@@ -19,6 +20,7 @@ export const TableItems = ({
   linkOnMouseEnter,
   fields = [],
   route = "/",
+  routeDetails = "/",
   children,
   ...rest
 }: TableItemsProps) => {
@@ -71,7 +73,7 @@ export const TableItems = ({
                 <Box>
                   <Link
                     color="green.400"
-                    href={`${route}/${item?._id}`}
+                    href={`${routeDetails}/${item?._id}`}
                     onMouseEnter={() => linkOnMouseEnter(item)}
                   >
                     <Text fontWeight={"bold"}>{item[field?.id]}</Text>
