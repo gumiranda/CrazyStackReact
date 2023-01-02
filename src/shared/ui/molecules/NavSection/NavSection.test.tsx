@@ -4,7 +4,12 @@ import { NavSection } from "./NavSection";
 
 describe("<NavSection/>", () => {
   it("should render the NavSection component", () => {
-    renderWithTheme(<NavSection />);
+    renderWithTheme(
+      <NavSection title={"teste"}>
+        <></>
+      </NavSection>
+    );
     expect(screen.getByTestId("NavSectionTestId")).toBeInTheDocument();
+    expect(screen.getByText("teste")).toBeInTheDocument();
   });
 });
