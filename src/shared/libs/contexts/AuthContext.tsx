@@ -1,5 +1,5 @@
-import { createContext, useContext, ReactNode, useState, useMemo } from "react";
-import { setCookie, destroyCookie } from "nookies";
+import { createContext, useEffect, useContext, ReactNode, useState, useMemo } from "react";
+import { setCookie, destroyCookie, parseCookies } from "nookies";
 import Router from "next/router";
 import { api } from "shared/api";
 type User = {
@@ -24,6 +24,26 @@ const AuthContext = createContext({} as AuthContextData);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
+  const parseJSON = (json: string) => {
+    try {
+      return JSON.parse(json);
+    } catch (error) {
+      return null;
+    }
+  };
+  useEffect(() => {
+    const {
+      "belezixadmin.user": userComingFromCookie,
+      "belezixadmin.refreshToken": refreshToken = null,
+    } = parseCookies();
+    const parsedUser = parseJSON(userComingFromCookie);
+    if (parsedUser && refreshToken) {
+      setUser(parsedUser);
+    } else {
+      signOut();
+    }
+  }, []);
+
   const login = async ({ email, password }: LoginCredentials) => {
     try {
       const response = await api.post("auth/login", {
@@ -52,7 +72,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       alert("erro no servidor");
     }
   };
-  const contextValue = useMemo(() => ({ login, isAuthenticated, user }), [user]);
+  const contextValue = useMemo(
+    () => ({ login, isAuthenticated, user }),
+    [isAuthenticated, user]
+  );
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 export const useAuth = () => useContext(AuthContext);
