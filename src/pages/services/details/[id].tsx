@@ -1,5 +1,5 @@
-import { CategoryDetailsPage } from "screens/category/details";
-import { getCategoryById } from "entidades/category/category.api";
+import { ServiceDetailsPage } from "screens/service/details";
+import { getServiceById } from "entidades/service/service.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
       notFound: true,
     };
   }
-  const data = await getCategoryById(id, context);
+  const data = await getServiceById(id, context);
   return {
     props: {
       data,
@@ -17,4 +17,4 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
     },
   };
 });
-export default CategoryDetailsPage;
+export default ServiceDetailsPage;

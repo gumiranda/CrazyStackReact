@@ -1,0 +1,33 @@
+import { {{pascalCase name}}Props } from "entidades/{{camelCase name}}";
+import { useCreate{{pascalCase name}} } from "./create{{pascalCase name}}.hook";
+import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
+
+export const Create{{pascalCase name}}Form = () => {
+  const { formState, register, handleSubmit, handleCreate{{pascalCase name}}, active, setActive } =
+    useCreate{{pascalCase name}}();
+  return (
+    <BoxCreateItem
+      onSubmit={handleSubmit(handleCreate{{pascalCase name}})}
+      title={"Criar {{camelCase label}}"}
+      isLoadingSaveButton={formState.isSubmitting}
+      cancelRoute={"/{{camelCase name}}s/1"}
+    >
+      <GridForm>
+        <FormControl
+          label="Nome da {{camelCase label}}"
+          error={formState.errors.name}
+          {...register("name")}
+        />
+        <Checkbox
+          label="Ativo"
+          colorScheme="green"
+          isChecked={active}
+          onChange={(e) => {
+            e.preventDefault();
+            setActive(e.target.checked);
+          }}
+        />
+      </GridForm>
+    </BoxCreateItem>
+  );
+};

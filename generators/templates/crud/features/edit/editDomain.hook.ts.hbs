@@ -1,0 +1,52 @@
+import { useUi } from "shared/libs";
+import { Edit{{pascalCase name}}FormProps } from "./Edit{{pascalCase name}}Form";
+import {
+  Edit{{pascalCase name}}FormData,
+  SubmitEdit{{pascalCase name}}Handler,
+  useEdit{{pascalCase name}}Lib,
+} from "./edit{{pascalCase name}}.lib";
+import { useRouter } from "next/router";
+import { api } from "shared/api";
+import { useMutation } from "@tanstack/react-query";
+export const useEdit{{pascalCase name}} = (props: Edit{{pascalCase name}}FormProps) => {
+  const { showModal } = useUi();
+  const { {{camelCase name}}: current{{pascalCase name}} } = props;
+  const router = useRouter();
+  const edit{{pascalCase name}} = useMutation(async ({{camelCase name}}: Edit{{pascalCase name}}FormData) => {
+    try {
+      const { data } = await api.patch(`/{{camelCase name}}/update?_id=${current{{pascalCase name}}._id}`, {
+        ...{{camelCase name}},
+        updatedAt: new Date(),
+      });
+      if (!data) {
+        showModal({
+          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          title: "Erro no servidor",
+          type: "error",
+        });
+        return;
+      }
+      showModal({
+        content:
+          "{{pascalCase label}} editada com sucesso, você será redirecionado para a lista de {{camelCase label}}s",
+        title: "Sucesso",
+        type: "success",
+      });
+      router.push("/{{camelCase name}}s/1");
+      return data;
+    } catch (error) {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    }
+  }, {});
+  const { register, handleSubmit, formState } = useEdit{{pascalCase name}}Lib(props);
+  const handleEdit{{pascalCase name}}: SubmitEdit{{pascalCase name}}Handler = async (
+    values: Edit{{pascalCase name}}FormData
+  ) => {
+    await edit{{pascalCase name}}.mutateAsync(values);
+  };
+  return { formState, register, handleSubmit, handleEdit{{pascalCase name}} };
+};

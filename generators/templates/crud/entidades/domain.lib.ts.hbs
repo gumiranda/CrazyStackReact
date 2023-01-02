@@ -1,0 +1,24 @@
+import { get{{pascalCase name}}s, getInfinite{{pascalCase name}}s } from "./{{camelCase name}}.api";
+import {
+  useQuery,
+  UseQueryOptions,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+} from "@tanstack/react-query";
+export const useGet{{pascalCase name}}s = (
+  page: number,
+  options?: UseQueryOptions,
+  ctx?: any
+): any => {
+  return useQuery(["{{camelCase name}}s", page], () => get{{pascalCase name}}s(page, ctx), {
+    staleTime: 1000 * 5,
+    ...options,
+  } as any);
+};
+export const useGetInfinite{{pascalCase name}}s = (options?: UseInfiniteQueryOptions) => {
+  return useInfiniteQuery(
+    ["{{camelCase name}}sInfinite"],
+    getInfinite{{pascalCase name}}s as any,
+    options as any
+  );
+};

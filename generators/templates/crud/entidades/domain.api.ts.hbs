@@ -1,0 +1,59 @@
+import { setupAPIClient } from "shared/api";
+import { {{pascalCase name}}Props, {{camelCase name}}Model } from "./{{camelCase name}}.model";
+export type Get{{pascalCase name}}sResponse = {
+  {{camelCase name}}s: {{pascalCase name}}Props[];
+  totalCount: number;
+  next?: number;
+  prev?: number;
+};
+const registerByPage = 10;
+export const get{{pascalCase name}}s = async (
+  page: number,
+  ctx: any
+): Promise<Get{{pascalCase name}}sResponse> => {
+  const { data } = await setupAPIClient(ctx).get("/{{camelCase name}}/loadByPage", {
+    params: { page, sortBy: "createdAt", typeSort: "desc" },
+  });
+  const { {{camelCase name}}s, total } = data || {};
+  const totalCount = Number(total ?? 0);
+  const lastPage = Number.isInteger(totalCount / registerByPage)
+    ? totalCount / registerByPage
+    : Math.floor(totalCount / registerByPage) + 1;
+  const response = {
+    {{camelCase name}}s: {{camelCase name}}s?.map?.((props: {{pascalCase name}}Props) => {{camelCase name}}Model(props).format()),
+    totalCount,
+  };
+  if (lastPage > page) {
+    Object.assign(response, { next: page + 1 });
+  }
+  if (page > 1) {
+    Object.assign(response, { prev: page - 1 });
+  }
+  return response;
+};
+type InfiniteProps = {
+  pageParam: number;
+  ctx: any;
+};
+export const getInfinite{{pascalCase name}}s = async ({
+  pageParam = 1,
+  ctx,
+}: InfiniteProps): Promise<Get{{pascalCase name}}sResponse> => {
+  return get{{pascalCase name}}s(pageParam, ctx);
+};
+export const get{{pascalCase name}}ById = async (
+  id: string,
+  ctx: any
+): Promise<{{pascalCase name}}Props | null> => {
+  try {
+    const { data } = await setupAPIClient(ctx).get("/{{camelCase name}}/load", {
+      params: { _id: id },
+    });
+    if (!data) {
+      return null;
+    }
+    return {{camelCase name}}Model(data).format();
+  } catch (error) {
+    return null;
+  }
+};

@@ -1,2 +1,2 @@
-import { CategoryGridPage } from "screens/category/list/grid/categoryListGridPage";
+import { CategoryGridPage } from "screens/category/list/grid";
 export default CategoryGridPage;
