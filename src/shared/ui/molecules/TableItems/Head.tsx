@@ -1,5 +1,4 @@
 import { Tr, Th, Checkbox } from "@chakra-ui/react";
-import { ReactNode } from "react";
 export type Field = {
   id: string;
   label: string;

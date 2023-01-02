@@ -8,11 +8,7 @@ type CategoryListTablePageProps = {
 const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
-export const CategoryListTablePage = ({
-  page = 0,
-  data = { categorys: [], totalCount: 0, next: 0, prev: 0 },
-}: CategoryListTablePageProps) => {
-  console.log({ data });
+export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageProps) => {
   const { categorys, setCategorys, handlePrefetchCategory, deleteSelectedAction } =
     useCategoryList({
       page,

@@ -4,11 +4,13 @@ import { useUi } from "shared/libs";
 import { api, queryClientInstance } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { CategoryProps } from "entidades/category";
+import { useRouter } from "next/router";
 type CategoryListHook = {
   initialData: GetCategorysResponse;
   page: number;
 };
 export const useCategoryList = (data: CategoryListHook) => {
+  const router = useRouter();
   const { showModal } = useUi();
   const [page, setPage] = useState(data.page);
   const [categorys, setCategorys] = useState(data.initialData.categorys);
@@ -45,6 +47,7 @@ export const useCategoryList = (data: CategoryListHook) => {
       onSuccess: () => {
         queryClientInstance.invalidateQueries(["categorys", data.page]);
         queryClientInstance.refetchQueries(["categorys", data.page]);
+        router.reload();
       },
       onError: () => {
         showModal({

@@ -9,3 +9,5 @@ export * from "./NavLink";
 export * from "./BoxSuccess";
 export * from "./BoxError";
 export * from "./FormControl";
+export * from "./TableItems";
+export * from "./TableHead";

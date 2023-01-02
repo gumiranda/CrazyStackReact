@@ -3,9 +3,9 @@ import { Button as ButtonChakra, ButtonProps } from "@chakra-ui/react";
 const ButtonAtom: ForwardRefRenderFunction<
   HTMLButtonElement,
   ButtonProps & { href?: string }
-> = ({ children, ...rest }, ref) => {
+> = ({ children, href, ...rest }, ref) => {
   return (
-    <ButtonChakra ref={ref} {...rest} data-testid="ButtonTestId">
+    <ButtonChakra ref={ref} href={href} {...rest} data-testid="ButtonTestId">
       {children}
     </ButtonChakra>
   );
