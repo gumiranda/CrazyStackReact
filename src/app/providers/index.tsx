@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { ChakraProvider } from "./chakraProvider";
+import { OtherProviders } from "./otherProviders";
 import { QueryClient, QueryClientProvider, Hydrate } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -15,7 +16,9 @@ export const AllProviders = ({ children, pageProps }: AllProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <ChakraProvider>{children}</ChakraProvider>
+        <ChakraProvider>
+          <OtherProviders>{children}</OtherProviders>
+        </ChakraProvider>
         {process.env.NODE_ENV !== "production" && <ReactQueryDevtools />}
       </Hydrate>
     </QueryClientProvider>
