@@ -1,84 +1,68 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true,
-        "jest":true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "settings": {
-      "import/resolver": {
-          "typescript": {
-            "alwaysTryTypes": true
-          }
-        },
-        "react": {
-            "version": "detect"
-        }
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "react-hooks"
-    ],
-    "rules": {
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "react/prop-types":"off",
-        "no-nested-ternary":"off",
-        "jsx-a11y/anchor-is-valid":"off",
-        "import/no-extraneous-dependencies":"off",
-        "import/prefer-default-export":"off",
-        "react/jsx-props-no-spreading":"off",
-        "react/require-default-props":"off",
-        "react/react-in-jsx-scope":"off",
-        "operator-linebreak":"off",
-        "no-underscore-dangle":"off",
-        "implicit-arrow-linebreak":"off",
-        "function-paren-newline":"off",
-        "react/function-component-definition":"off",
-        "react/jsx-one-expression-per-line":"off",
-        "react/jsx-filename-extension":"off",
-        "import/no-internal-modules":"off",
-        "object-curly-newline":"off",
-        "import/extensions":"off",
-        "no-unused-vars":"off",
-        "@typescript-eslint/ban-types":"off",
-        "dot-notation":"off",
-        "no-console":"off",
-        "@typescript-eslint/no-unused-vars":"off",
-        "@typescript-eslint/explicit-module-boundary-types":"off",
-        "@typescript-eslint/no-empty-function":"off",
-        "@typescript-eslint/no-explicit-any":"off",
-        "react-hooks/rules-of-hooks":"error",
-        "prettier/prettier":"error",
-        "react-hooks/exhaustive-deps":"warn"
+    "react": {
+      "version": "detect"
     }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "react/prop-types": "off",
+    "no-nested-ternary": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "operator-linebreak": "off",
+    "no-underscore-dangle": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-filename-extension": "off",
+    "import/no-internal-modules": "off",
+    "object-curly-newline": "off",
+    "import/extensions": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/ban-types": "off",
+    "dot-notation": "off",
+    "no-console": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "prettier/prettier": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }
