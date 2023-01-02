@@ -1,4 +1,4 @@
-import { Flex, GenericDetailsItem, Text, Button } from "shared/ui";
+import { Flex, GenericDetailsItem, Button } from "shared/ui";
 import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
@@ -12,7 +12,7 @@ export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => 
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Agendamento {appointment?.name}
+          Agendamento
         </Heading>
         <NextLink passHref href={`/appointments/edit/${appointment?._id}`}>
           <Button
