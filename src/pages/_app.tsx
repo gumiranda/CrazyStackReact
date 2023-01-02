@@ -1,3 +1,3 @@
-import App from "app/app";
+import App from "application/app";
 
 export default App;

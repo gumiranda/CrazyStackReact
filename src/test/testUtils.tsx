@@ -1,4 +1,4 @@
-import { ChakraProvider } from "app/providers/chakraProvider";
+import { ChakraProvider } from "application/providers/chakraProvider";
 import { render } from "@testing-library/react";
 
 export const renderWithTheme = (ui: JSX.Element) =>

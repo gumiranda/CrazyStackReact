@@ -46,7 +46,6 @@ export const TableHead = ({
       <HStack spacing="2">
         <NextLink passHref href={routeCreate}>
           <Button
-            as="a"
             size="sm"
             fontSize="sm"
             colorScheme={"green"}
@@ -57,7 +56,6 @@ export const TableHead = ({
         </NextLink>
         <NextLink passHref href={routeList}>
           <Button
-            as="a"
             size="sm"
             fontSize="sm"
             colorScheme={"purple"}

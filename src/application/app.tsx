@@ -1,4 +1,4 @@
-import { AllProviders } from "app/providers";
+import { AllProviders } from "application/providers";
 import type { AppProps } from "next/app";
 import { SidebarPanel, NavBar } from "widgets";
 

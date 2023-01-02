@@ -13,7 +13,7 @@ export const useCategoryList = (data: CategoryListHook) => {
   const router = useRouter();
   const { showModal } = useUi();
   const [page, setPage] = useState(data.page);
-  const [categorys, setCategorys] = useState(data.initialData.categorys);
+  const [categorys, setCategorys] = useState(data?.initialData?.categorys ?? []);
   const handlePrefetchCategory = async ({ _id: categoryId }: any) => {
     await queryClientInstance.prefetchQuery(
       ["category", categoryId],

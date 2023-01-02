@@ -1,4 +1,4 @@
-import { theme } from "app/theme";
+import { theme } from "application/theme";
 import { ChakraProvider as ChakraProviderBase } from "@chakra-ui/react";
 import { ReactElement } from "react";
 

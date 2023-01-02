@@ -8,7 +8,7 @@ module.exports = {
   bail: 1,
   moduleNameMapper: {
     "test/(.*)": "<rootDir>/src/test/$1",
-    "app/(.*)": "<rootDir>/src/app/$1",
+    "application/(.*)": "<rootDir>/src/application/$1",
     "widgets/(.*)": "<rootDir>/src/widgets/$1",
     widgets: "<rootDir>/src/widgets",
     "shared/ui": "<rootDir>/src/shared/ui",
