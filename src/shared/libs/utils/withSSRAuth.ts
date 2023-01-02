@@ -5,8 +5,10 @@ import {
 } from "next";
 import { parseCookies } from "nookies";
 
-export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
-  return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
+export function withSSRAuth(fn: GetServerSideProps<any>) {
+  return async (
+    ctx: GetServerSidePropsContext
+  ): Promise<GetServerSidePropsResult<any>> => {
     const cookies = parseCookies(ctx);
 
     if (!cookies["belezixadmin.token"]) {
