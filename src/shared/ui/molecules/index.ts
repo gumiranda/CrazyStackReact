@@ -1,4 +1,6 @@
 // IMPORT MODULE FILES
+export * from "./PaginationGroupItems";
+export * from "./PageIndicator";
 export * from "./TableItems";
 export * from "./TableHead";
 export * from "./Profile";
