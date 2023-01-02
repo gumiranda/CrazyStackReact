@@ -3,7 +3,7 @@ import { parseCookies } from "nookies";
 export function setupAPIClient(ctx = undefined) {
   const cookies = parseCookies(ctx);
   const api = axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: "http://localhost:3333/api",
     headers: { Authorization: `Bearer ${cookies["belezixadmin.token"]}` },
   });
   return api;

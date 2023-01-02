@@ -7,4 +7,7 @@ const colors = {
   },
 };
 
-export const theme = extendTheme({ colors });
+export const theme = extendTheme({
+  colors,
+  styles: { global: { body: { bg: "purple.900", color: "white" } } },
+});
