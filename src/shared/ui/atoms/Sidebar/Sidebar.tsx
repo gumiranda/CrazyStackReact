@@ -35,7 +35,7 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
     );
   }
   return (
-    <Box as="aside" m="8" w="64" data-testid="SidebarTestId">
+    <Box as="aside" m="4" data-testid="SidebarTestId">
       {children}
     </Box>
   );
