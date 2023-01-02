@@ -7,19 +7,20 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CreateServiceFormProps } from "./CreateServiceForm";
-import { getCategorys } from "entidades/category";
+import { useCategoriesSelect } from "features/category/categoryList.hook";
 
 export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
-  const [page, setPage] = useState(1);
-  const [categorys, setCategorys] = useState(categoryList?.categorys ?? []);
-  const [categorySelected, setCategorySelected] = useState<string>(
-    categoryList?.categorys?.[0]?._id ?? ""
-  );
+  const {
+    categorySelected,
+    setCategorySelected,
+    handleChangeCategorySelected,
+    categorys,
+  } = useCategoriesSelect({ categoryList });
   const [havePromotionalPrice, setHavePromotionalPrice] = useState(false);
   const [hasFidelityGenerator, setHasFidelityGenerator] = useState(false);
   const [canPayWithFidelityPoints, setCanPayWithFidelityPoints] = useState(false);
@@ -74,30 +75,6 @@ export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
       appointmentsTotal: 0,
     });
   };
-  const handleChangeCategorySelected = (event: any) => {
-    event.preventDefault();
-    setCategorySelected(event.target.value);
-  };
-  const fetchCategoriesPaginated = async () => {
-    if (categoryList?.totalCount > categorys?.length && page > 1) {
-      const data = await getCategorys(page, null);
-      if (data?.totalCount > categorys?.length) {
-        setCategorySelected(data?.categorys?.[0]?._id ?? "");
-        setCategorys((prev) => [...prev, ...(data.categorys ?? [])]);
-      }
-    }
-  };
-  useEffect(() => {
-    setCategorys(categoryList?.categorys ?? []);
-  }, [categoryList?.categorys]);
-  useEffect(() => {
-    if (categorySelected === "loadMore") {
-      setPage((prev) => prev + 1);
-    }
-  }, [categorySelected]);
-  useEffect(() => {
-    fetchCategoriesPaginated();
-  }, [page]);
   return {
     categorySelected,
     setCategorySelected,
