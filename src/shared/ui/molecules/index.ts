@@ -1,4 +1,7 @@
 // IMPORT MODULE FILES
+export * from "./Profile";
+export * from "./NotificationsNav";
+export * from "./Logo";
 export * from "./NavSection";
 export * from "./NavLink";
 export * from "./BoxSuccess";

@@ -10,6 +10,7 @@ module.exports = {
     "test/(.*)": "<rootDir>/src/test/$1",
     "app/(.*)": "<rootDir>/src/app/$1",
     "widgets/(.*)": "<rootDir>/src/widgets/$1",
+    widgets: "<rootDir>/src/widgets",
     "shared/ui": "<rootDir>/src/shared/ui",
     "shared/libs": "<rootDir>/src/shared/libs",
     "shared/api": "<rootDir>/src/shared/api",
