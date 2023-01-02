@@ -75,6 +75,7 @@
         "@typescript-eslint/no-explicit-any":"off",
         "react-hooks/rules-of-hooks":"error",
         "prettier/prettier":"error",
+        "indent":"off",
         "react-hooks/exhaustive-deps":"warn"
     }
 }
