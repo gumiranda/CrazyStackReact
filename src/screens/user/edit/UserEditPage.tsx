@@ -1,12 +1,16 @@
 import { Box, Head } from "shared/ui";
 import { EditUserForm } from "features/user/edit";
 import { UserProps } from "entidades/user";
+import { GetServicesResponse } from "entidades/service";
+import { GetOwnersResponse } from "entidades/owner";
 type UserEditProps = {
   data: UserProps;
   id: string;
+  service: GetServicesResponse;
+  owner: GetOwnersResponse;
 };
-export const UserEditPage = ({ data, id }: UserEditProps) => {
-  const props = { user: data };
+export const UserEditPage = ({ data, id, service, owner }: UserEditProps) => {
+  const props = { user: data, serviceList: service, ownerList: owner };
   return (
     <>
       <Head

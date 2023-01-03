@@ -4,6 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EditUserFormProps } from "./EditUserForm";
 export type EditUserFormData = {
   name: string;
+  role?: string;
+  ownerId?: string;
+  myOwnerId?: string;
+  serviceIds?: string[];
 };
 
 export type SubmitEditUserHandler = SubmitHandler<EditUserFormData>;
@@ -18,6 +22,10 @@ export const useEditUserLib = (props: EditUserFormProps) => {
     resolver: yupResolver(editUserFormSchema),
     defaultValues: {
       name: currentUser?.name ?? "",
+      role: currentUser?.role ?? "",
+      ownerId: currentUser?.ownerId ?? "",
+      myOwnerId: currentUser?.myOwnerId ?? "",
+      serviceIds: currentUser?.serviceIds ?? [],
     },
   });
   return { ...formProps };

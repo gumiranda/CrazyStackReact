@@ -2,6 +2,8 @@ import { UserEditPage } from "screens/user/edit";
 import { getUserById } from "entidades/user/user.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";
+import { getServices } from "entidades/service/service.api";
+import { getOwners } from "entidades/owner/owner.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {
@@ -9,11 +11,17 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
       notFound: true,
     };
   }
-  const data = await getUserById(id, context);
+  const [data, service, owner] = await Promise.all([
+    getUserById(id, context),
+    getServices(1, context),
+    getOwners(1, context),
+  ]);
   return {
     props: {
       data,
       id,
+      service,
+      owner,
     },
   };
 });

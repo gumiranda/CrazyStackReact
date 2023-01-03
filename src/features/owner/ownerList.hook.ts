@@ -12,7 +12,7 @@ export const useOwnersSelect = ({ ownerList, currentUser }: UserFormProps) => {
   const [ownerSelected, setOwnerSelected] = useState<string | undefined>(
     currentUser?.ownerId ?? ownerList?.owners?.[0]?._id ?? ""
   );
-  const handleChangeOwnerSelected = (event: any) => {
+  const handleChangeOwnerSelected = (event: any): void => {
     event.preventDefault();
     setOwnerSelected(event.target.value);
   };
