@@ -17,7 +17,7 @@ export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
       cancelRoute={"/owners/1"}
     >
       <GenericDetailsItem
-        item={ owner }
+        item={owner}
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },

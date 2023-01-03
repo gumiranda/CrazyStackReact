@@ -43,9 +43,7 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     }
   }, {});
   const { register, handleSubmit, formState } = useEditOwnerLib(props);
-  const handleEditOwner: SubmitEditOwnerHandler = async (
-    values: EditOwnerFormData
-  ) => {
+  const handleEditOwner: SubmitEditOwnerHandler = async (values: EditOwnerFormData) => {
     await editOwner.mutateAsync(values);
   };
   return { formState, register, handleSubmit, handleEditOwner };

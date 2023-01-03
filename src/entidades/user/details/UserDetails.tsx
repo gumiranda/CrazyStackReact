@@ -12,9 +12,9 @@ export const UserDetails = ({ user }: UserDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Profissional { user?.name}
+          Profissional {user?.name}
         </Heading>
-        <NextLink passHref href={`/users/edit/${ user?._id}`}>
+        <NextLink passHref href={`/users/edit/${user?._id}`}>
           <Button
             size="sm"
             fontSize={"sm"}
@@ -26,7 +26,7 @@ export const UserDetails = ({ user }: UserDetailsProps) => {
         </NextLink>
       </Flex>
       <GenericDetailsItem
-        item={ user }
+        item={user}
         fields={[
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },

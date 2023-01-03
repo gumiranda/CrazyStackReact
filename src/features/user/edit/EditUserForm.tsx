@@ -17,7 +17,7 @@ export const EditUserForm = ({ user }: EditUserFormProps) => {
       cancelRoute={"/users/1"}
     >
       <GenericDetailsItem
-        item={ user }
+        item={user}
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },

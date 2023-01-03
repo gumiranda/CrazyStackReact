@@ -18,7 +18,7 @@ export const useOwnerList = (data: OwnerListHook) => {
     await queryClientInstance.prefetchQuery(
       ["owner", ownerId],
       async () => {
-        const { data = null } = (await api.get(`/owner/load?_id=${ ownerId}`)) || {};
+        const { data = null } = (await api.get(`/owner/load?_id=${ownerId}`)) || {};
         return data;
       },
       { staleTime: 1000 * 60 * 10 }
@@ -30,7 +30,7 @@ export const useOwnerList = (data: OwnerListHook) => {
         if (ownersToDelete?.length > 0) {
           return Promise.all(
             ownersToDelete?.map?.((owner: any) =>
-              api.delete(`/owner/delete?_id=${ owner._id}`)
+              api.delete(`/owner/delete?_id=${owner._id}`)
             )
           );
         }
@@ -60,9 +60,7 @@ export const useOwnerList = (data: OwnerListHook) => {
     }
   );
   const deleteSelectedAction = async () => {
-    deleteOwner.mutateAsync(
-      owners.filter((owner: OwnerProps) => owner.value)
-    );
+    deleteOwner.mutateAsync(owners.filter((owner: OwnerProps) => owner.value));
   };
   const changePage = (newpage: number) => {
     router.replace(`/owners/${newpage}`);

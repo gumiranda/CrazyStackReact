@@ -12,9 +12,9 @@ export const OwnerDetails = ({ owner }: OwnerDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Estabelecimento { owner?.name}
+          Estabelecimento {owner?.name}
         </Heading>
-        <NextLink passHref href={`/owners/edit/${ owner?._id}`}>
+        <NextLink passHref href={`/owners/edit/${owner?._id}`}>
           <Button
             size="sm"
             fontSize={"sm"}
@@ -26,7 +26,7 @@ export const OwnerDetails = ({ owner }: OwnerDetailsProps) => {
         </NextLink>
       </Flex>
       <GenericDetailsItem
-        item={ owner }
+        item={owner}
         fields={[
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },

@@ -31,9 +31,7 @@ export const useUserInfiniteList = () => {
       try {
         if (usersToDelete?.length > 0) {
           return Promise.all(
-            usersToDelete?.map?.((user: any) =>
-              api.delete(`/user/delete?_id=${ user._id}`)
-            )
+            usersToDelete?.map?.((user: any) => api.delete(`/user/delete?_id=${user._id}`))
           );
         }
         return null;

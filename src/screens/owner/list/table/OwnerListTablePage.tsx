@@ -9,17 +9,11 @@ const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
 export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) => {
-  const {
-    owners,
-    setOwners,
-    handlePrefetchOwner,
-    deleteSelectedAction,
-    total,
-    setPage,
-  } = useOwnerList({
-    page,
-    initialData: data,
-  });
+  const { owners, setOwners, handlePrefetchOwner, deleteSelectedAction, total, setPage } =
+    useOwnerList({
+      page,
+      initialData: data,
+    });
   return (
     <>
       <Head
@@ -30,7 +24,7 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
-          items={ owners}
+          items={owners}
           fields={[
             { id: "name", label: "Nome", displayKeyText: true },
             {
@@ -41,7 +35,7 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
             },
           ]}
           setItems={setOwners}
-          linkOnMouseEnter={handlePrefetchOwner }
+          linkOnMouseEnter={handlePrefetchOwner}
           error={undefined}
           route={"/owners"}
           routeDetails={"/owners/details"}

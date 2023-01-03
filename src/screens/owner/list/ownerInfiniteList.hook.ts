@@ -32,7 +32,7 @@ export const useOwnerInfiniteList = () => {
         if (ownersToDelete?.length > 0) {
           return Promise.all(
             ownersToDelete?.map?.((owner: any) =>
-              api.delete(`/owner/delete?_id=${ owner._id}`)
+              api.delete(`/owner/delete?_id=${owner._id}`)
             )
           );
         }

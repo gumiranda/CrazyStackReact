@@ -42,10 +42,7 @@ export const getInfiniteUsers = async ({
 }: InfiniteProps): Promise<GetUsersResponse> => {
   return getUsers(pageParam, ctx);
 };
-export const getUserById = async (
-  id: string,
-  ctx: any
-): Promise<UserProps | null> => {
+export const getUserById = async (id: string, ctx: any): Promise<UserProps | null> => {
   try {
     const { data } = await setupAPIClient(ctx).get("/user/load", {
       params: { _id: id },

@@ -42,10 +42,7 @@ export const getInfiniteOwners = async ({
 }: InfiniteProps): Promise<GetOwnersResponse> => {
   return getOwners(pageParam, ctx);
 };
-export const getOwnerById = async (
-  id: string,
-  ctx: any
-): Promise<OwnerProps | null> => {
+export const getOwnerById = async (id: string, ctx: any): Promise<OwnerProps | null> => {
   try {
     const { data } = await setupAPIClient(ctx).get("/owner/load", {
       params: { _id: id },
