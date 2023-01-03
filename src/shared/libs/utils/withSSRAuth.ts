@@ -17,7 +17,15 @@ export function withSSRAuth<P extends { [key: string]: any }>(fn: GetServerSideP
         },
       };
     }
-
-    return await fn(ctx);
+    try {
+      return await fn(ctx);
+    } catch (error) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
   };
 }

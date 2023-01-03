@@ -17,6 +17,12 @@ export const SidebarPanel = () => {
           <NavLink icon={RiContactsLine} href="/services/1">
             Serviços
           </NavLink>
+          <NavLink icon={RiContactsLine} href="/owners/1">
+            Estabelecimentos
+          </NavLink>
+          <NavLink icon={RiContactsLine} href="/users/1">
+            Profissionais
+          </NavLink>
         </NavSection>
       </Stack>
     </Sidebar>
