@@ -1,8 +1,12 @@
 import { Box, Head } from "shared/ui";
-import { UserProps } from "entidades/user";
 import { CreateUserForm } from "features/user/create";
-
-export const UserCreatePage = () => {
+import { GetOwnersResponse } from "entidades/owner";
+import { GetServicesResponse } from "entidades/service";
+type UserCreatePageProps = {
+  owner: GetOwnersResponse;
+  data: GetServicesResponse;
+};
+export const UserCreatePage = ({ owner, data }: UserCreatePageProps) => {
   return (
     <>
       <Head
@@ -10,7 +14,7 @@ export const UserCreatePage = () => {
         description="Página de criação de profissionais do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
-        <CreateUserForm />
+        <CreateUserForm serviceList={data} ownerList={owner} />
       </Box>
     </>
   );

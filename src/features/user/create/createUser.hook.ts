@@ -1,3 +1,5 @@
+import { useServicesSelect } from "features/service/serviceList.hook";
+import { useOwnersSelect } from "features/owner/ownerList.hook";
 import { useUi } from "shared/libs";
 import {
   CreateUserFormData,
@@ -8,15 +10,25 @@ import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-export const useCreateUser = () => {
+import { GetServicesResponse } from "entidades/service";
+import { GetOwnersResponse, OwnerProps } from "entidades/owner";
+type CreateUserFormProps = {
+  serviceList: GetServicesResponse;
+  ownerList: GetOwnersResponse;
+};
+export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
+  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
+    serviceList,
+  });
+  const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
+    ownerList,
+  });
   const [active, setActive] = useState(false);
   const createUser = useMutation(async (user: CreateUserFormData) => {
     try {
-      const { data } = await api.post("/user/add", {
-        ...user,
-      });
+      const { data } = await api.post("/user/add", user);
       if (!data) {
         showModal({
           content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
@@ -43,7 +55,27 @@ export const useCreateUser = () => {
   }, {});
   const { register, handleSubmit, formState } = useCreateUserLib();
   const handleCreateUser: SubmitCreateUserHandler = async (values: CreateUserFormData) => {
-    await createUser.mutateAsync({ ...values, active });
+    await createUser.mutateAsync({
+      ...values,
+      active,
+      serviceIds: [serviceSelected],
+      ownerId: ownerSelected,
+      myOwnerId: owners?.find?.((owner: OwnerProps) => owner?._id === ownerSelected)?._id,
+      role: "professional",
+    });
   };
-  return { formState, register, handleSubmit, handleCreateUser, active, setActive };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateUser,
+    active,
+    setActive,
+    handleChangeServiceSelected,
+    services,
+    serviceSelected,
+    handleChangeOwnerSelected,
+    owners,
+    ownerSelected,
+  };
 };
