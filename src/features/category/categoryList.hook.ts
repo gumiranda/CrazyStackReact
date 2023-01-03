@@ -1,17 +1,18 @@
-import { GetCategorysResponse, getCategorys } from "entidades/category";
 import { ServiceProps } from "entidades/service";
+import { CategoryProps, GetCategorysResponse, getCategorys } from "entidades/category";
 import { useState, useEffect } from "react";
 export type ServiceFormProps = {
   categoryList: GetCategorysResponse;
   currentService?: ServiceProps;
 };
+
 export const useCategoriesSelect = ({
   categoryList,
   currentService,
 }: ServiceFormProps) => {
   const [page, setPage] = useState(1);
-  const [categorys, setCategorys] = useState(categoryList?.categorys ?? []);
-  const [categorySelected, setCategorySelected] = useState<string>(
+  const [categorys, setCategorys] = useState<CategoryProps[]>(categoryList?.categorys);
+  const [categorySelected, setCategorySelected] = useState<string | undefined>(
     currentService?.categoryId ?? categoryList?.categorys?.[0]?._id ?? ""
   );
   const handleChangeCategorySelected = (event: any) => {
@@ -22,13 +23,20 @@ export const useCategoriesSelect = ({
     if (categoryList?.totalCount > categorys?.length && page > 1) {
       const data = await getCategorys(page, null);
       if (data?.totalCount > categorys?.length) {
-        setCategorySelected(data?.categorys?.[0]?._id ?? "");
-        setCategorys((prev) => [...prev, ...(data.categorys ?? [])]);
+        setCategorys((prev) => [...prev, ...(data?.categorys ?? [])]);
       }
+      setCategorySelected(
+        data?.categorys?.[0]?._id ??
+          categorys?.[0]?._id ??
+          currentService?.categoryId ??
+          ""
+      );
+    } else {
+      setCategorySelected(categorys?.[0]?._id ?? currentService?.categoryId ?? "");
     }
   };
   useEffect(() => {
-    setCategorys(categoryList?.categorys ?? []);
+    setCategorys(categoryList?.categorys);
   }, [categoryList?.categorys]);
   useEffect(() => {
     if (categorySelected === "loadMore") {

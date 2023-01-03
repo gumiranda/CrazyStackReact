@@ -1,14 +1,14 @@
 import { ServiceProps } from "entidades/service";
 import { useEditService } from "./editService.hook";
-import { GetCategorysResponse } from "entidades/category";
 import {
   BoxCreateItem,
   FormControl,
   GenericDetailsItem,
-  Checkbox,
   GridForm,
+  Checkbox,
   Select,
 } from "shared/ui";
+import { GetCategorysResponse } from "entidades/category";
 
 export interface EditServiceFormProps {
   service: ServiceProps;
@@ -31,7 +31,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
     setHasFidelityGenerator,
     setCanPayWithFidelityPoints,
     categorySelected,
-  }: any = useEditService({
+  } = useEditService({
     service,
     categoryList,
   });
