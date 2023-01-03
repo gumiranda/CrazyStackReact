@@ -9,7 +9,7 @@ export const SidebarPanel = () => {
   }
   return (
     <Sidebar title="Navegação">
-      <Stack spacing="2" align="flex-start">
+      <Stack spacing="12" align="flex-start">
         <NavSection title="GERAL">
           <NavLink icon={RiContactsLine} href="/categorys/1">
             Categorias

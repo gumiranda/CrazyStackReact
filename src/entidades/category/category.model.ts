@@ -1,8 +1,8 @@
 export type CategoryProps = {
   _id: string;
-  createdById: string;
   name: string;
   createdAt: string;
+  createdById: string;
   value?: boolean;
   active?: boolean;
 };
@@ -27,7 +27,6 @@ class Category {
   get active(): boolean | undefined {
     return this.props.active;
   }
-
   get createdById(): string {
     return this.props.createdById;
   }

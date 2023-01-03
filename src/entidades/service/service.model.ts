@@ -2,10 +2,8 @@ export type ServiceProps = {
   _id: string;
   name: string;
   createdAt: string;
-  value?: boolean;
-  active?: boolean;
   categoryId?: string;
-  description: string;
+  description?: string;
   price: number;
   appointmentsTotal?: number;
   duration: number;
@@ -15,6 +13,8 @@ export type ServiceProps = {
   havePromotionalPrice?: boolean;
   hasFidelityGenerator?: boolean;
   canPayWithFidelityPoints?: boolean;
+  value?: boolean;
+  active?: boolean;
 };
 
 class Service {
@@ -40,7 +40,7 @@ class Service {
   get categoryId(): string | undefined {
     return this.props.categoryId;
   }
-  get description(): string {
+  get description(): string | undefined {
     return this.props.description;
   }
   get price(): number {
@@ -70,6 +70,7 @@ class Service {
   get canPayWithFidelityPoints(): boolean | undefined {
     return this.props.canPayWithFidelityPoints;
   }
+
   format(): ServiceProps {
     return {
       ...this.props,

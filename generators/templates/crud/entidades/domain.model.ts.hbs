@@ -28,6 +28,7 @@ class {{pascalCase name}} {
   }
   format(): {{pascalCase name}}Props {
     return {
+      ...this.props,
       _id: this.props._id,
       name: this.props.name,
       active: this.props.active,

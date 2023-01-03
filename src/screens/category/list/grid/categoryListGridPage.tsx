@@ -60,4 +60,3 @@ export const CategoryGridPage = () => {
     </>
   );
 };
-export default CategoryGridPage;
