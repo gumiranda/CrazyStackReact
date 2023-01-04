@@ -32,7 +32,7 @@ export const useClientInfiniteList = () => {
         if (clientsToDelete?.length > 0) {
           return Promise.all(
             clientsToDelete?.map?.((client: any) =>
-              api.delete(`/client/delete?_id=${ client._id}`)
+              api.delete(`/client/delete?_id=${client._id}`)
             )
           );
         }

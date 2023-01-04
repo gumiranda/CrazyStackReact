@@ -12,9 +12,9 @@ export const ClientDetails = ({ client }: ClientDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Cliente { client?.name}
+          Cliente {client?.name}
         </Heading>
-        <NextLink passHref href={`/clients/edit/${ client?._id}`}>
+        <NextLink passHref href={`/clients/edit/${client?._id}`}>
           <Button
             size="sm"
             fontSize={"sm"}
@@ -26,7 +26,7 @@ export const ClientDetails = ({ client }: ClientDetailsProps) => {
         </NextLink>
       </Flex>
       <GenericDetailsItem
-        item={ client }
+        item={client}
         fields={[
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },

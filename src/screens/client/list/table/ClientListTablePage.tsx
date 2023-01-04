@@ -30,7 +30,7 @@ export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
-          items={ clients}
+          items={clients}
           fields={[
             { id: "name", label: "Nome", displayKeyText: true },
             {
@@ -41,7 +41,7 @@ export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps
             },
           ]}
           setItems={setClients}
-          linkOnMouseEnter={handlePrefetchClient }
+          linkOnMouseEnter={handlePrefetchClient}
           error={undefined}
           route={"/clients"}
           routeDetails={"/clients/details"}

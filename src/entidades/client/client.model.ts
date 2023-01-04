@@ -1,6 +1,8 @@
 export type ClientProps = {
   _id: string;
   name: string;
+  createdById: string;
+  userId: string;
   createdAt: string;
   value?: boolean;
   active?: boolean;
@@ -25,6 +27,12 @@ class Client {
   }
   get active(): boolean | undefined {
     return this.props.active;
+  }
+  get userId(): string {
+    return this.props.userId;
+  }
+  get createdById(): string {
+    return this.props.createdById;
   }
   format(): ClientProps {
     return {
