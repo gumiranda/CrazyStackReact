@@ -2,7 +2,7 @@ import { UserProps } from "entidades/user";
 import { ServiceProps, GetServicesResponse, getServices } from "entidades/service";
 import { useState, useEffect } from "react";
 export type UserFormProps = {
-  serviceList: GetServicesResponse;
+  serviceList?: GetServicesResponse;
   currentUser?: UserProps;
   currentService?: ServiceProps;
   ownerSelected?: string | null;
@@ -18,7 +18,7 @@ export const useServicesSelect = ({
   users = [],
 }: UserFormProps) => {
   const [page, setPage] = useState(1);
-  const [services, setServices] = useState<ServiceProps[]>(serviceList?.services);
+  const [services, setServices] = useState<ServiceProps[]>(serviceList?.services ?? []);
   const [serviceSelected, setServiceSelected] = useState(
     services?.find?.((service) => currentUser?.serviceIds?.includes?.(service?._id))
       ?._id ??
@@ -76,7 +76,7 @@ export const useServicesSelect = ({
     }
   };
   useEffect(() => {
-    setServices(serviceList?.services);
+    setServices(serviceList?.services ?? []);
   }, [serviceList?.services]);
   useEffect(() => {
     if (serviceSelected === "loadMore") {
