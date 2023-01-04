@@ -46,7 +46,16 @@ export const useEditRequest = (props: EditRequestFormProps) => {
   const handleEditRequest: SubmitEditRequestHandler = async (
     values: EditRequestFormData
   ) => {
-    await editRequest.mutateAsync(values);
+    await editRequest.mutateAsync({
+      ...values,
+      date: currentRequest?.date,
+      initDate: currentRequest?.initDate,
+      endDate: currentRequest?.endDate,
+      professionalId: currentRequest?.professionalId,
+      ownerId: currentRequest?.createdForId,
+      serviceId: currentRequest?.serviceId,
+      clientId: currentRequest?.clientId,
+    });
   };
   return { formState, register, handleSubmit, handleEditRequest };
 };

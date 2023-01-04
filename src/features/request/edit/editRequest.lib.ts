@@ -3,13 +3,27 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EditRequestFormProps } from "./EditRequestForm";
 export type EditRequestFormData = {
-  name: string;
+  message?: string;
+  status: number;
+  clientId?: string;
+  professionalId?: string;
+  serviceId?: string;
+  ownerId?: string;
+  createdForId?: string;
+  initDate?: string;
+  endDate?: string;
+  date?: string;
+  haveRecurrence?: boolean;
+  haveRide?: boolean;
+  haveFidelity?: boolean;
+  haveDelivery?: boolean;
 };
 
 export type SubmitEditRequestHandler = SubmitHandler<EditRequestFormData>;
 
 export const editRequestFormSchema = yup.object().shape({
-  name: yup.string().required("Nome é obrigatório"),
+  message: yup.string(),
+  status: yup.number().required("Status é obrigatório"),
 });
 
 export const useEditRequestLib = (props: EditRequestFormProps) => {
@@ -17,7 +31,8 @@ export const useEditRequestLib = (props: EditRequestFormProps) => {
   const formProps = useForm<EditRequestFormData>({
     resolver: yupResolver(editRequestFormSchema),
     defaultValues: {
-      name: currentRequest?.name ?? "",
+      message: currentRequest?.message ?? "",
+      status: currentRequest?.status ?? 0,
     },
   });
   return { ...formProps };
