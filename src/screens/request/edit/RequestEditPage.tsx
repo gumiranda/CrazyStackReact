@@ -10,8 +10,8 @@ export const RequestEditPage = ({ data, id }: RequestEditProps) => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Solicitacaos"}
-        description="Página de edição de solicitacaos do painel de Admin Belezix"
+        title={"Belezix Admin | Solicitações"}
+        description="Página de edição de solicitações do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
         <EditRequestForm {...props} />

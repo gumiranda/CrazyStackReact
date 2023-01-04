@@ -38,13 +38,13 @@ export const RequestGridPage = () => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Solicitacaos"}
-        description="Página de listagem de solicitacaos do painel de Admin Belezix"
+        title={"Belezix Admin | Solicitações"}
+        description="Página de listagem de solicitações do painel de Admin Belezix"
       />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}
-        entityName="solicitacaos"
+        entityName="solicitações"
       >
         <GenericGrid
           items={items}
@@ -52,8 +52,8 @@ export const RequestGridPage = () => {
           route={"/requests/list"}
           routeList={"/requests/1"}
           routeCreate={"/requests/create"}
-          entityDisplayName={"Solicitacao"}
-          title={"Solicitacaos"}
+          entityDisplayName={"Solicitação"}
+          title={"Solicitações"}
           {...requestGridProps}
         />
       </InfiniteList>

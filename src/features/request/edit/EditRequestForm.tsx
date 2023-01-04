@@ -12,12 +12,12 @@ export const EditRequestForm = ({ request }: EditRequestFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditRequest)}
-      title={"Editar solicitacao"}
+      title={"Editar solicitação"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/requests/1"}
     >
       <GenericDetailsItem
-        item={ request }
+        item={request}
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },
@@ -27,7 +27,7 @@ export const EditRequestForm = ({ request }: EditRequestFormProps) => {
       />
       <GridForm>
         <FormControl
-          label="Nome da solicitacao"
+          label="Nome da solicitação"
           error={formState.errors.name}
           {...register("name")}
         />

@@ -10,8 +10,8 @@ export const RequestDetailsPage = ({ data }: RequestDetailsProps) => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Solicitacaos"}
-        description="Página de detalhes de solicitacaos do painel de Admin Belezix"
+        title={"Belezix Admin | Solicitações"}
+        description="Página de detalhes de solicitações do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
         <RequestDetails {...props} />

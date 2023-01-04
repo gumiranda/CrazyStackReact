@@ -27,7 +27,7 @@ export const useCreateRequest = () => {
       }
       showModal({
         content:
-          "Solicitacao criada com sucesso, você será redirecionado para a lista de solicitacaos",
+          "Solicitação criada com sucesso, você será redirecionado para a lista de solicitações",
         title: "Sucesso",
         type: "success",
       });

@@ -23,14 +23,14 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
   return (
     <>
       <Head
-        title={"Belezix Admin | Solicitacaos"}
-        description="Página de listagem de solicitacaos do painel de Admin Belezix"
+        title={"Belezix Admin | Solicitações"}
+        description="Página de listagem de solicitações do painel de Admin Belezix"
       />
       <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
-          items={ requests}
+          items={requests}
           fields={[
             { id: "name", label: "Nome", displayKeyText: true },
             {
@@ -41,13 +41,13 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
             },
           ]}
           setItems={setRequests}
-          linkOnMouseEnter={handlePrefetchRequest }
+          linkOnMouseEnter={handlePrefetchRequest}
           error={undefined}
           route={"/requests"}
           routeDetails={"/requests/details"}
           routeCreate={"/requests/create"}
           routeList={"/requests/list"}
-          title={"Solicitacaos"}
+          title={"Solicitações"}
         />
         <Pagination
           onPageChange={setPage}

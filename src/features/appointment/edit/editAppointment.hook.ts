@@ -14,10 +14,13 @@ export const useEditAppointment = (props: EditAppointmentFormProps) => {
   const router = useRouter();
   const editAppointment = useMutation(async (appointment: EditAppointmentFormData) => {
     try {
-      const { data } = await api.patch(`/appointment/update?_id=${currentAppointment._id}`, {
-        ...appointment,
-        updatedAt: new Date(),
-      });
+      const { data } = await api.patch(
+        `/appointment/update?_id=${currentAppointment._id}`,
+        {
+          ...appointment,
+          updatedAt: new Date(),
+        }
+      );
       if (!data) {
         showModal({
           content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",

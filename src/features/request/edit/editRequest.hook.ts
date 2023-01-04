@@ -28,7 +28,7 @@ export const useEditRequest = (props: EditRequestFormProps) => {
       }
       showModal({
         content:
-          "Solicitacao editada com sucesso, você será redirecionado para a lista de solicitacaos",
+          "Solicitação editada com sucesso, você será redirecionado para a lista de solicitações",
         title: "Sucesso",
         type: "success",
       });

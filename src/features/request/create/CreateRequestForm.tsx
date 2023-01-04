@@ -8,13 +8,13 @@ export const CreateRequestForm = () => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRequest)}
-      title={"Criar solicitacao"}
+      title={"Criar solicitação"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/requests/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome da solicitacao"
+          label="Nome da solicitação"
           error={formState.errors.name}
           {...register("name")}
         />

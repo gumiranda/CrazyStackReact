@@ -8,7 +8,10 @@ type AppointmentListTablePageProps = {
 const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
-export const AppointmentListTablePage = ({ page = 0, data }: AppointmentListTablePageProps) => {
+export const AppointmentListTablePage = ({
+  page = 0,
+  data,
+}: AppointmentListTablePageProps) => {
   const {
     appointments,
     setAppointments,
@@ -30,7 +33,7 @@ export const AppointmentListTablePage = ({ page = 0, data }: AppointmentListTabl
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
-          items={ appointments}
+          items={appointments}
           fields={[
             { id: "name", label: "Nome", displayKeyText: true },
             {
@@ -41,7 +44,7 @@ export const AppointmentListTablePage = ({ page = 0, data }: AppointmentListTabl
             },
           ]}
           setItems={setAppointments}
-          linkOnMouseEnter={handlePrefetchAppointment }
+          linkOnMouseEnter={handlePrefetchAppointment}
           error={undefined}
           route={"/appointments"}
           routeDetails={"/appointments/details"}
