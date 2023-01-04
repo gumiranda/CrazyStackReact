@@ -2,8 +2,8 @@ import { UserEditPage } from "screens/user/edit";
 import { getUserById } from "entidades/user/user.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";
-import { getServices } from "entidades/service/service.api";
-import { getOwners } from "entidades/owner/owner.api";
+import { getServices } from "entidades/service";
+import { getOwners } from "entidades/owner";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {
