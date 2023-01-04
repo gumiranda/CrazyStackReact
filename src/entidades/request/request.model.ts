@@ -3,6 +3,7 @@ import { startOfDay } from "date-fns";
 export type RequestProps = {
   _id: string;
   status: number;
+  statusLabel: string;
   message: string;
   createdAt: string;
   value?: boolean;
@@ -80,7 +81,9 @@ class Request {
   get haveDelivery(): boolean {
     return this.props.haveDelivery;
   }
-
+  get statusLabel(): string {
+    return this.props.statusLabel;
+  }
   format(): RequestProps {
     return {
       ...this.props,
@@ -94,7 +97,26 @@ class Request {
         month: "2-digit",
         year: "numeric",
       }),
+      statusLabel: statusMap[this.props.status],
     };
   }
 }
 export const requestModel = (props: RequestProps) => Request.build(props);
+const statusMap: any = {
+  0: "Solicitado",
+  1: "Confirmado",
+  2: "Cancelado pelo prestador",
+  3: "Cancelado pelo cliente",
+  4: "Reagendamento pendente por conflito de agenda",
+  5: "Reagendamento solicitado pelo prestador",
+  6: "Reagendamento solicitado pelo cliente",
+  7: "Reagendamento confirmado",
+  8: "Reagendamento negado",
+  9: "Agendamento avaliado pelo cliente",
+  10: "Pedido efetivado",
+  11: "Pedido efetivado e avaliado pelo cliente",
+};
+export const statusArray = Object.entries(statusMap).map(([key, value]) => ({
+  key,
+  value,
+}));
