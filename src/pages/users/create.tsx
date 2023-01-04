@@ -1,5 +1,5 @@
-import { UserCreatePage } from "screens/user/create";
 import { GetServerSideProps } from "next";
+import { UserCreatePage } from "screens/user/create";
 import { withSSRAuth } from "shared/libs/utils";
 import { getServices } from "entidades/service/service.api";
 import { getOwners } from "entidades/owner/owner.api";
@@ -15,5 +15,4 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
     },
   };
 });
-
 export default UserCreatePage;

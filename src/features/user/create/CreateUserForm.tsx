@@ -1,13 +1,12 @@
+import { GetServicesResponse } from "entidades/service";
 import { useCreateUser } from "./createUser.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
-import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse } from "entidades/owner";
-
-type CreateUserFormProps = {
-  serviceList: GetServicesResponse;
+type UserCreateFormProps = {
   ownerList: GetOwnersResponse;
+  serviceList: GetServicesResponse;
 };
-export const CreateUserForm = ({ serviceList, ownerList }: CreateUserFormProps) => {
+export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) => {
   const {
     formState,
     register,
@@ -21,7 +20,7 @@ export const CreateUserForm = ({ serviceList, ownerList }: CreateUserFormProps) 
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
-  } = useCreateUser({ serviceList, ownerList });
+  } = useCreateUser({ ownerList, serviceList });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateUser)}
@@ -31,7 +30,7 @@ export const CreateUserForm = ({ serviceList, ownerList }: CreateUserFormProps) 
     >
       <GridForm>
         <FormControl
-          label="Nome do profissional"
+          label="Nome da profissional"
           error={formState.errors.name}
           {...register("name")}
         />
@@ -55,11 +54,11 @@ export const CreateUserForm = ({ serviceList, ownerList }: CreateUserFormProps) 
         />
         <Select
           bg="purple.700"
-          name="serviceList"
-          label="Serviço"
-          list={services}
-          value={serviceSelected}
-          onChange={handleChangeServiceSelected}
+          name="ownerList"
+          label="Estabelecimento"
+          list={owners}
+          value={ownerSelected}
+          onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
         >
@@ -69,11 +68,11 @@ export const CreateUserForm = ({ serviceList, ownerList }: CreateUserFormProps) 
         </Select>
         <Select
           bg="purple.700"
-          name="ownerList"
-          label="Estabelecimento"
-          list={owners}
-          value={ownerSelected}
-          onChange={handleChangeOwnerSelected}
+          name="serviceList"
+          label="Serviço"
+          list={services}
+          value={serviceSelected}
+          onChange={handleChangeServiceSelected}
           keyValue="_id"
           keyLabel="name"
         >

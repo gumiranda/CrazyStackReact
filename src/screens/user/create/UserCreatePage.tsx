@@ -1,12 +1,12 @@
 import { Box, Head } from "shared/ui";
 import { CreateUserForm } from "features/user/create";
-import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse } from "entidades/owner";
-type ServiceCreatePageProps = {
+import { GetServicesResponse } from "entidades/service";
+type UserCreatePageProps = {
   owner: GetOwnersResponse;
   data: GetServicesResponse;
 };
-export const UserCreatePage = ({ data, owner }: ServiceCreatePageProps) => {
+export const UserCreatePage = ({ owner, data }: UserCreatePageProps) => {
   return (
     <>
       <Head

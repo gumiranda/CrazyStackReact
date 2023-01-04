@@ -10,16 +10,17 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { CreateServiceFormProps } from "./CreateServiceForm";
 import { useCategoriesSelect } from "features/category/categoryList.hook";
+
 export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
+  const { showModal } = useUi();
+  const router = useRouter();
+  const [active, setActive] = useState(false);
   const {
     categorySelected,
     setCategorySelected,
     handleChangeCategorySelected,
     categorys,
   } = useCategoriesSelect({ categoryList });
-  const { showModal } = useUi();
-  const router = useRouter();
-  const [active, setActive] = useState(false);
   const [havePromotionalPrice, setHavePromotionalPrice] = useState(false);
   const [hasFidelityGenerator, setHasFidelityGenerator] = useState(false);
   const [canPayWithFidelityPoints, setCanPayWithFidelityPoints] = useState(false);
@@ -74,23 +75,22 @@ export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
       appointmentsTotal: 0,
     });
   };
-
   return {
+    categorySelected,
+    setCategorySelected,
     formState,
     register,
     handleSubmit,
     handleCreateService,
     active,
     setActive,
+    handleChangeCategorySelected,
+    categorys,
     havePromotionalPrice,
     hasFidelityGenerator,
     canPayWithFidelityPoints,
     setHavePromotionalPrice,
     setHasFidelityGenerator,
     setCanPayWithFidelityPoints,
-    categorySelected,
-    setCategorySelected,
-    handleChangeCategorySelected,
-    categorys,
   };
 };

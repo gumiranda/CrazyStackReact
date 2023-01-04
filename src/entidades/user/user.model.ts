@@ -38,11 +38,11 @@ class User {
   get email(): string {
     return this.props.email;
   }
-  get ownerId(): string {
-    return this.props.ownerId;
-  }
   get role(): string {
     return this.props.role;
+  }
+  get ownerId(): string {
+    return this.props.ownerId;
   }
   get myOwnerId(): string {
     return this.props.myOwnerId;
@@ -50,6 +50,10 @@ class User {
   get createdById(): string {
     return this.props.createdById;
   }
+  get value(): boolean | undefined {
+    return this.props.value;
+  }
+
   format(): UserProps {
     return {
       ...this.props,

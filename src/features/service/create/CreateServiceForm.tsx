@@ -6,6 +6,8 @@ export type CreateServiceFormProps = {
 };
 export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
   const {
+    categorySelected,
+    setCategorySelected,
     formState,
     register,
     handleSubmit,
@@ -20,7 +22,6 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
     setHavePromotionalPrice,
     setHasFidelityGenerator,
     setCanPayWithFidelityPoints,
-    categorySelected,
   } = useCreateService({ categoryList });
   return (
     <BoxCreateItem

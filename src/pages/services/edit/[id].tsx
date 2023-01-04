@@ -3,7 +3,6 @@ import { getServiceById } from "entidades/service/service.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";
 import { getCategorys } from "entidades/category";
-
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {
@@ -15,7 +14,6 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
     getCategorys(1, context),
     getServiceById(id, context),
   ]);
-
   return {
     props: {
       data,

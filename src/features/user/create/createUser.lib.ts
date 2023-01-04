@@ -20,7 +20,7 @@ export const createUserFormSchema = yup.object().shape({
   password: yup.string().required("Senha é obrigatória"),
   passwordConfirmation: yup
     .string()
-    .required("Senha é obrigatória")
+    .required("Confirmação de senha é obrigatória")
     .oneOf([yup.ref("password"), null], "Senhas não conferem"),
   email: yup.string().email("Email inválido").required("Email é obrigatório"),
 });

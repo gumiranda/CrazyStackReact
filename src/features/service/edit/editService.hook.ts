@@ -10,17 +10,16 @@ import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useCategoriesSelect } from "features/category/categoryList.hook";
 import { useState } from "react";
-
 export const useEditService = (props: EditServiceFormProps) => {
   const { showModal } = useUi();
   const { service: currentService, categoryList } = props;
+  const router = useRouter();
   const {
     categorySelected,
     setCategorySelected,
     handleChangeCategorySelected,
     categorys,
   } = useCategoriesSelect({ categoryList, currentService });
-  const router = useRouter();
   const [active, setActive] = useState(false);
   const [havePromotionalPrice, setHavePromotionalPrice] = useState(false);
   const [hasFidelityGenerator, setHasFidelityGenerator] = useState(false);
@@ -74,6 +73,8 @@ export const useEditService = (props: EditServiceFormProps) => {
     handleEditService,
     active,
     setActive,
+    handleChangeCategorySelected,
+    categorys,
     havePromotionalPrice,
     hasFidelityGenerator,
     canPayWithFidelityPoints,
@@ -81,8 +82,5 @@ export const useEditService = (props: EditServiceFormProps) => {
     setHasFidelityGenerator,
     setCanPayWithFidelityPoints,
     categorySelected,
-    setCategorySelected,
-    handleChangeCategorySelected,
-    categorys,
   };
 };

@@ -7,9 +7,13 @@ export type GetOwnersResponse = {
   prev?: number;
 };
 const registerByPage = 10;
-export const getOwners = async (page: number, ctx: any): Promise<GetOwnersResponse> => {
+export const getOwners = async (
+  page: number,
+  ctx: any,
+  params: any = {}
+): Promise<GetOwnersResponse> => {
   const { data } = await setupAPIClient(ctx).get("/owner/loadByPage", {
-    params: { page, sortBy: "createdAt", typeSort: "desc" },
+    params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { owners, total } = data || {};
   const totalCount = Number(total ?? 0);

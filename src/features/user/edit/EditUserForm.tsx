@@ -2,7 +2,6 @@ import { UserProps } from "entidades/user";
 import { useEditUser } from "./editUser.hook";
 import {
   BoxCreateItem,
-  Checkbox,
   FormControl,
   GenericDetailsItem,
   GridForm,
@@ -22,8 +21,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
     register,
     handleSubmit,
     handleEditUser,
-    active,
-    setActive,
     handleChangeServiceSelected,
     services,
     serviceSelected,
@@ -47,11 +44,11 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },
+          { id: "createdAt", label: "Data de criação" },
           { id: "email", label: "Email" },
           { id: "createdById", label: "Id do criador" },
           { id: "ownerId", label: "Id do estabelecimento" },
           { id: "myOwnerId", label: "Id do usuario do estabelecimento" },
-          { id: "createdAt", label: "Data de criação" },
         ]}
       />
       <GridForm>
@@ -60,20 +57,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           error={formState.errors.name}
           {...register("name")}
         />
-        <Select
-          bg="purple.700"
-          name="serviceList"
-          label="Serviço"
-          list={services}
-          value={serviceSelected}
-          onChange={handleChangeServiceSelected}
-          keyValue="_id"
-          keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
-          </option>
-        </Select>
         <Select
           bg="purple.700"
           name="ownerList"
@@ -88,15 +71,20 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
             Carregar mais
           </option>
         </Select>
-        <Checkbox
-          label="Ativo"
-          colorScheme="green"
-          isChecked={active}
-          onChange={(e) => {
-            e.preventDefault();
-            setActive(e.target.checked);
-          }}
-        />
+        <Select
+          bg="purple.700"
+          name="serviceList"
+          label="Serviço"
+          list={services}
+          value={serviceSelected}
+          onChange={handleChangeServiceSelected}
+          keyValue="_id"
+          keyLabel="name"
+        >
+          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
+            Carregar mais
+          </option>
+        </Select>
       </GridForm>
     </BoxCreateItem>
   );
