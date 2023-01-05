@@ -24,6 +24,10 @@ export const useCreateOwner = () => {
   const [hourWork, setHourWork] = useState<HourValidatorInput>({
     hourStart1: "8:00",
     hourEnd1: "18:00",
+    hourStart2: "8:00",
+    hourEnd2: "18:00",
+    hourStart3: "8:00",
+    hourEnd3: "18:00",
   });
   const createOwner = useMutation(
     async (owner: CreateOwnerFormData & HourValidatorInput & Days) => {
@@ -65,6 +69,12 @@ export const useCreateOwner = () => {
     await createOwner.mutateAsync({
       ...values,
       ...hourWork,
+      hourLunchStart1: applyDefaultLunchTime(haveLunchTime1, hourWork?.hourLunchStart1),
+      hourLunchEnd1: applyDefaultLunchTime(haveLunchTime1, hourWork?.hourLunchEnd1),
+      hourLunchStart2: applyDefaultLunchTime(haveLunchTime2, hourWork?.hourLunchStart2),
+      hourLunchEnd2: applyDefaultLunchTime(haveLunchTime2, hourWork?.hourLunchEnd2),
+      hourLunchStart3: applyDefaultLunchTime(haveLunchTime3, hourWork?.hourLunchStart3),
+      hourLunchEnd3: applyDefaultLunchTime(haveLunchTime3, hourWork?.hourLunchEnd3),
       days1: formatDays(values?.days1Options, "1"),
       days2: formatDays(values?.days2Options, "2"),
       days3: formatDays(values?.days3Options, "3"),
@@ -103,3 +113,15 @@ export const useCreateOwner = () => {
     setHaveAlternativeHour2,
   };
 };
+function applyDefaultLunchTime(
+  haveLunchTime: boolean,
+  field: string | undefined
+): string | undefined {
+  if (!haveLunchTime) {
+    return;
+  }
+  if (!field) {
+    return "7:00";
+  }
+  return field;
+}
