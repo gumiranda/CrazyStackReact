@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 export type CreateClientFormData = {
   name: string;
   active?: boolean;
+  userId?: string;
 };
 
 export type SubmitCreateClientHandler = SubmitHandler<CreateClientFormData>;
