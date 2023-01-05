@@ -30,6 +30,7 @@ export const useCreateOwner = () => {
       try {
         const { data } = await api.post("/owner/add", {
           ...owner,
+          active: true,
         });
         if (!data) {
           showModal({
