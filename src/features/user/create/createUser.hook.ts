@@ -1,4 +1,4 @@
-import { useServicesSelect } from "features/service/serviceList.hook";
+import { useServiceListMultiple } from "./../serviceListMultiple";
 import { useOwnersSelect } from "features/owner/ownerList.hook";
 import { useUi } from "shared/libs";
 import {
@@ -9,14 +9,10 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse, OwnerProps } from "entidades/owner";
-import { OptionBase } from "chakra-react-select";
-export interface ServiceOptions extends OptionBase {
-  label: string;
-  value: string;
-}
+
 type CreateUserFormProps = {
   serviceList: GetServicesResponse;
   ownerList: GetOwnersResponse;
@@ -24,14 +20,7 @@ type CreateUserFormProps = {
 export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
-  const { services, setServiceSelected, serviceSelected } = useServicesSelect({
-    serviceList,
-  });
-  const serviceOptions =
-    services?.map?.((service: any) => ({
-      label: service?.name,
-      value: service?._id,
-    })) ?? [];
+  const { serviceOptions } = useServiceListMultiple({ serviceList });
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
   });
@@ -74,11 +63,7 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
       role: "professional",
     });
   };
-  useEffect(() => {
-    if (services?.length < serviceList?.totalCount) {
-      setServiceSelected("loadMore");
-    }
-  }, [serviceList?.totalCount, serviceSelected]);
+
   return {
     formState,
     register,
