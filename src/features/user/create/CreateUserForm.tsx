@@ -1,5 +1,5 @@
 import { GetServicesResponse } from "entidades/service";
-import { ServiceOptions, useCreateUser } from "./createUser.hook";
+import { useCreateUser } from "./createUser.hook";
 import {
   BoxCreateItem,
   FormControl,
@@ -10,6 +10,8 @@ import {
 } from "shared/ui";
 import { GetOwnersResponse } from "entidades/owner";
 import { CreateUserFormData } from "./createUser.lib";
+import { ServiceOptions } from "features/user/serviceListMultiple";
+
 type UserCreateFormProps = {
   ownerList: GetOwnersResponse;
   serviceList: GetServicesResponse;
