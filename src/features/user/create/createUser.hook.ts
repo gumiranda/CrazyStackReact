@@ -12,6 +12,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse, OwnerProps } from "entidades/owner";
+import { OptionBase } from "chakra-react-select";
+export interface ServiceOptions extends OptionBase {
+  label: string;
+  value: string;
+}
 type CreateUserFormProps = {
   serviceList: GetServicesResponse;
   ownerList: GetOwnersResponse;
@@ -22,6 +27,11 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
   const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
     serviceList,
   });
+  const serviceOptions =
+    services?.map?.((service: any) => ({
+      label: service?.name,
+      value: service?._id,
+    })) ?? [];
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
   });
@@ -53,12 +63,12 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
       });
     }
   }, {});
-  const { register, handleSubmit, formState } = useCreateUserLib();
+  const { register, handleSubmit, formState, control } = useCreateUserLib();
   const handleCreateUser: SubmitCreateUserHandler = async (values: CreateUserFormData) => {
     await createUser.mutateAsync({
       ...values,
       active,
-      serviceIds: [serviceSelected],
+      serviceIds: values?.serviceOptions?.map?.((service) => service?.value),
       ownerId: ownerSelected,
       myOwnerId: owners?.find?.((owner: OwnerProps) => owner?._id === ownerSelected)?._id,
       role: "professional",
@@ -77,5 +87,7 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    control,
+    serviceOptions,
   };
 };

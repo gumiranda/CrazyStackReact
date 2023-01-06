@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ServiceOptions } from "./createUser.hook";
 export type CreateUserFormData = {
   name: string;
   active?: boolean;
@@ -11,6 +12,7 @@ export type CreateUserFormData = {
   ownerId?: string;
   myOwnerId?: string;
   serviceIds?: string[];
+  serviceOptions?: ServiceOptions[];
 };
 
 export type SubmitCreateUserHandler = SubmitHandler<CreateUserFormData>;
