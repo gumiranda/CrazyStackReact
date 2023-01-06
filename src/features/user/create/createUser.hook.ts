@@ -9,7 +9,7 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse, OwnerProps } from "entidades/owner";
 import { OptionBase } from "chakra-react-select";
@@ -24,7 +24,7 @@ type CreateUserFormProps = {
 export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
-  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
+  const { services, setServiceSelected, serviceSelected } = useServicesSelect({
     serviceList,
   });
   const serviceOptions =
@@ -74,6 +74,11 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
       role: "professional",
     });
   };
+  useEffect(() => {
+    if (services?.length < serviceList?.totalCount) {
+      setServiceSelected("loadMore");
+    }
+  }, [serviceList?.totalCount, serviceSelected]);
   return {
     formState,
     register,
@@ -81,9 +86,6 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
     handleCreateUser,
     active,
     setActive,
-    handleChangeServiceSelected,
-    services,
-    serviceSelected,
     handleChangeOwnerSelected,
     owners,
     ownerSelected,

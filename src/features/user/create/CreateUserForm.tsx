@@ -22,9 +22,6 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
     handleCreateUser,
     active,
     setActive,
-    handleChangeServiceSelected,
-    services,
-    serviceSelected,
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
@@ -76,20 +73,7 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
             Carregar mais
           </option>
         </Select>
-        <Select
-          bg="purple.700"
-          name="serviceList"
-          label="Serviço"
-          list={services}
-          value={serviceSelected}
-          onChange={handleChangeServiceSelected}
-          keyValue="_id"
-          keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
-          </option>
-        </Select>
+
         <ControlledSelect<CreateUserFormData, ServiceOptions, true>
           isMulti
           control={control}
