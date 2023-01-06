@@ -18,6 +18,16 @@ export type CreateUserFormData = {
 export type SubmitCreateUserHandler = SubmitHandler<CreateUserFormData>;
 
 export const createUserFormSchema = yup.object().shape({
+  serviceOptions: yup
+    .array()
+    .required("É necessário selecionar pelo menos um serviço")
+    .min(1, "É necessário selecionar pelo menos um serviço")
+    .of(
+      yup.object().shape({
+        label: yup.string().required(),
+        value: yup.string().required(),
+      })
+    ),
   name: yup.string().required("Nome é obrigatório"),
   password: yup.string().required("Senha é obrigatória"),
   passwordConfirmation: yup
