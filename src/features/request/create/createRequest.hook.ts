@@ -93,6 +93,7 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
       new Date(timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value ?? null),
       services?.find?.((service) => service?._id === serviceSelected)?.duration ?? 60
     )?.toISOString?.(),
+    duration: services?.find?.((service) => service?._id === serviceSelected)?.duration,
   };
   const { register, handleSubmit, formState } = useCreateRequestLib(requestObjectIds);
 

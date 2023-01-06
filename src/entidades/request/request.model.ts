@@ -15,11 +15,15 @@ export type RequestProps = {
   createdForId: string;
   initDate: string;
   endDate: string;
+  initDateFormatted: string;
+  endDateFormatted: string;
+  datePickerSelected?: string;
   date: string;
   haveRecurrence: boolean;
   haveRide: boolean;
   haveFidelity: boolean;
   haveDelivery: boolean;
+  duration?: number;
 };
 
 class Request {
@@ -66,6 +70,15 @@ class Request {
   get endDate(): string {
     return this.props.endDate;
   }
+  get initDateFormatted(): string {
+    return this.props.initDateFormatted;
+  }
+  get endDateFormatted(): string {
+    return this.props.endDateFormatted;
+  }
+  get datePickerSelected(): string | undefined {
+    return this.props.datePickerSelected;
+  }
   get date(): string {
     return this.props.date;
   }
@@ -84,6 +97,9 @@ class Request {
   get statusLabel(): string {
     return this.props.statusLabel;
   }
+  get duration(): number | undefined {
+    return this.props.duration;
+  }
   format(): RequestProps {
     return {
       ...this.props,
@@ -91,7 +107,26 @@ class Request {
       message: this.props.message,
       active: this.props.active,
       value: false,
+      initDateFormatted: new Date(this.props.initDate).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      endDateFormatted: new Date(this.props.endDate).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
       date: startOfDay(new Date(this.props.initDate)).toISOString(),
+      datePickerSelected: new Date(this.props.initDate).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }),
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
