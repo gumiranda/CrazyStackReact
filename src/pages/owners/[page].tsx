@@ -4,7 +4,9 @@ import { withSSRAuth } from "shared/libs/utils";
 import { getOwners } from "entidades/owner/owner.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const page = Number(context?.query?.page ?? 1);
-  const data = await getOwners(page, context);
+  delete context?.query?.page;
+  const otherFilters = { ...context?.query };
+  const data = await getOwners(page, context, otherFilters);
   return {
     props: {
       data,

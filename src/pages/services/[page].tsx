@@ -4,7 +4,9 @@ import { withSSRAuth } from "shared/libs/utils";
 import { getServices } from "entidades/service/service.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const page = Number(context?.query?.page ?? 1);
-  const data = await getServices(page, context);
+  delete context?.query?.page;
+  const otherFilters = { ...context?.query };
+  const data = await getServices(page, context, otherFilters);
   return {
     props: {
       data,
