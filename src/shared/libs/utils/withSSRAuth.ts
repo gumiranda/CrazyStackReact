@@ -20,6 +20,7 @@ export function withSSRAuth<P extends { [key: string]: any }>(fn: GetServerSideP
     try {
       return await fn(ctx);
     } catch (error) {
+      console.log({ error });
       return {
         redirect: {
           destination: "/",

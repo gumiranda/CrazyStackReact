@@ -7,6 +7,7 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
   delete context?.query?.page;
   const otherFilters = { ...context?.query };
   const data = await getUsers(page, context, otherFilters);
+  console.log({ data });
   return {
     props: {
       data,
