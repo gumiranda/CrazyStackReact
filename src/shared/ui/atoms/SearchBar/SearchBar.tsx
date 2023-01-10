@@ -16,7 +16,7 @@ const InputAtom: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       if (event.target.value && router?.query?.page) {
         router.push({
           pathname: newurl,
-          query: { name: event.target.value },
+          query: { text: event.target.value },
         });
       } else {
         router.push(newurl);
