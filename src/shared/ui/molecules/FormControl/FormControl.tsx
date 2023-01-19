@@ -1,5 +1,4 @@
 import React, { forwardRef, ForwardRefRenderFunction, memo } from "react";
-import { FieldError } from "react-hook-form";
 import {
   FormLabel,
   FormControl as FormControlChakra,

@@ -1,4 +1,4 @@
-import { useServicesSelect } from "features/service/serviceList.hook";
+import { useServiceListMultiple } from "./../serviceListMultiple";
 import { useOwnersSelect } from "features/owner/ownerList.hook";
 import { useUi } from "shared/libs";
 import {
@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse, OwnerProps } from "entidades/owner";
+
 type CreateUserFormProps = {
   serviceList: GetServicesResponse;
   ownerList: GetOwnersResponse;
@@ -19,9 +20,7 @@ type CreateUserFormProps = {
 export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
-  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
-    serviceList,
-  });
+  const { serviceOptions } = useServiceListMultiple({ serviceList });
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
   });
@@ -53,17 +52,18 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
       });
     }
   }, {});
-  const { register, handleSubmit, formState } = useCreateUserLib();
+  const { register, handleSubmit, formState, control } = useCreateUserLib();
   const handleCreateUser: SubmitCreateUserHandler = async (values: CreateUserFormData) => {
     await createUser.mutateAsync({
       ...values,
       active,
-      serviceIds: [serviceSelected],
+      serviceIds: values?.serviceOptions?.map?.((service) => service?.value),
       ownerId: ownerSelected,
       myOwnerId: owners?.find?.((owner: OwnerProps) => owner?._id === ownerSelected)?._id,
       role: "professional",
     });
   };
+
   return {
     formState,
     register,
@@ -71,11 +71,10 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
     handleCreateUser,
     active,
     setActive,
-    handleChangeServiceSelected,
-    services,
-    serviceSelected,
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    control,
+    serviceOptions,
   };
 };

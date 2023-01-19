@@ -13,6 +13,11 @@ interface ControlledSelectProps<
   label?: string;
 }
 
+/**
+ * An attempt to make a reusable chakra-react-select form component
+ *
+ * @param props - The combined props of the chakra-react-select component and the useController hook
+ */
 export const ControlledSelect = <
   FormValues extends FieldValues = FieldValues,
   Option = unknown,
@@ -30,23 +35,18 @@ export const ControlledSelect = <
   const {
     field,
     fieldState: { error },
-  } = useController<FormValues>({ name, control, rules, shouldUnregister });
+  } = useController<FormValues>({
+    name,
+    control,
+    rules,
+    shouldUnregister,
+  });
+
   return (
-    // @ts-ignore
-    <FormControl>
-      {label && (
-        <FormLabel textColor="white" htmlFor={name}>
-          {label}
-        </FormLabel>
-      )}
-      <Select<Option, IsMulti, Group>
-        {...selectProps}
-        {...field}
-        options={options}
-        id={name}
-        isInvalid={!!error}
-      />
-      {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+    <FormControl textColor={"purple.900"} label={label} isInvalid={!!error} id={name}>
+      {label && <FormLabel textColor="white">{label}</FormLabel>}
+      <Select<Option, IsMulti, Group> options={options} {...selectProps} {...field} />
+      <FormErrorMessage>{error?.message}</FormErrorMessage>
     </FormControl>
   );
 };

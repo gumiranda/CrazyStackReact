@@ -2,6 +2,7 @@ import { UserProps } from "entidades/user";
 import { useEditUser } from "./editUser.hook";
 import {
   BoxCreateItem,
+  ControlledSelect,
   FormControl,
   GenericDetailsItem,
   GridForm,
@@ -9,24 +10,26 @@ import {
 } from "shared/ui";
 import { GetServicesResponse } from "entidades/service";
 import { GetOwnersResponse } from "entidades/owner";
+import { ServiceOptions } from "features/user/serviceListMultiple";
+import { EditUserFormData } from "./editUser.lib";
 
 export interface EditUserFormProps {
   user: UserProps;
   serviceList: GetServicesResponse;
   ownerList: GetOwnersResponse;
 }
+
 export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps) => {
   const {
     formState,
     register,
     handleSubmit,
     handleEditUser,
-    handleChangeServiceSelected,
-    services,
-    serviceSelected,
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    serviceOptions,
+    control,
   } = useEditUser({
     user,
     serviceList,
@@ -71,20 +74,14 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
             Carregar mais
           </option>
         </Select>
-        <Select
-          bg="purple.700"
-          name="serviceList"
-          label="Serviço"
-          list={services}
-          value={serviceSelected}
-          onChange={handleChangeServiceSelected}
-          keyValue="_id"
-          keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
-          </option>
-        </Select>
+        <ControlledSelect<EditUserFormData, ServiceOptions, true>
+          isMulti
+          control={control}
+          label={"Serviços selecionados"}
+          placeholder="Selecione pelo menos 1 serviço"
+          options={serviceOptions}
+          name={"serviceOptions"}
+        />
       </GridForm>
     </BoxCreateItem>
   );

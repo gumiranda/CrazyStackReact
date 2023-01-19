@@ -35,7 +35,14 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
     );
   }
   return (
-    <Box as="aside" m="4" data-testid="SidebarTestId">
+    <Box
+      as="aside"
+      marginTop={-5}
+      marginLeft={4}
+      marginRight={4}
+      marginBottom={2}
+      data-testid="SidebarTestId"
+    >
       {children}
     </Box>
   );

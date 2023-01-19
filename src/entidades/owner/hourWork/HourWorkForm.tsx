@@ -1,6 +1,5 @@
 import { Select, ControlledSelect, Checkbox } from "shared/ui";
 import { OptionBase } from "chakra-react-select";
-
 export type HourValidatorInput = {
   hourStart1: string;
   hourEnd1: string;
@@ -15,12 +14,10 @@ export type HourValidatorInput = {
   hourLunchStart3?: string;
   hourLunchEnd3?: string;
 };
-
 export interface DaysOptions extends OptionBase {
   label: string;
   value: string;
 }
-
 export type CreateOwnerFormData = {
   name: string;
   description: string;
@@ -31,7 +28,6 @@ export type CreateOwnerFormData = {
   days2Options?: DaysOptions[];
   days3Options?: DaysOptions[];
 };
-
 export type EditOwnerFormData = {
   name: string;
   description: string;
@@ -42,7 +38,6 @@ export type EditOwnerFormData = {
   days2Options?: DaysOptions[];
   days3Options?: DaysOptions[];
 };
-
 type HourWorkFormInput = {
   props: {
     labelDayWork: string;
@@ -54,19 +49,18 @@ type HourWorkFormInput = {
     daysOptions: any;
     listHours: any;
     daysOptionsName: any;
-    flagDependent?: boolean;
+    flagDependent: boolean;
     valueHourStart: string;
     onChangeHourStart: any;
+    valueHourEnd: string;
+    onChangeHourEnd: any;
     valueHourLunchStart: string;
     onChangeHourLunchStart: any;
     valueHourLunchEnd: string;
     onChangeHourLunchEnd: any;
-    valueHourEnd: string;
-    onChangeHourEnd: any;
   };
 };
-
-type HourWorkProps = {
+type HourWorksProps = {
   changeHour: any;
   listHours: any;
   hourWork: any;
@@ -86,9 +80,8 @@ type HourWorkProps = {
   setHaveLunchTime3: any;
 };
 type HourWorksInput = {
-  props: HourWorkProps;
+  props: HourWorksProps;
 };
-
 export const HourWorks = ({
   props: {
     haveLunchTime1,
@@ -113,26 +106,26 @@ export const HourWorks = ({
   const {
     onChangeHourStart1,
     onChangeHourEnd1,
-    onChangeHourLunchStart1,
     onChangeHourLunchEnd1,
+    onChangeHourLunchStart1,
     onChangeHourStart2,
     onChangeHourEnd2,
-    onChangeHourLunchStart2,
     onChangeHourLunchEnd2,
+    onChangeHourLunchStart2,
     onChangeHourStart3,
     onChangeHourEnd3,
-    onChangeHourLunchStart3,
     onChangeHourLunchEnd3,
+    onChangeHourLunchStart3,
   } = useOnChanges({ changeHour });
   return (
     <>
       <HourWorkForm
         props={{
           labelDayWork: "Dias de funcionamento 1",
-          labelHourStart: "Hora de início",
-          labelHourEnd: "Hora de término",
-          labelHourLunchStart: "Hora de início do almoço",
-          labelHourLunchEnd: "Hora de término do almoço",
+          labelHourStart: "Horário de abertura 1",
+          labelHourEnd: "Horário de fechamento 1",
+          labelHourLunchStart: "Horário de almoço de abertura 1",
+          labelHourLunchEnd: "Horário de almoço de fechamento 1",
           control,
           daysOptions: daysOptions1,
           listHours,
@@ -140,12 +133,12 @@ export const HourWorks = ({
           flagDependent: haveLunchTime1,
           valueHourStart: hourWork.hourStart1,
           onChangeHourStart: onChangeHourStart1,
+          valueHourEnd: hourWork.hourEnd1,
+          onChangeHourEnd: onChangeHourEnd1,
           valueHourLunchStart: hourWork.hourLunchStart1,
           onChangeHourLunchStart: onChangeHourLunchStart1,
           valueHourLunchEnd: hourWork.hourLunchEnd1,
           onChangeHourLunchEnd: onChangeHourLunchEnd1,
-          valueHourEnd: hourWork.hourEnd1,
-          onChangeHourEnd: onChangeHourEnd1,
         }}
       />
       <Checkbox
@@ -171,10 +164,10 @@ export const HourWorks = ({
           <HourWorkForm
             props={{
               labelDayWork: "Dias de funcionamento 2",
-              labelHourStart: "Hora de início",
-              labelHourEnd: "Hora de término",
-              labelHourLunchStart: "Hora de início do almoço",
-              labelHourLunchEnd: "Hora de término do almoço",
+              labelHourStart: "Horário de abertura 2",
+              labelHourEnd: "Horário de fechamento 2",
+              labelHourLunchStart: "Horário de almoço de abertura 2",
+              labelHourLunchEnd: "Horário de almoço de fechamento 2",
               control,
               daysOptions: daysOptions2,
               listHours,
@@ -182,18 +175,18 @@ export const HourWorks = ({
               flagDependent: haveLunchTime2,
               valueHourStart: hourWork.hourStart2,
               onChangeHourStart: onChangeHourStart2,
+              valueHourEnd: hourWork.hourEnd2,
+              onChangeHourEnd: onChangeHourEnd2,
               valueHourLunchStart: hourWork.hourLunchStart2,
               onChangeHourLunchStart: onChangeHourLunchStart2,
               valueHourLunchEnd: hourWork.hourLunchEnd2,
               onChangeHourLunchEnd: onChangeHourLunchEnd2,
-              valueHourEnd: hourWork.hourEnd2,
-              onChangeHourEnd: onChangeHourEnd2,
             }}
           />
           <Checkbox
             colorScheme="green"
             isChecked={haveLunchTime2}
-            label="Possui horário de almoço?"
+            label="Possui horário de almoço alternativo?"
             onChange={(e) => {
               e.preventDefault();
               setHaveLunchTime2(e.target.checked);
@@ -202,7 +195,7 @@ export const HourWorks = ({
           <Checkbox
             colorScheme="green"
             isChecked={haveAlternativeHour2}
-            label="Possui horário alternativo além desse?"
+            label="Possui terceiro horário?"
             onChange={(e) => {
               e.preventDefault();
               setHaveAlternativeHour2(e.target.checked);
@@ -213,10 +206,10 @@ export const HourWorks = ({
               <HourWorkForm
                 props={{
                   labelDayWork: "Dias de funcionamento 3",
-                  labelHourStart: "Hora de início",
-                  labelHourEnd: "Hora de término",
-                  labelHourLunchStart: "Hora de início do almoço",
-                  labelHourLunchEnd: "Hora de término do almoço",
+                  labelHourStart: "Horário de abertura 3",
+                  labelHourEnd: "Horário de fechamento 3",
+                  labelHourLunchStart: "Horário de almoço de abertura 3",
+                  labelHourLunchEnd: "Horário de almoço de fechamento 3",
                   control,
                   daysOptions: daysOptions3,
                   listHours,
@@ -224,72 +217,113 @@ export const HourWorks = ({
                   flagDependent: haveLunchTime3,
                   valueHourStart: hourWork.hourStart3,
                   onChangeHourStart: onChangeHourStart3,
+                  valueHourEnd: hourWork.hourEnd3,
+                  onChangeHourEnd: onChangeHourEnd3,
                   valueHourLunchStart: hourWork.hourLunchStart3,
                   onChangeHourLunchStart: onChangeHourLunchStart3,
                   valueHourLunchEnd: hourWork.hourLunchEnd3,
                   onChangeHourLunchEnd: onChangeHourLunchEnd3,
-                  valueHourEnd: hourWork.hourEnd3,
-                  onChangeHourEnd: onChangeHourEnd3,
                 }}
               />
               <Checkbox
                 colorScheme="green"
-                isChecked={haveLunchTime3}
-                label="Possui horário de almoço desse alternativo?"
+                isChecked={haveLunchTime2}
+                label="Possui horário de almoço?"
                 onChange={(e) => {
                   e.preventDefault();
-                  setHaveLunchTime3(e.target.checked);
+                  setHaveLunchTime2(e.target.checked);
                 }}
               />
             </>
           )}
         </>
       )}
+
+      <Checkbox
+        colorScheme="green"
+        isChecked={haveLunchTime3}
+        label="Possui terceiro horário de almoço?"
+        onChange={(e) => {
+          e.preventDefault();
+          setHaveLunchTime3(e.target.checked);
+        }}
+      />
     </>
   );
 };
 const useOnChanges = ({ changeHour }: any) => {
-  const createOnChange = (field: string) => (event: any) => changeHour(event, field);
-  const fields = [
-    "hourStart1",
-    "hourEnd1",
-    "hourLunchStart1",
-    "hourLunchEnd1",
-    "hourStart2",
-    "hourEnd2",
-    "hourLunchStart2",
-    "hourLunchEnd2",
-    "hourStart3",
-    "hourEnd3",
-    "hourLunchStart3",
-    "hourLunchEnd3",
-  ];
-  const onChange = fields.reduce((acc: any, field) => {
-    acc[`onChange${field}`] = createOnChange(field);
-    return acc;
-  }, {});
-  return onChange;
+  const onChangeHourStart1 = (event: any) => {
+    changeHour(event, "hourStart1");
+  };
+  const onChangeHourEnd1 = (event: any) => {
+    changeHour(event, "hourEnd1");
+  };
+  const onChangeHourLunchStart1 = (event: any) => {
+    changeHour(event, "hourLunchStart1");
+  };
+  const onChangeHourLunchEnd1 = (event: any) => {
+    changeHour(event, "hourLunchEnd1");
+  };
+  const onChangeHourStart2 = (event: any) => {
+    changeHour(event, "hourStart2");
+  };
+  const onChangeHourEnd2 = (event: any) => {
+    changeHour(event, "hourEnd2");
+  };
+  const onChangeHourLunchStart2 = (event: any) => {
+    changeHour(event, "hourLunchStart2");
+  };
+  const onChangeHourLunchEnd2 = (event: any) => {
+    changeHour(event, "hourLunchEnd2");
+  };
+  const onChangeHourStart3 = (event: any) => {
+    changeHour(event, "hourStart3");
+  };
+  const onChangeHourEnd3 = (event: any) => {
+    changeHour(event, "hourEnd3");
+  };
+  const onChangeHourLunchStart3 = (event: any) => {
+    changeHour(event, "hourLunchStart3");
+  };
+  const onChangeHourLunchEnd3 = (event: any) => {
+    changeHour(event, "hourLunchEnd3");
+  };
+  return {
+    onChangeHourStart1,
+    onChangeHourEnd1,
+    onChangeHourLunchStart1,
+    onChangeHourLunchEnd1,
+    onChangeHourStart2,
+    onChangeHourEnd2,
+    onChangeHourLunchEnd2,
+    onChangeHourLunchStart2,
+    onChangeHourStart3,
+    onChangeHourEnd3,
+    onChangeHourLunchEnd3,
+    onChangeHourLunchStart3,
+  };
 };
+
 export const HourWorkForm = ({
   props: {
     labelDayWork = "Dias de funcionamento 1",
     labelHourStart = "Horário de abertura 1",
     labelHourEnd = "Horário de fechamento 1",
-    labelHourLunchStart = "Horário de almoço 1",
-    labelHourLunchEnd = "Horário de retorno do almoço 1",
+    labelHourLunchStart = "Horário de almoço de abertura 1",
+    labelHourLunchEnd = "Horário de almoço de fechamento 1",
     control,
     daysOptions,
     listHours,
     daysOptionsName = "days1Options",
-    flagDependent = false,
+    flagDependent,
     valueHourStart,
     onChangeHourStart,
+    valueHourEnd,
+    onChangeHourEnd,
     valueHourLunchStart,
     onChangeHourLunchStart,
     valueHourLunchEnd,
     onChangeHourLunchEnd,
-    valueHourEnd,
-    onChangeHourEnd,
   },
 }: HourWorkFormInput) => {
   return (
@@ -298,65 +332,66 @@ export const HourWorkForm = ({
         isMulti
         control={control}
         label={labelDayWork}
-        name={daysOptionsName}
         placeholder="Selecione pelo menos 1 dia"
         options={daysOptions}
+        name={daysOptionsName}
       />
       <Select
         bg="purple.700"
         name="openHour"
         label={labelHourStart}
-        value={valueHourStart}
         list={listHours}
+        value={valueHourStart}
+        onChange={onChangeHourStart}
         keyValue="label"
         keyLabel="label"
-        onChange={onChangeHourStart}
       />
       <Select
         bg="purple.700"
         name="endHour"
         label={labelHourEnd}
-        value={valueHourEnd}
         list={listHours}
+        value={valueHourEnd}
+        onChange={onChangeHourEnd}
         keyValue="label"
         keyLabel="label"
-        onChange={onChangeHourEnd}
       />
       {flagDependent && (
         <>
           <Select
             bg="purple.700"
-            name="openHourLunch"
+            name="openHour"
             label={labelHourLunchStart}
-            value={valueHourLunchStart}
             list={listHours}
+            value={valueHourLunchStart}
+            onChange={onChangeHourLunchStart}
             keyValue="label"
             keyLabel="label"
-            onChange={onChangeHourLunchStart}
           />
           <Select
             bg="purple.700"
-            name="endHourLunch"
+            name="openHour"
             label={labelHourLunchEnd}
-            value={valueHourLunchEnd}
             list={listHours}
+            value={valueHourLunchEnd}
+            onChange={onChangeHourLunchEnd}
             keyValue="label"
             keyLabel="label"
-            onChange={onChangeHourLunchEnd}
           />
         </>
       )}
     </>
   );
 };
+
 export const daysOptions = [
-  { value: "monday", label: "Segunda-feira" },
-  { value: "tuesday", label: "Terça-feira" },
-  { value: "wednesday", label: "Quarta-feira" },
-  { value: "thursday", label: "Quinta-feira" },
-  { value: "friday", label: "Sexta-feira" },
-  { value: "saturday", label: "Sábado" },
-  { value: "sunday", label: "Domingo" },
+  { label: "Segunda-feira", value: "monday" },
+  { label: "Terça-feira", value: "tuesday" },
+  { label: "Quarta-feira", value: "wednesday" },
+  { label: "Quinta-feira", value: "thursday" },
+  { label: "Sexta-feira", value: "friday" },
+  { label: "Sábado", value: "saturday" },
+  { label: "Domingo", value: "sunday" },
 ];
 export const listHours = [
   { label: "7:00" },
@@ -409,7 +444,7 @@ export function formatOptions(day: Day | undefined) {
     if (value) {
       const currentValue = dayOfWeek?.substring(0, dayOfWeek?.length - 1);
       options.push({
-        label: daysOptions?.find?.((day) => day?.value === currentValue)?.label,
+        label: daysOptions?.find?.((day) => day.value === currentValue)?.label,
         value: dayOfWeek,
       });
     }
@@ -419,14 +454,15 @@ export function formatOptions(day: Day | undefined) {
 export function formatDays(array: any, numberOfDay: string) {
   return {
     ["monday" + numberOfDay]: getDayOfWeek(array, "monday" + numberOfDay),
+    ["sunday" + numberOfDay]: getDayOfWeek(array, "sunday" + numberOfDay),
     ["tuesday" + numberOfDay]: getDayOfWeek(array, "tuesday" + numberOfDay),
-    ["wednesday" + numberOfDay]: getDayOfWeek(array, "wednesday" + numberOfDay),
     ["thursday" + numberOfDay]: getDayOfWeek(array, "thursday" + numberOfDay),
     ["friday" + numberOfDay]: getDayOfWeek(array, "friday" + numberOfDay),
+    ["wednesday" + numberOfDay]: getDayOfWeek(array, "wednesday" + numberOfDay),
     ["saturday" + numberOfDay]: getDayOfWeek(array, "saturday" + numberOfDay),
-    ["sunday" + numberOfDay]: getDayOfWeek(array, "sunday" + numberOfDay),
   };
 }
+
 function getDayOfWeek(array: any, value: string): boolean {
   return !!array?.find?.((item: any) => item?.value === value);
 }

@@ -15,12 +15,19 @@ export const BoxCreateItem = ({
   title = "Criar novo registro",
 }: BoxCreateItemProps) => {
   return (
-    <Box as="form" flex="1" borderRadius={8} bg="purple.800" p="8" onSubmit={onSubmit}>
+    <Box
+      as="form"
+      flex="1"
+      borderRadius={8}
+      bg="purple.800"
+      p={["0", "2", "3", "4"]}
+      onSubmit={onSubmit}
+    >
       <Heading size="lg" fontWeight={"normal"}>
         {title}
       </Heading>
       <Divider my="6" borderColor="purple.700" />
-      <VStack spacing={["6", "8"]}>{children}</VStack>
+      <VStack spacing={["0", "2", "8"]}>{children}</VStack>
       <CreateItemActions
         isLoadingSaveButton={isLoadingSaveButton}
         cancelRoute={cancelRoute}
