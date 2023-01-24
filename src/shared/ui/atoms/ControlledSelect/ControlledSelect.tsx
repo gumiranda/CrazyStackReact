@@ -33,7 +33,7 @@ export const ControlledSelect = <
   } = useController<FormValues>({ name, control, rules, shouldUnregister });
   return (
     // @ts-ignore
-    <FormControl>
+    <FormControl textColor={"purple.900"}>
       {label && (
         <FormLabel textColor="white" htmlFor={name}>
           {label}

@@ -1,10 +1,31 @@
-import { OwnerProps } from "entidades/owner";
+import { HourWorks } from "entidades/owner";
 import { useCreateOwner } from "./createOwner.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
 
 export const CreateOwnerForm = () => {
-  const { formState, register, handleSubmit, handleCreateOwner, active, setActive } =
-    useCreateOwner();
+  const {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateOwner,
+    haveLunchTime1,
+    setHaveLunchTime1,
+    haveLunchTime2,
+    setHaveLunchTime2,
+    haveLunchTime3,
+    setHaveLunchTime3,
+    changeHour,
+    listHours,
+    hourWork,
+    daysOptions1,
+    daysOptions2,
+    daysOptions3,
+    control,
+    haveAlternativeHour,
+    setHaveAlternativeHour,
+    haveAlternativeHour2,
+    setHaveAlternativeHour2,
+  } = useCreateOwner();
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateOwner)}
@@ -14,18 +35,40 @@ export const CreateOwnerForm = () => {
     >
       <GridForm>
         <FormControl
-          label="Nome da estabelecimento"
+          label="Nome do estabelecimento"
           error={formState.errors.name}
           {...register("name")}
         />
-        <Checkbox
-          label="Ativo"
-          colorScheme="green"
-          isChecked={active}
-          onChange={(e) => {
-            e.preventDefault();
-            setActive(e.target.checked);
+        <FormControl
+          label="Descrição da estabelecimento"
+          error={formState.errors.description}
+          {...register("description")}
+        />
+        <HourWorks
+          props={{
+            changeHour,
+            listHours,
+            hourWork,
+            daysOptions1,
+            daysOptions2,
+            daysOptions3,
+            control,
+            haveAlternativeHour,
+            setHaveAlternativeHour,
+            haveAlternativeHour2,
+            setHaveAlternativeHour2,
+            haveLunchTime1,
+            setHaveLunchTime1,
+            haveLunchTime2,
+            setHaveLunchTime2,
+            haveLunchTime3,
+            setHaveLunchTime3,
           }}
+        />
+        <FormControl
+          label="Tempo limite para reagendamento/cancelamento (em minutos)"
+          error={formState.errors.minimumTimeForReSchedule}
+          {...register("minimumTimeForReSchedule")}
         />
       </GridForm>
     </BoxCreateItem>
