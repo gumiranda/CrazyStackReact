@@ -1,4 +1,4 @@
-import { Flex, GenericDetailsItem, Text, Button } from "shared/ui";
+import { Flex, GenericDetailsItem, Button } from "shared/ui";
 import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
@@ -28,7 +28,7 @@ export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => 
       <GenericDetailsItem
         item={appointment}
         fields={[
-          { id: "message", label: "Nome" },
+          { id: "message", label: "Mensagem" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
