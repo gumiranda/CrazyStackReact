@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
 import {
   ArrowLeftIcon,
@@ -24,10 +25,10 @@ import {
   VStack,
   Heading,
   useColorModeValue,
+  FormLabel,
 } from "@chakra-ui/react";
 import React, { useState, createRef } from "react";
 import { daysMap, getMonthDetails, getMonthStr } from "./functions";
-import dayjs from "dayjs";
 
 const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp =
@@ -36,17 +37,18 @@ const todayTimestamp =
 export interface IDatePickerProps extends Omit<ChakraInputProps, "onChange"> {
   dateFormat?: string;
   onChange: (date: string) => void;
+  label: string;
 }
 
 export const DatePicker = (props: IDatePickerProps) => {
-  const { onChange, dateFormat = "DD/MM/YYYY", ...rest } = props;
+  const { onChange, dateFormat = "DD/MM/YYYY", label, ...rest } = props;
   const date = new Date();
   const [year, setYear] = useState(date.getFullYear());
   const [month, setMonth] = useState(date.getMonth());
   const [monthDetails, setMonthDetails] = useState(getMonthDetails(year, month));
   const [selectedDay, setSelectedDay] = useState<number>();
   const inputRef = createRef<HTMLInputElement>();
-  const color = useColorModeValue("gray", "white");
+  const color = useColorModeValue("gray.500", "white");
   const isCurrentDay = (day: any) => {
     return day.timestamp === todayTimestamp;
   };
@@ -58,13 +60,9 @@ export const DatePicker = (props: IDatePickerProps) => {
     const dateObject = new Date(timestamp);
     const month = dateObject.getMonth() + 1;
     const date = dateObject.getDate();
-    return dayjs(
-      dateObject.getFullYear() +
-        "-" +
-        (month < 10 ? "0" + month : month) +
-        "-" +
-        (date < 10 ? "0" + date : date)
-    ).format(dateFormat);
+    return `${date < 10 ? "0" + date : date}/${
+      month < 10 ? "0" + month : month
+    }/${dateObject.getFullYear()}`;
   };
 
   const onDateClick = (day: any) => {
@@ -97,10 +95,13 @@ export const DatePicker = (props: IDatePickerProps) => {
   return (
     <Menu {...rest}>
       <MenuButton w="100%" type="button">
-        <InputGroup>
-          <Input color={color} ref={inputRef} {...rest} />
-          <InputRightElement children={<ChevronDownIcon w={5} h={5} />} />
-        </InputGroup>
+        <VStack>
+          <FormLabel textAlign={"left"}>{label}</FormLabel>
+          <InputGroup>
+            <Input color={color} ref={inputRef} {...rest} />
+            <InputRightElement children={<ChevronDownIcon w={5} h={5} />} />
+          </InputGroup>
+        </VStack>
       </MenuButton>
       <MenuList>
         <Center p={3}>
@@ -150,7 +151,7 @@ export const DatePicker = (props: IDatePickerProps) => {
           </HStack>
         </Center>
         <Box p={3}>
-          <Grid align="center" templateColumns="repeat(7, 1fr)" gap={3}>
+          <Grid alignItems="center" templateColumns="repeat(7, 1fr)" gap={3}>
             {daysMap.map((d, i) => (
               <Text color={color} key={i} w="100%">
                 {d.substring(0, 3).toLocaleUpperCase()}
@@ -167,9 +168,9 @@ export const DatePicker = (props: IDatePickerProps) => {
                   color={color}
                   backgroundColor={
                     isCurrentDay(day)
-                      ? "gray.800"
+                      ? "gray.300"
                       : isSelectedDay(day) && day.month === 0
-                      ? "gray.800"
+                      ? "gray.300"
                       : ""
                   }
                   variant="ghost"
