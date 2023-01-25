@@ -1,4 +1,4 @@
-import { Flex, GenericDetailsItem, Text, Button } from "shared/ui";
+import { Flex, GenericDetailsItem, Button } from "shared/ui";
 import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
@@ -11,8 +11,8 @@ export const RequestDetails = ({ request }: RequestDetailsProps) => {
   return (
     <>
       <Flex mb="8" justify="space-between" align="center">
-        <Heading size="lg" fontWeight={"normal"}>
-          Solicitação {request?.name}
+        <Heading size={"lg"} fontWeight={"normal"}>
+          Solicitação
         </Heading>
         <NextLink passHref href={`/requests/edit/${request?._id}`}>
           <Button
@@ -28,7 +28,7 @@ export const RequestDetails = ({ request }: RequestDetailsProps) => {
       <GenericDetailsItem
         item={request}
         fields={[
-          { id: "name", label: "Nome" },
+          { id: "message", label: "Mensagem" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}

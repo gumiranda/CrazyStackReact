@@ -18,7 +18,8 @@ export const useAppointmentList = (data: AppointmentListHook) => {
     await queryClientInstance.prefetchQuery(
       ["appointment", appointmentId],
       async () => {
-        const { data = null } = (await api.get(`/appointment/load?_id=${ appointmentId}`)) || {};
+        const { data = null } =
+          (await api.get(`/appointment/load?_id=${appointmentId}`)) || {};
         return data;
       },
       { staleTime: 1000 * 60 * 10 }
@@ -30,7 +31,7 @@ export const useAppointmentList = (data: AppointmentListHook) => {
         if (appointmentsToDelete?.length > 0) {
           return Promise.all(
             appointmentsToDelete?.map?.((appointment: any) =>
-              api.delete(`/appointment/delete?_id=${ appointment._id}`)
+              api.delete(`/appointment/delete?_id=${appointment._id}`)
             )
           );
         }

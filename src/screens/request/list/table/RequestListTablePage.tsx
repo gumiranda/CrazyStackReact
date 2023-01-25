@@ -32,7 +32,7 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
           isLoading={false}
           items={requests}
           fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
+            { id: "message", label: "Mensagem", displayKeyText: true },
             {
               id: "createdAt",
               label: "Data de criação",

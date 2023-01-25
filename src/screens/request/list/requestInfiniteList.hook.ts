@@ -32,7 +32,7 @@ export const useRequestInfiniteList = () => {
         if (requestsToDelete?.length > 0) {
           return Promise.all(
             requestsToDelete?.map?.((request: any) =>
-              api.delete(`/request/delete?_id=${ request._id}`)
+              api.delete(`/request/delete?_id=${request._id}`)
             )
           );
         }

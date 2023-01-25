@@ -18,7 +18,7 @@ export const useClientList = (data: ClientListHook) => {
     await queryClientInstance.prefetchQuery(
       ["client", clientId],
       async () => {
-        const { data = null } = (await api.get(`/client/load?_id=${ clientId}`)) || {};
+        const { data = null } = (await api.get(`/client/load?_id=${clientId}`)) || {};
         return data;
       },
       { staleTime: 1000 * 60 * 10 }
@@ -30,7 +30,7 @@ export const useClientList = (data: ClientListHook) => {
         if (clientsToDelete?.length > 0) {
           return Promise.all(
             clientsToDelete?.map?.((client: any) =>
-              api.delete(`/client/delete?_id=${ client._id}`)
+              api.delete(`/client/delete?_id=${client._id}`)
             )
           );
         }
@@ -60,9 +60,7 @@ export const useClientList = (data: ClientListHook) => {
     }
   );
   const deleteSelectedAction = async () => {
-    deleteClient.mutateAsync(
-      clients.filter((client: ClientProps) => client.value)
-    );
+    deleteClient.mutateAsync(clients.filter((client: ClientProps) => client.value));
   };
   const changePage = (newpage: number) => {
     router.replace(`/clients/${newpage}`);
