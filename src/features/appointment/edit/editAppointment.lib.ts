@@ -3,13 +3,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EditAppointmentFormProps } from "./EditAppointmentForm";
 export type EditAppointmentFormData = {
-  name: string;
+  message: string;
 };
 
 export type SubmitEditAppointmentHandler = SubmitHandler<EditAppointmentFormData>;
 
 export const editAppointmentFormSchema = yup.object().shape({
-  name: yup.string().required("Nome é obrigatório"),
+  message: yup.string().required("Mensagem é obrigatória"),
 });
 
 export const useEditAppointmentLib = (props: EditAppointmentFormProps) => {
@@ -17,7 +17,7 @@ export const useEditAppointmentLib = (props: EditAppointmentFormProps) => {
   const formProps = useForm<EditAppointmentFormData>({
     resolver: yupResolver(editAppointmentFormSchema),
     defaultValues: {
-      name: currentAppointment?.name ?? "",
+      message: currentAppointment?.message ?? "",
     },
   });
   return { ...formProps };

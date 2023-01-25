@@ -1,8 +1,11 @@
 import { Box, Head } from "shared/ui";
-import { RequestProps } from "entidades/request";
 import { CreateRequestForm } from "features/request/create";
+import { GetOwnersResponse } from "entidades/owner";
 
-export const RequestCreatePage = () => {
+type RequestCreatePageProps = {
+  owners: GetOwnersResponse;
+};
+export const RequestCreatePage = ({ owners }: RequestCreatePageProps) => {
   return (
     <>
       <Head
@@ -10,7 +13,7 @@ export const RequestCreatePage = () => {
         description="Página de criação de solicitações do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
-        <CreateRequestForm />
+        <CreateRequestForm ownerList={owners} />
       </Box>
     </>
   );
