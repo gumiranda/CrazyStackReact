@@ -1,6 +1,6 @@
 export type AppointmentProps = {
   _id: string;
-  name: string;
+  message: string;
   createdAt: string;
   value?: boolean;
   active?: boolean;
@@ -17,8 +17,8 @@ class Appointment {
   get _id(): string {
     return this.props._id;
   }
-  get name(): string {
-    return this.props.name;
+  get message(): string {
+    return this.props.message;
   }
   get createdAt(): string {
     return this.props.createdAt;
@@ -30,7 +30,7 @@ class Appointment {
     return {
       ...this.props,
       _id: this.props._id,
-      name: this.props.name,
+      message: this.props.message,
       active: this.props.active,
       value: false,
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
