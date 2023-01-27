@@ -1,10 +1,21 @@
-import { ClientProps } from "entidades/client";
+import { GetUsersResponse } from "entidades/user";
 import { useCreateClient } from "./createClient.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
-
-export const CreateClientForm = () => {
-  const { formState, register, handleSubmit, handleCreateClient, active, setActive } =
-    useCreateClient();
+import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
+export type ClientCreateFormProps = {
+  userList: GetUsersResponse;
+};
+export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
+  const {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateClient,
+    active,
+    setActive,
+    userSelected,
+    handleChangeUserSelected,
+    users,
+  } = useCreateClient({ userList });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateClient)}
@@ -18,6 +29,20 @@ export const CreateClientForm = () => {
           error={formState.errors.name}
           {...register("name")}
         />
+        <Select
+          bg="purple.700"
+          name="clientList"
+          label="Usuário associado ao cliente"
+          list={users}
+          value={userSelected}
+          onChange={handleChangeUserSelected}
+          keyValue="_id"
+          keyLabel="name"
+        >
+          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
+            Carregar mais
+          </option>
+        </Select>
         <Checkbox
           label="Ativo"
           colorScheme="green"

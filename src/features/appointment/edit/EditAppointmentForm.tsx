@@ -20,16 +20,16 @@ export const EditAppointmentForm = ({ appointment }: EditAppointmentFormProps) =
         item={appointment}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          { id: "message", label: "Mensagem" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome da agendamento"
-          error={formState.errors.name}
-          {...register("name")}
+          label="Mensagem do agendamento"
+          error={formState.errors.message}
+          {...register("message")}
         />
       </GridForm>
     </BoxCreateItem>

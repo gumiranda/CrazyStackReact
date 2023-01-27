@@ -8,10 +8,17 @@ import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-export const useCreateClient = () => {
+import { ClientCreateFormProps } from "./CreateClientForm";
+import { useUsersSelect } from "features/user/userList.hook";
+
+export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
+  const { userSelected, handleChangeUserSelected, users } = useUsersSelect({
+    role: "client",
+    userList,
+  });
   const createClient = useMutation(async (client: CreateClientFormData) => {
     try {
       const { data } = await api.post("/client/add", {
@@ -45,7 +52,21 @@ export const useCreateClient = () => {
   const handleCreateClient: SubmitCreateClientHandler = async (
     values: CreateClientFormData
   ) => {
-    await createClient.mutateAsync({ ...values, active });
+    await createClient.mutateAsync({
+      ...values,
+      active,
+      userId: userSelected ?? users?.[0]?._id,
+    });
   };
-  return { formState, register, handleSubmit, handleCreateClient, active, setActive };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateClient,
+    active,
+    setActive,
+    userSelected,
+    handleChangeUserSelected,
+    users,
+  };
 };
