@@ -1,4 +1,4 @@
-import { useServicesSelect } from "features/service/serviceList.hook";
+import { useServiceListMultiple } from "features/user/serviceListMultiple";
 import { useOwnersSelect } from "features/owner/ownerList.hook";
 import { useUi } from "shared/libs";
 import { EditUserFormProps } from "./EditUserForm";
@@ -11,9 +11,9 @@ export const useEditUser = (props: EditUserFormProps) => {
   const { showModal } = useUi();
   const { user: currentUser, serviceList, ownerList } = props;
   const router = useRouter();
-  const { serviceSelected, handleChangeServiceSelected, services } = useServicesSelect({
+  const { serviceOptions, services, prevServiceOptions } = useServiceListMultiple({
     serviceList,
-    currentUser,
+    prevServicesSelected: currentUser?.serviceIds,
   });
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
@@ -49,11 +49,15 @@ export const useEditUser = (props: EditUserFormProps) => {
       });
     }
   }, {});
-  const { register, handleSubmit, formState } = useEditUserLib(props);
+  const { register, handleSubmit, formState, control } = useEditUserLib({
+    ...props,
+    services,
+    prevServiceOptions,
+  });
   const handleEditUser: SubmitEditUserHandler = async (values: EditUserFormData) => {
     await editUser.mutateAsync({
       ...values,
-      serviceIds: [serviceSelected],
+      serviceIds: values?.serviceOptions?.map?.((service) => service?.value),
       ownerId: ownerSelected,
       myOwnerId: owners?.find?.((owner: OwnerProps) => owner?._id === ownerSelected)?._id,
       role: "professional",
@@ -64,9 +68,9 @@ export const useEditUser = (props: EditUserFormProps) => {
     register,
     handleSubmit,
     handleEditUser,
-    handleChangeServiceSelected,
+    serviceOptions,
+    control,
     services,
-    serviceSelected,
     handleChangeOwnerSelected,
     owners,
     ownerSelected,

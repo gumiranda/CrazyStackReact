@@ -1,8 +1,10 @@
 import { Box, Head } from "shared/ui";
-import { ClientProps } from "entidades/client";
 import { CreateClientForm } from "features/client/create";
-
-export const ClientCreatePage = () => {
+import { GetUsersResponse } from "entidades/user";
+type ClientCreatePageProps = {
+  users: GetUsersResponse;
+};
+export const ClientCreatePage = ({ users }: ClientCreatePageProps) => {
   return (
     <>
       <Head
@@ -10,7 +12,7 @@ export const ClientCreatePage = () => {
         description="Página de criação de clientes do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
-        <CreateClientForm />
+        <CreateClientForm userList={users} />
       </Box>
     </>
   );

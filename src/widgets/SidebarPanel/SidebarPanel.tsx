@@ -9,13 +9,16 @@ export const SidebarPanel = () => {
   }
   return (
     <Sidebar title="Navegação">
-      <Stack spacing="12" align="flex-start">
+      <Stack spacing="0" align="flex-start">
         <NavSection title="GERAL">
           <NavLink icon={RiContactsLine} href="/categorys/1">
             Categorias
           </NavLink>
           <NavLink icon={RiContactsLine} href="/services/1">
             Serviços
+          </NavLink>
+          <NavLink icon={RiContactsLine} href="/clients/1">
+            Clientes
           </NavLink>
           <NavLink icon={RiContactsLine} href="/owners/1">
             Estabelecimentos
@@ -25,6 +28,9 @@ export const SidebarPanel = () => {
           </NavLink>
           <NavLink icon={RiContactsLine} href="/requests/1">
             Solicitações
+          </NavLink>
+          <NavLink icon={RiContactsLine} href="/appointments/1">
+            Agendamentos
           </NavLink>
         </NavSection>
       </Stack>

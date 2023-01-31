@@ -64,13 +64,11 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
         />
         <FormControl
           label="Preço promocional"
-          type={"number"}
           error={formState.errors.price}
           {...register("price")}
         />
         <FormControl
           label="Preço do serviço"
-          type={"number"}
           error={formState.errors.finalPrice}
           {...register("finalPrice")}
         />
