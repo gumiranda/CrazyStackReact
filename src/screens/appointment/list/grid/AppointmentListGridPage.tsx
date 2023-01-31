@@ -24,7 +24,7 @@ export const AppointmentGridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
+      { id: "message", label: "Mensagem", displayKeyText: true },
       { id: "createdAt", label: "Data de criação", displayKeyText: true },
     ],
   };
@@ -32,7 +32,7 @@ export const AppointmentGridPage = () => {
     appointmentGridProps?.appointments?.map?.((item: any) => ({
       item,
       fields: appointmentGridProps.fields,
-      mainField: "name",
+      mainField: "message",
     })) ?? [];
   const { renderItem } = useAppointmentUi({ deleteSelectedAction });
   return (

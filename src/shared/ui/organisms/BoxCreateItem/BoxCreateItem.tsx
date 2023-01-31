@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Divider, Heading, VStack } from "@chakra-ui/react";
 import { CreateItemActions, Box } from "shared/ui";
 interface BoxCreateItemProps {
@@ -15,7 +16,14 @@ export const BoxCreateItem = ({
   title = "Criar novo registro",
 }: BoxCreateItemProps) => {
   return (
-    <Box as="form" flex="1" borderRadius={8} bg="purple.800" p="8" onSubmit={onSubmit}>
+    <Box
+      as="form"
+      flex="1"
+      borderRadius={8}
+      bg="purple.800"
+      p={["0", "2", "3", "4"]}
+      onSubmit={onSubmit}
+    >
       <Heading size="lg" fontWeight={"normal"}>
         {title}
       </Heading>

@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./SearchBar";
 export * from "./DatePicker";
 export * from "./ControlledSelect";
 export * from "./HStack";
