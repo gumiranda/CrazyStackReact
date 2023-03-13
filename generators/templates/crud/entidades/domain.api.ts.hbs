@@ -9,10 +9,11 @@ export type Get{{pascalCase name}}sResponse = {
 const registerByPage = 10;
 export const get{{pascalCase name}}s = async (
   page: number,
-  ctx: any
+  ctx: any,
+  params: any = {}
 ): Promise<Get{{pascalCase name}}sResponse> => {
   const { data } = await setupAPIClient(ctx).get("/{{camelCase name}}/loadByPage", {
-    params: { page, sortBy: "createdAt", typeSort: "desc" },
+    params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { {{camelCase name}}s, total } = data || {};
   const totalCount = Number(total ?? 0);

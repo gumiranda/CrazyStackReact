@@ -9,10 +9,11 @@ export type GetCategorysResponse = {
 const registerByPage = 10;
 export const getCategorys = async (
   page: number,
-  ctx: any
+  ctx: any,
+  params: any = {}
 ): Promise<GetCategorysResponse> => {
   const { data } = await setupAPIClient(ctx).get("/category/loadByPage", {
-    params: { page, sortBy: "createdAt", typeSort: "desc" },
+    params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { categorys, total } = data || {};
   const totalCount = Number(total ?? 0);

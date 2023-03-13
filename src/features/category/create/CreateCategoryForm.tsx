@@ -8,7 +8,7 @@ export const CreateCategoryForm = () => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateCategory)}
-      title={"Createar categoria"}
+      title={"Criar categoria"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/categorys/1"}
     >

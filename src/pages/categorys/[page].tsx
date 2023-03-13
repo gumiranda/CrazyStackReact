@@ -4,7 +4,9 @@ import { withSSRAuth } from "shared/libs/utils";
 import { getCategorys } from "entidades/category/category.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const page = Number(context?.query?.page ?? 1);
-  const data = await getCategorys(page, context);
+  delete context?.query?.page;
+  const otherFilters = context?.query;
+  const data = await getCategorys(page, context, otherFilters);
   return {
     props: {
       data,
