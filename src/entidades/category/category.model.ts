@@ -2,6 +2,7 @@ export type CategoryProps = {
   _id: string;
   name: string;
   createdAt: string;
+  createdById: string;
   value?: boolean;
   active?: boolean;
 };
@@ -26,8 +27,12 @@ class Category {
   get active(): boolean | undefined {
     return this.props.active;
   }
+  get createdById(): string {
+    return this.props.createdById;
+  }
   format(): CategoryProps {
     return {
+      ...this.props,
       _id: this.props._id,
       name: this.props.name,
       active: this.props.active,

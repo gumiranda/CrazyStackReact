@@ -41,7 +41,6 @@ export const Card = ({ item, fields, mainField, children, onClick }: CardProps) 
                   whiteSpace={"nowrap"}
                   textOverflow={"ellipsis"}
                   lineHeight="tight"
-                  isTruncated
                 >
                   {item?.[mainField]}
                 </Box>

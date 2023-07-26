@@ -22,10 +22,24 @@ export type SubmitCreateServiceHandler = SubmitHandler<CreateServiceFormData>;
 export const createServiceFormSchema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
   description: yup.string().required("Descrição obrigatória"),
-  price: yup.number().notRequired(),
+  price: yup
+    .number()
+    .notRequired()
+    .test(
+      "is-decimal",
+      "Valor inválido",
+      (value) => (value + "").match(/^\d*\.{1}\d*$/) as any
+    ),
   duration: yup.number().required("Duração obrigatória").min(15).max(180),
   productsQuantityNeeded: yup.number().required("Campo obrigatório"),
-  finalPrice: yup.number().required("Campo obrigatório"),
+  finalPrice: yup
+    .number()
+    .required("Campo obrigatório")
+    .test(
+      "is-decimal",
+      "Valor inválido",
+      (value) => (value + "").match(/^\d*\.{1}\d*$/) as any
+    ),
   comission: yup.number().required("Campo obrigatório").min(0).max(100),
 });
 

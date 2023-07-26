@@ -2,6 +2,7 @@ import { ServiceEditPage } from "screens/service/edit";
 import { getServiceById } from "entidades/service/service.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "shared/libs/utils";
+import { getCategorys } from "entidades/category";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {
@@ -9,11 +10,15 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context
       notFound: true,
     };
   }
-  const data = await getServiceById(id, context);
+  const [categorys, data] = await Promise.all([
+    getCategorys(1, context),
+    getServiceById(id, context),
+  ]);
   return {
     props: {
       data,
       id,
+      categorys,
     },
   };
 });
