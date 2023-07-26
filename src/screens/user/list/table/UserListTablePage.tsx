@@ -12,7 +12,7 @@ export const UserListTablePage = ({ page = 0, data }: UserListTablePageProps) =>
   const { users, setUsers, handlePrefetchUser, deleteSelectedAction, total, setPage } =
     useUserList({
       page,
-      initialData: data,
+      initialData: data ?? { users: [] },
     });
   return (
     <>
