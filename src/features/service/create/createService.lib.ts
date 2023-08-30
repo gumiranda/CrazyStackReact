@@ -24,22 +24,16 @@ export const createServiceFormSchema = yup.object().shape({
   description: yup.string().required("Descrição obrigatória"),
   price: yup
     .number()
+    .typeError("Digite números decimais utilizando o ponto")
     .notRequired()
-    .test(
-      "is-decimal",
-      "Valor inválido",
-      (value) => (value + "").match(/^\d*\.{1}\d*$/) as any
-    ),
+    .test("is-decimal", "Valor inválido", (value) => !isNaN(value as number)),
   duration: yup.number().required("Duração obrigatória").min(15).max(180),
   productsQuantityNeeded: yup.number().required("Campo obrigatório"),
   finalPrice: yup
     .number()
+    .typeError("Digite números decimais utilizando o ponto")
     .required("Campo obrigatório")
-    .test(
-      "is-decimal",
-      "Valor inválido",
-      (value) => (value + "").match(/^\d*\.{1}\d*$/) as any
-    ),
+    .test("is-decimal", "Valor inválido", (value) => !isNaN(value as number)),
   comission: yup.number().required("Campo obrigatório").min(0).max(100),
 });
 

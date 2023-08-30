@@ -1,10 +1,10 @@
 //@ts-nocheck
 import { Header, Flex, Logo, Profile, NotificationsNav, SearchBar } from "shared/ui";
 import { useBreakpointValue, Icon, IconButton, useMediaQuery } from "@chakra-ui/react";
-import { RiMenuLine } from "react-icons/ri";
+import { RiMenuLine, RiLogoutBoxLine } from "react-icons/ri";
 import { useAuth, useSidebarDrawer } from "shared/libs";
 export const NavBar = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const { onOpen } = useSidebarDrawer();
   const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
   const [isLargerThan560] = useMediaQuery("(min-width: 560px)");
@@ -28,6 +28,14 @@ export const NavBar = () => {
         <Flex align="center" ml="auto">
           <NotificationsNav />
           <Profile showProfileData={isDesktopVersion} />
+          <IconButton
+            aria-label="Do logout"
+            fontSize="24"
+            icon={<Icon as={RiLogoutBoxLine} />}
+            variant="unstyled"
+            onClick={logout}
+            ml="2"
+          />
         </Flex>
       )}
     </Header>
