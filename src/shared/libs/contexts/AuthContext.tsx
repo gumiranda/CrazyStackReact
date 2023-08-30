@@ -34,6 +34,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return null;
     }
   };
+  const logout = () => {
+    signOut();
+    setUser(null);
+  };
   useEffect(() => {
     const {
       "belezixadmin.user": userComingFromCookie,
@@ -95,7 +99,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ login, isAuthenticated, user }}>
+    <AuthContext.Provider value={{ login, isAuthenticated, user, logout }}>
       {children}
     </AuthContext.Provider>
   );
