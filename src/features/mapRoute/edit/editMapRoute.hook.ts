@@ -27,8 +27,7 @@ export const useEditMapRoute = (props: EditMapRouteFormProps) => {
         return;
       }
       showModal({
-        content:
-          "Rota editada com sucesso, você será redirecionado para a lista de rotas",
+        content: "Rota editada com sucesso, você será redirecionado para a lista de rotas",
         title: "Sucesso",
         type: "success",
       });

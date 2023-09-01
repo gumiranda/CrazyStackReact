@@ -32,7 +32,7 @@ export const useMapRouteInfiniteList = () => {
         if (mapRoutesToDelete?.length > 0) {
           return Promise.all(
             mapRoutesToDelete?.map?.((mapRoute: any) =>
-              api.delete(`/mapRoute/delete?_id=${ mapRoute._id}`)
+              api.delete(`/mapRoute/delete?_id=${mapRoute._id}`)
             )
           );
         }

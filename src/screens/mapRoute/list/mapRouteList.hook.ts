@@ -18,7 +18,7 @@ export const useMapRouteList = (data: MapRouteListHook) => {
     await queryClientInstance.prefetchQuery(
       ["mapRoute", mapRouteId],
       async () => {
-        const { data = null } = (await api.get(`/mapRoute/load?_id=${ mapRouteId}`)) || {};
+        const { data = null } = (await api.get(`/mapRoute/load?_id=${mapRouteId}`)) || {};
         return data;
       },
       { staleTime: 1000 * 60 * 10 }
@@ -30,7 +30,7 @@ export const useMapRouteList = (data: MapRouteListHook) => {
         if (mapRoutesToDelete?.length > 0) {
           return Promise.all(
             mapRoutesToDelete?.map?.((mapRoute: any) =>
-              api.delete(`/mapRoute/delete?_id=${ mapRoute._id}`)
+              api.delete(`/mapRoute/delete?_id=${mapRoute._id}`)
             )
           );
         }

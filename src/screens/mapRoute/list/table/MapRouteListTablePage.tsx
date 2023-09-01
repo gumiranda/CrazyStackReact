@@ -30,7 +30,7 @@ export const MapRouteListTablePage = ({ page = 0, data }: MapRouteListTablePageP
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
-          items={ mapRoutes}
+          items={mapRoutes}
           fields={[
             { id: "name", label: "Nome", displayKeyText: true },
             {
@@ -41,7 +41,7 @@ export const MapRouteListTablePage = ({ page = 0, data }: MapRouteListTablePageP
             },
           ]}
           setItems={setMapRoutes}
-          linkOnMouseEnter={handlePrefetchMapRoute }
+          linkOnMouseEnter={handlePrefetchMapRoute}
           error={undefined}
           route={"/mapRoutes"}
           routeDetails={"/mapRoutes/details"}

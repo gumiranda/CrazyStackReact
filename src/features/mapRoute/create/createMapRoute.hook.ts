@@ -26,8 +26,7 @@ export const useCreateMapRoute = () => {
         return;
       }
       showModal({
-        content:
-          "Rota criada com sucesso, você será redirecionado para a lista de rotas",
+        content: "Rota criada com sucesso, você será redirecionado para a lista de rotas",
         title: "Sucesso",
         type: "success",
       });

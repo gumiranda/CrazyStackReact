@@ -32,7 +32,7 @@ export const useRouteDriverInfiniteList = () => {
         if (routeDriversToDelete?.length > 0) {
           return Promise.all(
             routeDriversToDelete?.map?.((routeDriver: any) =>
-              api.delete(`/routeDriver/delete?_id=${ routeDriver._id}`)
+              api.delete(`/routeDriver/delete?_id=${routeDriver._id}`)
             )
           );
         }

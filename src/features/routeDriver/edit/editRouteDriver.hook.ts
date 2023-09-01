@@ -14,10 +14,13 @@ export const useEditRouteDriver = (props: EditRouteDriverFormProps) => {
   const router = useRouter();
   const editRouteDriver = useMutation(async (routeDriver: EditRouteDriverFormData) => {
     try {
-      const { data } = await api.patch(`/routeDriver/update?_id=${currentRouteDriver._id}`, {
-        ...routeDriver,
-        updatedAt: new Date(),
-      });
+      const { data } = await api.patch(
+        `/routeDriver/update?_id=${currentRouteDriver._id}`,
+        {
+          ...routeDriver,
+          updatedAt: new Date(),
+        }
+      );
       if (!data) {
         showModal({
           content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",

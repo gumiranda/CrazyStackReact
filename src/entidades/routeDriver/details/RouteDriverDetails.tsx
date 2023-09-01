@@ -12,9 +12,9 @@ export const RouteDriverDetails = ({ routeDriver }: RouteDriverDetailsProps) => 
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Corrida { routeDriver?.name}
+          Corrida {routeDriver?.name}
         </Heading>
-        <NextLink passHref href={`/routeDrivers/edit/${ routeDriver?._id}`}>
+        <NextLink passHref href={`/routeDrivers/edit/${routeDriver?._id}`}>
           <Button
             size="sm"
             fontSize={"sm"}
@@ -26,7 +26,7 @@ export const RouteDriverDetails = ({ routeDriver }: RouteDriverDetailsProps) => 
         </NextLink>
       </Flex>
       <GenericDetailsItem
-        item={ routeDriver }
+        item={routeDriver}
         fields={[
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },

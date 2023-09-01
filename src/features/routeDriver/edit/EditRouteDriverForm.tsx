@@ -17,7 +17,7 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
       cancelRoute={"/routeDrivers/1"}
     >
       <GenericDetailsItem
-        item={ routeDriver }
+        item={routeDriver}
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },

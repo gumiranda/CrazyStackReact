@@ -21,7 +21,9 @@ export const getRouteDrivers = async (
     ? totalCount / registerByPage
     : Math.floor(totalCount / registerByPage) + 1;
   const response = {
-    routeDrivers: routeDrivers?.map?.((props: RouteDriverProps) => routeDriverModel(props).format()),
+    routeDrivers: routeDrivers?.map?.((props: RouteDriverProps) =>
+      routeDriverModel(props).format()
+    ),
     totalCount,
   };
   if (lastPage > page) {

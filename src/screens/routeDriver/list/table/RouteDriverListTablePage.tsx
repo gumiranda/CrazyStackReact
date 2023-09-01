@@ -8,7 +8,10 @@ type RouteDriverListTablePageProps = {
 const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
-export const RouteDriverListTablePage = ({ page = 0, data }: RouteDriverListTablePageProps) => {
+export const RouteDriverListTablePage = ({
+  page = 0,
+  data,
+}: RouteDriverListTablePageProps) => {
   const {
     routeDrivers,
     setRouteDrivers,
@@ -30,7 +33,7 @@ export const RouteDriverListTablePage = ({ page = 0, data }: RouteDriverListTabl
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
-          items={ routeDrivers}
+          items={routeDrivers}
           fields={[
             { id: "name", label: "Nome", displayKeyText: true },
             {
@@ -41,7 +44,7 @@ export const RouteDriverListTablePage = ({ page = 0, data }: RouteDriverListTabl
             },
           ]}
           setItems={setRouteDrivers}
-          linkOnMouseEnter={handlePrefetchRouteDriver }
+          linkOnMouseEnter={handlePrefetchRouteDriver}
           error={undefined}
           route={"/routeDrivers"}
           routeDetails={"/routeDrivers/details"}

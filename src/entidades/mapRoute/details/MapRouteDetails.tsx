@@ -12,9 +12,9 @@ export const MapRouteDetails = ({ mapRoute }: MapRouteDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Rota { mapRoute?.name}
+          Rota {mapRoute?.name}
         </Heading>
-        <NextLink passHref href={`/mapRoutes/edit/${ mapRoute?._id}`}>
+        <NextLink passHref href={`/mapRoutes/edit/${mapRoute?._id}`}>
           <Button
             size="sm"
             fontSize={"sm"}
@@ -26,7 +26,7 @@ export const MapRouteDetails = ({ mapRoute }: MapRouteDetailsProps) => {
         </NextLink>
       </Flex>
       <GenericDetailsItem
-        item={ mapRoute }
+        item={mapRoute}
         fields={[
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },

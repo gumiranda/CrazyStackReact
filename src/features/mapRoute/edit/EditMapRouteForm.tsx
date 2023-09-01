@@ -17,7 +17,7 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
       cancelRoute={"/mapRoutes/1"}
     >
       <GenericDetailsItem
-        item={ mapRoute }
+        item={mapRoute}
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },

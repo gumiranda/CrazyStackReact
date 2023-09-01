@@ -18,7 +18,8 @@ export const useRouteDriverList = (data: RouteDriverListHook) => {
     await queryClientInstance.prefetchQuery(
       ["routeDriver", routeDriverId],
       async () => {
-        const { data = null } = (await api.get(`/routeDriver/load?_id=${ routeDriverId}`)) || {};
+        const { data = null } =
+          (await api.get(`/routeDriver/load?_id=${routeDriverId}`)) || {};
         return data;
       },
       { staleTime: 1000 * 60 * 10 }
@@ -30,7 +31,7 @@ export const useRouteDriverList = (data: RouteDriverListHook) => {
         if (routeDriversToDelete?.length > 0) {
           return Promise.all(
             routeDriversToDelete?.map?.((routeDriver: any) =>
-              api.delete(`/routeDriver/delete?_id=${ routeDriver._id}`)
+              api.delete(`/routeDriver/delete?_id=${routeDriver._id}`)
             )
           );
         }
