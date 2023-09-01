@@ -20,6 +20,7 @@ type AuthContextData = {
   login(credentials: LoginCredentials): Promise<void>;
   isAuthenticated: boolean;
   user: User | null;
+  logout: () => void;
 };
 const AuthContext = createContext({} as AuthContextData);
 
