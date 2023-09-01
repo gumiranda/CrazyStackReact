@@ -20,6 +20,7 @@ type AuthContextData = {
   login(credentials: LoginCredentials): Promise<void>;
   isAuthenticated: boolean;
   user: User | null;
+  logout: () => void;
 };
 const AuthContext = createContext({} as AuthContextData);
 
@@ -33,6 +34,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } catch (error) {
       return null;
     }
+  };
+  const logout = () => {
+    signOut();
+    setUser(null);
   };
   useEffect(() => {
     const {
@@ -95,7 +100,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ login, isAuthenticated, user }}>
+    <AuthContext.Provider value={{ login, isAuthenticated, user, logout }}>
       {children}
     </AuthContext.Provider>
   );
