@@ -8,8 +8,8 @@ let failedRequestsQueue: any = [];
 
 export const getAxios = (token: string): any => {
   return axios.create({
-    //    baseURL: "https://nodejs-production-22cd.up.railway.app/api",
-    baseURL: "http://localhost:3333/api",
+    baseURL: "https://nodejs-production-22cd.up.railway.app/api",
+    // baseURL: "http://localhost:3333/api",
     headers: { Authorization: `Bearer ${token}` },
   });
 };
