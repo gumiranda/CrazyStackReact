@@ -111,18 +111,18 @@ export const HourWorks = ({
   },
 }: HourWorksInput) => {
   const {
-    onChangeHourStart1,
-    onChangeHourEnd1,
-    onChangeHourLunchStart1,
-    onChangeHourLunchEnd1,
-    onChangeHourStart2,
-    onChangeHourEnd2,
-    onChangeHourLunchStart2,
-    onChangeHourLunchEnd2,
-    onChangeHourStart3,
-    onChangeHourEnd3,
-    onChangeHourLunchStart3,
-    onChangeHourLunchEnd3,
+    onChangehourStart1,
+    onChangehourEnd1,
+    onChangehourLunchStart1,
+    onChangehourLunchEnd1,
+    onChangehourStart2,
+    onChangehourEnd2,
+    onChangehourLunchStart2,
+    onChangehourLunchEnd2,
+    onChangehourStart3,
+    onChangehourEnd3,
+    onChangehourLunchStart3,
+    onChangehourLunchEnd3,
   } = useOnChanges({ changeHour });
   return (
     <>
@@ -139,13 +139,13 @@ export const HourWorks = ({
           daysOptionsName: "days1Options",
           flagDependent: haveLunchTime1,
           valueHourStart: hourWork.hourStart1,
-          onChangeHourStart: onChangeHourStart1,
+          onChangeHourStart: onChangehourStart1,
           valueHourLunchStart: hourWork.hourLunchStart1,
-          onChangeHourLunchStart: onChangeHourLunchStart1,
+          onChangeHourLunchStart: onChangehourLunchStart1,
           valueHourLunchEnd: hourWork.hourLunchEnd1,
-          onChangeHourLunchEnd: onChangeHourLunchEnd1,
+          onChangeHourLunchEnd: onChangehourLunchEnd1,
           valueHourEnd: hourWork.hourEnd1,
-          onChangeHourEnd: onChangeHourEnd1,
+          onChangeHourEnd: onChangehourEnd1,
         }}
       />
       <Checkbox
@@ -181,13 +181,13 @@ export const HourWorks = ({
               daysOptionsName: "days2Options",
               flagDependent: haveLunchTime2,
               valueHourStart: hourWork.hourStart2,
-              onChangeHourStart: onChangeHourStart2,
+              onChangeHourStart: onChangehourStart2,
               valueHourLunchStart: hourWork.hourLunchStart2,
-              onChangeHourLunchStart: onChangeHourLunchStart2,
+              onChangeHourLunchStart: onChangehourLunchStart2,
               valueHourLunchEnd: hourWork.hourLunchEnd2,
-              onChangeHourLunchEnd: onChangeHourLunchEnd2,
+              onChangeHourLunchEnd: onChangehourLunchEnd2,
               valueHourEnd: hourWork.hourEnd2,
-              onChangeHourEnd: onChangeHourEnd2,
+              onChangeHourEnd: onChangehourEnd2,
             }}
           />
           <Checkbox
@@ -223,13 +223,13 @@ export const HourWorks = ({
                   daysOptionsName: "days3Options",
                   flagDependent: haveLunchTime3,
                   valueHourStart: hourWork.hourStart3,
-                  onChangeHourStart: onChangeHourStart3,
+                  onChangeHourStart: onChangehourStart3,
                   valueHourLunchStart: hourWork.hourLunchStart3,
-                  onChangeHourLunchStart: onChangeHourLunchStart3,
+                  onChangeHourLunchStart: onChangehourLunchStart3,
                   valueHourLunchEnd: hourWork.hourLunchEnd3,
-                  onChangeHourLunchEnd: onChangeHourLunchEnd3,
+                  onChangeHourLunchEnd: onChangehourLunchEnd3,
                   valueHourEnd: hourWork.hourEnd3,
-                  onChangeHourEnd: onChangeHourEnd3,
+                  onChangeHourEnd: onChangehourEnd3,
                 }}
               />
               <Checkbox
@@ -249,76 +249,76 @@ export const HourWorks = ({
   );
 };
 const useOnChanges = ({ changeHour }: any) => {
-  // const createOnChange = (field: string) => (event: any) => changeHour(event, field);
-  // const fields = [
-  //   "hourStart1",
-  //   "hourEnd1",
-  //   "hourLunchStart1",
-  //   "hourLunchEnd1",
-  //   "hourStart2",
-  //   "hourEnd2",
-  //   "hourLunchStart2",
-  //   "hourLunchEnd2",
-  //   "hourStart3",
-  //   "hourEnd3",
-  //   "hourLunchStart3",
-  //   "hourLunchEnd3",
-  // ];
-  // const onChange = fields.reduce((acc: any, field) => {
-  //   acc[`onChange${field}`] = createOnChange(field);
-  //   return acc;
-  // }, {});
-  // return onChange;
-  const onChangeHourStart1 = (event: any) => {
-    changeHour(event, "hourStart1");
-  };
-  const onChangeHourStart2 = (event: any) => {
-    changeHour(event, "hourStart2");
-  };
-  const onChangeHourStart3 = (event: any) => {
-    changeHour(event, "hourStart3");
-  };
-  const onChangeHourEnd1 = (event: any) => {
-    changeHour(event, "hourEnd1");
-  };
-  const onChangeHourEnd2 = (event: any) => {
-    changeHour(event, "hourEnd2");
-  };
-  const onChangeHourEnd3 = (event: any) => {
-    changeHour(event, "hourEnd3");
-  };
-  const onChangeHourLunchStart1 = (event: any) => {
-    changeHour(event, "hourStart1");
-  };
-  const onChangeHourLunchStart2 = (event: any) => {
-    changeHour(event, "hourStart2");
-  };
-  const onChangeHourLunchStart3 = (event: any) => {
-    changeHour(event, "hourStart3");
-  };
-  const onChangeHourLunchEnd1 = (event: any) => {
-    changeHour(event, "hourEnd1");
-  };
-  const onChangeHourLunchEnd2 = (event: any) => {
-    changeHour(event, "hourEnd2");
-  };
-  const onChangeHourLunchEnd3 = (event: any) => {
-    changeHour(event, "hourEnd3");
-  };
-  return {
-    onChangeHourStart1,
-    onChangeHourStart2,
-    onChangeHourStart3,
-    onChangeHourEnd1,
-    onChangeHourEnd2,
-    onChangeHourEnd3,
-    onChangeHourLunchStart1,
-    onChangeHourLunchStart2,
-    onChangeHourLunchStart3,
-    onChangeHourLunchEnd1,
-    onChangeHourLunchEnd2,
-    onChangeHourLunchEnd3,
-  };
+  const createOnChange = (field: string) => (event: any) => changeHour(event, field);
+  const fields = [
+    "hourStart1",
+    "hourEnd1",
+    "hourLunchStart1",
+    "hourLunchEnd1",
+    "hourStart2",
+    "hourEnd2",
+    "hourLunchStart2",
+    "hourLunchEnd2",
+    "hourStart3",
+    "hourEnd3",
+    "hourLunchStart3",
+    "hourLunchEnd3",
+  ];
+  const onChange = fields.reduce((acc: any, field) => {
+    acc[`onChange${field}`] = createOnChange(field);
+    return acc;
+  }, {});
+  return onChange;
+  // const onChangeHourStart1 = (event: any) => {
+  //   changeHour(event, "hourStart1");
+  // };
+  // const onChangeHourStart2 = (event: any) => {
+  //   changeHour(event, "hourStart2");
+  // };
+  // const onChangeHourStart3 = (event: any) => {
+  //   changeHour(event, "hourStart3");
+  // };
+  // const onChangeHourEnd1 = (event: any) => {
+  //   changeHour(event, "hourEnd1");
+  // };
+  // const onChangeHourEnd2 = (event: any) => {
+  //   changeHour(event, "hourEnd2");
+  // };
+  // const onChangeHourEnd3 = (event: any) => {
+  //   changeHour(event, "hourEnd3");
+  // };
+  // const onChangeHourLunchStart1 = (event: any) => {
+  //   changeHour(event, "hourStart1");
+  // };
+  // const onChangeHourLunchStart2 = (event: any) => {
+  //   changeHour(event, "hourStart2");
+  // };
+  // const onChangeHourLunchStart3 = (event: any) => {
+  //   changeHour(event, "hourStart3");
+  // };
+  // const onChangeHourLunchEnd1 = (event: any) => {
+  //   changeHour(event, "hourEnd1");
+  // };
+  // const onChangeHourLunchEnd2 = (event: any) => {
+  //   changeHour(event, "hourEnd2");
+  // };
+  // const onChangeHourLunchEnd3 = (event: any) => {
+  //   changeHour(event, "hourEnd3");
+  // };
+  // return {
+  //   onChangeHourStart1,
+  //   onChangeHourStart2,
+  //   onChangeHourStart3,
+  //   onChangeHourEnd1,
+  //   onChangeHourEnd2,
+  //   onChangeHourEnd3,
+  //   onChangeHourLunchStart1,
+  //   onChangeHourLunchStart2,
+  //   onChangeHourLunchStart3,
+  //   onChangeHourLunchEnd1,
+  //   onChangeHourLunchEnd2,
+  //   onChangeHourLunchEnd3,
+  // };
 };
 export const HourWorkForm = ({
   props: {
