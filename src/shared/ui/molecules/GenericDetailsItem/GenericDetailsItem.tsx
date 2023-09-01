@@ -23,6 +23,26 @@ export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
                 <Text>{field?.label}:&nbsp;</Text>
                 {field?.subId ? (
                   <Text>{item?.[field?.id]?.[field?.subId]}</Text>
+                ) : field?.objectWithArray ? (
+                  <>
+                    {item?.[field?.id]?.[field?.objectWithArray]?.map?.((item) => (
+                      <>
+                        {Object.entries?.(item)?.map(([key, value]) => (
+                          <Text>{JSON.stringify(value)}</Text>
+                        ))}
+                      </>
+                    ))}
+                  </>
+                ) : field?.objectWithArray ? (
+                  <>
+                    {item?.[field?.id]?.[field?.objectWithArray]?.map?.((item) => (
+                      <>
+                        {Object.entries?.(item)?.map(([key, value]) => (
+                          <Text>{JSON.stringify(value)}</Text>
+                        ))}
+                      </>
+                    ))}
+                  </>
                 ) : (
                   <Text>{item?.[field?.id]}</Text>
                 )}

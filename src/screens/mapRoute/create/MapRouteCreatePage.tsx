@@ -1,5 +1,4 @@
 import { Box, Head } from "shared/ui";
-import { MapRouteProps } from "entidades/mapRoute";
 import { CreateMapRouteForm } from "features/mapRoute/create";
 
 export const MapRouteCreatePage = () => {

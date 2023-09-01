@@ -18,6 +18,16 @@ export const CreateMapRouteForm = () => {
           error={formState.errors.name}
           {...register("name")}
         />
+        <FormControl
+          label="Origem id"
+          error={formState.errors.source_id}
+          {...register("source_id")}
+        />
+        <FormControl
+          label="Destino id"
+          error={formState.errors.destination_id}
+          {...register("destination_id")}
+        />
         <Checkbox
           label="Ativo"
           colorScheme="green"
