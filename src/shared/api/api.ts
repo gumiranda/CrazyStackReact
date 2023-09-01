@@ -61,7 +61,7 @@ export function setupAPIClient(ctx = undefined) {
           return new Promise((resolve, reject) => {
             failedRequestsQueue.push({
               onSuccess: (token: string) => {
-                originalConfig.headers.headers["Authorization"] = `Bearer ${token}`;
+                originalConfig.headers["Authorization"] = `Bearer ${token}`;
                 resolve(api(originalConfig));
               },
               onFailure: (err: AxiosError) => {
