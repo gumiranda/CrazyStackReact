@@ -1,7 +1,12 @@
+import { Point } from "entidades/mapRoute/mapRoute.model";
+
 export type RouteDriverProps = {
   _id: string;
   name: string;
   createdAt: string;
+  routeId: string;
+  points: Point[];
+  status: string; //FINALIZADO, INICIADO, ETC
   value?: boolean;
   active?: boolean;
 };
@@ -19,6 +24,15 @@ class RouteDriver {
   }
   get name(): string {
     return this.props.name;
+  }
+  get points(): any {
+    return this.props.points;
+  }
+  get status(): string {
+    return this.props.status;
+  }
+  get routeId(): string {
+    return this.props.routeId;
   }
   get createdAt(): string {
     return this.props.createdAt;
