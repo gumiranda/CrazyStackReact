@@ -15,7 +15,7 @@ export const getUsers = async (
   const { data } = await setupAPIClient(ctx).get("/user/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
-  const { users, total } = data || {};
+  const { users = [], total } = data || {};
   const totalCount = Number(total ?? 0);
   const lastPage = Number.isInteger(totalCount / registerByPage)
     ? totalCount / registerByPage

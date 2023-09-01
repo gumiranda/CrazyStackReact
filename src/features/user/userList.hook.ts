@@ -31,7 +31,7 @@ export const useUsersSelect = ({
       }
       const data = await getUsers(page, null, params);
       if (data?.totalCount > users?.length) {
-        setUsers((prev) => [...prev, ...(data.users ?? [])]);
+        setUsers((prev) => [...prev, ...(data?.users ?? [])]);
       }
       setUserSelected(data?.users?.[0]?._id ?? users?.[0]?._id ?? "");
     } else if (!userList && ownerSelected) {
@@ -40,7 +40,7 @@ export const useUsersSelect = ({
         role,
       });
       if (data?.totalCount > users?.length) {
-        setUsers((prev) => [...prev, ...(data.users ?? [])]);
+        setUsers((prev) => [...prev, ...(data?.users ?? [])]);
       }
       setUserSelected(data?.users?.[0]?._id ?? users?.[0]?._id ?? "");
     } else {
