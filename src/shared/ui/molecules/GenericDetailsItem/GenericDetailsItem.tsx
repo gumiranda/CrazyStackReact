@@ -21,7 +21,11 @@ export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
             {!!item?.[field?.id] && (
               <GridItem w="100%" p={["0", "0", "0", "4"]}>
                 <Text>{field?.label}:&nbsp;</Text>
-                <Text>{item?.[field?.id]}</Text>
+                {field?.subId ? (
+                  <Text>{item?.[field?.id]?.[field?.subId]}</Text>
+                ) : (
+                  <Text>{item?.[field?.id]}</Text>
+                )}
               </GridItem>
             )}
           </React.Fragment>

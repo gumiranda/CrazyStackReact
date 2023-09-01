@@ -21,6 +21,9 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },
+          { id: "distance", label: "Distância (em metros)" },
+          { id: "source", subId: "name", label: "Origem" },
+          { id: "destination", subId: "name", label: "Destino" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
