@@ -4,12 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EditRouteDriverFormProps } from "./EditRouteDriverForm";
 export type EditRouteDriverFormData = {
   name: string;
+  status: string;
 };
 
 export type SubmitEditRouteDriverHandler = SubmitHandler<EditRouteDriverFormData>;
 
 export const editRouteDriverFormSchema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
+  status: yup.string(),
 });
 
 export const useEditRouteDriverLib = (props: EditRouteDriverFormProps) => {
@@ -18,6 +20,7 @@ export const useEditRouteDriverLib = (props: EditRouteDriverFormProps) => {
     resolver: yupResolver(editRouteDriverFormSchema),
     defaultValues: {
       name: currentRouteDriver?.name ?? "",
+      status: currentRouteDriver?.status ?? "",
     },
   });
   return { ...formProps };

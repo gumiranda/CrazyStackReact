@@ -31,6 +31,11 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
           error={formState.errors.name}
           {...register("name")}
         />
+        <FormControl
+          label="Status da corrida"
+          error={formState.errors.status}
+          {...register("status")}
+        />
       </GridForm>
     </BoxCreateItem>
   );

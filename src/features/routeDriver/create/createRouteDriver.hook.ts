@@ -45,7 +45,12 @@ export const useCreateRouteDriver = () => {
   const handleCreateRouteDriver: SubmitCreateRouteDriverHandler = async (
     values: CreateRouteDriverFormData
   ) => {
-    await createRouteDriver.mutateAsync({ ...values, active });
+    await createRouteDriver.mutateAsync({
+      ...values,
+      active,
+      points: [],
+      status: "initialized",
+    });
   };
   return { formState, register, handleSubmit, handleCreateRouteDriver, active, setActive };
 };

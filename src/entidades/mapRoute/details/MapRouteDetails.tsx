@@ -28,12 +28,14 @@ export const MapRouteDetails = ({ mapRoute }: MapRouteDetailsProps) => {
       <GenericDetailsItem
         item={mapRoute}
         fields={[
+          { id: "_id", label: "Id da rota" },
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
           { id: "distance", label: "Distância (em metros)" },
           { id: "source", subId: "name", label: "Origem" },
           { id: "directions", objectWithArray: "geocoded_waypoints", label: "Direções" },
+          { id: "directions", objectWithArray: "routes", label: "Direções" },
           { id: "destination", subId: "name", label: "Destino" },
         ]}
       />
