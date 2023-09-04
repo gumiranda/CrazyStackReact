@@ -58,14 +58,11 @@ export const CUIAutoComplete_ = <T extends Item>(
   } = props;
 
   /* States */
-  const [isCreating, setIsCreating] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
   const [inputItems, setInputItems] = React.useState<T[]>(items);
 
   /* Downshift Props */
-  const { getDropdownProps, addSelectedItem, removeSelectedItem, selectedItems } =
-    useMultipleSelection(downshiftProps);
-  const selectedItemValues = selectedItems.map((item) => item.value);
+  const { getDropdownProps } = useMultipleSelection(downshiftProps);
 
   const {
     isOpen,
@@ -80,16 +77,9 @@ export const CUIAutoComplete_ = <T extends Item>(
     inputValue,
     selectedItem: undefined,
     items: inputItems,
-    onInputValueChange: ({ inputValue, selectedItem }) => {
+    onInputValueChange: ({ inputValue }) => {
       const filteredItems = optionFilterFunc(items, inputValue || "");
-
-      if (isCreating && filteredItems.length > 0) {
-        setIsCreating(false);
-      }
-
-      if (!selectedItem) {
-        setInputItems(filteredItems);
-      }
+      setInputItems(filteredItems);
     },
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
@@ -125,20 +115,16 @@ export const CUIAutoComplete_ = <T extends Item>(
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
           if (selectedItem) {
-            if (selectedItemValues.includes(selectedItem.value)) {
-              removeSelectedItem(selectedItem);
-            } else {
-              addSelectedItem(selectedItem);
-              setInputValue(selectedItem.label); // Set input value to selected item's label
-            }
-            // @ts-ignore
-            selectItem(null);
+            setInputValue(selectedItem.label); // Set input value to selected item's label
           }
+          // @ts-ignore
+          selectItem(null);
           break;
         default:
           break;
       }
     },
+    //...downshiftProps,
   });
 
   useDeepCompareEffect(() => {
