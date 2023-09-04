@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCombobox, useMultipleSelection } from "downshift";
+import { useCombobox, useMultipleSelection } from "downshift"; // Import useId from Downshift
 import Highlighter from "react-highlight-words";
 import useDeepCompareEffect from "react-use/lib/useDeepCompareEffect";
 import { Stack, Box, List, ListItem } from "@chakra-ui/layout";
@@ -12,7 +12,7 @@ export interface Item {
 
 function defaultOptionFilterFunc(items: any, inputValue: string) {
   const resultadoFiltrado = items.filter((item: any) => {
-    const chaves = ["value", "label"]; // Chaves a serem consideradas na pesquisa
+    const chaves = ["value", "label"];
 
     for (const chave of chaves) {
       if (item[chave] && item[chave].toLowerCase().includes(inputValue.toLowerCase())) {
@@ -43,6 +43,9 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
   const [inputValue, setInputValue] = React.useState("");
   const [inputItems, setInputItems] = React.useState(items);
 
+  // Generate a consistent ID for the Downshift component
+  const downshiftId = "radix-:R1arbdj9:"; // Use useId from Downshift
+
   /* Downshift Props */
   const { getDropdownProps } = useMultipleSelection(downshiftProps);
 
@@ -59,6 +62,10 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
     inputValue,
     selectedItem: undefined,
     items: inputItems,
+
+    // Set the Downshift ID for consistent aria-controls generation
+    id: String(downshiftId), // Pass the generated ID to Downshift
+
     onInputValueChange: ({ inputValue }) => {
       const filteredItems = optionFilterFunc(items, inputValue || "");
       setInputItems(filteredItems);
@@ -97,7 +104,7 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
           if (selectedItem) {
-            setInputValue(selectedItem.label as any); // Set input value to selected item's label
+            setInputValue(selectedItem.label as any);
           }
           // @ts-ignore
           selectItem(null);
@@ -106,7 +113,7 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
           break;
       }
     },
-    //...downshiftProps,
+    // ...downshiftProps,
   });
 
   useDeepCompareEffect(() => {
@@ -136,9 +143,11 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
         <List
           bg="white"
           borderRadius="4px"
-          border={isOpen && "1px solid rgba(0,0,0,0.1)"}
+          border={isOpen ? "1px solid rgba(0,0,0,0.1)" : "none"}
           boxShadow="6px 5px 8px rgba(0,50,30,0.02)"
           {...listStyleProps}
+          // Set the Downshift ID for consistent aria-controls generation
+          id={String(downshiftId)} // Pass the generated ID to the List component
           {...getMenuProps()}
         >
           {isOpen &&
