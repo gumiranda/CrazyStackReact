@@ -56,9 +56,9 @@ export const getMonthDetails = (year: number, month: number) => {
   //
   const firstDay = new Date(year, month).getDay();
   const numberOfDays = getNumberOfDays(year, month);
-  const monthArray = [];
+  const monthArray: any = [];
   const rows = 6;
-  let currentDay = null;
+  let currentDay: any = null;
   let index = 0;
   const cols = 7;
 
@@ -70,7 +70,7 @@ export const getMonthDetails = (year: number, month: number) => {
         firstDay,
         year,
         month,
-      });
+      }) as any;
       monthArray.push(currentDay);
       index++;
     }
