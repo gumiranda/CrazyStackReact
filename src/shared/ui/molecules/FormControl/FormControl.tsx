@@ -1,21 +1,12 @@
 /* eslint-disable react/no-children-prop */
 import React, { forwardRef, ForwardRefRenderFunction, memo } from "react";
 import { CUIAutoComplete } from "./AutoComplete";
-const countries = [
-  { value: "ghana", label: "Ghana" },
-  { value: "nigeria", label: "Nigeria" },
-  { value: "kenya", label: "Kenya" },
-  { value: "southAfrica", label: "South Africa" },
-  { value: "unitedStates", label: "United States" },
-  { value: "canada", label: "Canada" },
-  { value: "germany", label: "Germany" },
-];
+
 import {
   FormLabel,
   FormControl as FormControlChakra,
   InputProps as ChakraInputProps,
   FormErrorMessage,
-  Box,
 } from "@chakra-ui/react";
 import { Input } from "shared/ui";
 interface InputProps extends ChakraInputProps {
@@ -40,14 +31,6 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   },
   ref
 ) => {
-  const [pickerItems, setPickerItems] = React.useState(countries);
-  const [selectedItems, setSelectedItems] = React.useState([]);
-
-  const handleSelectedItemsChange = (selectedItems: any) => {
-    if (selectedItems) {
-      setSelectedItems(selectedItems);
-    }
-  };
   const AutoComplete = CUIAutoComplete as (props: any) => React.ReactNode;
 
   return (
@@ -87,7 +70,7 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
           ref={ref}
           disableCreateItem
           placeholder="Type a Country"
-          items={pickerItems}
+          items={autoCompleteProps?.list}
           listStyleProps={{
             bgColor: "purple.900",
             color: "white",
@@ -97,10 +80,6 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
             color: "white",
           }}
           highlightItemBg="purple.700"
-          selectedItems={selectedItems}
-          onSelectedItemsChange={(changes: any) =>
-            handleSelectedItemsChange(changes.selectedItems)
-          }
         />
       )}
 

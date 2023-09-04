@@ -2,7 +2,15 @@ import { useCreateMapRoute } from "./createMapRoute.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm, Flex } from "shared/ui";
 import { useRef } from "react";
 import { useMap } from "shared/libs/hooks/useMap";
-
+const countries = [
+  { value: "ghana", label: "Ghana" },
+  { value: "nigeria", label: "Nigeria" },
+  { value: "kenya", label: "Kenya" },
+  { value: "southAfrica", label: "South Africa" },
+  { value: "unitedStates", label: "United States" },
+  { value: "canada", label: "Canada" },
+  { value: "germany", label: "Germany" },
+];
 export const CreateMapRouteForm = () => {
   // const mapContainerRef = useRef<HTMLDivElement>(null);
   // const map = useMap(mapContainerRef);
@@ -31,7 +39,7 @@ export const CreateMapRouteForm = () => {
         <FormControl
           label="Origem"
           error={formState.errors.originText}
-          autoCompleteProps={{ watch }}
+          autoCompleteProps={{ list: countries }}
           {...register("originText")}
         />
         <FormControl
