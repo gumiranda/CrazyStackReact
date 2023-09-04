@@ -40,11 +40,20 @@ export const useCreateMapRoute = () => {
       });
     }
   }, {});
-  const { register, handleSubmit, formState } = useCreateMapRouteLib();
+  const { register, handleSubmit, formState, watch } = useCreateMapRouteLib();
+
   const handleCreateMapRoute: SubmitCreateMapRouteHandler = async (
     values: CreateMapRouteFormData
   ) => {
     await createMapRoute.mutateAsync({ ...values, active });
   };
-  return { formState, register, handleSubmit, handleCreateMapRoute, active, setActive };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateMapRoute,
+    active,
+    setActive,
+    watch,
+  };
 };
