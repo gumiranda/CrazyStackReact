@@ -25,7 +25,7 @@ export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
                   <Text>{item?.[field?.id]?.[field?.subId]}</Text>
                 ) : field?.objectWithArray ? (
                   <>
-                    {item?.[field?.id]?.[field?.objectWithArray]?.map?.((item) => (
+                    {item?.[field?.id]?.[field?.objectWithArray]?.map?.((item: any) => (
                       <>
                         {Object.entries?.(item)?.map(([key, value]) => (
                           <Text>{JSON.stringify(value)}</Text>
@@ -35,7 +35,7 @@ export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
                   </>
                 ) : field?.objectWithArray ? (
                   <>
-                    {item?.[field?.id]?.[field?.objectWithArray]?.map?.((item) => (
+                    {item?.[field?.id]?.[field?.objectWithArray]?.map?.((item: any) => (
                       <>
                         {Object.entries?.(item)?.map(([key, value]) => (
                           <Text>{JSON.stringify(value)}</Text>

@@ -1,28 +1,13 @@
 import * as React from "react";
-import { useCombobox, useMultipleSelection, UseMultipleSelectionProps } from "downshift";
+import { useCombobox, useMultipleSelection } from "downshift";
 import Highlighter from "react-highlight-words";
 import useDeepCompareEffect from "react-use/lib/useDeepCompareEffect";
-import { Stack, Box, BoxProps, List, ListItem } from "@chakra-ui/layout";
+import { Stack, Box, List, ListItem } from "@chakra-ui/layout";
 import { forwardRef } from "react";
 
 export interface Item {
   label: string;
   value: string;
-}
-
-export interface CUIAutoCompleteProps<T extends Item>
-  extends UseMultipleSelectionProps<T> {
-  items: T[];
-  renderInput: any;
-  placeholder: string;
-  highlightItemBg?: string;
-  optionFilterFunc?: (items: T[], inputValue: string) => T[];
-  itemRenderer?: (item: T) => string | JSX.Element;
-  listStyleProps?: BoxProps;
-  listItemStyleProps?: BoxProps;
-  emptyState?: (inputValue: string) => React.ReactNode;
-  createItemRenderer?: (value: string) => string | JSX.Element;
-  disableCreateItem?: boolean;
 }
 
 function defaultOptionFilterFunc(items: any, inputValue: string) {
@@ -41,10 +26,7 @@ function defaultOptionFilterFunc(items: any, inputValue: string) {
   return resultadoFiltrado;
 }
 
-export const CUIAutoComplete_ = <T extends Item>(
-  props: CUIAutoCompleteProps<T>,
-  ref: any
-): React.ReactElement<CUIAutoCompleteProps<T>> => {
+export const CUIAutoComplete_ = (props: any, ref: any) => {
   const {
     items,
     optionFilterFunc = defaultOptionFilterFunc,
@@ -59,7 +41,7 @@ export const CUIAutoComplete_ = <T extends Item>(
 
   /* States */
   const [inputValue, setInputValue] = React.useState("");
-  const [inputItems, setInputItems] = React.useState<T[]>(items);
+  const [inputItems, setInputItems] = React.useState(items);
 
   /* Downshift Props */
   const { getDropdownProps } = useMultipleSelection(downshiftProps);
@@ -107,7 +89,7 @@ export const CUIAutoComplete_ = <T extends Item>(
       }
     },
     // @ts-ignore
-    onStateChange: ({ inputValue, type, selectedItem }) => {
+    onStateChange: ({ inputValue, type, selectedItem }: any) => {
       switch (type) {
         case useCombobox.stateChangeTypes.InputChange:
           setInputValue(inputValue || "");
@@ -115,7 +97,7 @@ export const CUIAutoComplete_ = <T extends Item>(
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
           if (selectedItem) {
-            setInputValue(selectedItem.label); // Set input value to selected item's label
+            setInputValue(selectedItem.label as any); // Set input value to selected item's label
           }
           // @ts-ignore
           selectItem(null);
@@ -160,7 +142,7 @@ export const CUIAutoComplete_ = <T extends Item>(
           {...getMenuProps()}
         >
           {isOpen &&
-            inputItems.map((item, index) => (
+            inputItems.map((item: any, index: number) => (
               <ListItem
                 px={2}
                 py={1}

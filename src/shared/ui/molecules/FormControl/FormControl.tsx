@@ -31,7 +31,7 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   },
   ref
 ) => {
-  const AutoComplete = CUIAutoComplete as (props: any) => React.ReactNode;
+  const AutoComplete = CUIAutoComplete as (props: any) => any;
 
   return (
     <FormControlChakra {...rest} data-testid="FormControlTestId" isInvalid={!!error}>
