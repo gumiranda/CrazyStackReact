@@ -5,6 +5,8 @@ export type CreateMapRouteFormData = {
   name: string;
   originText: string;
   destinationText: string;
+  source_id: string;
+  destination_id: string;
   active?: boolean;
 };
 

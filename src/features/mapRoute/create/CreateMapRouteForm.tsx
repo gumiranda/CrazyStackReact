@@ -21,8 +21,10 @@ export const CreateMapRouteForm = () => {
     handleCreateMapRoute,
     active,
     setActive,
-    watch,
+    originListPlaces,
+    destinationListPlaces,
   } = useCreateMapRoute();
+
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateMapRoute)}
@@ -39,12 +41,19 @@ export const CreateMapRouteForm = () => {
         <FormControl
           label="Origem"
           error={formState.errors.originText}
-          autoCompleteProps={{ list: countries }}
+          autoCompleteProps={{
+            list: originListPlaces,
+            placeholder: "Digite aqui para pesquisar",
+          }}
           {...register("originText")}
         />
         <FormControl
           label="Destino"
           error={formState.errors.destinationText}
+          autoCompleteProps={{
+            list: destinationListPlaces,
+            placeholder: "Digite aqui para pesquisar",
+          }}
           {...register("destinationText")}
         />
         <Checkbox

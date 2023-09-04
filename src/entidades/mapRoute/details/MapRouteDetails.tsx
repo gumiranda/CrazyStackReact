@@ -34,8 +34,8 @@ export const MapRouteDetails = ({ mapRoute }: MapRouteDetailsProps) => {
           { id: "createdAt", label: "Data de criação" },
           { id: "distance", label: "Distância (em metros)" },
           { id: "source", subId: "name", label: "Origem" },
-          { id: "directions", objectWithArray: "geocoded_waypoints", label: "Direções" },
-          { id: "directions", objectWithArray: "routes", label: "Direções" },
+          // { id: "directions", objectWithArray: "geocoded_waypoints", label: "Direções" },
+          // { id: "directions", objectWithArray: "routes", label: "Direções" },
           { id: "destination", subId: "name", label: "Destino" },
         ]}
       />

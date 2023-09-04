@@ -11,17 +11,18 @@ export interface Item {
 }
 
 function defaultOptionFilterFunc(items: any, inputValue: string) {
-  const resultadoFiltrado = items.filter((item: any) => {
-    const chaves = ["value", "label"];
+  const resultadoFiltrado =
+    items?.filter?.((item: any) => {
+      const chaves = ["value", "label"];
 
-    for (const chave of chaves) {
-      if (item[chave] && item[chave].toLowerCase().includes(inputValue.toLowerCase())) {
-        return true;
+      for (const chave of chaves) {
+        if (item[chave] && item[chave].toLowerCase().includes(inputValue.toLowerCase())) {
+          return true;
+        }
       }
-    }
 
-    return false;
-  });
+      return false;
+    }) ?? [];
 
   return resultadoFiltrado;
 }
@@ -151,7 +152,7 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
           {...getMenuProps()}
         >
           {isOpen &&
-            inputItems.map((item: any, index: number) => (
+            inputItems?.map?.((item: any, index: number) => (
               <ListItem
                 px={2}
                 py={1}
