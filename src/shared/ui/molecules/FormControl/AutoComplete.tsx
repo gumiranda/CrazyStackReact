@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCombobox, useMultipleSelection } from "downshift"; // Import useId from Downshift
+import { useCombobox, useMultipleSelection } from "downshift";
 import Highlighter from "react-highlight-words";
 import useDeepCompareEffect from "react-use/lib/useDeepCompareEffect";
 import { Stack, Box, List, ListItem } from "@chakra-ui/layout";
@@ -84,7 +84,7 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
             ...changes,
             highlightedIndex: state.highlightedIndex,
             inputValue,
-            isOpen: true,
+            isOpen: false,
           };
         case useCombobox.stateChangeTypes.FunctionSelectItem:
           return {

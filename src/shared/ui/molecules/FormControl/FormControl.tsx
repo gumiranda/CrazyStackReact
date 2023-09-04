@@ -69,7 +69,7 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
           )}
           ref={ref}
           disableCreateItem
-          placeholder="Type a Country"
+          placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
           items={autoCompleteProps?.list}
           listStyleProps={{
             bgColor: "purple.900",
