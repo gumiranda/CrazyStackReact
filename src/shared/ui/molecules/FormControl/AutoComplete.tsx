@@ -2,11 +2,8 @@ import * as React from "react";
 import { useCombobox, useMultipleSelection, UseMultipleSelectionProps } from "downshift";
 import Highlighter from "react-highlight-words";
 import useDeepCompareEffect from "react-use/lib/useDeepCompareEffect";
-import { FormLabel, FormLabelProps } from "@chakra-ui/form-control";
-import { Stack, Box, BoxProps, List, ListItem, ListIcon } from "@chakra-ui/layout";
-import { Input, InputProps } from "@chakra-ui/input";
-import { IconProps, CheckCircleIcon } from "@chakra-ui/icons";
-import { ComponentWithAs } from "@chakra-ui/react";
+import { Stack, Box, BoxProps, List, ListItem } from "@chakra-ui/layout";
+import { forwardRef } from "react";
 
 export interface Item {
   label: string;
@@ -16,22 +13,14 @@ export interface Item {
 export interface CUIAutoCompleteProps<T extends Item>
   extends UseMultipleSelectionProps<T> {
   items: T[];
+  renderInput: any;
   placeholder: string;
-  label: string;
   highlightItemBg?: string;
-  onCreateItem?: (item: T) => void;
   optionFilterFunc?: (items: T[], inputValue: string) => T[];
   itemRenderer?: (item: T) => string | JSX.Element;
-  labelStyleProps?: FormLabelProps;
-  inputStyleProps?: InputProps;
   listStyleProps?: BoxProps;
   listItemStyleProps?: BoxProps;
   emptyState?: (inputValue: string) => React.ReactNode;
-  selectedIconProps?: Omit<IconProps, "name"> & {
-    icon: IconProps["name"] | React.ComponentType;
-  };
-  icon?: ComponentWithAs<"svg", IconProps>;
-  hideToggleButton?: boolean;
   createItemRenderer?: (value: string) => string | JSX.Element;
   disableCreateItem?: boolean;
 }
@@ -52,8 +41,9 @@ function defaultOptionFilterFunc(items: any, inputValue: string) {
   return resultadoFiltrado;
 }
 
-export const CUIAutoComplete = <T extends Item>(
-  props: CUIAutoCompleteProps<T>
+export const CUIAutoComplete_ = <T extends Item>(
+  props: CUIAutoCompleteProps<T>,
+  ref: any
 ): React.ReactElement<CUIAutoCompleteProps<T>> => {
   const {
     items,
@@ -61,14 +51,9 @@ export const CUIAutoComplete = <T extends Item>(
     itemRenderer,
     highlightItemBg = "gray.100",
     placeholder,
-    label,
     listStyleProps,
-    labelStyleProps,
-    inputStyleProps,
-    selectedIconProps,
     listItemStyleProps,
-    onCreateItem,
-    icon,
+    renderInput,
     ...downshiftProps
   } = props;
 
@@ -77,9 +62,6 @@ export const CUIAutoComplete = <T extends Item>(
   const [inputValue, setInputValue] = React.useState("");
   const [inputItems, setInputItems] = React.useState<T[]>(items);
 
-  /* Refs */
-  const disclosureRef = React.useRef(null);
-
   /* Downshift Props */
   const { getDropdownProps, addSelectedItem, removeSelectedItem, selectedItems } =
     useMultipleSelection(downshiftProps);
@@ -87,7 +69,6 @@ export const CUIAutoComplete = <T extends Item>(
 
   const {
     isOpen,
-    getLabelProps,
     getMenuProps,
     getInputProps,
     getComboboxProps,
@@ -147,16 +128,9 @@ export const CUIAutoComplete = <T extends Item>(
             if (selectedItemValues.includes(selectedItem.value)) {
               removeSelectedItem(selectedItem);
             } else {
-              if (onCreateItem && isCreating) {
-                onCreateItem(selectedItem);
-                setIsCreating(false);
-                setInputItems(items);
-                setInputValue("");
-              } else {
-                addSelectedItem(selectedItem);
-              }
+              addSelectedItem(selectedItem);
+              setInputValue(selectedItem.label); // Set input value to selected item's label
             }
-
             // @ts-ignore
             selectItem(null);
           }
@@ -178,20 +152,17 @@ export const CUIAutoComplete = <T extends Item>(
 
   return (
     <Stack>
-      <FormLabel {...{ ...getLabelProps({}), ...labelStyleProps }}>{label}</FormLabel>
-
       <Stack {...getComboboxProps()}>
-        <Input
-          {...inputStyleProps}
-          {...getInputProps(
+        {renderInput({
+          ...getInputProps(
             getDropdownProps({
               placeholder,
               onClick: isOpen ? () => {} : openMenu,
               onFocus: isOpen ? () => {} : openMenu,
-              ref: disclosureRef,
+              ref,
             })
-          )}
-        />
+          ),
+        })}
       </Stack>
       <Box pb={4} mb={4}>
         <List
@@ -214,17 +185,6 @@ export const CUIAutoComplete = <T extends Item>(
                 {...getItemProps({ item, index })}
               >
                 <Box display="inline-flex" alignItems="center">
-                  {selectedItemValues.includes(item.value) && (
-                    <ListIcon
-                      as={icon || CheckCircleIcon}
-                      color="green.500"
-                      role="img"
-                      display="inline"
-                      aria-label="Selected"
-                      {...selectedIconProps}
-                    />
-                  )}
-
                   {itemRenderer ? (
                     itemRenderer(item)
                   ) : (
@@ -242,3 +202,4 @@ export const CUIAutoComplete = <T extends Item>(
     </Stack>
   );
 };
+export const CUIAutoComplete = forwardRef(CUIAutoComplete_);
