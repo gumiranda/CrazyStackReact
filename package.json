@@ -26,6 +26,7 @@
     "axios": "^1.2.2",
     "chakra-react-select": "^4.4.3",
     "date-fns": "^2.29.3",
+    "downshift": "^8.1.0",
     "framer-motion": "^8",
     "lodash": "^4.17.21",
     "next": "13.4.19",
@@ -38,6 +39,7 @@
     "react-hook-form": "^7.41.3",
     "react-icons": "^4.7.1",
     "react-loading-overlay-ts": "^2.0.0",
+    "react-user": "^0.1.4",
     "socket.io-client": "^4.7.2",
     "swr": "^2.2.1",
     "yup": "^0.32.11"
