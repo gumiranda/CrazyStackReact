@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Highlighter from "react-highlight-words";
-import useDeepCompareEffect from "react-use/lib/useDeepCompareEffect";
+import { useDeepCompareEffect } from "react-use";
 import { Stack, Box, List, ListItem } from "@chakra-ui/layout";
 import { forwardRef } from "react";
 
