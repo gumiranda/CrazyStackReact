@@ -38,13 +38,13 @@ export const RouteDriverGridPage = () => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Corridass"}
-        description="Página de listagem de corridass do painel de Admin Belezix"
+        title={"Belezix Admin | Corridas"}
+        description="Página de listagem de corridas do painel de Admin Belezix"
       />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}
-        entityName="corridass"
+        entityName="corridas"
       >
         <GenericGrid
           items={items}
@@ -53,7 +53,7 @@ export const RouteDriverGridPage = () => {
           routeList={"/routeDrivers/1"}
           routeCreate={"/routeDrivers/create"}
           entityDisplayName={"Corridas"}
-          title={"Corridass"}
+          title={"Corridas"}
           {...routeDriverGridProps}
         />
       </InfiniteList>

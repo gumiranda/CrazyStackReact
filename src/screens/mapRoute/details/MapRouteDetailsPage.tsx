@@ -10,8 +10,8 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Rotass"}
-        description="Página de detalhes de rotass do painel de Admin Belezix"
+        title={"Belezix Admin | Rotas"}
+        description="Página de detalhes de rotas do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
         <MapRouteDetails {...props} />

@@ -26,8 +26,8 @@ export const RouteDriverListTablePage = ({
   return (
     <>
       <Head
-        title={"Belezix Admin | Corridass"}
-        description="Página de listagem de corridass do painel de Admin Belezix"
+        title={"Belezix Admin | Corridas"}
+        description="Página de listagem de corridas do painel de Admin Belezix"
       />
       <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
         <GenericTable
@@ -50,7 +50,7 @@ export const RouteDriverListTablePage = ({
           routeDetails={"/routeDrivers/details"}
           routeCreate={"/routeDrivers/create"}
           routeList={"/routeDrivers/list"}
-          title={"Corridass"}
+          title={"Corridas"}
         />
         <Pagination
           onPageChange={setPage}

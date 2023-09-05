@@ -18,6 +18,11 @@ export const CreateRouteDriverForm = () => {
           error={formState.errors.name}
           {...register("name")}
         />
+        <FormControl
+          label="Id da rota"
+          error={formState.errors.routeId}
+          {...register("routeId")}
+        />
         <Checkbox
           label="Ativo"
           colorScheme="green"

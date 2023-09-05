@@ -27,7 +27,7 @@ export const useCreateRouteDriver = () => {
       }
       showModal({
         content:
-          "Corridas criada com sucesso, você será redirecionado para a lista de corridass",
+          "Corridas criada com sucesso, você será redirecionado para a lista de corridas",
         title: "Sucesso",
         type: "success",
       });
@@ -45,7 +45,12 @@ export const useCreateRouteDriver = () => {
   const handleCreateRouteDriver: SubmitCreateRouteDriverHandler = async (
     values: CreateRouteDriverFormData
   ) => {
-    await createRouteDriver.mutateAsync({ ...values, active });
+    await createRouteDriver.mutateAsync({
+      ...values,
+      active,
+      points: [],
+      status: "initialized",
+    });
   };
   return { formState, register, handleSubmit, handleCreateRouteDriver, active, setActive };
 };

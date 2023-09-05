@@ -38,13 +38,13 @@ export const MapRouteGridPage = () => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Rotass"}
-        description="Página de listagem de rotass do painel de Admin Belezix"
+        title={"Belezix Admin | Rotas"}
+        description="Página de listagem de rotas do painel de Admin Belezix"
       />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}
-        entityName="rotass"
+        entityName="rotas"
       >
         <GenericGrid
           items={items}
@@ -53,7 +53,7 @@ export const MapRouteGridPage = () => {
           routeList={"/mapRoutes/1"}
           routeCreate={"/mapRoutes/create"}
           entityDisplayName={"Rotas"}
-          title={"Rotass"}
+          title={"Rotas"}
           {...mapRouteGridProps}
         />
       </InfiniteList>

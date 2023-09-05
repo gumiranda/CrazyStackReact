@@ -31,6 +31,9 @@ export const MapRouteDetails = ({ mapRoute }: MapRouteDetailsProps) => {
           { id: "name", label: "Nome" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
+          { id: "distance", label: "Distância (em metros)" },
+          { id: "source", subId: "name", label: "Origem" },
+          { id: "destination", subId: "name", label: "Destino" },
         ]}
       />
     </>

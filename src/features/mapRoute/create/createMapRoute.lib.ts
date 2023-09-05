@@ -1,8 +1,11 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 export type CreateMapRouteFormData = {
   name: string;
+  source_id: string;
+  destination_id: string;
   active?: boolean;
 };
 
@@ -17,6 +20,8 @@ export const useCreateMapRouteLib = () => {
     resolver: yupResolver(createMapRouteFormSchema),
     defaultValues: {
       name: "",
+      source_id: "",
+      destination_id: "",
     },
   });
   return { ...formProps };

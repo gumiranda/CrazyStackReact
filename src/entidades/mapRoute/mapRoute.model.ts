@@ -1,7 +1,15 @@
+import { RouteDriverProps } from "entidades/routeDriver";
+
 export type MapRouteProps = {
   _id: string;
   name: string;
   createdAt: string;
+  source: Place;
+  destination: Place;
+  distance: number;
+  duration: number;
+  directions: string;
+  routeDriver: RouteDriverProps[];
   value?: boolean;
   active?: boolean;
 };
@@ -20,6 +28,24 @@ class MapRoute {
   get name(): string {
     return this.props.name;
   }
+  get source(): Place {
+    return this.props.source;
+  }
+  get destination(): Place {
+    return this.props.destination;
+  }
+  get distance(): number {
+    return this.props.distance;
+  }
+  get duration(): number {
+    return this.props.duration;
+  }
+  get directions(): string {
+    return this.props.directions;
+  }
+  get routeDriver(): any {
+    return this.props.routeDriver;
+  }
   get createdAt(): string {
     return this.props.createdAt;
   }
@@ -33,6 +59,7 @@ class MapRoute {
       name: this.props.name,
       active: this.props.active,
       value: false,
+      directions: JSON.parse(this.props.directions),
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
@@ -42,3 +69,15 @@ class MapRoute {
   }
 }
 export const mapRouteModel = (props: MapRouteProps) => MapRoute.build(props);
+export type Place = {
+  name: string;
+  location: Coord;
+};
+export type Point = {
+  location: Coord;
+  createdAt: Date;
+};
+export type Coord = {
+  lat: number;
+  lng: number;
+};

@@ -23,8 +23,8 @@ export const MapRouteListTablePage = ({ page = 0, data }: MapRouteListTablePageP
   return (
     <>
       <Head
-        title={"Belezix Admin | Rotass"}
-        description="Página de listagem de rotass do painel de Admin Belezix"
+        title={"Belezix Admin | Rotas"}
+        description="Página de listagem de rotas do painel de Admin Belezix"
       />
       <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
         <GenericTable
@@ -47,7 +47,7 @@ export const MapRouteListTablePage = ({ page = 0, data }: MapRouteListTablePageP
           routeDetails={"/mapRoutes/details"}
           routeCreate={"/mapRoutes/create"}
           routeList={"/mapRoutes/list"}
-          title={"Rotass"}
+          title={"Rotas"}
         />
         <Pagination
           onPageChange={setPage}

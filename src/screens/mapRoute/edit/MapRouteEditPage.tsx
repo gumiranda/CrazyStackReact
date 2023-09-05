@@ -10,8 +10,8 @@ export const MapRouteEditPage = ({ data, id }: MapRouteEditProps) => {
   return (
     <>
       <Head
-        title={"Belezix Admin | Rotass"}
-        description="Página de edição de rotass do painel de Admin Belezix"
+        title={"Belezix Admin | Rotas"}
+        description="Página de edição de rotas do painel de Admin Belezix"
       />
       <Box flex="1" borderRadius={8} bg="purple.800" p="8">
         <EditMapRouteForm {...props} />
