@@ -21,6 +21,7 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },
+          { id: "status", label: "Status da corrida" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
@@ -30,6 +31,11 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
           label="Nome da corridas"
           error={formState.errors.name}
           {...register("name")}
+        />
+        <FormControl
+          label="Status da corrida"
+          error={formState.errors.status}
+          {...register("status")}
         />
       </GridForm>
     </BoxCreateItem>
