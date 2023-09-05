@@ -54,7 +54,6 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
     isOpen,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
     openMenu,
@@ -115,7 +114,7 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
       }
     },
     // ...downshiftProps,
-  });
+  }) as any;
 
   useDeepCompareEffect(() => {
     setInputItems(items);
@@ -128,7 +127,7 @@ export const CUIAutoComplete_ = (props: any, ref: any) => {
 
   return (
     <Stack>
-      <Stack {...getComboboxProps()}>
+      <Stack>
         {renderInput({
           ...getInputProps(
             getDropdownProps({
