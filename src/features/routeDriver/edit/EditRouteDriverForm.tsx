@@ -12,7 +12,7 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditRouteDriver)}
-      title={"Editar corridas"}
+      title={"Editar corrida"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/routeDrivers/1"}
     >
@@ -21,14 +21,13 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
         fields={[
           { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },
-          { id: "status", label: "Status da corrida" },
           { id: "createdById", label: "Id do criador" },
           { id: "createdAt", label: "Data de criação" },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome da corridas"
+          label="Nome da corrida"
           error={formState.errors.name}
           {...register("name")}
         />

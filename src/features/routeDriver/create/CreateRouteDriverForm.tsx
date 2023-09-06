@@ -8,13 +8,13 @@ export const CreateRouteDriverForm = () => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRouteDriver)}
-      title={"Criar corridas"}
+      title={"Criar corrida"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/routeDrivers/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome da corridas"
+          label="Nome da corrida"
           error={formState.errors.name}
           {...register("name")}
         />

@@ -2,7 +2,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Point } from "entidades/mapRoute/mapRoute.model";
-
 export type CreateRouteDriverFormData = {
   name: string;
   routeId: string;
@@ -15,7 +14,7 @@ export type SubmitCreateRouteDriverHandler = SubmitHandler<CreateRouteDriverForm
 
 export const createRouteDriverFormSchema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
-  routeId: yup.string().required("Id da rota é obrigatório"),
+  routeId: yup.string().required("Rota ID é obrigatório"),
 });
 
 export const useCreateRouteDriverLib = () => {

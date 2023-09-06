@@ -27,7 +27,7 @@ export const useCreateRouteDriver = () => {
       }
       showModal({
         content:
-          "Corridas criada com sucesso, você será redirecionado para a lista de corridas",
+          "Corrida criada com sucesso, você será redirecionado para a lista de corridas",
         title: "Sucesso",
         type: "success",
       });

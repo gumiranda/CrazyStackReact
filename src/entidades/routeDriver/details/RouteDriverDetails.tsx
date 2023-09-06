@@ -12,7 +12,7 @@ export const RouteDriverDetails = ({ routeDriver }: RouteDriverDetailsProps) => 
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Corridas {routeDriver?.name}
+          Corrida {routeDriver?.name}
         </Heading>
         <NextLink passHref href={`/routeDrivers/edit/${routeDriver?._id}`}>
           <Button

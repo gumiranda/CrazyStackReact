@@ -12,7 +12,7 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditMapRoute)}
-      title={"Editar rotas"}
+      title={"Editar rota"}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/mapRoutes/1"}
     >
@@ -30,7 +30,7 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
       />
       <GridForm>
         <FormControl
-          label="Nome da rotas"
+          label="Nome da rota"
           error={formState.errors.name}
           {...register("name")}
         />

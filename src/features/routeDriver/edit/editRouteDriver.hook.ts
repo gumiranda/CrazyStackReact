@@ -31,7 +31,7 @@ export const useEditRouteDriver = (props: EditRouteDriverFormProps) => {
       }
       showModal({
         content:
-          "Corridas editada com sucesso, você será redirecionado para a lista de corridas",
+          "Corrida editada com sucesso, você será redirecionado para a lista de corridas",
         title: "Sucesso",
         type: "success",
       });

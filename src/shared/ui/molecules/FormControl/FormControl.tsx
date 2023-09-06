@@ -48,6 +48,7 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
         />
       ) : (
         <AutoCompleteInput
+          label={label}
           renderInput={(props: any) => {
             return (
               <Input
