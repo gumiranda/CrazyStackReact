@@ -3,8 +3,16 @@ import { useCreateMapRoute } from "./createMapRoute.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
 
 export const CreateMapRouteForm = () => {
-  const { formState, register, handleSubmit, handleCreateMapRoute, active, setActive } =
-    useCreateMapRoute();
+  const {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateMapRoute,
+    active,
+    setActive,
+    originListPlaces,
+    destinationListPlaces,
+  } = useCreateMapRoute();
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateMapRoute)}
@@ -14,19 +22,27 @@ export const CreateMapRouteForm = () => {
     >
       <GridForm>
         <FormControl
-          label="Nome da rotas"
+          label="Nome da rota"
           error={formState.errors.name}
           {...register("name")}
         />
         <FormControl
-          label="Origem id"
-          error={formState.errors.source_id}
-          {...register("source_id")}
+          label="Origem"
+          error={formState.errors.originText}
+          autoCompleteProps={{
+            list: originListPlaces,
+            placeholder: "Digite para pesquisar a origem",
+          }}
+          {...register("originText")}
         />
         <FormControl
-          label="Destino id"
-          error={formState.errors.destination_id}
-          {...register("destination_id")}
+          label="Destino"
+          error={formState.errors.destinationText}
+          autoCompleteProps={{
+            list: destinationListPlaces,
+            placeholder: "Digite para pesquisar a destino",
+          }}
+          {...register("destinationText")}
         />
         <Checkbox
           label="Ativo"
