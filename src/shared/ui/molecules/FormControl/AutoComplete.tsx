@@ -144,7 +144,7 @@ const AutoComplete_ = (props: any, ref: any) => {
                     <Highlighter
                       autoEscape
                       searchWords={[inputValue ?? ""]}
-                      textToHightlight={defaultItemRenderer(item)}
+                      textToHighlight={defaultItemRenderer(item)}
                     />
                   )}
                 </Box>

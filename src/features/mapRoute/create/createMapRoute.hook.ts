@@ -53,7 +53,7 @@ export const useCreateMapRoute = () => {
     const currentOrigin: any = originListPlaces?.find?.(
       (item: any) => item?.label === values?.originText
     );
-    const currentDestination: any = originListPlaces?.find?.(
+    const currentDestination: any = destinationListPlaces?.find?.(
       (item: any) => item?.label === values?.destinationText
     );
     await createMapRoute.mutateAsync({
