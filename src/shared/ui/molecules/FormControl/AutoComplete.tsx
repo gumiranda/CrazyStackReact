@@ -118,6 +118,7 @@ const AutoComplete_ = (props: any, ref: any) => {
       </Stack>
       <Box pb={4} mb={4}>
         <List
+          bg="white"
           borderRadius="4px"
           border={isOpen ? "1px solid rgba(0,0,0,0.1)" : "none"}
           boxShadow={"6px 5px 8px rgba(0,50,30,0.2)"}
