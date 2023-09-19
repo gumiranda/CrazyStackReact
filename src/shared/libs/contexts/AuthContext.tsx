@@ -23,18 +23,18 @@ type AuthContextData = {
   logout: () => void;
 };
 const AuthContext = createContext({} as AuthContextData);
-
+export const parseJSON = (json: string) => {
+  try {
+    return JSON.parse(json);
+  } catch (error) {
+    return null;
+  }
+};
 export function AuthProvider({ children }: AuthProviderProps) {
   const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
-  const parseJSON = (json: string) => {
-    try {
-      return JSON.parse(json);
-    } catch (error) {
-      return null;
-    }
-  };
+
   const logout = () => {
     signOut();
     setUser(null);
