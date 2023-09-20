@@ -45,7 +45,7 @@ class RouteDriver {
       ...this.props,
       _id: this.props._id,
       name: this.props.name,
-      active: this.props.active,
+      active: this.props.active ?? false,
       value: false,
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",

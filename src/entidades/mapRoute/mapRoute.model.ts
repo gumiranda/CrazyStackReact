@@ -1,4 +1,5 @@
 import { RouteDriverProps } from "entidades/routeDriver";
+import { parseJSON } from "shared/libs";
 
 export type MapRouteProps = {
   _id: string;
@@ -9,6 +10,7 @@ export type MapRouteProps = {
   distance: number;
   duration: number;
   directions: string;
+  directionsJson?: any;
   routeDriver: RouteDriverProps[];
   value?: boolean;
   active?: boolean;
@@ -60,6 +62,7 @@ class MapRoute {
       active: this.props.active,
       value: false,
       directions: JSON.parse(this.props.directions),
+      directionsJson: parseJSON(this.props.directions),
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
