@@ -6,19 +6,23 @@ export interface HandleLocationProps {
   originText: string;
   destinationText: string;
   mapContainerRef: any;
+  currentMapRoute: any;
 }
 export const useHandleLocation = ({
   originText,
   destinationText,
   mapContainerRef,
+  currentMapRoute = null,
 }: HandleLocationProps) => {
+  console.log(currentMapRoute);
   const map = useLoadMap(mapContainerRef);
   const [originListPlaces, setOriginListPlaces] = useState([]);
   const [destinationListPlaces, setDestinationListPlaces] = useState([]);
   const [timeoutId, setTimeoutId] = useState(null);
   const [directionsData, setDirectionsData] = useState<
     DirectionsResponseData & { request: any }
-  >();
+  >(currentMapRoute?.directionsJson);
+  console.log({ directionsData });
   const fetchTextOptions = async (text: string, setPlaces: any) => {
     if (text?.length < 1) {
       return;
@@ -98,9 +102,22 @@ export const useHandleLocation = ({
       `${process.env.NEXT_PUBLIC_NEXT_API_URL}/directions?originId=${currentOrigin?.value}&destinationId=${currentDestination?.value}`,
       { headers: { authorization: `Bearer ${cookies["belezixadmin.token"]}` } }
     );
-    const directionsData: DirectionsResponseData & { request: any } =
+    const newDirectionsData: DirectionsResponseData & { request: any } =
       await directionsResponse.json();
-    setDirectionsData(directionsData);
+    setDirectionsData(newDirectionsData);
+  }, [
+    originText,
+    destinationText,
+    originListPlaces,
+    destinationListPlaces,
+    directionsData,
+  ]); // Specify dependencies here
+  useEffect(() => {
+    if (directionsData) {
+      updateMapView();
+    }
+  }, [map, directionsData]);
+  const updateMapView = async () => {
     map?.removeAllRoutes();
     await map?.addRouteWithIcons({
       routeId: "1",
@@ -114,6 +131,6 @@ export const useHandleLocation = ({
         position: directionsData?.routes?.[0]?.legs?.[0]?.start_location,
       },
     });
-  }, [originText, destinationText, originListPlaces, destinationListPlaces]); // Specify dependencies here
+  };
   return { originListPlaces, destinationListPlaces, fetchDirections, directionsData };
 };

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { useHandleLocation } from "../hooks/useHandleLocation.hook";
+import { useHandleLocation } from "../hooks";
 
 export const useCreateMapRoute = ({ mapContainerRef }: any) => {
   const { showModal } = useUi();

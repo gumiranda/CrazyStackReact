@@ -4,12 +4,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EditMapRouteFormProps } from "./EditMapRouteForm";
 export type EditMapRouteFormData = {
   name: string;
+  originText: string;
+  destinationText: string;
+  source_id: string;
+  destination_id: string;
+  active?: boolean;
 };
 
 export type SubmitEditMapRouteHandler = SubmitHandler<EditMapRouteFormData>;
 
 export const editMapRouteFormSchema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
+  originText: yup.string().required("Origem é obrigatória"),
+  destinationText: yup.string().required("Destino é obrigatório"),
 });
 
 export const useEditMapRouteLib = (props: EditMapRouteFormProps) => {
@@ -18,6 +25,8 @@ export const useEditMapRouteLib = (props: EditMapRouteFormProps) => {
     resolver: yupResolver(editMapRouteFormSchema),
     defaultValues: {
       name: currentMapRoute?.name ?? "",
+      originText: currentMapRoute?.source?.name ?? "",
+      destinationText: currentMapRoute?.destination?.name ?? "",
     },
   });
   return { ...formProps };

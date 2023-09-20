@@ -8,9 +8,12 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
+import { useHandleLocation } from "../hooks";
+
 export const useEditMapRoute = (props: EditMapRouteFormProps) => {
   const { showModal } = useUi();
-  const { mapRoute: currentMapRoute } = props;
+  const { mapRoute: currentMapRoute, mapContainerRef = null } = props;
+
   const router = useRouter();
   const editMapRoute = useMutation(async (mapRoute: EditMapRouteFormData) => {
     try {
@@ -41,11 +44,41 @@ export const useEditMapRoute = (props: EditMapRouteFormProps) => {
       });
     }
   }, {});
-  const { register, handleSubmit, formState } = useEditMapRouteLib(props);
+  const { register, handleSubmit, formState, watch } = useEditMapRouteLib(props);
+  const originText = watch("originText");
+  const destinationText = watch("destinationText");
+  const { originListPlaces, destinationListPlaces, fetchDirections, directionsData } =
+    useHandleLocation({
+      originText,
+      destinationText,
+      mapContainerRef,
+      currentMapRoute,
+    });
   const handleEditMapRoute: SubmitEditMapRouteHandler = async (
     values: EditMapRouteFormData
   ) => {
-    await editMapRoute.mutateAsync(values);
+    const currentOrigin: any = originListPlaces?.find?.(
+      (item: any) => item?.label === values?.originText
+    );
+    const currentDestination: any = destinationListPlaces?.find?.(
+      (item: any) => item?.label === values?.destinationText
+    );
+    await editMapRoute.mutateAsync({
+      ...values,
+      source_id: currentOrigin?.value,
+      destination_id: currentDestination?.value,
+    });
   };
-  return { formState, register, handleSubmit, handleEditMapRoute };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleEditMapRoute,
+    fetchDirections,
+    directionsData,
+    originText,
+    destinationText,
+    originListPlaces,
+    destinationListPlaces,
+  };
 };
