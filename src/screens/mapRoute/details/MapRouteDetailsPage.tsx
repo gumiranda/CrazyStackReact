@@ -5,6 +5,7 @@ import { useRef, useEffect } from "react";
 import { useLoadMap } from "features/mapRoute/load-map";
 import { mapRouteModel } from "entidades/mapRoute/mapRoute.model";
 import { Grid } from "@chakra-ui/react";
+import { parseCookies } from "nookies";
 type MapRouteDetailsProps = {
   data: MapRouteProps;
   id: string;
@@ -34,6 +35,28 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
   }
   async function startRoute() {
     const route = mapRouteModel(data).format();
+    const cookies = parseCookies();
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_API_URL}/routeDriver`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${cookies["belezixadmin.token"]}`,
+      },
+      body: JSON.stringify({
+        name: route?.name,
+        routeId: route?._id,
+        points: [],
+        status: "initialized",
+      }),
+    });
+    if (!response || response?.status !== 200) {
+      console.log(response);
+      return;
+    }
+    const routeCreatedResponse = await response.json();
+    if (!routeCreatedResponse) {
+      return;
+    }
     const { steps } = route.directionsJson.routes[0].legs[0];
     for (const step of steps) {
       await sleep(2000);
