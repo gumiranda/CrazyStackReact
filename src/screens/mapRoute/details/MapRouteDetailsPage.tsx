@@ -1,11 +1,15 @@
 import { Box, Head, Button } from "shared/ui";
 import { MapRouteDetails } from "entidades/mapRoute/details";
 import { MapRouteProps } from "entidades/mapRoute";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { useLoadMap } from "features/mapRoute/load-map";
 import { mapRouteModel } from "entidades/mapRoute/mapRoute.model";
 import { Grid } from "@chakra-ui/react";
 import { parseCookies } from "nookies";
+import { useWS } from "application/providers/webSocketProvider";
+import { api } from "shared/api";
+import { useUi } from "shared/libs";
+
 type MapRouteDetailsProps = {
   data: MapRouteProps;
   id: string;
@@ -14,11 +18,36 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
   const props = { mapRoute: data };
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [routeInitialized, setRouteInitialized] = useState(false);
+  const [socketClosed, setSocketClosed] = useState(false);
+  const { wsInstance: socket } = useWS();
+  const { showModal, setLoading } = useUi();
   const map = useLoadMap(mapContainerRef);
+  useEffect(() => {
+    socket.onmessage = (event: any) => {
+      console.log("Mensagem recebida:", event.data);
+    };
+
+    socket.onclose = () => {
+      setSocketClosed(true);
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+      console.log("Conexão WebSocket fechada");
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, []);
   useEffect(() => {
     initRouteMap();
   }, [map]);
   async function initRouteMap() {
+    if (!data) {
+      return;
+    }
     const route = mapRouteModel(data).format();
     map?.removeAllRoutes();
     await map?.addRouteWithIcons({
@@ -34,9 +63,10 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
       },
     });
   }
-  async function startRoute() {
+  const startRoute = useCallback(async () => {
     const route = mapRouteModel(data).format();
     const cookies = parseCookies();
+    setLoading(true);
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_API_URL}/routeDriver`, {
       method: "POST",
       headers: {
@@ -50,8 +80,8 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
         status: "initialized",
       }),
     });
+    setLoading(false);
     if (!response || response?.status !== 200) {
-      console.log(response);
       return;
     }
     const routeCreatedResponse = await response.json();
@@ -63,25 +93,43 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
     for (const step of steps) {
       await sleep(2000);
       map?.moveCar(route?._id, step.start_location);
-      // socket.send(
-      //   JSON.stringify({
-      //     route_id: route?._id,
-      //     lat: step.start_location.lat,
-      //     lng: step.start_location.lng,
-      //   })
-      // );
+      if (socketClosed) {
+        const { data } = await api.patch(
+          `/routeDriver/update?_id=${routeCreatedResponse?._id}&routeId=${route?._id}&lat=${step.start_location.lat}&lng=${step.start_location.lng}`,
+          {
+            updatedAt: new Date(),
+          }
+        );
+        console.log({ data });
+      }
+      socket.send(
+        JSON.stringify({
+          route_id: route?._id,
+          lat: step.start_location.lat,
+          lng: step.start_location.lng,
+        })
+      );
 
       await sleep(2000);
       map?.moveCar(route?._id, step.end_location);
-      // socket.send(
-      //   JSON.stringify({
-      //     route_id: route?._id,
-      //     lat: step.end_location.lat,
-      //     lng: step.end_location.lng,
-      //   })
-      // );
+      if (socketClosed) {
+        const { data } = await api.patch(
+          `/routeDriver/update?_id=${routeCreatedResponse?._id}&routeId=${route?._id}&lat=${step.end_location.lat}&lng=${step.end_location.lng}`,
+          {
+            updatedAt: new Date(),
+          }
+        );
+        console.log({ data });
+      }
+      socket.send(
+        JSON.stringify({
+          route_id: route?._id,
+          lat: step.end_location.lat,
+          lng: step.end_location.lng,
+        })
+      );
     }
-  }
+  }, [socketClosed]);
   return (
     <>
       <Head
@@ -100,6 +148,7 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
               onClick={startRoute}
               mb={10}
               mt={2}
+              loadingText="Carregando..."
             >
               Iniciar a viagem
             </Button>
