@@ -61,7 +61,7 @@ class MapRoute {
       name: this.props.name,
       active: this.props.active,
       value: false,
-      directions: JSON.parse(this.props.directions),
+      directions: this.props.directions,
       directionsJson: parseJSON(this.props.directions),
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",
