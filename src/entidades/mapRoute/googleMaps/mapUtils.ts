@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import type { DirectionsResponseData } from "@googlemaps/google-maps-services-js";
 
 export function convertDirectionsResponseToDirectionsResult(
@@ -29,10 +30,13 @@ export function convertDirectionsResponseToDirectionsResult(
         legs: route.legs.map((leg) => ({
           ...leg,
           start_location: new google.maps.LatLng(
-            leg.start_location.lat,
-            leg.start_location.lng
+            leg?.start_location?.lat,
+            leg?.start_location?.lng
           ),
-          end_location: new google.maps.LatLng(leg.end_location.lat, leg.end_location.lng),
+          end_location: new google.maps.LatLng(
+            leg?.end_location?.lat,
+            leg?.end_location?.lng
+          ),
           steps: leg.steps.map((step) => ({
             path: google.maps.geometry.encoding.decodePath(step.polyline.points),
             start_location: new google.maps.LatLng(

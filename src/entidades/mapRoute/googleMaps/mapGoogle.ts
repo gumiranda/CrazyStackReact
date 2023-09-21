@@ -17,9 +17,9 @@ export class MapGoogle implements MapProtocol {
     carMarkerOptions: google.maps.MarkerOptions;
     directionsResponseData?: DirectionsResponseData & { request: any };
   }): Promise<any> {
-    if (routeOptions.routeId in this.routes) {
-      throw new RouteExistsError();
-    }
+    // if (routeOptions.routeId in this.routes) {
+    //   throw new RouteExistsError();
+    // }
     const { startMarkerOptions, endMarkerOptions, carMarkerOptions } = routeOptions;
     const route = new RouteGoogle({
       startMarkerOptions: { ...startMarkerOptions, map: this.map },
