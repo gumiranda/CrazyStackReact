@@ -103,20 +103,13 @@ export const useHandleLocation = ({
     const directionsDataRes: DirectionsResponseData & { request: any } =
       await directionsResponse.json();
     setDirectionsData(directionsDataRes);
-    map?.removeAllRoutes();
-    await map?.addRouteWithIcons({
-      routeId: "123",
-      startMarkerOptions: {
-        position: directionsData?.routes?.[0]?.legs?.[0]?.start_location,
-      },
-      carMarkerOptions: {
-        position: directionsData?.routes?.[0]?.legs?.[0]?.start_location,
-      },
-      endMarkerOptions: {
-        position: directionsData?.routes?.[0]?.legs?.[0]?.end_location,
-      },
-    });
-  }, [originText, destinationText, originListPlaces, destinationListPlaces]);
+  }, [
+    originText,
+    destinationText,
+    originListPlaces,
+    destinationListPlaces,
+    directionsData,
+  ]);
   useEffect(() => {
     if (directionsData) {
       updateMapView();
