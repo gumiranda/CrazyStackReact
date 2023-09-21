@@ -7,10 +7,7 @@ import {
 import { useRouter } from "next/router";
 import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useState, useEffect, useCallback } from "react";
-import { parseCookies } from "nookies";
-import type { DirectionsResponseData } from "@googlemaps/google-maps-services-js";
-import { useLoadMap } from "../load-map";
+import { useState } from "react";
 import { useHandleLocation } from "../hooks";
 
 export const useCreateMapRoute = ({ mapContainerRef }: any) => {
