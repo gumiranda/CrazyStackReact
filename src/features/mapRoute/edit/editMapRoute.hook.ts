@@ -10,7 +10,7 @@ import { api } from "shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useHandleLocation } from "../hooks";
 
-export const useEditMapRoute = (props: EditMapRouteFormProps) => {
+export const useEditMapRoute = (props: any) => {
   const { showModal } = useUi();
   const { mapRoute: currentMapRoute, mapContainerRef } = props;
   const router = useRouter();
