@@ -12,35 +12,38 @@ export const useCreateRouteDriver = () => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
-  const createRouteDriver = useMutation(async (routeDriver: CreateRouteDriverFormData) => {
-    try {
-      const { data } = await api.post("/routeDriver/add", {
-        ...routeDriver,
-      });
-      if (!data) {
+  const createRouteDriver = useMutation(
+    async (routeDriver: CreateRouteDriverFormData) => {
+      try {
+        const { data } = await api.post("/routeDriver/add", {
+          ...routeDriver,
+        });
+        if (!data) {
+          showModal({
+            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            title: "Erro no servidor",
+            type: "error",
+          });
+          return;
+        }
+        showModal({
+          content:
+            "Corrida criada com sucesso, você será redirecionado para a lista de corridas",
+          title: "Sucesso",
+          type: "success",
+        });
+        router.push("/routeDrivers/1");
+        return data;
+      } catch (error) {
         showModal({
           content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
           title: "Erro no servidor",
           type: "error",
         });
-        return;
       }
-      showModal({
-        content:
-          "Corrida criada com sucesso, você será redirecionado para a lista de corridas",
-        title: "Sucesso",
-        type: "success",
-      });
-      router.push("/routeDrivers/1");
-      return data;
-    } catch (error) {
-      showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
-        type: "error",
-      });
-    }
-  }, {});
+    },
+    {}
+  );
   const { register, handleSubmit, formState } = useCreateRouteDriverLib();
   const handleCreateRouteDriver: SubmitCreateRouteDriverHandler = async (
     values: CreateRouteDriverFormData
@@ -52,5 +55,12 @@ export const useCreateRouteDriver = () => {
       status: "initialized",
     });
   };
-  return { formState, register, handleSubmit, handleCreateRouteDriver, active, setActive };
+  return {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateRouteDriver,
+    active,
+    setActive,
+  };
 };

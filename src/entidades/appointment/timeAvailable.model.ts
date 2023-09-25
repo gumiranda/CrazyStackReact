@@ -40,20 +40,22 @@ class TimeAvailable {
           ?.split?.(" ")?.[1],
         value: new Date(time).toISOString(),
       })),
-      timeAvailableProfessional: this.props.timeAvailable.map(({ initDate, endDate }) => ({
-        initDate: new Date(initDate)
-          .toLocaleDateString("pt-BR", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-          ?.split?.(" ")?.[1],
-        endDate: new Date(endDate)
-          .toLocaleDateString("pt-BR", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-          ?.split?.(" ")?.[1],
-      })),
+      timeAvailableProfessional: this.props.timeAvailable.map(
+        ({ initDate, endDate }) => ({
+          initDate: new Date(initDate)
+            .toLocaleDateString("pt-BR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+            ?.split?.(" ")?.[1],
+          endDate: new Date(endDate)
+            .toLocaleDateString("pt-BR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+            ?.split?.(" ")?.[1],
+        })
+      ),
     };
   }
 }

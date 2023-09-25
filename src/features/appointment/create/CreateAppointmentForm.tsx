@@ -3,8 +3,14 @@ import { useCreateAppointment } from "./createAppointment.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
 
 export const CreateAppointmentForm = () => {
-  const { formState, register, handleSubmit, handleCreateAppointment, active, setActive } =
-    useCreateAppointment();
+  const {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateAppointment,
+    active,
+    setActive,
+  } = useCreateAppointment();
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateAppointment)}

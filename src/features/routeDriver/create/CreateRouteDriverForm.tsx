@@ -3,8 +3,14 @@ import { useCreateRouteDriver } from "./createRouteDriver.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
 
 export const CreateRouteDriverForm = () => {
-  const { formState, register, handleSubmit, handleCreateRouteDriver, active, setActive } =
-    useCreateRouteDriver();
+  const {
+    formState,
+    register,
+    handleSubmit,
+    handleCreateRouteDriver,
+    active,
+    setActive,
+  } = useCreateRouteDriver();
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRouteDriver)}

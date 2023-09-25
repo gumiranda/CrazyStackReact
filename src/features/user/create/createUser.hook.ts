@@ -53,7 +53,9 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
     }
   }, {});
   const { register, handleSubmit, formState, control } = useCreateUserLib();
-  const handleCreateUser: SubmitCreateUserHandler = async (values: CreateUserFormData) => {
+  const handleCreateUser: SubmitCreateUserHandler = async (
+    values: CreateUserFormData
+  ) => {
     await createUser.mutateAsync({
       ...values,
       active,

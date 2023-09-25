@@ -5,7 +5,11 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryOptions,
 } from "@tanstack/react-query";
-export const useGetClients = (page: number, options?: UseQueryOptions, ctx?: any): any => {
+export const useGetClients = (
+  page: number,
+  options?: UseQueryOptions,
+  ctx?: any
+): any => {
   return useQuery(["clients", page], () => getClients(page, ctx), {
     staleTime: 1000 * 5,
     ...options,
