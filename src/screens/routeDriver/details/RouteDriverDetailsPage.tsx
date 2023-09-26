@@ -49,13 +49,15 @@ export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsPro
   }, [map]);
   const handleMessage = async (message: {
     route_id: string;
+    routeDriverId: string;
     lat: string;
     lng: string;
   }) => {
     const route = mapRouteModel(mapRoute).format();
+    const routeDriver = routeDriverModel(data).format();
     const routeId = route?._id;
-    const { route_id, lat, lng } = message;
-    if (route_id !== routeId) {
+    const { route_id, routeDriverId, lat, lng } = message;
+    if (route_id !== routeId || routeDriverId !== routeDriver?._id) {
       return;
     }
     setNewPoints((prev: any) => [
@@ -95,7 +97,7 @@ export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsPro
       const nextLocation =
         newPoints[index === pointsSize - 1 ? index : index + 1]?.location;
       const routeKey = `${location?.lat}-${location?.lng}-${nextLocation?.lat}-${nextLocation?.lng}`;
-      if (!map?.hasRoute(routeKey)) {
+      if (!map?.hasRoute(routeKey) && index + 1 <= pointsSize - 1) {
         await map?.addRoute({
           routeId: routeKey,
           startMarkerOptions: {

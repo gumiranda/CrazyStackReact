@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 export interface EditMapRouteFormProps {
   mapRoute: MapRouteProps;
-  mapContainerRef: any;
+  mapContainerRef?: any;
 }
 export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
