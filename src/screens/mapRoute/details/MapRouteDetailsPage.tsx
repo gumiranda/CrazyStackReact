@@ -75,6 +75,8 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
       }
       socket.send(
         JSON.stringify({
+          topic: "updatePosition",
+          routeDriverId: routeCreatedResponse?._id,
           route_id: route?._id,
           lat: step.start_location.lat,
           lng: step.start_location.lng,
@@ -90,6 +92,8 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
       }
       socket.send(
         JSON.stringify({
+          topic: "updatePosition",
+          routeDriverId: routeCreatedResponse?._id,
           route_id: route?._id,
           lat: step.end_location.lat,
           lng: step.end_location.lng,

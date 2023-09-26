@@ -6,5 +6,7 @@ export interface RouteProtocol {
   carMarker: google.maps.Marker;
   directionsRenderer: google.maps.DirectionsRenderer;
   delete(): void;
-  calculateRoute(directionsResponseData?: DirectionsResponseData & { request: any }): void;
+  calculateRoute(
+    directionsResponseData?: DirectionsResponseData & { request: any }
+  ): void;
 }

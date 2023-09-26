@@ -16,7 +16,8 @@ export class RouteGoogle implements RouteProtocol {
     this.startMarker = new google.maps.Marker(startMarkerOptions);
     this.endMarker = new google.maps.Marker(endMarkerOptions);
     this.carMarker = new google.maps.Marker(carMarkerOptions);
-    const { strokeColor } = this.startMarker.getIcon() as google.maps.Symbol;
+    const { strokeColor = "#fff" } =
+      (this.startMarker.getIcon() as google.maps.Symbol) || {};
     this.directionsRenderer = new google.maps.DirectionsRenderer({
       suppressMarkers: true,
       polylineOptions: { strokeColor, strokeOpacity: 0.5, strokeWeight: 5 },
