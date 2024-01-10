@@ -161,10 +161,10 @@ export const DatePicker = (props: IDatePickerProps) => {
         </Box>
         <Box p={3}>
           <Grid templateColumns="repeat(7, 1fr)" gap={3}>
-            {monthDetails.map((day, index) => {
+            {monthDetails.map((day: any, index: number) => {
               return (
                 <Button
-                  disabled={day.month !== 0}
+                  disabled={day?.month !== 0}
                   color={color}
                   backgroundColor={
                     isCurrentDay(day)

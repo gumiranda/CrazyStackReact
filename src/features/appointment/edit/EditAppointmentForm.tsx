@@ -6,9 +6,11 @@ export interface EditAppointmentFormProps {
   appointment: AppointmentProps;
 }
 export const EditAppointmentForm = ({ appointment }: EditAppointmentFormProps) => {
-  const { formState, register, handleSubmit, handleEditAppointment } = useEditAppointment({
-    appointment,
-  });
+  const { formState, register, handleSubmit, handleEditAppointment } = useEditAppointment(
+    {
+      appointment,
+    }
+  );
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditAppointment)}

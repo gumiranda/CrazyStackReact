@@ -5,7 +5,9 @@ import {
 } from "next";
 import { parseCookies } from "nookies";
 
-export function withSSRGuest<P extends { [key: string]: any }>(fn: GetServerSideProps<P>) {
+export function withSSRGuest<P extends { [key: string]: any }>(
+  fn: GetServerSideProps<P>
+) {
   return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
     const cookies = parseCookies(ctx);
 

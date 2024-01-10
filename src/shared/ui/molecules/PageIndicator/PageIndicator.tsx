@@ -7,7 +7,8 @@ interface PageIndicatorProps {
 export const PageIndicator = ({ pageInitial, pageEnd, total }: PageIndicatorProps) => {
   return (
     <Box>
-      <strong>{pageInitial}</strong>-<strong>{pageEnd}</strong> de <strong>{total}</strong>
+      <strong>{pageInitial}</strong>-<strong>{pageEnd}</strong> de{" "}
+      <strong>{total}</strong>
     </Box>
   );
 };

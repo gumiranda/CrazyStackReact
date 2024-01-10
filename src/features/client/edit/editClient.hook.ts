@@ -43,7 +43,9 @@ export const useEditClient = (props: EditClientFormProps) => {
     }
   }, {});
   const { register, handleSubmit, formState } = useEditClientLib(props);
-  const handleEditClient: SubmitEditClientHandler = async (values: EditClientFormData) => {
+  const handleEditClient: SubmitEditClientHandler = async (
+    values: EditClientFormData
+  ) => {
     await editClient.mutateAsync(values);
   };
   return { formState, register, handleSubmit, handleEditClient };

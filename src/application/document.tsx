@@ -29,7 +29,11 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
 
           <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
-          <link rel="apple-touch-icon" sizes="152x152" href="/icons/touch-icon-ipad.png" />
+          <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/icons/touch-icon-ipad.png"
+          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
