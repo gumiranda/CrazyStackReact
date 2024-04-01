@@ -20,7 +20,7 @@ export type EditServiceFormData = {
 
 export type SubmitEditServiceHandler = SubmitHandler<EditServiceFormData>;
 
-export const editServiceFormSchema = yup.object().shape({
+export const editServiceFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
   description: yup.string().required("Descrição obrigatória"),
   price: yup
@@ -39,10 +39,11 @@ export const editServiceFormSchema = yup.object().shape({
 
   comission: yup.number().required("Campo obrigatório").min(0).max(100),
 });
+export type YupSchema = yup.InferType<typeof editServiceFormSchema>;
 
 export const useEditServiceLib = (props: EditServiceFormProps) => {
   const { service: currentService } = props;
-  const formProps = useForm<EditServiceFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(editServiceFormSchema),
     defaultValues: {
       name: currentService?.name ?? "",

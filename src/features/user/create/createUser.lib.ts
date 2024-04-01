@@ -18,13 +18,13 @@ export type CreateUserFormData = {
 
 export type SubmitCreateUserHandler = SubmitHandler<CreateUserFormData>;
 
-export const createUserFormSchema = yup.object().shape({
+export const createUserFormSchema = yup.object({
   serviceOptions: yup
     .array()
     .required("É necessário selecionar pelo menos um serviço")
     .min(1, "É necessário selecionar pelo menos um serviço")
     .of(
-      yup.object().shape({
+      yup.object({
         label: yup.string().required(),
         value: yup.string().required(),
       })
@@ -34,12 +34,13 @@ export const createUserFormSchema = yup.object().shape({
   passwordConfirmation: yup
     .string()
     .required("Confirmação de senha é obrigatória")
-    .oneOf([yup.ref("password"), null], "Senhas não conferem"),
+    .oneOf([yup.ref("password")], "Senhas não conferem"),
   email: yup.string().email("Email inválido").required("Email é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof createUserFormSchema>;
 
 export const useCreateUserLib = () => {
-  const formProps = useForm<CreateUserFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(createUserFormSchema),
     defaultValues: {
       name: "",

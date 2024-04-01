@@ -30,6 +30,8 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
     owners,
     ownerSelected,
   } = useCreateUser({ ownerList, serviceList });
+  const ControlledSelectAux = ControlledSelect as (props: any) => any;
+
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateUser)}
@@ -62,7 +64,7 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           {...register("passwordConfirmation")}
         />
         <Select
-          bg="purple.700"
+          bg="primary.500"
           name="ownerList"
           label="Estabelecimento"
           list={owners}
@@ -75,17 +77,19 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
             Carregar mais
           </option>
         </Select>
-        <ControlledSelect<CreateUserFormData, ServiceOptions, true>
+
+        <ControlledSelectAux
           isMulti
-          control={control}
+          control={control as any}
           label="Serviços selecionados"
           placeholder="Selecione os serviços"
           options={serviceOptions}
           name={"serviceOptions"}
         />
+
         <Checkbox
           label="Ativo"
-          colorScheme="green"
+          colorScheme={"tertiary"}
           isChecked={active}
           onChange={(e) => {
             e.preventDefault();
