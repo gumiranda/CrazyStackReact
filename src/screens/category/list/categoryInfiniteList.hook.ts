@@ -1,17 +1,19 @@
+"use client";
+
 import { useMutation } from "@tanstack/react-query";
 import { useUi } from "@/shared/libs";
 import { api } from "@/shared/api";
 import { queryClientInstance } from "@/shared/api";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useGetInfiniteCategorys } from "@/entidades/category/category.lib";
 
 export const useCategoryInfiniteList = () => {
   const router = useRouter();
   const { showModal, loading } = useUi();
   const all = useGetInfiniteCategorys({
-    getNextPageParam: (lastPage: any, pages) => lastPage.next,
-    getPreviousPageParam: (firstPage: any, pages) => firstPage.prev,
-  });
+    getNextPageParam: (lastPage: any) => lastPage.next,
+    getPreviousPageParam: (firstPage: any) => firstPage.prev,
+  } as any);
   const {
     data,
     error,
@@ -20,14 +22,14 @@ export const useCategoryInfiniteList = () => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = all || {};
+  }: any = all || {};
   const firstPage: any = data?.pages[0];
   const total: any = (firstPage?.total as any) || {};
   const deleteSelectedAction = async (item: any) => {
-    deleteCategory.mutateAsync([item]);
+    deleteCategory.mutateAsync([item] as any);
   };
-  const deleteCategory = useMutation(
-    async (categorysToDelete: any = []) => {
+  const deleteCategory = useMutation({
+    mutationFn: async (categorysToDelete: any = []) => {
       try {
         if (categorysToDelete?.length > 0) {
           return Promise.all(
@@ -45,22 +47,23 @@ export const useCategoryInfiniteList = () => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["categorysInfinite", data?.pages ?? 1]);
-        queryClientInstance.refetchQueries(["categorysInfinite", data?.pages]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries([
+        "categorysInfinite",
+        data?.pages ?? 1,
+      ] as any);
+      queryClientInstance.refetchQueries(["categorysInfinite", data?.pages] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   return {
     deleteSelectedAction,
     isFetching,

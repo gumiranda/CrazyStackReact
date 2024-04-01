@@ -1,10 +1,11 @@
+"use client";
 import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useState, useEffect } from "react";
 import { useUi } from "@/shared/libs";
 import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { AppointmentProps } from "@/entidades/appointment";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 type AppointmentListHook = {
   initialData: GetAppointmentsResponse;
   page: number;
@@ -12,21 +13,21 @@ type AppointmentListHook = {
 export const useAppointmentList = (data: AppointmentListHook) => {
   const router = useRouter();
   const { showModal } = useUi();
-  const [page, setPage] = useState(data.page);
+  const [page] = useState(data.page);
   const [appointments, setAppointments] = useState(data?.initialData?.appointments ?? []);
   const handlePrefetchAppointment = async ({ _id: appointmentId }: any) => {
-    await queryClientInstance.prefetchQuery(
-      ["appointment", appointmentId],
-      async () => {
+    await queryClientInstance.prefetchQuery({
+      queryKey: ["appointment", appointmentId],
+      queryFn: (async () => {
         const { data = null } =
           (await api.get(`/appointment/load?_id=${appointmentId}`)) || {};
         return data;
-      },
-      { staleTime: 1000 * 60 * 10 }
-    );
+      }) as any,
+      staleTime: 1000 * 60 * 10,
+    });
   };
-  const deleteAppointment = useMutation(
-    async (appointmentsToDelete: any = []) => {
+  const deleteAppointment = useMutation({
+    mutationFn: async (appointmentsToDelete: any = []) => {
       try {
         if (appointmentsToDelete?.length > 0) {
           return Promise.all(
@@ -44,25 +45,25 @@ export const useAppointmentList = (data: AppointmentListHook) => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["appointments", data.page]);
-        queryClientInstance.refetchQueries(["appointments", data.page]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      // queryClientInstance.invalidateQueries(["appointments", data.page]);
+      // queryClientInstance.refetchQueries(["appointments", data.page]);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   const deleteSelectedAction = async () => {
     deleteAppointment.mutateAsync(
-      appointments.filter((appointment: AppointmentProps) => appointment.value)
+      appointments.filter(
+        (appointment: AppointmentProps) => appointment.value as any
+      ) as any
     );
   };
   const changePage = (newpage: number) => {

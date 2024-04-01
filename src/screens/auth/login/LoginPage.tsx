@@ -20,7 +20,9 @@ export const Login: NextPage = () => {
       <Flex minW="100%" justifyContent="center">
         {!isAuthenticated && (
           <Flex mt="15%">
-            <LoginForm />
+            <LoginForm>
+              <Flex />
+            </LoginForm>
           </Flex>
         )}
       </Flex>
