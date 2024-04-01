@@ -12,14 +12,15 @@ export type CreateMapRouteFormData = {
 
 export type SubmitCreateMapRouteHandler = SubmitHandler<CreateMapRouteFormData>;
 
-export const createMapRouteFormSchema = yup.object().shape({
+export const createMapRouteFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
   originText: yup.string().required("Origem é obrigatória"),
   destinationText: yup.string().required("Destino é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof createMapRouteFormSchema>;
 
 export const useCreateMapRouteLib = () => {
-  const formProps = useForm<CreateMapRouteFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(createMapRouteFormSchema),
     defaultValues: {
       name: "",
