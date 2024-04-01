@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useUi } from "@/shared/libs";
 import { EditRequestFormProps } from "./EditRequestForm";
 import {
@@ -5,12 +6,13 @@ import {
   SubmitEditRequestHandler,
   useEditRequestLib,
 } from "./editRequest.lib";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTimeAvailable } from "@/features/appointment/timeAvailable.hook";
 import { addMinutes } from "date-fns";
+import { RequestProps } from "@/entidades/request";
 
 export const useEditRequest = (props: EditRequestFormProps) => {
   const router = useRouter();
@@ -28,36 +30,14 @@ export const useEditRequest = (props: EditRequestFormProps) => {
   const handleChangeStatus = (event: React.ChangeEvent<{ value: unknown }>) => {
     setStatusSelected(event.target.value as number);
   };
-  const editRequest = useMutation(async (request: EditRequestFormData) => {
-    try {
-      const { data } = await api.patch(`/request/update?_id=${currentRequest._id}`, {
-        ...request,
-        updatedAt: new Date(),
-      });
-      if (!data) {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-        return;
-      }
-      showModal({
-        content:
-          "Solicitação editada com sucesso, você será redirecionado para a lista de solicitações",
-        title: "Sucesso",
-        type: "success",
-      });
-      router.push("/requests/1");
-      return data;
-    } catch (error) {
-      showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
-        type: "error",
-      });
-    }
-  }, {});
+  const editRequest = editRequestMutation({
+    currentRequest,
+    showModal,
+    router,
+    routeRedirect: "/requests/1",
+    content:
+      "Solicitação editada com sucesso, você será redirecionado para a lista de solicitações",
+  });
   const { register, handleSubmit, formState } = useEditRequestLib(props);
   const {
     professionalId,
@@ -107,3 +87,51 @@ export const useEditRequest = (props: EditRequestFormProps) => {
     setDateChanged,
   };
 };
+
+export function editRequestMutation({
+  currentRequest,
+  showModal,
+  router,
+  content,
+  routeRedirect,
+}: {
+  currentRequest: RequestProps;
+  showModal: Function;
+  router: any;
+  content: string;
+  routeRedirect: string;
+}) {
+  return useMutation({
+    mutationFn: async (request: EditRequestFormData) => {
+      try {
+        const { data } = await api.patch(`/request/update?_id=${currentRequest._id}`, {
+          ...request,
+          updatedAt: new Date(),
+        });
+        if (!data) {
+          showModal({
+            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            title: "Erro no servidor",
+            type: "error",
+          });
+          return;
+        }
+        showModal({
+          content,
+          title: "Sucesso",
+          type: "success",
+        });
+        if (router) {
+          router.push(routeRedirect ?? "/requests/edit/" + currentRequest?._id);
+        }
+        return data;
+      } catch (error) {
+        showModal({
+          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          title: "Erro no servidor",
+          type: "error",
+        });
+      }
+    },
+  });
+}

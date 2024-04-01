@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
 import { useUi } from "@/shared/libs";
 import {
   CreateRequestFormData,
   SubmitCreateRequestHandler,
   useCreateRequestLib,
 } from "./createRequest.lib";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -43,37 +45,11 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     date: dateSelected ?? null,
   });
   const [active, setActive] = useState(false);
-  const createRequest = useMutation(async (request: CreateRequestFormData) => {
-    try {
-      const { data } = await api.post("/request/add", {
-        ...request,
-      });
-      if (!data) {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-        return;
-      }
-      showModal({
-        content:
-          "Solicitação criada com sucesso, você será redirecionado para a lista de solicitações",
-        title: "Sucesso",
-        type: "success",
-      });
-      router.push("/requests/1");
-      return data;
-    } catch (error) {
-      showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
-        type: "error",
-      });
-    }
-  }, {});
-  const serviceDuration =
-    services?.find?.((service) => service?._id === serviceSelected)?.duration ?? 60;
+  const createRequest = createRequestMutation(showModal, router);
+  const currentService = services?.find?.((service) => service?._id === serviceSelected);
+  const serviceDuration = currentService?.duration ?? 60;
+  const currentOwner = owners?.find?.((owner) => owner?._id === ownerSelected);
+  const currentClient = clients?.find?.((client) => client?._id === clientSelected);
   const requestObjectIds = {
     haveDelivery: false,
     haveRecurrence: false,
@@ -85,14 +61,18 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     clientId: clientSelected,
     professionalId: userSelected,
     ownerId: ownerSelected,
-    createdForId: owners?.find?.((owner) => owner?._id === ownerSelected)?.createdById,
-    clientUserId: clients?.find?.((client) => client?._id === clientSelected)?.userId,
+    createdForId: currentOwner?.createdById,
+    clientUserId: currentClient?.userId,
     initDate: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
     endDate: addMinutes(
       new Date(timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value ?? null),
       serviceDuration
     )?.toISOString(),
     duration: serviceDuration,
+    serviceName: currentService?.name,
+    ownerName: currentOwner?.name,
+    clientName: currentClient?.name,
+    professionalName: users?.find?.((user) => user?._id === userSelected)?.name,
   };
   const { register, handleSubmit, formState } = useCreateRequestLib(requestObjectIds);
   const handleCreateRequest: SubmitCreateRequestHandler = async (
@@ -129,3 +109,40 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     clients,
   };
 };
+
+export function createRequestMutation(showModal: Function, router) {
+  return useMutation({
+    mutationFn: async (request: CreateRequestFormData) => {
+      try {
+        const { data } = await api.post("/request/add", {
+          ...request,
+          message: request?.message + " " ?? " ",
+        });
+        if (!data) {
+          showModal({
+            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            title: "Erro no servidor",
+            type: "error",
+          });
+          return;
+        }
+        showModal({
+          content:
+            "Solicitação criada com sucesso, você será redirecionado para a lista de solicitações",
+          title: "Sucesso",
+          type: "success",
+        });
+        if (router) {
+          router.push("/requests/edit/" + data?._id);
+        }
+        return data;
+      } catch (error) {
+        showModal({
+          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          title: "Erro no servidor",
+          type: "error",
+        });
+      }
+    },
+  });
+}

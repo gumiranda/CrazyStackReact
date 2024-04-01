@@ -21,13 +21,14 @@ export type EditRequestFormData = {
 
 export type SubmitEditRequestHandler = SubmitHandler<EditRequestFormData>;
 
-export const editRequestFormSchema = yup.object().shape({
-  message: yup.string().required("Nome é obrigatório"),
+export const editRequestFormSchema = yup.object({
+  message: yup.string(),
 });
+export type YupSchema = yup.InferType<typeof editRequestFormSchema>;
 
 export const useEditRequestLib = (props: EditRequestFormProps) => {
   const { request: currentRequest } = props;
-  const formProps = useForm<EditRequestFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(editRequestFormSchema),
     defaultValues: {
       message: currentRequest?.message ?? "",
