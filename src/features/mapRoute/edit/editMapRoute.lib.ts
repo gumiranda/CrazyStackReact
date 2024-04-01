@@ -13,15 +13,16 @@ export type EditMapRouteFormData = {
 
 export type SubmitEditMapRouteHandler = SubmitHandler<EditMapRouteFormData>;
 
-export const editMapRouteFormSchema = yup.object().shape({
+export const editMapRouteFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
   originText: yup.string().required("Origem é obrigatória"),
   destinationText: yup.string().required("Destino é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof editMapRouteFormSchema>;
 
 export const useEditMapRouteLib = (props: EditMapRouteFormProps) => {
   const { mapRoute: currentMapRoute } = props;
-  const formProps = useForm<EditMapRouteFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(editMapRouteFormSchema),
     defaultValues: {
       name: currentMapRoute?.name ?? "",

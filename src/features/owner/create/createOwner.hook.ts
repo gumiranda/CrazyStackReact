@@ -1,6 +1,6 @@
 import { useUi } from "@/shared/libs";
 import { SubmitCreateOwnerHandler, useCreateOwnerLib } from "./createOwner.lib";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -28,8 +28,8 @@ export const useCreateOwner = () => {
     hourStart3: "08:00",
     hourEnd3: "18:00",
   });
-  const createOwner = useMutation(
-    async (owner: CreateOwnerFormData & HourValidatorInput & Days) => {
+  const createOwner = useMutation({
+    mutationFn: async (owner: CreateOwnerFormData & HourValidatorInput & Days) => {
       try {
         const { data } = await api.post("/owner/add", {
           ...owner,
@@ -59,8 +59,7 @@ export const useCreateOwner = () => {
         });
       }
     },
-    {}
-  );
+  });
   const { register, handleSubmit, formState, control } = useCreateOwnerLib();
   const handleCreateOwner: SubmitCreateOwnerHandler = async (
     values: CreateOwnerFormData
@@ -84,9 +83,18 @@ export const useCreateOwner = () => {
     event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
-  const daysOptions1 = daysOptions.map((item) => ({ ...item, value: item?.value + "1" }));
-  const daysOptions2 = daysOptions.map((item) => ({ ...item, value: item?.value + "2" }));
-  const daysOptions3 = daysOptions.map((item) => ({ ...item, value: item?.value + "3" }));
+  const daysOptions1 = daysOptions.map((item) => ({
+    ...item,
+    value: item?.value + "1",
+  }));
+  const daysOptions2 = daysOptions.map((item) => ({
+    ...item,
+    value: item?.value + "2",
+  }));
+  const daysOptions3 = daysOptions.map((item) => ({
+    ...item,
+    value: item?.value + "3",
+  }));
   return {
     formState,
     register,
