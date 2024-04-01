@@ -41,14 +41,12 @@ export const useCreateAppointment = () => {
       });
     }
   };
-  const createAppointment = useMutation(
-    createFunction as any,
-    {
-      onError: (error: any) => {
-        console.error(error);
-      },
-    } as any
-  ) as any;
+  const createAppointment = useMutation({
+    mutationFn: createFunction,
+    onError: (error: any) => {
+      console.error(error);
+    },
+  } as any) as any;
   const { register, handleSubmit, formState } = useCreateAppointmentLib();
   const handleCreateAppointment: SubmitCreateAppointmentHandler = async (
     values: CreateAppointmentFormData
