@@ -170,8 +170,8 @@ export const DatePicker = (props: IDatePickerProps) => {
                     isCurrentDay(day)
                       ? "gray.300"
                       : isSelectedDay(day) && day.month === 0
-                      ? "gray.300"
-                      : ""
+                        ? "gray.300"
+                        : ""
                   }
                   variant="ghost"
                   size="sm"
