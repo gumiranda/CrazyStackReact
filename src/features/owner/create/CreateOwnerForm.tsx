@@ -1,6 +1,6 @@
-import { HourWorks } from "entidades/owner";
+import { HourWorks } from "@/entidades/owner";
 import { useCreateOwner } from "./createOwner.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 
 export const CreateOwnerForm = () => {
   const {

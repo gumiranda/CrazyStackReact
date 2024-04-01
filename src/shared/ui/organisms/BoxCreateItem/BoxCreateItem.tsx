@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { Divider, Heading, VStack } from "@chakra-ui/react";
-import { CreateItemActions, Box } from "shared/ui";
+import { CreateItemActions, Box } from "@/shared/ui";
 interface BoxCreateItemProps {
   onSubmit: any;
   title: string;

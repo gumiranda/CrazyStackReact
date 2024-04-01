@@ -1,5 +1,5 @@
-import { Box, Flex, Text, Avatar } from "shared/ui/atoms";
-import { useAuth } from "shared/libs";
+import { Box, Flex, Text, Avatar } from "@/shared/ui/atoms";
+import { useAuth } from "@/shared/libs";
 
 type ProfileProps = {
   showProfileData?: boolean;

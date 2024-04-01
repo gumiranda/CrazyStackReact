@@ -1,15 +1,15 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import {
   CreateClientFormData,
   SubmitCreateClientHandler,
   useCreateClientLib,
 } from "./createClient.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { ClientCreateFormProps } from "./CreateClientForm";
-import { useUsersSelect } from "features/user/userList.hook";
+import { useUsersSelect } from "@/features/user/userList.hook";
 
 export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
   const { showModal } = useUi();

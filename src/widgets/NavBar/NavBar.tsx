@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { Header, Flex, Logo, Profile, NotificationsNav, SearchBar } from "shared/ui";
+import { Header, Flex, Logo, Profile, NotificationsNav, SearchBar } from "@/shared/ui";
 import { useBreakpointValue, Icon, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { RiMenuLine, RiLogoutBoxLine } from "react-icons/ri";
-import { useAuth, useSidebarDrawer } from "shared/libs";
+import { useAuth, useSidebarDrawer } from "@/shared/libs";
 export const NavBar = () => {
   const { isAuthenticated, logout } = useAuth();
   const { onOpen } = useSidebarDrawer();

@@ -1,6 +1,6 @@
 import { OptionBase } from "chakra-react-select";
-import { GetServicesResponse } from "entidades/service";
-import { useServicesSelect } from "features/service/serviceList.hook";
+import { GetServicesResponse } from "@/entidades/service";
+import { useServicesSelect } from "@/features/service/serviceList.hook";
 import { useEffect, useState } from "react";
 
 export interface ServiceOptions extends OptionBase {

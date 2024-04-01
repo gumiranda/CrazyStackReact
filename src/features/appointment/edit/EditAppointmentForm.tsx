@@ -1,6 +1,6 @@
-import { AppointmentProps } from "entidades/appointment";
+import { AppointmentProps } from "@/entidades/appointment";
 import { useEditAppointment } from "./editAppointment.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditAppointmentFormProps {
   appointment: AppointmentProps;

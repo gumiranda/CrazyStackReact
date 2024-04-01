@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { CategoryProps } from "entidades/category";
-import { CreateCategoryForm } from "features/category/create";
+import { Box, Head } from "@/shared/ui";
+import { CategoryProps } from "@/entidades/category";
+import { CreateCategoryForm } from "@/features/category/create";
 
 export const CategoryCreatePage = () => {
   return (

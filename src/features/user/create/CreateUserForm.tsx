@@ -1,4 +1,4 @@
-import { GetServicesResponse } from "entidades/service";
+import { GetServicesResponse } from "@/entidades/service";
 import { useCreateUser } from "./createUser.hook";
 import {
   BoxCreateItem,
@@ -7,10 +7,10 @@ import {
   GridForm,
   Select,
   ControlledSelect,
-} from "shared/ui";
-import { GetOwnersResponse } from "entidades/owner";
+} from "@/shared/ui";
+import { GetOwnersResponse } from "@/entidades/owner";
 import { CreateUserFormData } from "./createUser.lib";
-import { ServiceOptions } from "features/user/serviceListMultiple";
+import { ServiceOptions } from "@/features/user/serviceListMultiple";
 
 type UserCreateFormProps = {
   ownerList: GetOwnersResponse;

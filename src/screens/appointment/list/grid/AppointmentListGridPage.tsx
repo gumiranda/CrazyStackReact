@@ -1,6 +1,6 @@
-import { InfiniteList, GenericGrid, Head } from "shared/ui";
+import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useAppointmentInfiniteList } from "../appointmentInfiniteList.hook";
-import { useAppointmentUi } from "entidades/appointment/appointment.ui";
+import { useAppointmentUi } from "@/entidades/appointment/appointment.ui";
 
 export const AppointmentGridPage = () => {
   const {

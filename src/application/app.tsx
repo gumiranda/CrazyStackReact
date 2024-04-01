@@ -1,6 +1,6 @@
-import { AllProviders } from "application/providers";
+import { AllProviders } from "@/application/providers";
 import type { AppProps } from "next/app";
-import { SidebarPanel, NavBar } from "widgets";
+import { SidebarPanel, NavBar } from "@/widgets";
 
 function App({ Component, pageProps }: AppProps) {
   return (

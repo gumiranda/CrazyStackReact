@@ -1,9 +1,9 @@
-import { GetCategorysResponse } from "entidades/category/category.api";
+import { GetCategorysResponse } from "@/entidades/category/category.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { CategoryProps } from "entidades/category";
+import { CategoryProps } from "@/entidades/category";
 import { useRouter } from "next/router";
 type CategoryListHook = {
   initialData: GetCategorysResponse;

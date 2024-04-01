@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Point } from "entidades/mapRoute/mapRoute.model";
+import { Point } from "@/entidades/mapRoute/mapRoute.model";
 export type CreateRouteDriverFormData = {
   name: string;
   routeId: string;

@@ -1,2 +1,2 @@
-import { OwnerCreatePage } from "screens/owner/create";
+import { OwnerCreatePage } from "@/screens/owner/create";
 export default OwnerCreatePage;

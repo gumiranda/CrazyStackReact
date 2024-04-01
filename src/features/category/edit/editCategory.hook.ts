@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditCategoryFormProps } from "./EditCategoryForm";
 import {
   EditCategoryFormData,
@@ -6,7 +6,7 @@ import {
   useEditCategoryLib,
 } from "./editCategory.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEditCategory = (props: EditCategoryFormProps) => {
   const { showModal } = useUi();

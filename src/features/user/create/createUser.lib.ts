@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ServiceOptions } from "features/user/serviceListMultiple";
+import { ServiceOptions } from "@/features/user/serviceListMultiple";
 
 export type CreateUserFormData = {
   name: string;

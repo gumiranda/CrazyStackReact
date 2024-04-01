@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { CategoryDetails } from "entidades/category/details";
-import { CategoryProps } from "entidades/category";
+import { Box, Head } from "@/shared/ui";
+import { CategoryDetails } from "@/entidades/category/details";
+import { CategoryProps } from "@/entidades/category";
 type CategoryDetailsProps = {
   data: CategoryProps;
   id: string;

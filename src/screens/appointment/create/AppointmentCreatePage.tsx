@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { AppointmentProps } from "entidades/appointment";
-import { CreateAppointmentForm } from "features/appointment/create";
+import { Box, Head } from "@/shared/ui";
+import { AppointmentProps } from "@/entidades/appointment";
+import { CreateAppointmentForm } from "@/features/appointment/create";
 
 export const AppointmentCreatePage = () => {
   return (

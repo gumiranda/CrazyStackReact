@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { CreateClientForm } from "features/client/create";
-import { GetUsersResponse } from "entidades/user";
+import { Box, Head } from "@/shared/ui";
+import { CreateClientForm } from "@/features/client/create";
+import { GetUsersResponse } from "@/entidades/user";
 type ClientCreatePageProps = {
   users: GetUsersResponse;
 };

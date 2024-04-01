@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetMapRoutesResponse } from "entidades/mapRoute/mapRoute.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetMapRoutesResponse } from "@/entidades/mapRoute/mapRoute.api";
 import { useMapRouteList } from "../mapRouteList.hook";
 type MapRouteListTablePageProps = {
   data: GetMapRoutesResponse;

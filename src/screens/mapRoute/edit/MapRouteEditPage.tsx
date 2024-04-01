@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { EditMapRouteForm } from "features/mapRoute/edit";
-import { MapRouteProps } from "entidades/mapRoute";
+import { Box, Head } from "@/shared/ui";
+import { EditMapRouteForm } from "@/features/mapRoute/edit";
+import { MapRouteProps } from "@/entidades/mapRoute";
 type MapRouteEditProps = {
   data: MapRouteProps;
   id: string;

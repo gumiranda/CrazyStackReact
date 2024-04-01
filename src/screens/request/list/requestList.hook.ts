@@ -1,9 +1,9 @@
-import { GetRequestsResponse } from "entidades/request/request.api";
+import { GetRequestsResponse } from "@/entidades/request/request.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { RequestProps } from "entidades/request";
+import { RequestProps } from "@/entidades/request";
 import { useRouter } from "next/router";
 type RequestListHook = {
   initialData: GetRequestsResponse;

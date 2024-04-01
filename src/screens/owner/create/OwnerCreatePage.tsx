@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { OwnerProps } from "entidades/owner";
-import { CreateOwnerForm } from "features/owner/create";
+import { Box, Head } from "@/shared/ui";
+import { OwnerProps } from "@/entidades/owner";
+import { CreateOwnerForm } from "@/features/owner/create";
 
 export const OwnerCreatePage = () => {
   return (

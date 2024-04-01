@@ -10,15 +10,19 @@ export const useGetCategorys = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["categorys", page], () => getCategorys(page, ctx), {
+  return useQuery({
+    queryKey: ["categorys", page],
+    queryFn: () => getCategorys(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteCategorys = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(
-    ["categorysInfinite"],
-    getInfiniteCategorys as any,
-    options as any
-  );
+export const useGetInfiniteCategorys = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["categorysInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteCategorys(pageParam),
+    ...options,
+  });
 };

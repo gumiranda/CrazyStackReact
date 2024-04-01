@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { UserProps, userModel } from "./user.model";
 export type GetUsersResponse = {
   users: UserProps[];

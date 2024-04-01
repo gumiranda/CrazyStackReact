@@ -1,7 +1,7 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react";
-import { Modal } from "widgets";
-import { Button, BoxError, BoxSuccess } from "shared/ui";
+import { Modal } from "@/widgets";
+import { Button, BoxError, BoxSuccess } from "@/shared/ui";
 import LoadingOverlay from "react-loading-overlay-ts";
 import { useIsMutating, useIsFetching } from "@tanstack/react-query";
 type UiProviderProps = {

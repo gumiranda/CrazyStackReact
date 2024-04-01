@@ -1,10 +1,10 @@
 import { Grid } from "@chakra-ui/react";
-import { useWS } from "application/providers/webSocketProvider";
-import { mapRouteModel } from "entidades/mapRoute/mapRoute.model";
-import { useLoadMap } from "features/mapRoute/load-map";
+import { useWS } from "@/application/providers/webSocketProvider";
+import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
+import { useLoadMap } from "@/features/mapRoute/load-map";
 import { parseCookies } from "nookies";
 import { useEffect, useRef } from "react";
-import { parseJSON } from "shared/libs";
+import { parseJSON } from "@/shared/libs";
 
 export default function AdminPage() {
   const mapContainerRef = useRef<HTMLDivElement>(null);

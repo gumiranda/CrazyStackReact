@@ -10,7 +10,7 @@ import {
   DrawerBody,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useSidebarDrawer } from "shared/libs";
+import { useSidebarDrawer } from "@/shared/libs";
 type SidebarProps = {
   children?: React.ReactNode;
   title: string;

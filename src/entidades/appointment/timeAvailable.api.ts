@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { TimeAvailableProps, timeAvailableModel } from "./timeAvailable.model";
 
 export const getTimeAvailables = async (

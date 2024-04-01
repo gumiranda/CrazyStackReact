@@ -2,7 +2,7 @@
 /* eslint-disable prefer-const */
 import axios, { AxiosError } from "axios";
 import { parseCookies, setCookie } from "nookies";
-import { signOut } from "shared/libs";
+import { signOut } from "@/shared/libs";
 let isRefreshing = false;
 let failedRequestsQueue: any = [];
 

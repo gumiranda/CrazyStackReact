@@ -1,8 +1,8 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditOwnerFormProps } from "./EditOwnerForm";
 import { SubmitEditOwnerHandler, useEditOwnerLib } from "./editOwner.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import {
@@ -12,7 +12,7 @@ import {
   daysOptions,
   listHours,
   EditOwnerFormData,
-} from "entidades/owner";
+} from "@/entidades/owner";
 export const useEditOwner = (props: EditOwnerFormProps) => {
   const { showModal } = useUi();
   const { owner: currentOwner } = props;

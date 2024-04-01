@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { CategoryProps, categoryModel } from "./category.model";
 export type GetCategorysResponse = {
   categorys: CategoryProps[];

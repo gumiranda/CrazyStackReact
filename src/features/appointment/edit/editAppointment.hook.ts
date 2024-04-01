@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditAppointmentFormProps } from "./EditAppointmentForm";
 import {
   EditAppointmentFormData,
@@ -6,7 +6,7 @@ import {
   useEditAppointmentLib,
 } from "./editAppointment.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEditAppointment = (props: EditAppointmentFormProps) => {
   const { showModal } = useUi();

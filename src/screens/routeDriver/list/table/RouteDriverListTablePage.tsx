@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetRouteDriversResponse } from "entidades/routeDriver/routeDriver.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetRouteDriversResponse } from "@/entidades/routeDriver/routeDriver.api";
 import { useRouteDriverList } from "../routeDriverList.hook";
 type RouteDriverListTablePageProps = {
   data: GetRouteDriversResponse;

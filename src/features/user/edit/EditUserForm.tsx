@@ -1,4 +1,4 @@
-import { UserProps } from "entidades/user";
+import { UserProps } from "@/entidades/user";
 import { useEditUser } from "./editUser.hook";
 import {
   BoxCreateItem,
@@ -7,10 +7,10 @@ import {
   GenericDetailsItem,
   GridForm,
   Select,
-} from "shared/ui";
-import { GetServicesResponse } from "entidades/service";
-import { GetOwnersResponse } from "entidades/owner";
-import { ServiceOptions } from "features/user/serviceListMultiple";
+} from "@/shared/ui";
+import { GetServicesResponse } from "@/entidades/service";
+import { GetOwnersResponse } from "@/entidades/owner";
+import { ServiceOptions } from "@/features/user/serviceListMultiple";
 import { EditUserFormData } from "./editUser.lib";
 export interface EditUserFormProps {
   user: UserProps;

@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { RequestDetails } from "entidades/request/details";
-import { RequestProps } from "entidades/request";
+import { Box, Head } from "@/shared/ui";
+import { RequestDetails } from "@/entidades/request/details";
+import { RequestProps } from "@/entidades/request";
 type RequestDetailsProps = {
   data: RequestProps;
   id: string;

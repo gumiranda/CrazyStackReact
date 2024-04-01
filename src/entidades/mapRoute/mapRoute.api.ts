@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { MapRouteProps, mapRouteModel } from "./mapRoute.model";
 export type GetMapRoutesResponse = {
   mapRoutes: MapRouteProps[];

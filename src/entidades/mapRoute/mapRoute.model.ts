@@ -1,5 +1,5 @@
-import { RouteDriverProps } from "entidades/routeDriver";
-import { parseJSON } from "shared/libs";
+import { RouteDriverProps } from "@/entidades/routeDriver";
+import { parseJSON } from "@/shared/libs";
 
 export type MapRouteProps = {
   _id: string;

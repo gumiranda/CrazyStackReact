@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditServiceFormProps } from "./EditServiceForm";
 import {
   EditServiceFormData,
@@ -6,9 +6,9 @@ import {
   useEditServiceLib,
 } from "./editService.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useCategoriesSelect } from "features/category/categoryList.hook";
+import { useCategoriesSelect } from "@/features/category/categoryList.hook";
 import { useState } from "react";
 export const useEditService = (props: EditServiceFormProps) => {
   const { showModal } = useUi();

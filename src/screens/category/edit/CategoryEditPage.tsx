@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { EditCategoryForm } from "features/category/edit";
-import { CategoryProps } from "entidades/category";
+import { Box, Head } from "@/shared/ui";
+import { EditCategoryForm } from "@/features/category/edit";
+import { CategoryProps } from "@/entidades/category";
 type CategoryEditProps = {
   data: CategoryProps;
   id: string;

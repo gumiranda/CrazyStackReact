@@ -1,9 +1,9 @@
-import { GetAppointmentsResponse } from "entidades/appointment/appointment.api";
+import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { AppointmentProps } from "entidades/appointment";
+import { AppointmentProps } from "@/entidades/appointment";
 import { useRouter } from "next/router";
 type AppointmentListHook = {
   initialData: GetAppointmentsResponse;

@@ -1,9 +1,9 @@
-import { GetOwnersResponse } from "entidades/owner/owner.api";
+import { GetOwnersResponse } from "@/entidades/owner/owner.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { OwnerProps } from "entidades/owner";
+import { OwnerProps } from "@/entidades/owner";
 import { useRouter } from "next/router";
 type OwnerListHook = {
   initialData: GetOwnersResponse;

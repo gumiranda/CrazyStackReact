@@ -1,9 +1,9 @@
-import { GetServicesResponse } from "entidades/service/service.api";
+import { GetServicesResponse } from "@/entidades/service/service.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { ServiceProps } from "entidades/service";
+import { ServiceProps } from "@/entidades/service";
 import { useRouter } from "next/router";
 type ServiceListHook = {
   initialData: GetServicesResponse;

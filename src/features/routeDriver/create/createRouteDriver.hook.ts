@@ -1,11 +1,11 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import {
   CreateRouteDriverFormData,
   SubmitCreateRouteDriverHandler,
   useCreateRouteDriverLib,
 } from "./createRouteDriver.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 export const useCreateRouteDriver = () => {

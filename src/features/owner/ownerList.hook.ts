@@ -1,5 +1,5 @@
-import { UserProps } from "entidades/user";
-import { OwnerProps, GetOwnersResponse, getOwners } from "entidades/owner";
+import { UserProps } from "@/entidades/user";
+import { OwnerProps, GetOwnersResponse, getOwners } from "@/entidades/owner";
 import { useState, useEffect } from "react";
 export type UserFormProps = {
   ownerList: GetOwnersResponse;

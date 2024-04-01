@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetUsersResponse } from "entidades/user/user.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetUsersResponse } from "@/entidades/user/user.api";
 import { useUserList } from "../userList.hook";
 type UserListTablePageProps = {
   data: GetUsersResponse;

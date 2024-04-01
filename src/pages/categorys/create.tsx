@@ -1,2 +1,2 @@
-import { CategoryCreatePage } from "screens/category/create";
+import { CategoryCreatePage } from "@/screens/category/create";
 export default CategoryCreatePage;

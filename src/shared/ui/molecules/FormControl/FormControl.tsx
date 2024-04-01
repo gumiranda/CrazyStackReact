@@ -6,7 +6,7 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { AutoComplete } from "./AutoComplete";
-import { Input } from "shared/ui";
+import { Input } from "@/shared/ui";
 interface InputProps extends ChakraInputProps {
   name: string;
   bgColorHover?: string;

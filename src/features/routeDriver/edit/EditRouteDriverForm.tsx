@@ -1,6 +1,6 @@
-import { RouteDriverProps } from "entidades/routeDriver";
+import { RouteDriverProps } from "@/entidades/routeDriver";
 import { useEditRouteDriver } from "./editRouteDriver.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditRouteDriverFormProps {
   routeDriver: RouteDriverProps;

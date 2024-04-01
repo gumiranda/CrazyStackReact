@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { CreateRequestForm } from "features/request/create";
-import { GetOwnersResponse } from "entidades/owner";
+import { Box, Head } from "@/shared/ui";
+import { CreateRequestForm } from "@/features/request/create";
+import { GetOwnersResponse } from "@/entidades/owner";
 
 type RequestCreatePageProps = {
   owners: GetOwnersResponse;

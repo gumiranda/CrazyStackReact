@@ -1,7 +1,7 @@
-import { Box, Head } from "shared/ui";
-import { EditServiceForm } from "features/service/edit";
-import { ServiceProps } from "entidades/service";
-import { GetCategorysResponse } from "entidades/category";
+import { Box, Head } from "@/shared/ui";
+import { EditServiceForm } from "@/features/service/edit";
+import { ServiceProps } from "@/entidades/service";
+import { GetCategorysResponse } from "@/entidades/category";
 type ServiceEditProps = {
   data: ServiceProps;
   categorys: GetCategorysResponse;

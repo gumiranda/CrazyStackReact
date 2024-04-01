@@ -6,11 +6,19 @@ import {
   UseInfiniteQueryOptions,
 } from "@tanstack/react-query";
 export const useGetUsers = (page: number, options?: UseQueryOptions, ctx?: any): any => {
-  return useQuery(["users", page], () => getUsers(page, ctx), {
+  return useQuery({
+    queryKey: ["users", page],
+    queryFn: () => getUsers(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteUsers = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(["usersInfinite"], getInfiniteUsers as any, options as any);
+export const useGetInfiniteUsers = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["usersInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteUsers(pageParam),
+    ...options,
+  });
 };

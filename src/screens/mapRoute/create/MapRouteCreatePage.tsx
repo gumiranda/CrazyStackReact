@@ -1,5 +1,5 @@
-import { Box, Head } from "shared/ui";
-import { CreateMapRouteForm } from "features/mapRoute/create";
+import { Box, Head } from "@/shared/ui";
+import { CreateMapRouteForm } from "@/features/mapRoute/create";
 
 export const MapRouteCreatePage = () => {
   return (

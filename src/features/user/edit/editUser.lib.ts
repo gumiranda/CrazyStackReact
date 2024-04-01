@@ -2,8 +2,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EditUserFormProps } from "./EditUserForm";
-import { ServiceOptions } from "features/user/serviceListMultiple";
-import { ServiceProps } from "entidades/service";
+import { ServiceOptions } from "@/features/user/serviceListMultiple";
+import { ServiceProps } from "@/entidades/service";
 
 export type EditUserFormData = {
   name: string;

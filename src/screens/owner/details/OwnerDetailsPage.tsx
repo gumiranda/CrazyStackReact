@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { OwnerDetails } from "entidades/owner/details";
-import { OwnerProps } from "entidades/owner";
+import { Box, Head } from "@/shared/ui";
+import { OwnerDetails } from "@/entidades/owner/details";
+import { OwnerProps } from "@/entidades/owner";
 type OwnerDetailsProps = {
   data: OwnerProps;
   id: string;

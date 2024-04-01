@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { useUi } from "shared/libs";
-import { api } from "shared/api";
-import { queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api } from "@/shared/api";
+import { queryClientInstance } from "@/shared/api";
 import { useRouter } from "next/router";
-import { useGetInfiniteServices } from "entidades/service/service.lib";
+import { useGetInfiniteServices } from "@/entidades/service/service.lib";
 
 export const useServiceInfiniteList = () => {
   const router = useRouter();

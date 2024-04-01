@@ -1,3 +1,3 @@
-import Document from "application/document";
+import Document from "@/application/document";
 
 export default Document;

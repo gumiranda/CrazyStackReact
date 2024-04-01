@@ -1,4 +1,4 @@
-import { Form } from "shared/ui";
+import { Form } from "@/shared/ui";
 import { useLogin } from "./login.hook";
 export const LoginForm = () => {
   const { formState, handleSubmit, register, handleLogin } = useLogin();

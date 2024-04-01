@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetCategorysResponse } from "entidades/category/category.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetCategorysResponse } from "@/entidades/category/category.api";
 import { useCategoryList } from "../categoryList.hook";
 type CategoryListTablePageProps = {
   data: GetCategorysResponse;

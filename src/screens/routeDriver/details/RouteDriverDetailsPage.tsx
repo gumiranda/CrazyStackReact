@@ -1,14 +1,14 @@
-import { Box, Head } from "shared/ui";
-import { RouteDriverDetails } from "entidades/routeDriver/details";
-import { RouteDriverProps } from "entidades/routeDriver";
-import { MapRouteProps } from "entidades/mapRoute";
+import { Box, Head } from "@/shared/ui";
+import { RouteDriverDetails } from "@/entidades/routeDriver/details";
+import { RouteDriverProps } from "@/entidades/routeDriver";
+import { MapRouteProps } from "@/entidades/mapRoute";
 import { useRef, useEffect, useState } from "react";
-import { useLoadMap } from "features/mapRoute/load-map";
+import { useLoadMap } from "@/features/mapRoute/load-map";
 import { Grid } from "@chakra-ui/react";
-import { mapRouteModel } from "entidades/mapRoute/mapRoute.model";
-import { useWS } from "application/providers/webSocketProvider";
-import { parseJSON, useUi } from "shared/libs";
-import { routeDriverModel } from "entidades/routeDriver/routeDriver.model";
+import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
+import { useWS } from "@/application/providers/webSocketProvider";
+import { parseJSON, useUi } from "@/shared/libs";
+import { routeDriverModel } from "@/entidades/routeDriver/routeDriver.model";
 
 type RouteDriverDetailsProps = {
   data: RouteDriverProps;

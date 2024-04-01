@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetServicesResponse } from "entidades/service/service.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetServicesResponse } from "@/entidades/service/service.api";
 import { useServiceList } from "../serviceList.hook";
 type ServiceListTablePageProps = {
   data: GetServicesResponse;

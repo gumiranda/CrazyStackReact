@@ -1,5 +1,5 @@
 import { Link, HStack } from "@chakra-ui/react";
-import { Flex, Button } from "shared/ui";
+import { Flex, Button } from "@/shared/ui";
 interface CreateItemActionsProps {
   isLoadingSaveButton: boolean;
   cancelRoute: string;

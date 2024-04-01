@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { EditAppointmentForm } from "features/appointment/edit";
-import { AppointmentProps } from "entidades/appointment";
+import { Box, Head } from "@/shared/ui";
+import { EditAppointmentForm } from "@/features/appointment/edit";
+import { AppointmentProps } from "@/entidades/appointment";
 type AppointmentEditProps = {
   data: AppointmentProps;
   id: string;

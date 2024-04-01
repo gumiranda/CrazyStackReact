@@ -1,6 +1,6 @@
 import { useCreateService } from "./createService.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
-import { GetCategorysResponse } from "entidades/category";
+import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "@/shared/ui";
+import { GetCategorysResponse } from "@/entidades/category";
 export type CreateServiceFormProps = {
   categoryList: GetCategorysResponse;
 };

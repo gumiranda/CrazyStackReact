@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { EditClientForm } from "features/client/edit";
-import { ClientProps } from "entidades/client";
+import { Box, Head } from "@/shared/ui";
+import { EditClientForm } from "@/features/client/edit";
+import { ClientProps } from "@/entidades/client";
 type ClientEditProps = {
   data: ClientProps;
   id: string;

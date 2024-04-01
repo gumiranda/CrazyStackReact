@@ -1,9 +1,9 @@
-import { GetRouteDriversResponse } from "entidades/routeDriver/routeDriver.api";
+import { GetRouteDriversResponse } from "@/entidades/routeDriver/routeDriver.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { RouteDriverProps } from "entidades/routeDriver";
+import { RouteDriverProps } from "@/entidades/routeDriver";
 import { useRouter } from "next/router";
 type RouteDriverListHook = {
   initialData: GetRouteDriversResponse;

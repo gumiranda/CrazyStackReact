@@ -1,2 +1,2 @@
-import { ClientGridPage } from "screens/client/list/grid";
+import { ClientGridPage } from "@/screens/client/list/grid";
 export default ClientGridPage;

@@ -10,15 +10,22 @@ export const useGetRequests = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["requests", page], () => getRequests(page, ctx), {
+  return useQuery({
+    queryKey: ["requests", page],
+    queryFn: () => getRequests(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteRequests = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(
-    ["requestsInfinite"],
-    getInfiniteRequests as any,
-    options as any
-  );
+export const useGetInfiniteRequests = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">,
+  params?: any
+) => {
+  return useInfiniteQuery({
+    queryKey: ["requestsInfinite", params],
+    queryFn: ({ pageParam = 1, queryKey }: any) => {
+      return getInfiniteRequests(pageParam, queryKey?.[1]);
+    },
+    ...options,
+  });
 };

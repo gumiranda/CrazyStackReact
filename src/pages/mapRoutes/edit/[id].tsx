@@ -1,7 +1,7 @@
-import { MapRouteEditPage } from "screens/mapRoute/edit";
-import { getMapRouteById } from "entidades/mapRoute/mapRoute.api";
+import { MapRouteEditPage } from "@/screens/mapRoute/edit";
+import { getMapRouteById } from "@/entidades/mapRoute/mapRoute.api";
 import { GetServerSideProps } from "next";
-import { withSSRAuth } from "shared/libs/utils";
+import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {

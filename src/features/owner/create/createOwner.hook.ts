@@ -1,7 +1,7 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { SubmitCreateOwnerHandler, useCreateOwnerLib } from "./createOwner.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import {
@@ -11,7 +11,7 @@ import {
   daysOptions,
   formatDays,
   listHours,
-} from "entidades/owner";
+} from "@/entidades/owner";
 export const useCreateOwner = () => {
   const { showModal } = useUi();
   const router = useRouter();

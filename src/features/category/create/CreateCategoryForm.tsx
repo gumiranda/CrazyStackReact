@@ -1,6 +1,6 @@
-import { CategoryProps } from "entidades/category";
+import { CategoryProps } from "@/entidades/category";
 import { useCreateCategory } from "./createCategory.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 
 export const CreateCategoryForm = () => {
   const { formState, register, handleSubmit, handleCreateCategory, active, setActive } =

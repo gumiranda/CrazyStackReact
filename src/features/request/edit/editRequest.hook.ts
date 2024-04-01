@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditRequestFormProps } from "./EditRequestForm";
 import {
   EditRequestFormData,
@@ -6,10 +6,10 @@ import {
   useEditRequestLib,
 } from "./editRequest.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { useTimeAvailable } from "features/appointment/timeAvailable.hook";
+import { useTimeAvailable } from "@/features/appointment/timeAvailable.hook";
 import { addMinutes } from "date-fns";
 
 export const useEditRequest = (props: EditRequestFormProps) => {

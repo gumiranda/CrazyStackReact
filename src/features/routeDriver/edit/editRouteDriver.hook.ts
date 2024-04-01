@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditRouteDriverFormProps } from "./EditRouteDriverForm";
 import {
   EditRouteDriverFormData,
@@ -6,7 +6,7 @@ import {
   useEditRouteDriverLib,
 } from "./editRouteDriver.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEditRouteDriver = (props: EditRouteDriverFormProps) => {
   const { showModal } = useUi();

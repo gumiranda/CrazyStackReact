@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { EditRequestForm } from "features/request/edit";
-import { RequestProps } from "entidades/request";
+import { Box, Head } from "@/shared/ui";
+import { EditRequestForm } from "@/features/request/edit";
+import { RequestProps } from "@/entidades/request";
 type RequestEditProps = {
   data: RequestProps;
   id: string;

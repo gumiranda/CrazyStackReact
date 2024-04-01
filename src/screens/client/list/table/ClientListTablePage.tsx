@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetClientsResponse } from "entidades/client/client.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetClientsResponse } from "@/entidades/client/client.api";
 import { useClientList } from "../clientList.hook";
 type ClientListTablePageProps = {
   data: GetClientsResponse;

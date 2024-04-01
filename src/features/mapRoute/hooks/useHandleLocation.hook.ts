@@ -33,7 +33,7 @@ export const useHandleLocation = ({
         `${process.env.NEXT_PUBLIC_NEXT_API_URL}/places?text=${text}`,
         {
           headers: {
-            ContentType: "application/json",
+            ContentType: "@/application/json",
             authorization: `Bearer ${cookies["belezixadmin.token"]}`,
           },
         }

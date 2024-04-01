@@ -1,2 +1,2 @@
-import { MapRouteCreatePage } from "screens/mapRoute/create";
+import { MapRouteCreatePage } from "@/screens/mapRoute/create";
 export default MapRouteCreatePage;

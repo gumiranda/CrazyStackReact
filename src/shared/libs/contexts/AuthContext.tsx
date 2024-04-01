@@ -2,7 +2,7 @@ import { createContext, useEffect, useContext, ReactNode, useState } from "react
 import { setCookie, destroyCookie, parseCookies } from "nookies";
 import Router from "next/router";
 import { useUi } from "./UiContext";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 
 type User = {
   email: string;

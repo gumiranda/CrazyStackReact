@@ -1,9 +1,9 @@
 import Router from "next/router";
 import type { NextPage } from "next";
-import { Head, Flex } from "shared/ui";
-import { useAuth } from "shared/libs";
+import { Head, Flex } from "@/shared/ui";
+import { useAuth } from "@/shared/libs";
 import { useEffect } from "react";
-import { LoginForm } from "features/auth/login";
+import { LoginForm } from "@/features/auth/login";
 export const Login: NextPage = () => {
   const { isAuthenticated } = useAuth();
   useEffect(() => {

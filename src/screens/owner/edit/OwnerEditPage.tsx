@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { EditOwnerForm } from "features/owner/edit";
-import { OwnerProps } from "entidades/owner";
+import { Box, Head } from "@/shared/ui";
+import { EditOwnerForm } from "@/features/owner/edit";
+import { OwnerProps } from "@/entidades/owner";
 type OwnerEditProps = {
   data: OwnerProps;
   id: string;

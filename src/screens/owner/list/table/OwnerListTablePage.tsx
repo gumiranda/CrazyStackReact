@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetOwnersResponse } from "entidades/owner/owner.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetOwnersResponse } from "@/entidades/owner/owner.api";
 import { useOwnerList } from "../ownerList.hook";
 type OwnerListTablePageProps = {
   data: GetOwnersResponse;

@@ -1,6 +1,6 @@
-import { MapRouteProps } from "entidades/mapRoute";
+import { MapRouteProps } from "@/entidades/mapRoute";
 import { useEditMapRoute } from "./editMapRoute.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 import { Grid, Text, List, ListItem, Card, CardBody, Button } from "@chakra-ui/react";
 import { useRef } from "react";
 

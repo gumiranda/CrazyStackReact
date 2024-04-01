@@ -1,9 +1,9 @@
-import { GetUsersResponse } from "entidades/user/user.api";
+import { GetUsersResponse } from "@/entidades/user/user.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { UserProps } from "entidades/user";
+import { UserProps } from "@/entidades/user";
 import { useRouter } from "next/router";
 type UserListHook = {
   initialData: GetUsersResponse;

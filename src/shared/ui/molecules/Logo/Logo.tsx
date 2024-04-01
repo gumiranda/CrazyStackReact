@@ -1,4 +1,4 @@
-import { Text } from "shared/ui/atoms";
+import { Text } from "@/shared/ui/atoms";
 import NextLink from "next/link";
 
 export const Logo = () => {

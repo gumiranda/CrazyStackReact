@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { AppointmentProps, appointmentModel } from "./appointment.model";
 export type GetAppointmentsResponse = {
   appointments: AppointmentProps[];

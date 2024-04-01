@@ -1,6 +1,6 @@
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Heading } from "@chakra-ui/react";
-import { Text, Box } from "shared/ui/atoms";
+import { Text, Box } from "@/shared/ui/atoms";
 type BoxSuccessProps = {
   title?: string;
   content: string;

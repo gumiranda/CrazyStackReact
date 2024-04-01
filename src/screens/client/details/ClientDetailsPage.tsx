@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { ClientDetails } from "entidades/client/details";
-import { ClientProps } from "entidades/client";
+import { Box, Head } from "@/shared/ui";
+import { ClientDetails } from "@/entidades/client/details";
+import { ClientProps } from "@/entidades/client";
 type ClientDetailsProps = {
   data: ClientProps;
   id: string;

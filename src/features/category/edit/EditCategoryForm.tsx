@@ -1,6 +1,6 @@
-import { CategoryProps } from "entidades/category";
+import { CategoryProps } from "@/entidades/category";
 import { useEditCategory } from "./editCategory.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditCategoryFormProps {
   category: CategoryProps;

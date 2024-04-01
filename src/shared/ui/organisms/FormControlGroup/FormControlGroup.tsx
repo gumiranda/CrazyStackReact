@@ -1,5 +1,5 @@
-import { Stack } from "shared/ui/atoms";
-import { FormControl } from "shared/ui/molecules";
+import { Stack } from "@/shared/ui/atoms";
+import { FormControl } from "@/shared/ui/molecules";
 import { FieldValues, FormState, UseFormRegister } from "react-hook-form";
 export interface FormControlProps {
   name: string;

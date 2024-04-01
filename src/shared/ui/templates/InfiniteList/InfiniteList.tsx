@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Flex, Box } from "shared/ui";
+import { Flex, Box } from "@/shared/ui";
 
 interface InfiniteListProps {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
-import { HourWorks, OwnerProps } from "entidades/owner";
+import { HourWorks, OwnerProps } from "@/entidades/owner";
 import { useEditOwner } from "./editOwner.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditOwnerFormProps {
   owner: OwnerProps;

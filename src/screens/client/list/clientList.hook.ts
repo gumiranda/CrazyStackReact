@@ -1,9 +1,9 @@
-import { GetClientsResponse } from "entidades/client/client.api";
+import { GetClientsResponse } from "@/entidades/client/client.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { ClientProps } from "entidades/client";
+import { ClientProps } from "@/entidades/client";
 import { useRouter } from "next/router";
 type ClientListHook = {
   initialData: GetClientsResponse;

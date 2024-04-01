@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { RouteDriverProps, routeDriverModel } from "./routeDriver.model";
 export type GetRouteDriversResponse = {
   routeDrivers: RouteDriverProps[];

@@ -1,4 +1,4 @@
-import { Box } from "shared/ui";
+import { Box } from "@/shared/ui";
 interface PageIndicatorProps {
   pageInitial: number;
   pageEnd: number;

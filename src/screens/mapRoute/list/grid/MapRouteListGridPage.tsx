@@ -1,6 +1,6 @@
-import { InfiniteList, GenericGrid, Head } from "shared/ui";
+import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useMapRouteInfiniteList } from "../mapRouteInfiniteList.hook";
-import { useMapRouteUi } from "entidades/mapRoute/mapRoute.ui";
+import { useMapRouteUi } from "@/entidades/mapRoute/mapRoute.ui";
 
 export const MapRouteGridPage = () => {
   const {

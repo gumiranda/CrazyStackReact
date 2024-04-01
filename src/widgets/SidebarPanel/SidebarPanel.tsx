@@ -1,6 +1,6 @@
-import { Stack, NavLink, NavSection, Sidebar } from "shared/ui";
+import { Stack, NavLink, NavSection, Sidebar } from "@/shared/ui";
 import { RiContactsLine } from "react-icons/ri";
-import { useAuth } from "shared/libs";
+import { useAuth } from "@/shared/libs";
 
 export const SidebarPanel = () => {
   const { isAuthenticated } = useAuth();

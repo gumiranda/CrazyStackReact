@@ -1,9 +1,9 @@
-import { GetMapRoutesResponse } from "entidades/mapRoute/mapRoute.api";
+import { GetMapRoutesResponse } from "@/entidades/mapRoute/mapRoute.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { MapRouteProps } from "entidades/mapRoute";
+import { MapRouteProps } from "@/entidades/mapRoute";
 import { useRouter } from "next/router";
 type MapRouteListHook = {
   initialData: GetMapRoutesResponse;

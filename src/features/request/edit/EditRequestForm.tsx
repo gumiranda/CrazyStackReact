@@ -1,4 +1,4 @@
-import { RequestProps } from "entidades/request";
+import { RequestProps } from "@/entidades/request";
 import { useEditRequest } from "./editRequest.hook";
 import {
   BoxCreateItem,
@@ -7,8 +7,8 @@ import {
   GenericDetailsItem,
   GridForm,
   Select,
-} from "shared/ui";
-import { statusArray } from "entidades/request/request.model";
+} from "@/shared/ui";
+import { statusArray } from "@/entidades/request/request.model";
 
 export interface EditRequestFormProps {
   request: RequestProps;

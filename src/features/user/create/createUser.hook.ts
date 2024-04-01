@@ -1,17 +1,17 @@
 import { useServiceListMultiple } from "./../serviceListMultiple";
-import { useOwnersSelect } from "features/owner/ownerList.hook";
-import { useUi } from "shared/libs";
+import { useOwnersSelect } from "@/features/owner/ownerList.hook";
+import { useUi } from "@/shared/libs";
 import {
   CreateUserFormData,
   SubmitCreateUserHandler,
   useCreateUserLib,
 } from "./createUser.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { GetServicesResponse } from "entidades/service";
-import { GetOwnersResponse, OwnerProps } from "entidades/owner";
+import { GetServicesResponse } from "@/entidades/service";
+import { GetOwnersResponse, OwnerProps } from "@/entidades/owner";
 type CreateUserFormProps = {
   serviceList: GetServicesResponse;
   ownerList: GetOwnersResponse;

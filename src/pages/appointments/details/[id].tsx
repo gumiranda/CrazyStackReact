@@ -1,7 +1,7 @@
-import { AppointmentDetailsPage } from "screens/appointment/details";
-import { getAppointmentById } from "entidades/appointment/appointment.api";
+import { AppointmentDetailsPage } from "@/screens/appointment/details";
+import { getAppointmentById } from "@/entidades/appointment/appointment.api";
 import { GetServerSideProps } from "next";
-import { withSSRAuth } from "shared/libs/utils";
+import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {

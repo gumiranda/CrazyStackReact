@@ -1,4 +1,4 @@
-import { useAuth } from "shared/libs";
+import { useAuth } from "@/shared/libs";
 import { useLoginLib, SubmitLoginHandler } from "./login.lib";
 
 export const useLogin = () => {

@@ -1,7 +1,7 @@
-import { RequestDetailsPage } from "screens/request/details";
-import { getRequestById } from "entidades/request/request.api";
+import { RequestDetailsPage } from "@/screens/request/details";
+import { getRequestById } from "@/entidades/request/request.api";
 import { GetServerSideProps } from "next";
-import { withSSRAuth } from "shared/libs/utils";
+import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {

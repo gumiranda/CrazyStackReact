@@ -1,4 +1,4 @@
-import { GetClientsResponse, getClients, ClientProps } from "entidades/client";
+import { GetClientsResponse, getClients, ClientProps } from "@/entidades/client";
 import { useState, useEffect } from "react";
 export type ClientFormProps = {
   clientList?: GetClientsResponse | null;

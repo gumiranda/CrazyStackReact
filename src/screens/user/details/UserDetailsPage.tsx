@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { UserDetails } from "entidades/user/details";
-import { UserProps } from "entidades/user";
+import { Box, Head } from "@/shared/ui";
+import { UserDetails } from "@/entidades/user/details";
+import { UserProps } from "@/entidades/user";
 type UserDetailsProps = {
   data: UserProps;
   id: string;

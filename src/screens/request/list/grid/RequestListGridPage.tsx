@@ -1,6 +1,6 @@
-import { InfiniteList, GenericGrid, Head } from "shared/ui";
+import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useRequestInfiniteList } from "../requestInfiniteList.hook";
-import { useRequestUi } from "entidades/request/request.ui";
+import { useRequestUi } from "@/entidades/request/request.ui";
 
 export const RequestGridPage = () => {
   const {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-ignore
-import { Box, Text, HStack, Stack } from "shared/ui";
+import { Box, Text, HStack, Stack } from "@/shared/ui";
 import { ReactNode } from "react";
 import { useBreakpointValue } from "@chakra-ui/react";
 interface NavSectionProps {

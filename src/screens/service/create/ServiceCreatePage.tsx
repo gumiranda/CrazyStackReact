@@ -1,6 +1,6 @@
-import { Box, Head } from "shared/ui";
-import { CreateServiceForm } from "features/service/create";
-import { GetCategorysResponse } from "entidades/category";
+import { Box, Head } from "@/shared/ui";
+import { CreateServiceForm } from "@/features/service/create";
+import { GetCategorysResponse } from "@/entidades/category";
 type ServiceCreatePageProps = {
   data: GetCategorysResponse;
 };

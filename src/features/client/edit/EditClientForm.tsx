@@ -1,6 +1,6 @@
-import { ClientProps } from "entidades/client";
+import { ClientProps } from "@/entidades/client";
 import { useEditClient } from "./editClient.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditClientFormProps {
   client: ClientProps;

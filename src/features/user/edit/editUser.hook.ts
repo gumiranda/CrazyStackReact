@@ -1,12 +1,12 @@
-import { useServiceListMultiple } from "features/user/serviceListMultiple";
-import { useOwnersSelect } from "features/owner/ownerList.hook";
-import { useUi } from "shared/libs";
+import { useServiceListMultiple } from "@/features/user/serviceListMultiple";
+import { useOwnersSelect } from "@/features/owner/ownerList.hook";
+import { useUi } from "@/shared/libs";
 import { EditUserFormProps } from "./EditUserForm";
 import { EditUserFormData, SubmitEditUserHandler, useEditUserLib } from "./editUser.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { OwnerProps } from "entidades/owner";
+import { OwnerProps } from "@/entidades/owner";
 export const useEditUser = (props: EditUserFormProps) => {
   const { showModal } = useUi();
   const { user: currentUser, serviceList, ownerList } = props;

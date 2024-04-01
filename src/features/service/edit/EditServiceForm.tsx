@@ -1,4 +1,4 @@
-import { ServiceProps } from "entidades/service";
+import { ServiceProps } from "@/entidades/service";
 import { useEditService } from "./editService.hook";
 import {
   BoxCreateItem,
@@ -7,8 +7,8 @@ import {
   GridForm,
   Checkbox,
   Select,
-} from "shared/ui";
-import { GetCategorysResponse } from "entidades/category";
+} from "@/shared/ui";
+import { GetCategorysResponse } from "@/entidades/category";
 
 export interface EditServiceFormProps {
   service: ServiceProps;

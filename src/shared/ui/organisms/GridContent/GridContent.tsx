@@ -1,5 +1,5 @@
 import { Skeleton, Stack, Flex, Text } from "@chakra-ui/react";
-import { GenericListGrid } from "shared/ui/molecules";
+import { GenericListGrid } from "@/shared/ui/molecules";
 
 type Field = {
   id: string;

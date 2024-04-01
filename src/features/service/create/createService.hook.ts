@@ -1,15 +1,15 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import {
   CreateServiceFormData,
   SubmitCreateServiceHandler,
   useCreateServiceLib,
 } from "./createService.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { CreateServiceFormProps } from "./CreateServiceForm";
-import { useCategoriesSelect } from "features/category/categoryList.hook";
+import { useCategoriesSelect } from "@/features/category/categoryList.hook";
 
 export const useCreateService = ({ categoryList }: CreateServiceFormProps) => {
   const { showModal } = useUi();

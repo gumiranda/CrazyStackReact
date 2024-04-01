@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetRequestsResponse } from "entidades/request/request.api";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetRequestsResponse } from "@/entidades/request/request.api";
 import { useRequestList } from "../requestList.hook";
 type RequestListTablePageProps = {
   data: GetRequestsResponse;

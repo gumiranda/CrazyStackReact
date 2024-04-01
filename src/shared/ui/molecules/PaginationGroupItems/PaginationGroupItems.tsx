@@ -1,5 +1,5 @@
 import { Stack } from "@chakra-ui/react";
-import { PaginationItem, Text } from "shared/ui/atoms";
+import { PaginationItem, Text } from "@/shared/ui/atoms";
 interface PaginationGroupItemsProps {
   currentPage: number;
   siblingsCount: number;

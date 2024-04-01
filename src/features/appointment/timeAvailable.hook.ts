@@ -1,4 +1,4 @@
-import { getTimeAvailables } from "entidades/appointment";
+import { getTimeAvailables } from "@/entidades/appointment";
 import { useState, useEffect } from "react";
 import { toDate as toDateDateFns } from "date-fns";
 type Params = {

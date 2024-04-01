@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditClientFormProps } from "./EditClientForm";
 import {
   EditClientFormData,
@@ -6,7 +6,7 @@ import {
   useEditClientLib,
 } from "./editClient.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEditClient = (props: EditClientFormProps) => {
   const { showModal } = useUi();

@@ -1,4 +1,4 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditMapRouteFormProps } from "./EditMapRouteForm";
 import {
   EditMapRouteFormData,
@@ -6,7 +6,7 @@ import {
   useEditMapRouteLib,
 } from "./editMapRoute.lib";
 import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useHandleLocation } from "../hooks";
 
