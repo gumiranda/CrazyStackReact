@@ -1,8 +1,9 @@
+"use client";
 import { useMutation } from "@tanstack/react-query";
 import { useUi } from "@/shared/libs";
 import { api } from "@/shared/api";
 import { queryClientInstance } from "@/shared/api";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useGetInfiniteClients } from "@/entidades/client/client.lib";
 
 export const useClientInfiniteList = () => {
@@ -11,7 +12,7 @@ export const useClientInfiniteList = () => {
   const all = useGetInfiniteClients({
     getNextPageParam: (lastPage: any, pages) => lastPage.next,
     getPreviousPageParam: (firstPage: any, pages) => firstPage.prev,
-  });
+  } as any);
   const {
     data,
     error,
@@ -20,14 +21,14 @@ export const useClientInfiniteList = () => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = all || {};
+  }: any = all || {};
   const firstPage: any = data?.pages[0];
   const total: any = (firstPage?.total as any) || {};
   const deleteSelectedAction = async (item: any) => {
-    deleteClient.mutateAsync([item]);
+    deleteClient.mutateAsync([item] as any);
   };
-  const deleteClient = useMutation(
-    async (clientsToDelete: any = []) => {
+  const deleteClient = useMutation({
+    mutationFn: async (clientsToDelete: any = []) => {
       try {
         if (clientsToDelete?.length > 0) {
           return Promise.all(
@@ -45,22 +46,20 @@ export const useClientInfiniteList = () => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["clientsInfinite", data?.pages ?? 1]);
-        queryClientInstance.refetchQueries(["clientsInfinite", data?.pages]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries(["clientsInfinite", data?.pages ?? 1] as any);
+      queryClientInstance.refetchQueries(["clientsInfinite", data?.pages] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   return {
     deleteSelectedAction,
     isFetching,

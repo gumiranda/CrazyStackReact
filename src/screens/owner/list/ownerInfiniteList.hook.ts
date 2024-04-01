@@ -1,8 +1,9 @@
+"use client";
 import { useMutation } from "@tanstack/react-query";
 import { useUi } from "@/shared/libs";
 import { api } from "@/shared/api";
 import { queryClientInstance } from "@/shared/api";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useGetInfiniteOwners } from "@/entidades/owner/owner.lib";
 
 export const useOwnerInfiniteList = () => {
@@ -11,7 +12,7 @@ export const useOwnerInfiniteList = () => {
   const all = useGetInfiniteOwners({
     getNextPageParam: (lastPage: any, pages) => lastPage.next,
     getPreviousPageParam: (firstPage: any, pages) => firstPage.prev,
-  });
+  } as any);
   const {
     data,
     error,
@@ -20,14 +21,14 @@ export const useOwnerInfiniteList = () => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = all || {};
+  }: any = all || {};
   const firstPage: any = data?.pages[0];
   const total: any = (firstPage?.total as any) || {};
   const deleteSelectedAction = async (item: any) => {
-    deleteOwner.mutateAsync([item]);
+    deleteOwner.mutateAsync([item] as any);
   };
-  const deleteOwner = useMutation(
-    async (ownersToDelete: any = []) => {
+  const deleteOwner = useMutation({
+    mutationFn: async (ownersToDelete: any = []) => {
       try {
         if (ownersToDelete?.length > 0) {
           return Promise.all(
@@ -45,22 +46,20 @@ export const useOwnerInfiniteList = () => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["ownersInfinite", data?.pages ?? 1]);
-        queryClientInstance.refetchQueries(["ownersInfinite", data?.pages]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries(["ownersInfinite", data?.pages ?? 1] as any);
+      queryClientInstance.refetchQueries(["ownersInfinite", data?.pages] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   return {
     deleteSelectedAction,
     isFetching,

@@ -1,10 +1,11 @@
+"use client";
 import { GetCategorysResponse } from "@/entidades/category/category.api";
 import { useState, useEffect } from "react";
 import { useUi } from "@/shared/libs";
 import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { CategoryProps } from "@/entidades/category";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 type CategoryListHook = {
   initialData: GetCategorysResponse;
   page: number;
@@ -15,17 +16,31 @@ export const useCategoryList = (data: CategoryListHook) => {
   const [page, setPage] = useState(data.page);
   const [categorys, setCategorys] = useState(data?.initialData?.categorys ?? []);
   const handlePrefetchCategory = async ({ _id: categoryId }: any) => {
-    await queryClientInstance.prefetchQuery(
-      ["category", categoryId],
-      async () => {
-        const { data = null } = (await api.get(`/category/load?_id=${categoryId}`)) || {};
-        return data;
-      },
-      { staleTime: 1000 * 60 * 10 }
-    );
+    // await queryClientInstance.prefetchQuery(
+    //   ["category", categoryId],
+    //   async () => {
+    //     const { data = null } =
+    //       (await api.get(`/category/load?_id=${categoryId}`)) || {};
+    //     return data;
+    //   },
+    //   { staleTime: 1000 * 60 * 10 },
+    // );
   };
-  const deleteCategory = useMutation(
-    async (categorysToDelete: any = []) => {
+  const deleteCategory = useMutation({
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries(["categorys", data.page] as any);
+      queryClientInstance.refetchQueries(["categorys", data.page] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+    mutationFn: (async (categorysToDelete: any = []) => {
       try {
         if (categorysToDelete?.length > 0) {
           return Promise.all(
@@ -42,26 +57,11 @@ export const useCategoryList = (data: CategoryListHook) => {
           type: "error",
         });
       }
-    },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["categorys", data.page]);
-        queryClientInstance.refetchQueries(["categorys", data.page]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    }) as any,
+  });
   const deleteSelectedAction = async () => {
     deleteCategory.mutateAsync(
-      categorys.filter((category: CategoryProps) => category.value)
+      categorys.filter((category: CategoryProps) => category.value) as any
     );
   };
   const changePage = (newpage: number) => {
