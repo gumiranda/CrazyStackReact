@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Highlighter from "react-highlight-words";
