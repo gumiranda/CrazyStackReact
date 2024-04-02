@@ -1,3 +1,4 @@
+"use client";
 import { useUi } from "@/shared/libs";
 import { EditServiceFormProps } from "./EditServiceForm";
 import {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Head } from "@/shared/ui";
 import { ServiceDetails } from "@/entidades/service/details";
 import { ServiceProps } from "@/entidades/service";
