@@ -1,5 +1,21 @@
 /* eslint-disable quotes */
 module.exports = function (plop) {
+  plop.setGenerator("approute", {
+    description: "Create a component",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "what the name of domain?",
+      },
+      {
+        type: "input",
+        name: "label",
+        message: "label of domain?",
+      },
+    ],
+    actions: [...appRoute],
+  });
   plop.setGenerator("component", {
     description: "Create a component",
     prompts: [
@@ -221,5 +237,37 @@ const screens = [
     type: "add",
     path: "../src/screens/{{camelCase name}}/list/{{camelCase name}}List.hook.ts",
     templateFile: "templates/crud/screens/list/domainList.hook.ts.hbs",
+  },
+];
+const appRoute = [
+  {
+    type: "add",
+    path: "../src/app/{{camelCase name}}s/layout.tsx",
+    templateFile: "templates/app/domain/layout.tsx.hbs",
+  },
+  {
+    type: "add",
+    path: "../src/app/{{camelCase name}}s/list/page.tsx",
+    templateFile: "templates/app/domain/list/page.tsx.hbs",
+  },
+  {
+    type: "add",
+    path: "../src/app/{{camelCase name}}s/create/page.tsx",
+    templateFile: "templates/app/domain/create/page.tsx.hbs",
+  },
+  {
+    type: "add",
+    path: "../src/app/{{camelCase name}}s/[page]/page.tsx",
+    templateFile: "templates/app/domain/[page]/page.tsx.hbs",
+  },
+  {
+    type: "add",
+    path: "../src/app/{{camelCase name}}s/edit/[id]/page.tsx",
+    templateFile: "templates/app/domain/edit/[id]/page.tsx.hbs",
+  },
+  {
+    type: "add",
+    path: "../src/app/{{camelCase name}}s/details/[id]/page.tsx",
+    templateFile: "templates/app/domain/details/[id]/page.tsx.hbs",
   },
 ];
