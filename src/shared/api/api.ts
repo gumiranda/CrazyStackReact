@@ -1,7 +1,7 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable prefer-const */
 import axios, { AxiosError } from "axios";
-import { parseCookies, setCookie } from "nookies";
+import { setCookie, parseCookies } from "nookies";
 import { signOut } from "@/shared/libs";
 let isRefreshing = false;
 let failedRequestsQueue: any = [];
@@ -16,7 +16,13 @@ export const getAxios = (token: string): any => {
 };
 
 export function setupAPIClient(ctx = undefined) {
-  let cookies = parseCookies(ctx);
+  let cookies: any = ctx;
+  if (!cookies?.["belezixadmin.token"]) {
+    cookies = parseCookies();
+  }
+  if (!cookies) {
+    return null;
+  }
   const api = getAxios(cookies["belezixadmin.token"]);
   api.interceptors.response.use(
     (response: any) => response,
@@ -24,7 +30,10 @@ export function setupAPIClient(ctx = undefined) {
       if (error?.response?.status === 401) {
         if (error?.response?.data?.error === "Unauthorized") {
           console.log("renova token");
-          cookies = parseCookies(ctx);
+          cookies = ctx;
+          if (!cookies?.["belezixadmin.token"]) {
+            cookies = parseCookies();
+          }
           const { "belezixadmin.refreshToken": refreshToken } = cookies;
           const originalConfig: any = error.config;
           if (!isRefreshing) {
@@ -34,11 +43,11 @@ export function setupAPIClient(ctx = undefined) {
               .then((response: any) => {
                 const { accessToken: token, refreshToken: newRefreshToken } =
                   response?.data;
-                setCookie(ctx, "belezixadmin.token", token, {
+                setCookie(null, "belezixadmin.token", token, {
                   maxAge: 30 * 24 * 60 * 60,
                   path: "/",
                 });
-                setCookie(ctx, "belezixadmin.refreshToken", newRefreshToken, {
+                setCookie(null, "belezixadmin.refreshToken", newRefreshToken, {
                   maxAge: 30 * 24 * 60 * 60,
                   path: "/",
                 });
