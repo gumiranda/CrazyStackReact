@@ -26,7 +26,7 @@ export const MapRouteListTablePage = ({ page = 0, data }: MapRouteListTablePageP
         title={"Belezix Admin | Rotas"}
         description="Página de listagem de rotas do painel de Admin Belezix"
       />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

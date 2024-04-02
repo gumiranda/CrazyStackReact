@@ -24,7 +24,7 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
   });
   return (
     <>
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

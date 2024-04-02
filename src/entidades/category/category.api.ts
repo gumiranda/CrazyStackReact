@@ -50,6 +50,7 @@ export const getCategoryById = async (
     const { data } = await setupAPIClient(ctx).get("/category/load", {
       params: { _id: id },
     });
+    console.log(data);
     if (!data) {
       return null;
     }

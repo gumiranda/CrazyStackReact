@@ -20,7 +20,7 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
         title={"Belezix Admin | Estabelecimentos"}
         description="Página de listagem de estabelecimentos do painel de Admin Belezix"
       />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

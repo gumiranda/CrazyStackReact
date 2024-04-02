@@ -26,7 +26,7 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
         title={"Belezix Admin | Solicitações"}
         description="Página de listagem de solicitações do painel de Admin Belezix"
       />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
