@@ -41,14 +41,15 @@ export const TableHead = ({
     >
       <Heading size="lg">
         {title}
-        {!isLoading && isFetching && <Spinner size="sm" color="purple.500" ml="4" />}
+        {!isLoading && isFetching && <Spinner size="sm" color="white" ml="4" />}
       </Heading>
       <HStack spacing="2">
         <NextLink passHref href={routeCreate}>
           <Button
             size="sm"
             fontSize="sm"
-            colorScheme={"green"}
+            bgColor={"tertiary.500"}
+            _hover={{ bgColor: "tertiary.500" }}
             leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             Cadastrar
@@ -65,7 +66,7 @@ export const TableHead = ({
           </Button>
         </NextLink>
         <Tooltip label="Excluir todos os selecionados">
-          <Button onClick={deleteSelectedAction} size="sm" bg="purple.700">
+          <Button onClick={deleteSelectedAction} size="sm" bg="white">
             <Icon fontSize="20" as={RiDeleteBin6Line} />
           </Button>
         </Tooltip>

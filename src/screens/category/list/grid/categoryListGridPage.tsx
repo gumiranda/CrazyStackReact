@@ -1,3 +1,5 @@
+"use client";
+
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useCategoryInfiniteList } from "../categoryInfiniteList.hook";
 import { useCategoryUi } from "@/entidades/category/category.ui";
@@ -37,10 +39,6 @@ export const CategoryGridPage = () => {
   const { renderItem } = useCategoryUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Categorias"}
-        description="Página de listagem de categorias do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}

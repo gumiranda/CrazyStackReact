@@ -49,7 +49,7 @@ export const InfiniteList = ({
       <Box borderRadius={8} bg="secondary.500" p="8" minH="89vh">
         {children}
       </Box>
-      <Box justifySelf={"flex-end"} bg="purple.800" p="8">
+      <Box justifySelf={"flex-end"} bg="secondary.500" p="8">
         {hasNextPage ? (
           <h1 ref={setElement}>Carregando {entityName}...</h1>
         ) : (
