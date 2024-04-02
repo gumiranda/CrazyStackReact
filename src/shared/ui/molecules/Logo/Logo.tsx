@@ -23,8 +23,8 @@ const SystemNameText = ({ marginBottom = 10, ...rest }) => {
     >
       {config.systemName}
       {config.isAdmin && (
-        <Text color="tertiary.300" marginLeft="2" as="span">
-          Admin
+        <Text color="tertiary.500" marginLeft="2" as="span">
+          admin
         </Text>
       )}
     </Text>

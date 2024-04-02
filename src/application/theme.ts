@@ -11,6 +11,7 @@ const colors = {
     900: "#212121",
   },
   tertiary: {
+    300: "#04D361",
     500: "#04D361",
   },
   grayscale: {
