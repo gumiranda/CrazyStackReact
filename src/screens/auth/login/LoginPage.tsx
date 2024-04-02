@@ -1,18 +1,19 @@
 "use client";
 
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
 import { Head, Flex } from "@/shared/ui";
 import { useAuth } from "@/shared/libs";
 import { useEffect } from "react";
 import { LoginForm } from "@/features/auth/login";
 export const Login: NextPage = () => {
+  const router = useRouter();
   const { isAuthenticated } = useAuth();
   useEffect(() => {
     if (isAuthenticated) {
-      Router.push("/home");
+      router.push("/home");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
   return (
     <>
       <Head

@@ -1,5 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cloneElement, ReactElement } from "react";
 interface ActiveLinkProps extends LinkProps {
   children: ReactElement;
@@ -10,14 +10,15 @@ export const ActiveLink = ({
   shouldMatchExactHref,
   ...rest
 }: ActiveLinkProps) => {
-  const { asPath = "/" } = useRouter();
+  const pathname = usePathname();
   let isActive = false;
-  if (shouldMatchExactHref && (asPath === rest.href || asPath === rest.as)) {
+  if (shouldMatchExactHref && (pathname === rest.href || pathname === rest.as)) {
     isActive = true;
   }
   if (
+    pathname &&
     !shouldMatchExactHref &&
-    (asPath.startsWith(String(rest.href)) || asPath.startsWith(String(rest.as)))
+    (pathname.startsWith(String(rest.href)) || pathname.startsWith(String(rest.as)))
   ) {
     isActive = true;
   }

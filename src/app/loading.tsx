@@ -1,3 +1,5 @@
+"use client";
+
 import { Flex } from "@/shared/ui";
 
 import { Spinner } from "@chakra-ui/react";
