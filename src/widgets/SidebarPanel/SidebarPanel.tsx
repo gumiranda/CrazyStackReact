@@ -1,35 +1,51 @@
+"use client";
 import { Stack, NavLink, NavSection, Sidebar } from "@/shared/ui";
-import { RiContactsLine } from "react-icons/ri";
+import {
+  RiContactsLine,
+  RiArticleLine,
+  RiUserSettingsLine,
+  RiUser2Fill,
+  RiLuggageDepositLine,
+  RiEditCircleLine,
+  RiWalkFill,
+  RiCalendar2Line,
+} from "react-icons/ri";
 import { useAuth } from "@/shared/libs";
 
 export const SidebarPanel = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user = null } = useAuth() || {};
   if (!isAuthenticated) {
     return null;
   }
   return (
-    <Sidebar title="Navegação">
+    <Sidebar title="Navegar">
       <Stack spacing="0" align="flex-start">
         <NavSection title="GERAL">
-          <NavLink icon={RiContactsLine} href="/categorys/1">
+          {/* <NavLink icon={RiCalendar2Line} href="/new-appointment">
+            Novo agendamento
+          </NavLink> */}
+          {/* <NavLink icon={RiUserSettingsLine} href={`/users/delete/${user?._id}`}>
+            Minha conta
+          </NavLink> */}
+          <NavLink icon={RiEditCircleLine} href="/categorys/1">
             Categorias
           </NavLink>
-          <NavLink icon={RiContactsLine} href="/services/1">
+          <NavLink icon={RiWalkFill} href="/services/1">
             Serviços
           </NavLink>
           <NavLink icon={RiContactsLine} href="/clients/1">
             Clientes
           </NavLink>
-          <NavLink icon={RiContactsLine} href="/owners/1">
+          <NavLink icon={RiLuggageDepositLine} href="/owners/1">
             Estabelecimentos
           </NavLink>
-          <NavLink icon={RiContactsLine} href="/users/1">
+          <NavLink icon={RiUser2Fill} href="/users/1">
             Profissionais
           </NavLink>
-          <NavLink icon={RiContactsLine} href="/requests/1">
+          <NavLink icon={RiArticleLine} href="/requests/1">
             Solicitações
           </NavLink>
-          <NavLink icon={RiContactsLine} href="/appointments/1">
+          <NavLink icon={RiCalendar2Line} href="/appointments/1">
             Agendamentos
           </NavLink>
           <NavLink icon={RiContactsLine} href="/mapRoutes/1">

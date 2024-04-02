@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetCategorysResponse } from "@/entidades/category/category.api";
 import { useCategoryList } from "../categoryList.hook";
@@ -22,10 +24,6 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
   });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Categorias"}
-        description="Página de listagem de categorias do painel de Admin Belezix"
-      />
       <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}

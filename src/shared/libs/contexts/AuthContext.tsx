@@ -8,6 +8,7 @@ import { api } from "@/shared/api";
 
 type User = {
   email: string;
+  name: string;
   role: string;
   _id: string;
 };
