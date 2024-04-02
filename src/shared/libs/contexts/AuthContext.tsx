@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useContext, ReactNode, useState } from "react";
 import { setCookie, destroyCookie, parseCookies } from "nookies";
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useUi } from "./UiContext";
 import { api } from "@/shared/api";
 
@@ -36,7 +36,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
-
+  const Router = useRouter();
   const logout = () => {
     signOut();
     setUser(null);
@@ -113,5 +113,4 @@ export function signOut() {
   destroyCookie(undefined, "belezixadmin.token");
   destroyCookie(undefined, "belezixadmin.refreshToken");
   destroyCookie(undefined, "belezixadmin.user");
-  Router.push("/");
 }
