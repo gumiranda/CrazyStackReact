@@ -13,7 +13,7 @@ export const UserCreatePage = ({ owner, data }: UserCreatePageProps) => {
         title={"Belezix Admin | Profissionais"}
         description="Página de criação de profissionais do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <CreateUserForm serviceList={data} ownerList={owner} />
       </Box>
     </>

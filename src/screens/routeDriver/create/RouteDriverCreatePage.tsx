@@ -9,7 +9,7 @@ export const RouteDriverCreatePage = () => {
         title={"Belezix Admin | Corridas"}
         description="Página de criação de corridas do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <CreateRouteDriverForm />
       </Box>
     </>

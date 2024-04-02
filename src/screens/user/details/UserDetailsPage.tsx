@@ -13,7 +13,7 @@ export const UserDetailsPage = ({ data }: UserDetailsProps) => {
         title={"Belezix Admin | Profissionais"}
         description="Página de detalhes de profissionais do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <UserDetails {...props} />
       </Box>
     </>

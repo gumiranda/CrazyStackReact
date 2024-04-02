@@ -13,7 +13,7 @@ export const RequestDetailsPage = ({ data }: RequestDetailsProps) => {
         title={"Belezix Admin | Solicitações"}
         description="Página de detalhes de solicitações do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <RequestDetails {...props} />
       </Box>
     </>

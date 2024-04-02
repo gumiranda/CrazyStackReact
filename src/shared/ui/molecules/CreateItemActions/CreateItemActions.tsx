@@ -15,7 +15,12 @@ export const CreateItemActions = ({
         <Link href={cancelRoute}>
           <Button colorScheme={"whiteAlpha"}>Cancelar</Button>
         </Link>
-        <Button type="submit" isLoading={isLoadingSaveButton} colorScheme="green">
+        <Button
+          type="submit"
+          isLoading={isLoadingSaveButton}
+          _hover={{ bgColor: "tertiary.500" }}
+          bgColor="tertiary.500"
+        >
           Salvar
         </Button>
       </HStack>

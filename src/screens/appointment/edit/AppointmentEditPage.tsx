@@ -13,7 +13,7 @@ export const AppointmentEditPage = ({ data, id }: AppointmentEditProps) => {
         title={"Belezix Admin | Agendamentos"}
         description="Página de edição de agendamentos do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <EditAppointmentForm {...props} />
       </Box>
     </>
