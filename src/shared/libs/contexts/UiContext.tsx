@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, ReactNode, useState } from "react";
 import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react";
 import { Modal } from "@/widgets";

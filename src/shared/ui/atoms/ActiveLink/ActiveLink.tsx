@@ -1,5 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { cloneElement, ReactElement } from "react";
 interface ActiveLinkProps extends LinkProps {
   children: ReactElement;

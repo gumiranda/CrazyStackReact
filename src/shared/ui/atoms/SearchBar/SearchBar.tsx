@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { Input as InputChakra, InputProps as ChakraInputProps } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { ForwardRefRenderFunction, forwardRef } from "react";
 interface InputProps extends ChakraInputProps {

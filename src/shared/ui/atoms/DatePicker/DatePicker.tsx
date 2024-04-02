@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
 import {

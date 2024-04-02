@@ -5,7 +5,7 @@ import {
   SubmitEdit{{pascalCase name}}Handler,
   useEdit{{pascalCase name}}Lib,
 } from "./edit{{pascalCase name}}.lib";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEdit{{pascalCase name}} = (props: Edit{{pascalCase name}}FormProps) => {

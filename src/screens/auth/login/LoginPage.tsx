@@ -1,4 +1,6 @@
-import Router from "next/router";
+"use client";
+
+import Router from "next/navigation";
 import type { NextPage } from "next";
 import { Head, Flex } from "@/shared/ui";
 import { useAuth } from "@/shared/libs";

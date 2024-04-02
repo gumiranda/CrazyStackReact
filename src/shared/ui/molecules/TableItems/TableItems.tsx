@@ -1,7 +1,9 @@
+"use client";
+
 import { Tr, Td, Checkbox, Link, Icon } from "@chakra-ui/react";
 import { Box, Text, Button, Table } from "@/shared/ui";
 import React, { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Head, Field } from "./Head";
 import { RiPencilLine } from "react-icons/ri";
 
