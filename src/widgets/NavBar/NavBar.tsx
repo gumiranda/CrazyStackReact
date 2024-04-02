@@ -1,11 +1,10 @@
 "use client";
-import { config } from "@/application/config";
 //@ts-nocheck
 import { Header, Flex, Logo, Profile, NotificationsNav, SearchBar } from "@/shared/ui";
 import { useBreakpointValue, Icon, IconButton, useMediaQuery } from "@chakra-ui/react";
-import { RiMenuLine, RiLogoutBoxLine } from "react-icons/ri";
+import { RiMenuLine } from "react-icons/ri";
 import { useAuth, useSidebarDrawer } from "@/shared/libs";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 
 export const NavBar = ({ showLogo = true }) => {
   const { isAuthenticated } = useAuth() || {};
