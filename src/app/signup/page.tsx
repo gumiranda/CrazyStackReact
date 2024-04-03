@@ -11,15 +11,15 @@ export const metadata: Metadata = {
 
 async function getData() {
   const cookies = getCookies();
-  const cookiesParsed = parseCookies(cookies);
-  if (cookiesParsed["belezixadmin.token"]) {
+  if (!cookies) {
     return null;
   }
+  const cookiesParsed = parseCookies(cookies);
   return cookiesParsed;
 }
 export default async function Page() {
   const data = await getData();
-  if (data) {
+  if (data?.["belezixadmin.token"]) {
     redirect("/home");
   }
   return <SignUpPage />;
