@@ -1,3 +1,4 @@
+"use client";
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useAppointmentList } from "../appointmentList.hook";

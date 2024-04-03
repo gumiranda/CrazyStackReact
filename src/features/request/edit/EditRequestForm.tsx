@@ -12,8 +12,9 @@ import { statusArray } from "@/entidades/request/request.model";
 
 export interface EditRequestFormProps {
   request: RequestProps;
+  owners: any;
 }
-export const EditRequestForm = ({ request }: EditRequestFormProps) => {
+export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
   const {
     formState,
     register,
@@ -30,6 +31,7 @@ export const EditRequestForm = ({ request }: EditRequestFormProps) => {
     setDateChanged,
   } = useEditRequest({
     request,
+    owners,
   });
   return (
     <BoxCreateItem

@@ -1,3 +1,4 @@
+"use client";
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useOwnerInfiniteList } from "../ownerInfiniteList.hook";
 import { useOwnerUi } from "@/entidades/owner/owner.ui";

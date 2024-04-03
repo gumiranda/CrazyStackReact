@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { EditRouteDriverForm } from "@/features/routeDriver/edit";
 import { RouteDriverProps } from "@/entidades/routeDriver";

@@ -1,3 +1,4 @@
+"use client";
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetUsersResponse } from "@/entidades/user/user.api";
 import { useUserList } from "../userList.hook";

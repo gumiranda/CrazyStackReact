@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { RequestDetails } from "@/entidades/request/details";
 import { RequestProps } from "@/entidades/request";

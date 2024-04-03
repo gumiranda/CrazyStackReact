@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { EditAppointmentForm } from "@/features/appointment/edit";
 import { AppointmentProps } from "@/entidades/appointment";

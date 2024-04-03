@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { EditMapRouteForm } from "@/features/mapRoute/edit";
 import { MapRouteProps } from "@/entidades/mapRoute";

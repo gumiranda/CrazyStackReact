@@ -33,5 +33,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data || !{{camelCase subdomain}}s) {
     redirect("/login");
   }
-  return <{{pascalCase name}}EditPage data={data} id={id} {{camelCase subdomain}}s={{{camelCase subdomain}}s} />;
+  return <{{pascalCase name}}EditPage data={data} id={id} {{camelCase subdomain}}s={ {{camelCase subdomain}}s} />;
 }

@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { CreateRequestForm } from "@/features/request/create";
 import { GetOwnersResponse } from "@/entidades/owner";

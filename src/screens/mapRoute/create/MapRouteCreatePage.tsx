@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { CreateMapRouteForm } from "@/features/mapRoute/create";
 

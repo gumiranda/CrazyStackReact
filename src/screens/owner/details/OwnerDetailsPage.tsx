@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { OwnerDetails } from "@/entidades/owner/details";
 import { OwnerProps } from "@/entidades/owner";

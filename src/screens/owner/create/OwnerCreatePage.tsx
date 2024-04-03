@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { OwnerProps } from "@/entidades/owner";
 import { CreateOwnerForm } from "@/features/owner/create";

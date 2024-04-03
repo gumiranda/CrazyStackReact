@@ -17,7 +17,7 @@ import { RequestProps } from "@/entidades/request";
 export const useEditRequest = (props: EditRequestFormProps) => {
   const router = useRouter();
   const { showModal } = useUi();
-  const { request: currentRequest } = props;
+  const { request: currentRequest, owners } = props;
   const [dateChanged, setDateChanged] = useState(false);
   const [dateSelected, setDateSelected] = useState(currentRequest?.datePickerSelected);
   const { timeAvailable, timeSelected, handleChangeTimeSelected } = useTimeAvailable({

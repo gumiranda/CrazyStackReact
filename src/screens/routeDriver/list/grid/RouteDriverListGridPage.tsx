@@ -1,3 +1,4 @@
+"use client";
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useRouteDriverInfiniteList } from "../routeDriverInfiniteList.hook";
 import { useRouteDriverUi } from "@/entidades/routeDriver/routeDriver.ui";

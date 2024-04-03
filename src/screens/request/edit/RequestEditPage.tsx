@@ -1,12 +1,13 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { EditRequestForm } from "@/features/request/edit";
 import { RequestProps } from "@/entidades/request";
 type RequestEditProps = {
   data: RequestProps;
-  id: string;
+  owners: any;
 };
-export const RequestEditPage = ({ data, id }: RequestEditProps) => {
-  const props = { request: data };
+export const RequestEditPage = ({ data, owners }: RequestEditProps) => {
+  const props = { request: data, owners };
   return (
     <>
       <Head

@@ -1,3 +1,4 @@
+"use client";
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useAppointmentInfiniteList } from "../appointmentInfiniteList.hook";
 import { useAppointmentUi } from "@/entidades/appointment/appointment.ui";

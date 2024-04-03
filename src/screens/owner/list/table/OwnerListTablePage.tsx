@@ -1,3 +1,4 @@
+"use client";
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetOwnersResponse } from "@/entidades/owner/owner.api";
 import { useOwnerList } from "../ownerList.hook";

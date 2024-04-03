@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { ClientDetails } from "@/entidades/client/details";
 import { ClientProps } from "@/entidades/client";

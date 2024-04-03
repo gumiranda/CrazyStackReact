@@ -1,3 +1,4 @@
+"use client";
 import { Box, Head } from "@/shared/ui";
 import { EditUserForm } from "@/features/user/edit";
 import { UserProps } from "@/entidades/user";
