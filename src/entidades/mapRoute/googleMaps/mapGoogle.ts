@@ -1,3 +1,4 @@
+"use client";
 import type { DirectionsResponseData } from "@googlemaps/google-maps-services-js";
 import { MapProtocol } from "./map.protocol";
 import { RouteGoogle } from "./routeGoogle";

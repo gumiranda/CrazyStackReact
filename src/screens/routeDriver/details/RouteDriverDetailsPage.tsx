@@ -1,5 +1,5 @@
 "use client";
-import { Box, Head } from "@/shared/ui";
+import { Box } from "@/shared/ui";
 import { RouteDriverDetails } from "@/entidades/routeDriver/details";
 import { RouteDriverProps } from "@/entidades/routeDriver";
 import { MapRouteProps } from "@/entidades/mapRoute";
@@ -169,10 +169,6 @@ export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsPro
   };
   return (
     <>
-      <Head
-        title={"Belezix Admin | Corridas"}
-        description="Página de detalhes de corridas do painel de Admin Belezix"
-      />
       <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <RouteDriverDetails {...props} />
         <Box display="flex" flexDir="column">

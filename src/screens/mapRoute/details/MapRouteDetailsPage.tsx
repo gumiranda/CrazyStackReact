@@ -1,7 +1,8 @@
+"use client";
 import { Box, Head, Button } from "@/shared/ui";
 import { MapRouteDetails } from "@/entidades/mapRoute/details";
 import { MapRouteProps } from "@/entidades/mapRoute";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useLoadMap } from "@/features/mapRoute/load-map";
 import { Grid } from "@chakra-ui/react";
 import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
@@ -108,7 +109,7 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_API_URL}/routeDriver`, {
       method: "POST",
       headers: {
-        "Content-Type": "@/application/json",
+        "Content-Type": "application/json",
         authorization: `Bearer ${cookies["belezixadmin.token"]}`,
       },
       body: JSON.stringify({
