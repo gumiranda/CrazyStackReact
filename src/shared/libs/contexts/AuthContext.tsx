@@ -19,11 +19,20 @@ type LoginCredentials = {
   email: string;
   password: string;
 };
+type SignupCredentials = LoginCredentials & {
+  phone: string;
+  name: string;
+  role?: string;
+  coord?: any;
+  passwordConfirmation?: string;
+};
 type AuthContextData = {
   login(credentials: LoginCredentials): Promise<void>;
+  signup(credentials: SignupCredentials): Promise<void>;
   isAuthenticated: boolean;
   user: User | null;
   logout: () => void;
+  setUser: (user: User) => void;
 };
 const AuthContext = createContext({} as AuthContextData);
 export const parseJSON = (json: string) => {
@@ -48,10 +57,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       "belezixadmin.refreshToken": refreshToken = null,
     } = parseCookies();
     const parsedUser = parseJSON(userComingFromCookie);
-    if (parsedUser && refreshToken) {
+    if (parsedUser && refreshToken && parsedUser?.role !== "client") {
       setUser(parsedUser);
     } else {
       signOut();
+      // Router.push("/login");
     }
   }, []);
 
@@ -81,35 +91,92 @@ export function AuthProvider({ children }: AuthProviderProps) {
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
       setLoading(false);
-      showModal({
-        newModalBody: null,
-        type: "success",
-        title: "Sucesso",
-        content: "Login feito com sucesso.",
-      });
-
-      Router.push("/");
+      Router.push("/home");
     } catch (error: any) {
       setLoading(false);
       showModal({
         newModalBody: null,
         type: "error",
         title: "Erro no servidor",
-        content:
+        content: formatMessage(
           error?.response?.data?.message ??
-          "Não foi possível concluir o login. Tente novamente mais tarde.",
+            "Não foi possível concluir o login. Tente novamente mais tarde."
+        ),
+      });
+    }
+  };
+  const signup = async ({ email, password, name, phone }: SignupCredentials) => {
+    try {
+      setLoading(true);
+
+      const response = await api.post("auth/signup", {
+        email,
+        password,
+        passwordConfirmation: password,
+        name,
+        phone,
+        coord: {
+          lat: 0,
+          lng: 0,
+        },
+        role: "owner",
+      });
+      const { accessToken: token, refreshToken, user: userComing } = response?.data || {};
+      setCookie(undefined, "belezixadmin.token", token, {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
+      });
+      setCookie(undefined, "belezixadmin.refreshToken", refreshToken, {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
+      });
+      setCookie(undefined, "belezixadmin.user", JSON.stringify(userComing), {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
+      });
+      setUser(userComing);
+      api.defaults.timeout = 5000;
+      api.defaults.headers["authorization"] = `Bearer ${token}`;
+      setLoading(false);
+      showModal({
+        newModalBody: null,
+        type: "success",
+        title: "Cadastro feito com sucesso",
+        content: "Você já pode confirmar seu email.",
+      });
+
+      Router.push("/home");
+    } catch (error: any) {
+      setLoading(false);
+      showModal({
+        newModalBody: null,
+        type: "error",
+        title: "Erro no servidor",
+        content: formatMessage(
+          error?.response?.data?.message ??
+            "Não foi possível concluir o login. Tente novamente mais tarde."
+        ),
       });
     }
   };
 
   return (
-    <AuthContext.Provider value={{ login, isAuthenticated, user, logout }}>
+    <AuthContext.Provider
+      value={{ signup, setUser, login, isAuthenticated, user, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
 export const useAuth = () => useContext(AuthContext);
-
+const formatMessage = (message: string) => {
+  switch (message) {
+    case "The received email is already in use":
+      return "O e-mail ou a senha estão incorretos";
+    default:
+      return message;
+  }
+};
 export function signOut() {
   destroyCookie(undefined, "belezixadmin.token");
   destroyCookie(undefined, "belezixadmin.refreshToken");

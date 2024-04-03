@@ -3,8 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export interface SignupFormData {
+  name: string;
   email: string;
   password: string;
+  passwordConfirmation?: string;
+  role?: string;
+  phone: string;
+  coord?: any;
 }
 export type SubmitSignupHandler = SubmitHandler<SignupFormData>;
 
