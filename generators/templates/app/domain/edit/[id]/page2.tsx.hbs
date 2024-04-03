@@ -1,0 +1,37 @@
+import { get{{pascalCase name}}ById } from "@/entidades/{{camelCase name}}/{{camelCase name}}.api";
+import { getCookies, parseCookies } from "@/shared/libs/utils";
+export const revalidate = 3000;
+
+import { config } from "@/application/config";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { {{pascalCase name}}EditPage } from "@/screens/{{camelCase name}}/edit";
+import { get{{pascalCase subdomain}}s } from "@/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
+
+export const metadata: Metadata = {
+  title: `${config.systemName} | Editar {{pascalCase label}}`,
+  description: `Página de edição de {{camelCase label}}s do ${config.systemName}. Aqui você pode editar {{camelCase label}}.`,
+};
+
+async function getData(id) {
+  const allCookies = getCookies();
+  const parsedCookies = parseCookies(allCookies);
+  if (!parsedCookies?.["belezixadmin.token"]) {
+    return null;
+  }
+  const [{{camelCase subdomain}}s, data] = await Promise.all([
+    get{{pascalCase subdomain}}s(1, parseCookies(allCookies), {}),
+    get{{pascalCase name}}ById(id, parsedCookies),
+  ]);
+  if (!data || !{{camelCase subdomain}}s) {
+    return null;
+  }
+  return { data, {{camelCase subdomain}}s };
+}
+export default async function Page({ params: { id } }: { params: { id: string } }) {
+  const { data, {{camelCase subdomain}}s } = (await getData(id)) || {};
+  if (!data || !{{camelCase subdomain}}s) {
+    redirect("/login");
+  }
+  return <{{pascalCase name}}EditPage data={data} id={id} {{camelCase subdomain}}s={{{camelCase subdomain}}s} />;
+}
