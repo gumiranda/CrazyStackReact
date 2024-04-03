@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Head, Field } from "./Head";
 import { RiPencilLine } from "react-icons/ri";
+import NextLink from "next/link";
 
 interface TableItemsProps {
   items: any[];
@@ -89,15 +90,11 @@ export const TableItems = ({
             </Td>
           ))}
           <Td style={{ textAlign: "end" }}>
-            <Button
-              as="a"
-              size="sm"
-              href={`${route}/edit/${item?._id}`}
-              fontSize="sm"
-              colorScheme={"purple"}
-            >
-              <Icon fontSize="16" as={RiPencilLine} />
-            </Button>
+            <NextLink href={`${route}/edit/${item?._id}`}>
+              <Button size="sm" fontSize="sm" colorScheme={"purple"}>
+                <Icon fontSize="16" as={RiPencilLine} />
+              </Button>
+            </NextLink>
           </Td>
         </Tr>
       ))}
