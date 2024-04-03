@@ -4,10 +4,14 @@ import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shar
 
 export interface EditClientFormProps {
   client: ClientProps;
+  id: string;
+  users: any;
 }
-export const EditClientForm = ({ client }: EditClientFormProps) => {
+export const EditClientForm = ({ client, id, users }: EditClientFormProps) => {
   const { formState, register, handleSubmit, handleEditClient } = useEditClient({
     client,
+    id,
+    users,
   });
   return (
     <BoxCreateItem

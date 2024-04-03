@@ -4,8 +4,10 @@ import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shar
 
 export interface EditOwnerFormProps {
   owner: OwnerProps;
+  id: string;
+  users: any;
 }
-export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
+export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
   const {
     formState,
     register,
@@ -30,6 +32,8 @@ export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
     setHaveAlternativeHour2,
   } = useEditOwner({
     owner,
+    users,
+    id,
   });
   return (
     <BoxCreateItem

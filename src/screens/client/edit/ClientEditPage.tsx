@@ -5,9 +5,10 @@ import { ClientProps } from "@/entidades/client";
 type ClientEditProps = {
   data: ClientProps;
   id: string;
+  users: any;
 };
-export const ClientEditPage = ({ data, id }: ClientEditProps) => {
-  const props = { client: data };
+export const ClientEditPage = ({ data, id, users }: ClientEditProps) => {
+  const props = { client: data, id, users };
   return (
     <>
       <Head

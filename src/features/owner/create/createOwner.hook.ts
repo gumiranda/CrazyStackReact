@@ -12,7 +12,7 @@ import {
   formatDays,
   listHours,
 } from "@/entidades/owner";
-export const useCreateOwner = () => {
+export const useCreateOwner = ({ data }) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [haveAlternativeHour, setHaveAlternativeHour] = useState(false);

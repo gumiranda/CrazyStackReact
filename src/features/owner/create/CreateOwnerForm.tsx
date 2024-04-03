@@ -2,7 +2,7 @@ import { HourWorks } from "@/entidades/owner";
 import { useCreateOwner } from "./createOwner.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 
-export const CreateOwnerForm = () => {
+export const CreateOwnerForm = ({ data }) => {
   const {
     formState,
     register,
@@ -25,7 +25,7 @@ export const CreateOwnerForm = () => {
     setHaveAlternativeHour,
     haveAlternativeHour2,
     setHaveAlternativeHour2,
-  } = useCreateOwner();
+  } = useCreateOwner({ data });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateOwner)}

@@ -5,9 +5,10 @@ import { AppointmentProps } from "@/entidades/appointment";
 type AppointmentEditProps = {
   data: AppointmentProps;
   id: string;
+  owners: any;
 };
-export const AppointmentEditPage = ({ data, id }: AppointmentEditProps) => {
-  const props = { appointment: data };
+export const AppointmentEditPage = ({ data, id, owners }: AppointmentEditProps) => {
+  const props = { appointment: data, id, owners };
   return (
     <>
       <Head

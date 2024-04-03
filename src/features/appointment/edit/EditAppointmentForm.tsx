@@ -4,11 +4,19 @@ import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shar
 
 export interface EditAppointmentFormProps {
   appointment: AppointmentProps;
+  id: string;
+  owners: any;
 }
-export const EditAppointmentForm = ({ appointment }: EditAppointmentFormProps) => {
+export const EditAppointmentForm = ({
+  appointment,
+  id,
+  owners,
+}: EditAppointmentFormProps) => {
   const { formState, register, handleSubmit, handleEditAppointment } = useEditAppointment(
     {
       appointment,
+      id,
+      owners,
     }
   );
   return (

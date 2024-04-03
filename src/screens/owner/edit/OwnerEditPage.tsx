@@ -5,9 +5,10 @@ import { OwnerProps } from "@/entidades/owner";
 type OwnerEditProps = {
   data: OwnerProps;
   id: string;
+  users: any;
 };
-export const OwnerEditPage = ({ data, id }: OwnerEditProps) => {
-  const props = { owner: data };
+export const OwnerEditPage = ({ data, id, users }: OwnerEditProps) => {
+  const props = { owner: data, id, users };
   return (
     <>
       <Head

@@ -15,7 +15,7 @@ import {
 } from "@/entidades/owner";
 export const useEditOwner = (props: EditOwnerFormProps) => {
   const { showModal } = useUi();
-  const { owner: currentOwner } = props;
+  const { owner: currentOwner, id, users } = props;
   const [haveAlternativeHour, setHaveAlternativeHour] = useState(
     !!currentOwner?.hourStart2
   );
@@ -43,7 +43,7 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
   const editOwner = useMutation({
     mutationFn: async (owner: EditOwnerFormData & HourValidatorInput & Days) => {
       try {
-        const { data } = await api.patch(`/owner/update?_id=${currentOwner._id}`, {
+        const { data } = await api.patch(`/owner/update?_id=${currentOwner?._id ?? id}`, {
           ...owner,
           updatedAt: new Date(),
         });

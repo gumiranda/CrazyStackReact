@@ -12,15 +12,18 @@ import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEditClient = (props: EditClientFormProps) => {
   const { showModal } = useUi();
-  const { client: currentClient } = props;
+  const { client: currentClient, id, users } = props;
   const router = useRouter();
   const editClient = useMutation({
     mutationFn: async (client: EditClientFormData) => {
       try {
-        const { data } = await api.patch(`/client/update?_id=${currentClient._id}`, {
-          ...client,
-          updatedAt: new Date(),
-        });
+        const { data } = await api.patch(
+          `/client/update?_id=${currentClient?._id ?? id}`,
+          {
+            ...client,
+            updatedAt: new Date(),
+          }
+        );
         if (!data) {
           showModal({
             content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",

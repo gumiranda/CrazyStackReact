@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-export const useCreateAppointment = () => {
+export const useCreateAppointment = ({ data }) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);

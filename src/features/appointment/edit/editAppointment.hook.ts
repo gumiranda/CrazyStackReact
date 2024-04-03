@@ -10,13 +10,13 @@ import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEditAppointment = (props: EditAppointmentFormProps) => {
   const { showModal } = useUi();
-  const { appointment: currentAppointment } = props;
+  const { appointment: currentAppointment, id, owners } = props;
   const router = useRouter();
   const editAppointment = useMutation({
     mutationFn: async (appointment: EditAppointmentFormData) => {
       try {
         const { data } = await api.patch(
-          `/appointment/update?_id=${currentAppointment._id}`,
+          `/appointment/update?_id=${currentAppointment._id ?? id}`,
           {
             ...appointment,
             updatedAt: new Date(),
