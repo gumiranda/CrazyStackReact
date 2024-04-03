@@ -5,7 +5,9 @@ export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();
   if (!allCookies) return null;
-  const res = await getUsers(pageNumber, parseCookies(allCookies), {});
+  const res = await getUsers(pageNumber, parseCookies(allCookies), {
+    role: "professional",
+  });
   if (!res) {
     throw new Error("Erro ao buscar dados");
   }
