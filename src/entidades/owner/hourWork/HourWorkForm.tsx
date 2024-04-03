@@ -1,3 +1,4 @@
+"use client";
 import { Select, ControlledSelect, Checkbox } from "@/shared/ui";
 import { OptionBase } from "chakra-react-select";
 
