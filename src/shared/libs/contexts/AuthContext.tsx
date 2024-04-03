@@ -48,6 +48,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const isAuthenticated = !!user;
   const Router = useRouter();
   const logout = () => {
+    setCookie(undefined, "belezixadmin.token", "", {
+      maxAge: 60 * 60 * 24 * 30,
+      path: "/",
+    });
+    setCookie(undefined, "belezixadmin.refreshToken", "", {
+      maxAge: 60 * 60 * 24 * 30,
+      path: "/",
+    });
+    setCookie(undefined, "belezixadmin.user", "", {
+      maxAge: 60 * 60 * 24 * 30,
+      path: "/",
+    });
     signOut();
     setUser(null);
   };
