@@ -30,7 +30,7 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
           {...register("name")}
         />
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="clientList"
           label="Usuário associado ao cliente"
           list={users}

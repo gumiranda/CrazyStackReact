@@ -357,7 +357,7 @@ export const HourWorkForm = ({
         options={daysOptions}
       />
       <Select
-        bg="primary.500"
+        bg="secondary.600"
         name="openHour"
         label={labelHourStart}
         value={valueHourStart}
@@ -367,7 +367,7 @@ export const HourWorkForm = ({
         onChange={onChangeHourStart}
       />
       <Select
-        bg="primary.500"
+        bg="secondary.600"
         name="endHour"
         label={labelHourEnd}
         value={valueHourEnd}
@@ -379,7 +379,7 @@ export const HourWorkForm = ({
       {flagDependent && (
         <>
           <Select
-            bg="primary.500"
+            bg="secondary.600"
             name="openHourLunch"
             label={labelHourLunchStart}
             value={valueHourLunchStart}
@@ -389,7 +389,7 @@ export const HourWorkForm = ({
             onChange={onChangeHourLunchStart}
           />
           <Select
-            bg="primary.500"
+            bg="secondary.600"
             name="endHourLunch"
             label={labelHourLunchEnd}
             value={valueHourLunchEnd}

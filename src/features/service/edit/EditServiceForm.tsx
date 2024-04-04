@@ -91,7 +91,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
           {...register("comission")}
         />
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="categoryList"
           label="Categoria"
           list={categorys}
