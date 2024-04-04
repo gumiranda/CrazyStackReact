@@ -9,7 +9,7 @@ export const Header = ({ children, ...rest }: HeaderProps) => {
       w="100%"
       align="center"
       paddingX={["0", "0", "2", "4"]}
-      top="0"
+      top="2"
       zIndex={99}
       position="sticky"
       bgColor="secondary.600"

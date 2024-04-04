@@ -1,3 +1,4 @@
+import { theme } from "@/application/theme";
 import { Select as SelectChakra, SelectProps, Flex, FormLabel } from "@chakra-ui/react";
 
 export const Select = ({
@@ -6,15 +7,26 @@ export const Select = ({
   keyValue,
   keyLabel,
   label,
+  labelColor = "white",
   ...rest
-}: SelectProps & { list: any[]; keyValue: string; keyLabel: string; label: string }) => {
+}: SelectProps & {
+  list: any[];
+  keyValue: string;
+  keyLabel: string;
+  label: string;
+  labelColor?: string;
+}) => {
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
-      {!!label && <FormLabel htmlFor={rest?.name ?? rest?.id}>{label}</FormLabel>}
-      <SelectChakra bg="purple.700" {...rest} data-testid="SelectTestId">
+      {!!label && (
+        <FormLabel color={labelColor} htmlFor={rest?.name ?? rest?.id}>
+          {label}
+        </FormLabel>
+      )}
+      <SelectChakra bg="secondary.500" {...rest} data-testid="SelectTestId">
         {list?.map?.((item, index) => (
           <option
-            style={{ backgroundColor: "#7159c1" }}
+            style={{ backgroundColor: theme.colors.secondary[500] }}
             key={item?.[keyValue] ?? index}
             value={item?.[keyValue]}
           >

@@ -40,14 +40,21 @@ export interface IDatePickerProps extends Omit<ChakraInputProps, "onChange"> {
   dateFormat?: string;
   onChange: (date: string) => void;
   label: string;
+  labelColor?: string;
 }
 
 export const DatePicker = (props: IDatePickerProps) => {
-  const { onChange, dateFormat = "DD/MM/YYYY", label, ...rest } = props;
+  const {
+    onChange,
+    dateFormat = "DD/MM/YYYY",
+    label,
+    labelColor = "white",
+    ...rest
+  } = props;
   const date = new Date();
   const [year, setYear] = useState(date.getFullYear());
   const [month, setMonth] = useState(date.getMonth());
-  const [monthDetails, setMonthDetails] = useState(getMonthDetails(year, month));
+  const [monthDetails, setMonthDetails] = useState(getMonthDetails(year, month, 4));
   const [selectedDay, setSelectedDay] = useState<number>();
   const inputRef = createRef<HTMLInputElement>();
   const color = useColorModeValue("gray.500", "white");
@@ -77,7 +84,7 @@ export const DatePicker = (props: IDatePickerProps) => {
 
   const setYearAction = (offset: number) => {
     setYear(year + offset);
-    setMonthDetails(getMonthDetails(year + offset, month));
+    setMonthDetails(getMonthDetails(year + offset, month, 4));
   };
 
   const setMonthAction = (offset: number) => {
@@ -92,13 +99,15 @@ export const DatePicker = (props: IDatePickerProps) => {
     }
     setYear(_year);
     setMonth(_month);
-    setMonthDetails(getMonthDetails(_year, _month));
+    setMonthDetails(getMonthDetails(_year, _month, 4));
   };
   return (
     <Menu {...rest}>
       <MenuButton w="100%" type="button">
         <VStack>
-          <FormLabel textAlign={"left"}>{label}</FormLabel>
+          <FormLabel color={labelColor} textAlign={"left"}>
+            {label}
+          </FormLabel>
           <InputGroup>
             <Input color={color} ref={inputRef} {...rest} />
             <InputRightElement children={<ChevronDownIcon w={5} h={5} />} />
@@ -111,15 +120,15 @@ export const DatePicker = (props: IDatePickerProps) => {
             <IconButton
               variant="ghost"
               aria-label="datepicker left button"
-              onClick={() => setYearAction(-1)}
+              onClick={() => setMonthAction(-1)}
               icon={<ArrowLeftIcon color={color} />}
             />
-            <IconButton
+            {/* <IconButton
               variant="ghost"
               aria-label="datepicker left button"
               onClick={() => setMonthAction(-1)}
               icon={<ChevronLeftIcon color={color} />}
-            />
+            /> */}
             <VStack align="center">
               <Button variant="ghost" size="none">
                 <Heading color={color} m={0} fontWeight={200} as="h5">
@@ -136,18 +145,18 @@ export const DatePicker = (props: IDatePickerProps) => {
                 {getMonthStr(month).toUpperCase()}
               </Button>
             </VStack>
-            <IconButton
+            {/* <IconButton
               variant="ghost"
               aria-label="datepicker right button"
               color={color}
               onClick={() => setMonthAction(1)}
               icon={<ChevronRightIcon />}
-            />
+            /> */}
             <IconButton
               variant="ghost"
               aria-label="datepicker right button"
               color={color}
-              onClick={() => setYearAction(1)}
+              onClick={() => setMonthAction(1)}
               icon={<ArrowRightIcon />}
             />
           </HStack>
@@ -167,7 +176,7 @@ export const DatePicker = (props: IDatePickerProps) => {
               return (
                 <Button
                   disabled={day?.month !== 0}
-                  color={color}
+                  color={day?.month === 0 ? color : "gray.200"}
                   backgroundColor={
                     isCurrentDay(day)
                       ? "gray.300"
@@ -178,7 +187,13 @@ export const DatePicker = (props: IDatePickerProps) => {
                   variant="ghost"
                   size="sm"
                   key={index}
-                  onClick={() => onDateClick(day)}
+                  onClick={() => {
+                    if (day?.month !== 0) {
+                      console.log({ day });
+                      return;
+                    }
+                    onDateClick(day);
+                  }}
                 >
                   {day.date}
                 </Button>

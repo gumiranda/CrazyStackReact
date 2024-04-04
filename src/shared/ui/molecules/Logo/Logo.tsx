@@ -20,6 +20,7 @@ const SystemNameText = ({ marginBottom = 10, ...rest }) => {
       fontWeight="bold"
       letterSpacing="tight"
       mb={marginBottom}
+      mt={1}
       lineHeight={0.8}
       fontSize={["4xl", "5xl"]}
       {...rest}
