@@ -8,12 +8,13 @@ export type CreateAppointmentFormData = {
 
 export type SubmitCreateAppointmentHandler = SubmitHandler<CreateAppointmentFormData>;
 
-export const createAppointmentFormSchema = yup.object().shape({
+export const createAppointmentFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof createAppointmentFormSchema>;
 
 export const useCreateAppointmentLib = () => {
-  const formProps = useForm<CreateAppointmentFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(createAppointmentFormSchema),
     defaultValues: {
       name: "",

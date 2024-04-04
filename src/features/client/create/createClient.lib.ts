@@ -9,12 +9,13 @@ export type CreateClientFormData = {
 
 export type SubmitCreateClientHandler = SubmitHandler<CreateClientFormData>;
 
-export const createClientFormSchema = yup.object().shape({
+export const createClientFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof createClientFormSchema>;
 
 export const useCreateClientLib = () => {
-  const formProps = useForm<CreateClientFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(createClientFormSchema),
     defaultValues: {
       name: "",

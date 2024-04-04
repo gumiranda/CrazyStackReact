@@ -25,12 +25,13 @@ export type CreateRequestFormData = ExternalProps & {
 
 export type SubmitCreateRequestHandler = SubmitHandler<CreateRequestFormData>;
 
-export const createRequestFormSchema = yup.object().shape({
+export const createRequestFormSchema = yup.object({
   message: yup.string().required("Nome é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof createRequestFormSchema>;
 
 export const useCreateRequestLib = (props: ExternalProps) => {
-  const formProps = useForm<CreateRequestFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(createRequestFormSchema),
     defaultValues: {
       message: "",

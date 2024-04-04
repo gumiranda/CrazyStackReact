@@ -8,13 +8,14 @@ export type Edit{{pascalCase name}}FormData = {
 
 export type SubmitEdit{{pascalCase name}}Handler = SubmitHandler<Edit{{pascalCase name}}FormData>;
 
-export const edit{{pascalCase name}}FormSchema = yup.object().shape({
+export const edit{{pascalCase name}}FormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof edit{{pascalCase name}}FormSchema>;
 
 export const useEdit{{pascalCase name}}Lib = (props: Edit{{pascalCase name}}FormProps) => {
   const { {{camelCase name}}: current{{pascalCase name}} } = props;
-  const formProps = useForm<Edit{{pascalCase name}}FormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(edit{{pascalCase name}}FormSchema),
     defaultValues: {
       name: current{{pascalCase name}}?.name ?? "",

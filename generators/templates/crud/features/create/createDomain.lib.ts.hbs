@@ -8,12 +8,13 @@ export type Create{{pascalCase name}}FormData = {
 
 export type SubmitCreate{{pascalCase name}}Handler = SubmitHandler<Create{{pascalCase name}}FormData>;
 
-export const create{{pascalCase name}}FormSchema = yup.object().shape({
+export const create{{pascalCase name}}FormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof create{{pascalCase name}}FormSchema>;
 
 export const useCreate{{pascalCase name}}Lib = () => {
-  const formProps = useForm<Create{{pascalCase name}}FormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(create{{pascalCase name}}FormSchema),
     defaultValues: {
       name: "",
