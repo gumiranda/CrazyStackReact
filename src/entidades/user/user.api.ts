@@ -55,3 +55,16 @@ export const getUserById = async (id: string, ctx: any): Promise<UserProps | nul
     return null;
   }
 };
+export const deleteUserById = async (id: string, ctx: any): Promise<any> => {
+  try {
+    const { data } = await setupAPIClient(ctx).delete("/user/delete", {
+      params: { _id: id },
+    });
+    if (!data) {
+      return null;
+    }
+    return userModel(data).format();
+  } catch (error) {
+    return null;
+  }
+};

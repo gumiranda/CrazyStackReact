@@ -1,4 +1,4 @@
-import { renderWithTheme } from "test/testUtils";
+import { renderWithTheme } from "@/test/testUtils";
 import { screen } from "@testing-library/react";
 import { Modal } from "./Modal";
 import { useDisclosure } from "@chakra-ui/react";
