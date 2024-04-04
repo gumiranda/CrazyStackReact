@@ -63,6 +63,7 @@ export const Form = ({
         _hover={{ backgroundColor: "primary.500" }}
         size="lg"
         color="white"
+        w={"100%"}
         isLoading={formState?.isSubmitting}
         {...buttonProps}
       >
