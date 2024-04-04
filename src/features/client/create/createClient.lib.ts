@@ -5,12 +5,14 @@ export type CreateClientFormData = {
   name: string;
   active?: boolean;
   userId?: string;
+  phone: string;
 };
 
 export type SubmitCreateClientHandler = SubmitHandler<CreateClientFormData>;
 
 export const createClientFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
+  phone: yup.string().required("Telefone é obrigatório"),
 });
 export type YupSchema = yup.InferType<typeof createClientFormSchema>;
 
@@ -19,6 +21,7 @@ export const useCreateClientLib = () => {
     resolver: yupResolver(createClientFormSchema),
     defaultValues: {
       name: "",
+      phone: "",
     },
   });
   return { ...formProps };

@@ -6,6 +6,7 @@ export type ClientProps = {
   createdAt: string;
   value?: boolean;
   active?: boolean;
+  phone: string;
 };
 
 class Client {
@@ -21,6 +22,9 @@ class Client {
   }
   get name(): string {
     return this.props.name;
+  }
+  get phone(): string {
+    return this.props.phone;
   }
   get createdAt(): string {
     return this.props.createdAt;
@@ -41,6 +45,7 @@ class Client {
       name: this.props.name,
       active: this.props.active,
       value: false,
+      phone: this.props.phone,
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
