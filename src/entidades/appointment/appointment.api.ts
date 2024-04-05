@@ -60,10 +60,7 @@ export const getAppointmentById = async (
     return null;
   }
 };
-export const loadInvoice = async (
-  params: any,
-  ctx: any
-): Promise<AppointmentProps | null> => {
+export const loadInvoice = async (params: any, ctx: any): Promise<any> => {
   try {
     const { data } = await setupAPIClient(ctx).get("/appointment/loadInvoice", {
       params,

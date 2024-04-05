@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAuth, useUi } from "../contexts";
 
-export const useInfiniteFullList = (fetchNextPage, hasNextPage, isFetching) => {
+export const useInfiniteFullList = ({ fetchNextPage, hasNextPage, isFetching }) => {
   const { user = null } = useAuth() || {};
   const { setLoading } = useUi() || {};
   useEffect(() => {
