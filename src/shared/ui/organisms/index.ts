@@ -1,4 +1,6 @@
 // IMPORT MODULE FILES
+export * from "./TimeSlots";
+export * from "./WeekDaysSelector";
 export * from "./BoxCreateItem";
 export * from "./GridContent";
 export * from "./GridHead";
