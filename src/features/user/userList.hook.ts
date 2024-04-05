@@ -1,5 +1,5 @@
 import { GetUsersResponse, getUsers, UserProps } from "@/entidades/user";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 export type UserFormProps = {
   userList?: GetUsersResponse | null;
   currentUser?: UserProps;
@@ -23,7 +23,7 @@ export const useUsersSelect = ({
     event.preventDefault();
     setUserSelected(event.target.value);
   };
-  const fetchUsersPaginated = async () => {
+  const fetchUsersPaginated = useCallback(async () => {
     if (userList && userList?.totalCount > users?.length && page > 1) {
       const params = { role };
       if (ownerSelected) {
@@ -31,7 +31,13 @@ export const useUsersSelect = ({
       }
       const data = await getUsers(page, null, params);
       if (data?.totalCount > users?.length) {
-        setUsers((prev) => [...prev, ...(data?.users ?? [])]);
+        setUsers((prev) => {
+          // Filter out duplicates based on _id
+          const uniqueUsers = [...prev, ...(data?.users ?? [])].filter(
+            (user, index, self) => self.findIndex((u) => u._id === user._id) === index
+          );
+          return uniqueUsers;
+        });
       }
       setUserSelected(data?.users?.[0]?._id ?? users?.[0]?._id ?? "");
     } else if (!userList && ownerSelected) {
@@ -40,13 +46,19 @@ export const useUsersSelect = ({
         role,
       });
       if (data?.totalCount > users?.length) {
-        setUsers((prev) => [...prev, ...(data?.users ?? [])]);
+        setUsers((prev) => {
+          // Filter out duplicates based on _id
+          const uniqueUsers = [...prev, ...(data?.users ?? [])].filter(
+            (user, index, self) => self.findIndex((u) => u._id === user._id) === index
+          );
+          return uniqueUsers;
+        });
       }
       setUserSelected(data?.users?.[0]?._id ?? users?.[0]?._id ?? "");
     } else {
       setUserSelected(users?.[0]?._id ?? "");
     }
-  };
+  }, [userList, users, page, ownerSelected, role]);
   useEffect(() => {
     setUsers(userList?.users ?? []);
   }, [userList?.users]);
@@ -57,7 +69,7 @@ export const useUsersSelect = ({
   }, [userSelected]);
   useEffect(() => {
     fetchUsersPaginated();
-  }, [page]);
+  }, [fetchUsersPaginated, page]);
   return {
     userSelected,
     setUserSelected,

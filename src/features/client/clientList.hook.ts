@@ -1,5 +1,5 @@
 import { GetClientsResponse, getClients, ClientProps } from "@/entidades/client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 export type ClientFormProps = {
   clientList?: GetClientsResponse | null;
   currentClient?: ClientProps;
@@ -20,7 +20,7 @@ export const useClientsSelect = ({
     event.preventDefault();
     setClientSelected(event.target.value);
   };
-  const fetchClientsPaginated = async () => {
+  const fetchClientsPaginated = useCallback(async () => {
     if (clientList && clientList?.totalCount > clients?.length && page > 1) {
       const params = {};
       if (ownerSelected) {
@@ -28,7 +28,13 @@ export const useClientsSelect = ({
       }
       const data = await getClients(page, null, params);
       if (data?.totalCount > clients?.length) {
-        setClients((prev) => [...prev, ...(data.clients ?? [])]);
+        setClients((prev) => {
+          // Filter out duplicates based on _id
+          const uniqueClients = [...prev, ...(data.clients ?? [])].filter(
+            (client, index, self) => self.findIndex((c) => c._id === client._id) === index
+          );
+          return uniqueClients;
+        });
       }
       setClientSelected(data?.clients?.[0]?._id ?? clients?.[0]?._id ?? "");
     } else if (!clientList && ownerSelected) {
@@ -36,13 +42,19 @@ export const useClientsSelect = ({
         createdById: ownerSelected,
       });
       if (data?.totalCount > clients?.length) {
-        setClients((prev) => [...prev, ...(data.clients ?? [])]);
+        setClients((prev) => {
+          // Filter out duplicates based on _id
+          const uniqueClients = [...prev, ...(data.clients ?? [])].filter(
+            (client, index, self) => self.findIndex((c) => c._id === client._id) === index
+          );
+          return uniqueClients;
+        });
       }
       setClientSelected(data?.clients?.[0]?._id ?? clients?.[0]?._id ?? "");
     } else {
       setClientSelected(clients?.[0]?._id ?? "");
     }
-  };
+  }, [clientList, clients, ownerSelected, page]);
   useEffect(() => {
     setClients(clientList?.clients ?? []);
   }, [clientList?.clients]);
