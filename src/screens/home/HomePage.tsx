@@ -7,7 +7,8 @@ import { LoadInvoice } from "@/features/appointment/load-invoice/LoadInvoice";
 import { LoadAppointmentsByPeriod } from "@/features/appointment/load-appointments-by-period/LoadAppointmentsByPeriod";
 
 export function HomePage() {
-  const { welcomeTitle } = useHome();
+  const { welcomeTitle, selectedDay, selectedDate, handleDayClick, dayFormatted } =
+    useHome();
   return (
     <>
       <Flex w="100%" p={5}>
@@ -20,18 +21,27 @@ export function HomePage() {
               <Text fontSize={"xl"}>Bem vindo(a) de volta ao {config.systemName}</Text>
             </Box>
           </Flex>
-          <Flex>
-            <Flex mt={5} gap={5} direction={{ base: "column", md: "row" }}>
+          <Flex w="100%" alignItems={"center"} justifyContent="flex-start">
+            <Flex mt={5} direction={{ base: "column", md: "row" }}>
               <LoadInvoice />
             </Flex>
-            <Flex ml={15} mt={5} gap={5} direction={{ base: "column", md: "row" }}>
+            <Flex ml={2} mt={5} direction={{ base: "column", md: "row" }}>
               <LoadAppointmentsByPeriod />
             </Flex>
           </Flex>
         </Box>
       </Flex>
-      <TimeSlots></TimeSlots>
-      <WeekDaysSelector />
+      <Flex mt={5}>
+        <Box w={"100%"} p={10}>
+          <WeekDaysSelector
+            selectedDay={selectedDay}
+            onDayClick={handleDayClick}
+            dayFormatted={dayFormatted}
+            selectedDate={selectedDate}
+          />
+          <TimeSlots></TimeSlots>
+        </Box>
+      </Flex>
     </>
   );
 }
