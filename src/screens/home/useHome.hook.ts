@@ -1,4 +1,3 @@
-import { loadInvoice } from "@/entidades/appointment/appointment.api";
 import { getRequests } from "@/entidades/request";
 import { useRequestInfiniteList } from "@/entidades/request/requestInfiniteList.hook";
 import { useAuth } from "@/shared/libs";
@@ -22,9 +21,7 @@ export const useHome = () => {
 
   const [selectedDay, setSelectedDay] = useState<any>(new Date().getDay() - 1);
   const [selectedRange, setSelectedRange] = useState<any>("month");
-  const [selectedRangeInvoice, setSelectedRangeInvoice] = useState<any>("month");
   const [result, setResult] = useState<any>(null);
-  const [resultInvoice, setResultInvoice] = useState<any>(null);
 
   const handleDayClick = ({ dayIndex, extraDiff }: DayClick) => {
     const diff = dayIndex - selectedDay + extraDiff;
@@ -47,14 +44,7 @@ export const useHome = () => {
     }
     getRequestTotal();
   }, [selectedRange]);
-  useEffect(() => {
-    async function getInvoiceTotal() {
-      const { initDate, endDate } = calculateDateRange(selectedRangeInvoice);
-      const result = await loadInvoice({ initDate, endDate }, null);
-      setResultInvoice(result?.appointments?.[0]);
-    }
-    getInvoiceTotal();
-  }, [selectedRangeInvoice]);
+
   return {
     welcomeTitle,
     selectedDay,
@@ -66,9 +56,6 @@ export const useHome = () => {
     selectedRange,
     setSelectedRange,
     result,
-    selectedRangeInvoice,
-    setSelectedRangeInvoice,
-    resultInvoice,
   };
 };
 export type DayClick = {
