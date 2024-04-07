@@ -4,6 +4,7 @@ import { Box, Flex, Text, TimeSlots, WeekDaysSelector } from "@/shared/ui";
 import { useHome } from "./useHome.hook";
 import { config } from "@/application/config";
 import { LoadInvoice } from "@/features/appointment/load-invoice/LoadInvoice";
+import { LoadAppointmentsByPeriod } from "@/features/appointment/load-appointments-by-period/LoadAppointmentsByPeriod";
 
 export function HomePage() {
   const { welcomeTitle } = useHome();
@@ -22,6 +23,9 @@ export function HomePage() {
           <Flex>
             <Flex mt={5} gap={5} direction={{ base: "column", md: "row" }}>
               <LoadInvoice />
+            </Flex>
+            <Flex ml={15} mt={5} gap={5} direction={{ base: "column", md: "row" }}>
+              <LoadAppointmentsByPeriod />
             </Flex>
           </Flex>
         </Box>
