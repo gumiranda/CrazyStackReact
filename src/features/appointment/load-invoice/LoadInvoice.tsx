@@ -3,7 +3,7 @@ import { MdAttachMoney } from "react-icons/md";
 import { useLoadInvoice } from "./useLoadInvoice.hook";
 
 export const LoadInvoice = () => {
-  const { selectedRangeInvoice, setSelectedRangeInvoice } = useLoadInvoice();
+  const { selectedRangeInvoice, setSelectedRangeInvoice, totalIncome } = useLoadInvoice();
   return (
     <Box
       background="primary.600"
@@ -48,6 +48,9 @@ export const LoadInvoice = () => {
         label={""}
         onChange={(e) => setSelectedRangeInvoice(e.target.value)}
       />
+      <Text mt={2} fontWeight="400" fontSize={"xxx-large"}>
+        {totalIncome}
+      </Text>
     </Box>
   );
 };

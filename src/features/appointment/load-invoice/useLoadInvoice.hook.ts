@@ -21,5 +21,10 @@ export const useLoadInvoice = () => {
       getInvoiceTotal();
     }
   }, [selectedRangeInvoice, user?._id]);
-  return { resultInvoice, selectedRangeInvoice, setSelectedRangeInvoice };
+  const totalIncome =
+    resultInvoice?.total?.toLocaleString?.("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }) ?? "R$ 0,00";
+  return { resultInvoice, selectedRangeInvoice, setSelectedRangeInvoice, totalIncome };
 };
