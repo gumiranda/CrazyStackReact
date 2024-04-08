@@ -26,10 +26,6 @@ export const RouteDriverListTablePage = ({
   });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Corridas"}
-        description="Página de listagem de corridas do painel de Admin Belezix"
-      />
       <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}

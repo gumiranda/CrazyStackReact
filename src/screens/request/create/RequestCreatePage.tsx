@@ -8,14 +8,8 @@ type RequestCreatePageProps = {
 };
 export const RequestCreatePage = ({ owners }: RequestCreatePageProps) => {
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Solicitações"}
-        description="Página de criação de solicitações do painel de Admin Belezix"
-      />
-      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
-        <CreateRequestForm ownerList={owners} />
-      </Box>
-    </>
+    <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
+      <CreateRequestForm ownerList={owners} />
+    </Box>
   );
 };

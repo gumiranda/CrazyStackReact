@@ -17,10 +17,6 @@ export const UserDetailsPage = ({ data, id, canDelete = false }: UserDetailsProp
   const { logout = () => {} } = useAuth();
   return (
     <>
-      <Head
-        title={"Belezix Admin | Profissionais"}
-        description="Página de detalhes de profissionais do painel de Admin Belezix"
-      />
       <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <UserDetails {...props} />
         {canDelete === true && (

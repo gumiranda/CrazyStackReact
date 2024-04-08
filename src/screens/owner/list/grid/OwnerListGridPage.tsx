@@ -37,27 +37,21 @@ export const OwnerGridPage = () => {
     })) ?? [];
   const { renderItem } = useOwnerUi({ deleteSelectedAction });
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Estabelecimentos"}
-        description="Página de listagem de estabelecimentos do painel de Admin Belezix"
+    <InfiniteList
+      hasNextPage={hasNextPage as any}
+      fetchNextPage={fetchNextPage}
+      entityName="estabelecimentos"
+    >
+      <GenericGrid
+        items={items}
+        renderItem={renderItem}
+        route={"/owners/list"}
+        routeList={"/owners/1"}
+        routeCreate={"/owners/create"}
+        entityDisplayName={"Estabelecimento"}
+        title={"Estabelecimentos"}
+        {...ownerGridProps}
       />
-      <InfiniteList
-        hasNextPage={hasNextPage as any}
-        fetchNextPage={fetchNextPage}
-        entityName="estabelecimentos"
-      >
-        <GenericGrid
-          items={items}
-          renderItem={renderItem}
-          route={"/owners/list"}
-          routeList={"/owners/1"}
-          routeCreate={"/owners/create"}
-          entityDisplayName={"Estabelecimento"}
-          title={"Estabelecimentos"}
-          {...ownerGridProps}
-        />
-      </InfiniteList>
-    </>
+    </InfiniteList>
   );
 };

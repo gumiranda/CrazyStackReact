@@ -16,40 +16,34 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
       initialData: data,
     });
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Estabelecimentos"}
-        description="Página de listagem de estabelecimentos do painel de Admin Belezix"
+    <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
+      <GenericTable
+        deleteSelectedAction={deleteSelectedAction}
+        isLoading={false}
+        items={owners}
+        fields={[
+          { id: "name", label: "Nome", displayKeyText: true },
+          {
+            id: "createdAt",
+            label: "Data de criação",
+            displayKeyText: false,
+            children: <Text />,
+          },
+        ]}
+        setItems={setOwners}
+        linkOnMouseEnter={handlePrefetchOwner}
+        error={undefined}
+        route={"/owners"}
+        routeDetails={"/owners/details"}
+        routeCreate={"/owners/create"}
+        routeList={"/owners/list"}
+        title={"Estabelecimentos"}
       />
-      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
-        <GenericTable
-          deleteSelectedAction={deleteSelectedAction}
-          isLoading={false}
-          items={owners}
-          fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
-            {
-              id: "createdAt",
-              label: "Data de criação",
-              displayKeyText: false,
-              children: <Text />,
-            },
-          ]}
-          setItems={setOwners}
-          linkOnMouseEnter={handlePrefetchOwner}
-          error={undefined}
-          route={"/owners"}
-          routeDetails={"/owners/details"}
-          routeCreate={"/owners/create"}
-          routeList={"/owners/list"}
-          title={"Estabelecimentos"}
-        />
-        <Pagination
-          onPageChange={setPage}
-          currentPage={page}
-          totalCountOfRegisters={total}
-        />
-      </Box>
-    </>
+      <Pagination
+        onPageChange={setPage}
+        currentPage={page}
+        totalCountOfRegisters={total}
+      />
+    </Box>
   );
 };

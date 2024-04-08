@@ -38,10 +38,6 @@ export const RouteDriverGridPage = () => {
   const { renderItem } = useRouteDriverUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Corridas"}
-        description="Página de listagem de corridas do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}

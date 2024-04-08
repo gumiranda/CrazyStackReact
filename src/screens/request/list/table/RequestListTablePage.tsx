@@ -39,6 +39,16 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
       displayKeyText: true,
     },
     { id: "clientName", label: "Cliente", displayKeyText: true },
+    {
+      id: "professionalName",
+      label: "Profissional",
+      displayKeyText: true,
+    },
+    {
+      id: "ownerName",
+      label: "Estabelecimento",
+      displayKeyText: true,
+    },
   ];
   return (
     <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
