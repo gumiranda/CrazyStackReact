@@ -33,7 +33,7 @@ export const TableHead = ({
 }: TableHeadProps) => {
   return (
     <Flex
-      p={["0", "8"]}
+      p={["0", "2"]}
       justify="space-between"
       align="center"
       {...rest}

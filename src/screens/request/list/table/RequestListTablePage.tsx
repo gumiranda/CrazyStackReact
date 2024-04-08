@@ -2,6 +2,7 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetRequestsResponse } from "@/entidades/request/request.api";
 import { useRequestList } from "../requestList.hook";
+import { useBreakpointValue } from "@chakra-ui/react";
 type RequestListTablePageProps = {
   data: GetRequestsResponse;
   page: number;
@@ -21,41 +22,45 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
     page,
     initialData: data,
   });
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const fieldsMobile = [
+    { id: "initDateFormatted", label: "Data do agendamento", displayKeyText: true },
+    {
+      id: "endHour",
+      label: "Horário Fim",
+      displayKeyText: true,
+    },
+  ];
+  const fields = [
+    ...fieldsMobile,
+    {
+      id: "initHour",
+      label: "Horário Início",
+      displayKeyText: true,
+    },
+    { id: "clientName", label: "Cliente", displayKeyText: true },
+  ];
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Solicitações"}
-        description="Página de listagem de solicitações do painel de Admin Belezix"
+    <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
+      <GenericTable
+        deleteSelectedAction={deleteSelectedAction}
+        isLoading={false}
+        items={requests}
+        fields={isMobile ? fieldsMobile : fields}
+        setItems={setRequests}
+        linkOnMouseEnter={handlePrefetchRequest}
+        error={undefined}
+        route={"/requests"}
+        routeDetails={"/requests/details"}
+        routeCreate={"/requests/create"}
+        routeList={"/requests/list"}
+        title={"Solicitações"}
       />
-      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
-        <GenericTable
-          deleteSelectedAction={deleteSelectedAction}
-          isLoading={false}
-          items={requests}
-          fields={[
-            { id: "message", label: "Mensagem", displayKeyText: true },
-            {
-              id: "createdAt",
-              label: "Data de criação",
-              displayKeyText: false,
-              children: <Text />,
-            },
-          ]}
-          setItems={setRequests}
-          linkOnMouseEnter={handlePrefetchRequest}
-          error={undefined}
-          route={"/requests"}
-          routeDetails={"/requests/details"}
-          routeCreate={"/requests/create"}
-          routeList={"/requests/list"}
-          title={"Solicitações"}
-        />
-        <Pagination
-          onPageChange={setPage}
-          currentPage={page}
-          totalCountOfRegisters={total}
-        />
-      </Box>
-    </>
+      <Pagination
+        onPageChange={setPage}
+        currentPage={page}
+        totalCountOfRegisters={total}
+      />
+    </Box>
   );
 };

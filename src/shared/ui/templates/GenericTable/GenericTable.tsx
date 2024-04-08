@@ -39,7 +39,7 @@ export const GenericTable = ({
 }: GenericTableProps) => {
   return (
     <Flex
-      margin={4}
+      margin={0}
       flexDirection={"column"}
       flexGrow="1"
       data-testid="GenericTableTestId"

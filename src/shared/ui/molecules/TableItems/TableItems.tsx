@@ -47,11 +47,11 @@ export const TableItems = ({
         <Tr
           key={`${Math.random() * 10}-${index}`}
           _hover={{
-            background: "purple.700",
+            background: "secondary.400",
             cursor: "pointer",
           }}
         >
-          <Td px={["2", "2", "3"]}>
+          <Td px={["1", "1", "2"]}>
             <Checkbox
               colorScheme={"green"}
               isChecked={item?.value}
@@ -79,20 +79,24 @@ export const TableItems = ({
                     href={`${routeDetails}/${item?._id}`}
                     onMouseEnter={() => linkOnMouseEnter(item)}
                   >
-                    <Text fontWeight={"bold"}>{item[field?.id]}</Text>
+                    <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"bold"}>
+                      {item[field?.id]}
+                    </Text>
                   </Link>
                 </Box>
               ) : field?.displayKeyText === false ? (
                 <>{React.cloneElement(field?.children, { ...item, id: field?.id })}</>
               ) : (
-                <>{item[field?.id]}</>
+                <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"400"}>
+                  {item[field?.id]}
+                </Text>
               )}
             </Td>
           ))}
           <Td style={{ textAlign: "end" }}>
             <NextLink href={`${route}/edit/${item?._id}`}>
               <Button size="sm" fontSize="sm" colorScheme={"purple"}>
-                <Icon fontSize="16" as={RiPencilLine} />
+                <Icon fontSize="10" as={RiPencilLine} />
               </Button>
             </NextLink>
           </Td>
