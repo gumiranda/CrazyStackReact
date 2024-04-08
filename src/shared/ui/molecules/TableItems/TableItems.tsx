@@ -95,8 +95,12 @@ export const TableItems = ({
           ))}
           <Td style={{ textAlign: "end" }}>
             <NextLink href={`${route}/edit/${item?._id}`}>
-              <Button size="sm" fontSize="sm" colorScheme={"purple"}>
-                <Icon fontSize="10" as={RiPencilLine} />
+              <Button
+                size={["xs", "sm", "md", "md"]}
+                fontSize={["xs", "sm", "md", "md"]}
+                colorScheme={"purple"}
+              >
+                <Icon fontSize={["xs", "sm", "md", "lg"]} as={RiPencilLine} />
               </Button>
             </NextLink>
           </Td>
