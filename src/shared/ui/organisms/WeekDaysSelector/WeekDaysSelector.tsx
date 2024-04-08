@@ -19,14 +19,14 @@ export const WeekDaysSelector = ({
       justify={"center"}
       alignItems={"center"}
       w="100%"
-      flexDir={["row"]}
+      flexDir={{ base: "column", md: "row" }}
       alignSelf="center"
     >
       <IconButton
         size={["xs", "sm", "md", "lg"]}
         aria-label="Voltar dia"
         icon={<BsChevronLeft />}
-        mr={4}
+        mr={{ base: 0, md: 4 }}
         onClick={() => {
           if (selectedDay > 0 && selectedDay < 7) {
             onDayClick({ dayIndex: selectedDay - 1, extraDiff: 0 });
@@ -35,41 +35,43 @@ export const WeekDaysSelector = ({
           }
         }}
       />
-      {daysOfWeek.map((day, index) => {
-        const newdaynumber = Number(dayFormatted) + (index - selectedDay);
-        const monthFormatted = Number(new Date(selectedDate).getMonth());
-        const yearFormatted = Number(new Date(selectedDate).getFullYear());
-        const dateIndex = new Date(yearFormatted, monthFormatted, newdaynumber);
-        const dayNumberOfWeek = dateIndex.getDate();
-        const monthNumberOfWeek = dateIndex.toLocaleDateString("pt-BR", {
-          month: "short",
-        });
-        return (
-          <Flex key={index} flexDir="column" align="center">
-            <Text>{dayNumberOfWeek}</Text>
-            <Text>{monthNumberOfWeek?.replace?.(".", "")}</Text>
-            <Button
-              key={index}
-              size={["xs", "sm", "md", "lg"]}
-              aria-label={day}
-              color="white"
-              mx={1}
-              bg={getDayButtonBackground(index)}
-              _hover={{
-                bg: getDayButtonHoverColor(index),
-              }}
-              onClick={() => onDayClick({ dayIndex: index, extraDiff: 0 })}
-            >
-              {day}
-            </Button>
-          </Flex>
-        );
-      })}
+      <Flex my={4}>
+        {daysOfWeek.map((day, index) => {
+          const newdaynumber = Number(dayFormatted) + (index - selectedDay);
+          const monthFormatted = Number(new Date(selectedDate).getMonth());
+          const yearFormatted = Number(new Date(selectedDate).getFullYear());
+          const dateIndex = new Date(yearFormatted, monthFormatted, newdaynumber);
+          const dayNumberOfWeek = dateIndex.getDate();
+          const monthNumberOfWeek = dateIndex.toLocaleDateString("pt-BR", {
+            month: "short",
+          });
+          return (
+            <Flex key={index} flexDir="column" align="center">
+              <Text>{dayNumberOfWeek}</Text>
+              <Text>{monthNumberOfWeek?.replace?.(".", "")}</Text>
+              <Button
+                key={index}
+                size={["xs", "sm", "md", "lg"]}
+                aria-label={day}
+                color="white"
+                mx={1}
+                bg={getDayButtonBackground(index)}
+                _hover={{
+                  bg: getDayButtonHoverColor(index),
+                }}
+                onClick={() => onDayClick({ dayIndex: index, extraDiff: 0 })}
+              >
+                {day}
+              </Button>
+            </Flex>
+          );
+        })}
+      </Flex>
       <IconButton
         size={["xs", "sm", "md", "lg"]}
         aria-label="Avançar dia"
         icon={<BsChevronRight />}
-        ml={4}
+        ml={{ base: 0, md: 4 }}
         onClick={() => {
           if (selectedDay >= 6) {
             onDayClick({ dayIndex: 0, extraDiff: 7 });

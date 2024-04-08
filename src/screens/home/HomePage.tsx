@@ -27,11 +27,13 @@ export function HomePage() {
               <Text fontSize={"xl"}>Bem vindo(a) de volta ao {config.systemName}</Text>
             </Box>
           </Flex>
-          <Flex w="100%" alignItems={"center"} justifyContent="flex-start">
-            <Flex mt={5} direction={{ base: "column", md: "row" }}>
+          <Flex
+            w="100%"
+            alignItems={"center"}
+            justifyContent={{ base: "center", md: "flex-start" }}
+          >
+            <Flex gap={5} mt={5} direction={{ base: "column", md: "row" }}>
               <LoadInvoice />
-            </Flex>
-            <Flex ml={2} mt={5} direction={{ base: "column", md: "row" }}>
               <LoadAppointmentsByPeriod />
             </Flex>
           </Flex>
