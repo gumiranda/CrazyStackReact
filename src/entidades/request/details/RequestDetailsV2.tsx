@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
   const router = useRouter();
-  const { serviceId, clientId } = request;
+  const { serviceId, clientId, initDate, endDate } = request;
   const { service, client, deleteSelectedAction }: any = useRequestDetailsOwner({
     serviceId,
     clientId,
@@ -24,6 +24,7 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
   return (
     <Box>
       <ViewField.Label>{statusMap?.[request?.status]}</ViewField.Label>
+      <DateDetails initDate={initDate} endDate={endDate} />
       <ViewField>
         <ViewField.Label>Cliente:</ViewField.Label>
         <ViewField.Description>{client?.name}</ViewField.Description>
