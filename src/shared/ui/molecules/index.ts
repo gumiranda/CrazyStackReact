@@ -1,4 +1,6 @@
 // IMPORT MODULE FILES
+export * from "./ViewField";
+export * from "./DateDetails";
 export * from "./CreateItemActions";
 export * from "./GridForm";
 export * from "./GenericDetailsItem";

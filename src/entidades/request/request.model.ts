@@ -162,7 +162,7 @@ class Request {
   }
 }
 export const requestModel = (props: RequestProps) => Request.build(props);
-const statusMap: any = {
+export const statusMap: any = {
   0: "Solicitado",
   1: "Confirmado",
   2: "Cancelado pelo prestador",

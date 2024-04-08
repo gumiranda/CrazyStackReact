@@ -7,8 +7,14 @@ import { LoadInvoice } from "@/features/appointment/load-invoice/LoadInvoice";
 import { LoadAppointmentsByPeriod } from "@/features/appointment/load-appointments-by-period/LoadAppointmentsByPeriod";
 
 export function HomePage() {
-  const { welcomeTitle, selectedDay, selectedDate, handleDayClick, dayFormatted } =
-    useHome();
+  const {
+    welcomeTitle,
+    selectedDay,
+    selectedDate,
+    handleDayClick,
+    dayFormatted,
+    requestList,
+  } = useHome();
   return (
     <>
       <Flex w="100%" p={5}>
@@ -39,7 +45,7 @@ export function HomePage() {
             dayFormatted={dayFormatted}
             selectedDate={selectedDate}
           />
-          <TimeSlots></TimeSlots>
+          <TimeSlots list={requestList} />
         </Box>
       </Flex>
     </>
