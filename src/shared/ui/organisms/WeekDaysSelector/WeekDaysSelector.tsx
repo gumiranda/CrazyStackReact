@@ -53,6 +53,7 @@ export const WeekDaysSelector = ({
               size={["xs", "sm", "md", "lg"]}
               aria-label={day}
               color="white"
+              mx={1}
               bg={getDayButtonBackground(index)}
               _hover={{
                 bg: getDayButtonHoverColor(index),
