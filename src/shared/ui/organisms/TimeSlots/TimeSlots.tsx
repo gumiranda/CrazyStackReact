@@ -46,6 +46,7 @@ export const TimeSlots = ({ list }) => {
               borderBottom="2px"
               borderColor="white"
               w={"100%"}
+              borderRadius={4}
             >
               <Text fontSize="xl" fontWeight={"500"}>
                 {`${interval.start} - ${interval.end}`}
@@ -61,6 +62,7 @@ export const TimeSlots = ({ list }) => {
                     borderLeft="4px"
                     borderRadius={4}
                     p={4}
+                    bg="secondary.500"
                     borderColor={
                       [7, 1]?.includes?.(item?.status)
                         ? "tertiary.500"
