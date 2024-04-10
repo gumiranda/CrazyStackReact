@@ -64,9 +64,19 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
           placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
           _placeholder={{ opacity: 1, color: "gray.500" }}
           items={autoCompleteProps?.list}
-          listStyleProps={{ bgColor: "primary.600", color: "white" }}
-          listItemStyleProps={{ bgColor: "primary.600", color: "white" }}
-          highlightItemBg="primary.500"
+          listStyleProps={
+            autoCompleteProps?.listStyleProps ?? {
+              bgColor: "primary.600",
+              color: "white",
+            }
+          }
+          listItemStyleProps={
+            autoCompleteProps?.listItemStyleProps ?? {
+              bgColor: "primary.600",
+              color: "white",
+            }
+          }
+          highlightItemBg={autoCompleteProps?.highlightItemBg ?? "primary.500"}
         />
       )}
 
