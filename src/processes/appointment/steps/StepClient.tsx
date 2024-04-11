@@ -39,9 +39,9 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
   const handleCreateClient: SubmitCreateClientHandler = async (
     values: CreateClientFormData
   ) => {
-    const existingClient = clientList?.clients?.find?.(
-      (item) => item?.name === values?.name
-    );
+    const name = (document.getElementById("name") as HTMLInputElement).value;
+
+    const existingClient = clientList?.clients?.find?.((item) => item?.name === name);
     console.log({ existingClient, values });
     setLoading(true);
     const userId = userSelected ?? users?.[0]?._id ?? userList?.[0]?._id ?? "";
