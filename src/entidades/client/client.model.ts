@@ -3,7 +3,7 @@ export type ClientProps = {
   name: string;
   createdById: string;
   userId: string;
-  createdAt: string;
+  createdAt?: string;
   value?: boolean;
   active?: boolean;
   phone: string;

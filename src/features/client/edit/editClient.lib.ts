@@ -5,11 +5,13 @@ import { EditClientFormProps } from "./EditClientForm";
 export type EditClientFormData = {
   name: string;
   phone: string;
+  _id?: string;
 };
 
 export type SubmitEditClientHandler = SubmitHandler<EditClientFormData>;
 
 export const editClientFormSchema = yup.object({
+  _id: yup.string(),
   name: yup.string().required("Nome é obrigatório"),
   phone: yup.string().required("Telefone é obrigatório"),
 });
@@ -22,6 +24,7 @@ export const useEditClientLib = (props: EditClientFormProps) => {
     defaultValues: {
       name: currentClient?.name ?? "",
       phone: currentClient?.phone ?? "",
+      _id: currentClient?._id ?? "",
     },
   });
   return { ...formProps };

@@ -11,10 +11,15 @@ const steps = [
   { title: "Profissional e Serviço", description: "Selecione o prestador e o serviço" },
   { title: "Data", description: "Selecione dia e horário" },
 ];
-export const FullCreateRequestPage = ({ owners, clients }) => {
+export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
   const { activeStep, setActiveStep } = useSteps({ index: 0, count: steps.length });
   const stepsComponents = [
-    <StepClient key={1} userList={clients} setActiveStep={setActiveStep} />,
+    <StepClient
+      key={1}
+      userList={clientUsers}
+      clientList={clients}
+      setActiveStep={setActiveStep}
+    />,
     <StepServiceProfessional setActiveStep={setActiveStep} />,
     <StepDate setActiveStep={setActiveStep} />,
     <StepSuccess />,
