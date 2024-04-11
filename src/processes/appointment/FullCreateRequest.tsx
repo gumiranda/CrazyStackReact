@@ -14,9 +14,9 @@ const steps = [
 export const FullCreateRequestPage = ({ owners, clients }) => {
   const { activeStep, setActiveStep } = useSteps({ index: 0, count: steps.length });
   const stepsComponents = [
-    <StepClient />,
-    <StepServiceProfessional />,
-    <StepDate />,
+    <StepClient key={1} userList={clients} setActiveStep={setActiveStep} />,
+    <StepServiceProfessional setActiveStep={setActiveStep} />,
+    <StepDate setActiveStep={setActiveStep} />,
     <StepSuccess />,
   ];
   return (
@@ -35,7 +35,7 @@ export const FullCreateRequestPage = ({ owners, clients }) => {
           textAlign={"center"}
           fontSize="2xl"
         >
-          Solicitar agendamento
+          Criar agendamento
         </Text>
       )}
       <Stepper activeStep={activeStep} steps={steps} stepsComponents={stepsComponents} />

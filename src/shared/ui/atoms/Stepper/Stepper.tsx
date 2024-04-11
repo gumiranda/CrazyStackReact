@@ -26,7 +26,7 @@ export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) =
           <StepperChakra
             orientation={isMobile ? "vertical" : "horizontal"}
             m={8}
-            height={isMobile ? "300px" : "auto"}
+            height={isMobile ? "200px" : "auto"}
             index={activeStep}
             colorScheme="tertiary"
           >
