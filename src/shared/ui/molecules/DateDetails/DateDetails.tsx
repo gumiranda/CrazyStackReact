@@ -5,7 +5,7 @@ import { ptBR } from "date-fns/locale";
 
 export const DateDetails = ({ initDate, endDate }) => {
   const dateFormatted = useMemo(
-    () => format(new Date(initDate), "HH:mm", { locale: ptBR }),
+    () => format(new Date(initDate), "dd/MM/yyyy"),
     [initDate]
   );
   const hour = useMemo(() => {
