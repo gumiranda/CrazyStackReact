@@ -14,7 +14,13 @@ export type SubmitCreateClientHandler = SubmitHandler<CreateClientFormData>;
 export const createClientFormSchema = yup.object({
   _id: yup.string(),
   name: yup.string().required("Nome é obrigatório"),
-  phone: yup.string().required("Telefone é obrigatório"),
+  phone: yup
+    .string()
+    .required("Telefone é obrigatório")
+    .test("phone", "Telefone inválido", (value) => {
+      const cleanedPhone = value?.replace?.(/\D/g, "");
+      return cleanedPhone?.length === 11;
+    }),
 });
 export type YupSchema = yup.InferType<typeof createClientFormSchema>;
 
