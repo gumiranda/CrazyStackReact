@@ -26,7 +26,7 @@ class Client {
   get phone(): string {
     return this.props.phone;
   }
-  get createdAt(): string {
+  get createdAt(): string | undefined {
     return this.props.createdAt;
   }
   get active(): boolean | undefined {
@@ -46,7 +46,7 @@ class Client {
       active: this.props.active,
       value: false,
       phone: this.props.phone,
-      createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
+      createdAt: new Date(this.props.createdAt ?? "").toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
