@@ -13,7 +13,7 @@ export const AuthLayout = ({ children, ...rest }: any) => {
       overflowY={"hidden"}
       {...rest}
     >
-      <Flex flexDir={"column"} w={["100%", "55%"]}>
+      <Flex flexDir={"column"} w={["100%", "85%"]}>
         {children}
       </Flex>
       {isDesktop && (

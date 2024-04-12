@@ -26,7 +26,7 @@ export type CreateRequestFormData = ExternalProps & {
 export type SubmitCreateRequestHandler = SubmitHandler<CreateRequestFormData>;
 
 export const createRequestFormSchema = yup.object({
-  message: yup.string().required("Nome é obrigatório"),
+  message: yup.string(),
 });
 export type YupSchema = yup.InferType<typeof createRequestFormSchema>;
 
