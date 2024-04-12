@@ -26,7 +26,12 @@ export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
       setActiveStep={setActiveStep}
     />,
     <StepDate key={3} setActiveStep={setActiveStep} currentOwner={owners?.owners?.[0]} />,
-    <StepSuccess />,
+    <StepSuccess
+      key={4}
+      setActiveStep={setActiveStep}
+      title={"Confirmar agendamento"}
+      content="Verifique os dados e confirme o agendamento clicando no botão abaixo."
+    />,
   ];
   return (
     <Box

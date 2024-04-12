@@ -9,6 +9,7 @@ import {
   RiEditCircleLine,
   RiWalkFill,
   RiCalendar2Line,
+  RiBox1Line,
 } from "react-icons/ri";
 import { useAuth } from "@/shared/libs";
 
@@ -27,6 +28,12 @@ export const SidebarPanel = () => {
           {/* <NavLink icon={RiUserSettingsLine} href={`/users/delete/${user?._id}`}>
             Minha conta
           </NavLink> */}
+          <NavLink icon={RiCalendar2Line} href="/home">
+            Minha agenda
+          </NavLink>
+          <NavLink icon={RiCalendar2Line} href="/appointments/new">
+            Criar agendamento
+          </NavLink>
           <NavLink icon={RiEditCircleLine} href="/categorys/1">
             Categorias
           </NavLink>

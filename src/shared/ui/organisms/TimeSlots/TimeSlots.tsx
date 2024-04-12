@@ -62,6 +62,7 @@ export const TimeSlots = ({ list }) => {
                     borderLeft="4px"
                     borderRadius={4}
                     p={4}
+                    mt={5}
                     bg="secondary.500"
                     borderColor={
                       [7, 1]?.includes?.(item?.status)
