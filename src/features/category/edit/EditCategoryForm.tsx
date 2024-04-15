@@ -14,7 +14,12 @@ export const EditCategoryForm = ({ category }: EditCategoryFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditCategory)}
-      title={"Editar categoria"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar categoria",
+        domain: t("PAGES:HOME_PAGE.category", {
+          defaultValue: "Categoria",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/categorys/1"}
     >

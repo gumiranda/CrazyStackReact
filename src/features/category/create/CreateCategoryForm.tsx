@@ -12,7 +12,9 @@ export const CreateCategoryForm = () => {
       onSubmit={handleSubmit(handleCreateCategory)}
       title={t("PAGES:HOME_PAGE.createDomain", {
         defaultValue: "Criar categoria",
-        domain: "categoria",
+        domain: t("PAGES:HOME_PAGE.category", {
+          defaultValue: "Categoria",
+        }),
       })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/categorys/1"}

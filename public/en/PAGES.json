@@ -32,7 +32,8 @@
     "route": "Route",
     "ride": "Ride",
     "rides": "Rides",
-    "createDomain": "Create {{domain}}"
+    "createDomain": "Create {{domain}}",
+    "editDomain": "Edit {{domain}}"
   },
   "FIELDS": {
     "name": "Name",
@@ -63,6 +64,13 @@
     "success": "Success",
     "edit": "edited",
     "create": "created",
+    "list": "list",
+    "table": "table",
+    "actions": "Actions",
+    "delete":"Delete all selected",
+    "save": "Save",
+    "cancel": "Cancel",
+    "createNew":"Create new",
     "successMessage": "{{domain}} was {{operation}} with success, you will redirected to list {{domain}} page"
   },
   "NEW_APPOINTMENT": {

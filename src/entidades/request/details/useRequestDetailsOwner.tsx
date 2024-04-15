@@ -32,7 +32,10 @@ export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) 
     currentRequest,
     showModal,
     routeRedirect: "/home",
-    content: "Agendamento confirmado com sucesso, já pode ser visualizado na agenda",
+    content: t("PAGES:NEW_APPOINTMENT.confirmMessage", {
+      defaultValue:
+        "Agendamento confirmado com sucesso, já pode ser visualizado na agenda.",
+    }),
     router,
     t,
   });

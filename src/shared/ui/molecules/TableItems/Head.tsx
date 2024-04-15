@@ -1,4 +1,5 @@
 import { Tr, Th, Checkbox } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 export type Field = {
   id: string;
   label: string;
@@ -19,6 +20,8 @@ export const Head = ({
   setMainChecked,
   setItems,
 }: HeadProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   return (
     <Tr>
       <Th px={["2", "2", "3"]} color="purple.200" width="8">
@@ -42,7 +45,9 @@ export const Head = ({
         </Th>
       ))}
       <Th color="purple.300" style={{ textAlign: "end" }}>
-        Ações
+        {t("PAGES:MESSAGES.actions", {
+          defaultValue: "Ações",
+        })}
       </Th>
     </Tr>
   );

@@ -53,6 +53,13 @@
     "success": "Sucesso",
     "edit": "editado(a)",
     "create": "criado(a)",
+    "list": "lista",
+    "table": "tabela",
+    "delete":"Excluir todos os selecionados",
+    "actions": "Ações",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "createNew":"Criar novo",
     "successMessage": "{{domain}} {{operation}} com sucesso, você será redirecionado para a lista de {{domain}}s"
   },
   "NEW_APPOINTMENT": {

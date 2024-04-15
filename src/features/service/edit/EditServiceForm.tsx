@@ -40,7 +40,12 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditService)}
-      title={"Editar serviço"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar serviço",
+        domain: t("PAGES:HOME_PAGE.service", {
+          defaultValue: "Serviço",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/services/1"}
     >

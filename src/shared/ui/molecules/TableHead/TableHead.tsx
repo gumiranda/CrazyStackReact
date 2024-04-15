@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine, RiFileListLine, RiDeleteBin6Line } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 
 interface TableHeadProps extends FlexProps {
   children?: ReactNode;
@@ -31,6 +32,8 @@ export const TableHead = ({
   title,
   ...rest
 }: TableHeadProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   return (
     <Flex
       p={["0", "2"]}
@@ -52,7 +55,9 @@ export const TableHead = ({
             _hover={{ bgColor: "tertiary.500" }}
             leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
-            Cadastrar
+            {t("PAGES:MESSAGES.createNew", {
+              defaultValue: "Cadastrar",
+            })}
           </Button>
         </NextLink>
         <NextLink passHref href={routeList}>
@@ -62,10 +67,16 @@ export const TableHead = ({
             colorScheme={"purple"}
             leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
           >
-            Lista
+            {t("PAGES:MESSAGES.list", {
+              defaultValue: "Lista",
+            })}
           </Button>
         </NextLink>
-        <Tooltip label="Excluir todos os selecionados">
+        <Tooltip
+          label={t("PAGES:MESSAGES.delete", {
+            defaultValue: "Deletar selecionados",
+          })}
+        >
           <Button onClick={deleteSelectedAction} size="sm" bg="white">
             <Icon fontSize="20" as={RiDeleteBin6Line} />
           </Button>
