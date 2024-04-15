@@ -2,6 +2,7 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useAppointmentList } from "../appointmentList.hook";
+import { useTranslation } from "react-i18next";
 type AppointmentListTablePageProps = {
   data: GetAppointmentsResponse;
   page: number;
@@ -13,6 +14,7 @@ export const AppointmentListTablePage = ({
   page = 0,
   data,
 }: AppointmentListTablePageProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     appointments,
     setAppointments,
@@ -26,20 +28,24 @@ export const AppointmentListTablePage = ({
   });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Agendamentos"}
-        description="Página de listagem de agendamentos do painel de Admin Belezix"
-      />
       <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
           items={appointments}
           fields={[
-            { id: "message", label: "Mensagem", displayKeyText: true },
+            {
+              id: "message",
+              label: t("PAGES:FIELDS.message", {
+                defaultValue: "Mensagem",
+              }),
+              displayKeyText: true,
+            },
             {
               id: "createdAt",
-              label: "Data de criação",
+              label: t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }),
               displayKeyText: false,
               children: <Text />,
             },
@@ -51,7 +57,9 @@ export const AppointmentListTablePage = ({
           routeDetails={"/appointments/details"}
           routeCreate={"/appointments/create"}
           routeList={"/appointments/list"}
-          title={"Agendamentos"}
+          title={t("PAGES:HOME_PAGE.appointments", {
+            defaultValue: "Agendamentos",
+          })}
         />
         <Pagination
           onPageChange={setPage}

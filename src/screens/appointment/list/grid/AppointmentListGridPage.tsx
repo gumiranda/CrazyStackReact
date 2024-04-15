@@ -2,8 +2,10 @@
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useAppointmentInfiniteList } from "../appointmentInfiniteList.hook";
 import { useAppointmentUi } from "@/entidades/appointment/appointment.ui";
+import { useTranslation } from "react-i18next";
 
 export const AppointmentGridPage = () => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     isFetching,
     error,
@@ -26,7 +28,13 @@ export const AppointmentGridPage = () => {
     deleteSelectedAction,
     fields: [
       { id: "message", label: "Mensagem", displayKeyText: true },
-      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+      {
+        id: "createdAt",
+        label: t("PAGES:FIELDS.createdAt", {
+          defaultValue: "Data de criação",
+        }),
+        displayKeyText: true,
+      },
     ],
   };
   const items =
@@ -45,7 +53,9 @@ export const AppointmentGridPage = () => {
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}
-        entityName="agendamentos"
+        entityName={t("PAGES:HOME_PAGE.appointments", {
+          defaultValue: "Agendamentos",
+        })}
       >
         <GenericGrid
           items={items}
@@ -53,8 +63,12 @@ export const AppointmentGridPage = () => {
           route={"/appointments/list"}
           routeList={"/appointments/1"}
           routeCreate={"/appointments/create"}
-          entityDisplayName={"Agendamento"}
-          title={"Agendamentos"}
+          entityDisplayName={t("PAGES:HOME_PAGE.appointment", {
+            defaultValue: "Agendamento",
+          })}
+          title={t("PAGES:HOME_PAGE.appointments", {
+            defaultValue: "Agendamentos",
+          })}
           {...appointmentGridProps}
         />
       </InfiniteList>

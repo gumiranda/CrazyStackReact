@@ -11,10 +11,6 @@ export const ClientEditPage = ({ data, id, users }: ClientEditProps) => {
   const props = { client: data, id, users };
   return (
     <>
-      <Head
-        title={"Belezix Admin | Clientes"}
-        description="Página de edição de clientes do painel de Admin Belezix"
-      />
       <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <EditClientForm {...props} />
       </Box>

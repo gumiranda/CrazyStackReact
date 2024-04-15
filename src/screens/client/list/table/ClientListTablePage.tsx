@@ -2,6 +2,7 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetClientsResponse } from "@/entidades/client/client.api";
 import { useClientList } from "../clientList.hook";
+import { useTranslation } from "react-i18next";
 type ClientListTablePageProps = {
   data: GetClientsResponse;
   page: number;
@@ -10,6 +11,7 @@ const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
 export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     clients,
     setClients,
@@ -23,20 +25,24 @@ export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps
   });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Clientes"}
-        description="Página de listagem de clientes do painel de Admin Belezix"
-      />
       <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
           items={clients}
           fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
+            {
+              id: "name",
+              label: t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }),
+              displayKeyText: true,
+            },
             {
               id: "createdAt",
-              label: "Data de criação",
+              label: t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }),
               displayKeyText: false,
               children: <Text />,
             },
@@ -48,7 +54,9 @@ export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps
           routeDetails={"/clients/details"}
           routeCreate={"/clients/create"}
           routeList={"/clients/list"}
-          title={"Clientes"}
+          title={t("PAGES:HOME_PAGE.clients", {
+            defaultValue: "Clientes",
+          })}
         />
         <Pagination
           onPageChange={setPage}

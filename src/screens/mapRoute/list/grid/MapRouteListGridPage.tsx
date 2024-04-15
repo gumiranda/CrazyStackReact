@@ -2,8 +2,10 @@
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useMapRouteInfiniteList } from "../mapRouteInfiniteList.hook";
 import { useMapRouteUi } from "@/entidades/mapRoute/mapRoute.ui";
+import { useTranslation } from "react-i18next";
 
 export const MapRouteGridPage = () => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     isFetching,
     error,
@@ -25,8 +27,20 @@ export const MapRouteGridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
-      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+      {
+        id: "name",
+        label: t("PAGES:FIELDS.name", {
+          defaultValue: "Nome",
+        }),
+        displayKeyText: true,
+      },
+      {
+        id: "createdAt",
+        label: t("PAGES:FIELDS.createdAt", {
+          defaultValue: "Data de criação",
+        }),
+        displayKeyText: true,
+      },
     ],
   };
   const items =
@@ -49,7 +63,9 @@ export const MapRouteGridPage = () => {
         routeList={"/mapRoutes/1"}
         routeCreate={"/mapRoutes/create"}
         entityDisplayName={"Rotas"}
-        title={"Rotas"}
+        title={t("PAGES:HOME_PAGE.routes", {
+          defaultValue: "Rotas",
+        })}
         {...mapRouteGridProps}
       />
     </InfiniteList>

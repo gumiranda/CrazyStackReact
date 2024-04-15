@@ -26,5 +26,10 @@ export const useLoadInvoice = () => {
       style: "currency",
       currency: "BRL",
     }) ?? "R$ 0,00";
-  return { resultInvoice, selectedRangeInvoice, setSelectedRangeInvoice, totalIncome };
+  return {
+    resultInvoice,
+    selectedRangeInvoice,
+    setSelectedRangeInvoice,
+    totalIncome,
+  };
 };

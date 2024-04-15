@@ -9,12 +9,14 @@ import {
   Select,
 } from "@/shared/ui";
 import { statusArray } from "@/entidades/request/request.model";
+import { useTranslation } from "react-i18next";
 
 export interface EditRequestFormProps {
   request: RequestProps;
   owners: any;
 }
 export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -52,7 +54,12 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
           { id: "initDateFormatted", label: "Data início" },
           { id: "endDateFormatted", label: "Data fim" },
           { id: "professionalId", label: "Id do profissional" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>

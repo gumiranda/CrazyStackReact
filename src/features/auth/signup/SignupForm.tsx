@@ -14,7 +14,12 @@ export const SignupForm = ({ children }: any) => {
     handleSubmit,
     formControls: [
       { type: "text", label: "Nome do estabelecimento", name: "name" },
-      { type: "tel", label: "Telefone", mask: "(99) 99999-9999", name: "phone" },
+      {
+        type: "tel",
+        label: "Telefone",
+        mask: "(99) 99999-9999",
+        name: "phone",
+      },
       { type: "email", label: "E-mail de acesso", name: "email" },
       { type: "password", label: "Sua senha", name: "password" },
     ],

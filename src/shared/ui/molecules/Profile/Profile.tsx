@@ -5,6 +5,7 @@ import { Divider } from "@chakra-ui/react";
 import { IoExitOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+
 type ProfileProps = {
   showProfileData?: boolean;
 };
@@ -61,7 +62,9 @@ export const Profile = ({ showProfileData }: ProfileProps) => {
             >
               <IoExitOutline />
               <Text fontSize="sm">
-                {t("PAGES:HOME_PAGE.logout", { defaultValue: "Sair" })}
+                {t("PAGES:HOME_PAGE.logout", {
+                  defaultValue: "Sair",
+                })}
               </Text>
             </Flex>
           </Box>

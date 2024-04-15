@@ -37,7 +37,9 @@ export default function AdminPage() {
       const cookies = parseCookies();
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_NEXT_API_URL}/routes/${routeId}`,
-        { headers: { Authorization: `Bearer ${cookies["belezixadmin.token"]}` } }
+        {
+          headers: { Authorization: `Bearer ${cookies["belezixadmin.token"]}` },
+        }
       );
       const responseJson: any = await response.json();
       const route = mapRouteModel(responseJson).format();

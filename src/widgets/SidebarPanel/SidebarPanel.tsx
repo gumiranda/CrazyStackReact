@@ -12,8 +12,11 @@ import {
   RiBox1Line,
 } from "react-icons/ri";
 import { useAuth } from "@/shared/libs";
+import { useTranslation } from "react-i18next";
 
 export const SidebarPanel = () => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { isAuthenticated, user = null } = useAuth() || {};
   if (!isAuthenticated) {
     return null;
@@ -29,37 +32,59 @@ export const SidebarPanel = () => {
             Minha conta
           </NavLink> */}
           <NavLink icon={RiCalendar2Line} href="/home">
-            Minha agenda
+            {t("PAGES:HOME_PAGE.mySchedule", {
+              defaultValue: "Minha agenda",
+            })}
           </NavLink>
           <NavLink icon={RiCalendar2Line} href="/appointments/new">
-            Criar agendamento
+            {t("PAGES:HOME_PAGE.createAppointment", {
+              defaultValue: "Criar agendamento",
+            })}
           </NavLink>
           <NavLink icon={RiEditCircleLine} href="/categorys/1">
-            Categorias
+            {t("PAGES:HOME_PAGE.categorys", {
+              defaultValue: "Categorias",
+            })}
           </NavLink>
           <NavLink icon={RiWalkFill} href="/services/1">
-            Serviços
+            {t("PAGES:HOME_PAGE.services", {
+              defaultValue: "Serviços",
+            })}
           </NavLink>
           <NavLink icon={RiContactsLine} href="/clients/1">
-            Clientes
+            {t("PAGES:HOME_PAGE.clients", {
+              defaultValue: "Clientes",
+            })}
           </NavLink>
           <NavLink icon={RiLuggageDepositLine} href="/owners/1">
-            Estabelecimentos
+            {t("PAGES:HOME_PAGE.owners", {
+              defaultValue: "Estabelecimentos",
+            })}
           </NavLink>
           <NavLink icon={RiUser2Fill} href="/users/1">
-            Profissionais
+            {t("PAGES:HOME_PAGE.professionals", {
+              defaultValue: "Profissionais",
+            })}
           </NavLink>
           <NavLink icon={RiArticleLine} href="/requests/1">
-            Solicitações
+            {t("PAGES:HOME_PAGE.requests", {
+              defaultValue: "Solicitações",
+            })}
           </NavLink>
           <NavLink icon={RiCalendar2Line} href="/appointments/1">
-            Agendamentos
+            {t("PAGES:HOME_PAGE.appointments", {
+              defaultValue: "Agendamentos",
+            })}
           </NavLink>
           <NavLink icon={RiContactsLine} href="/mapRoutes/1">
-            Rotas
+            {t("PAGES:HOME_PAGE.routes", {
+              defaultValue: "Rotas",
+            })}
           </NavLink>
           <NavLink icon={RiContactsLine} href="/routeDrivers/1">
-            Corridas
+            {t("PAGES:HOME_PAGE.rides", {
+              defaultValue: "Corridas",
+            })}
           </NavLink>
         </NavSection>
       </Stack>

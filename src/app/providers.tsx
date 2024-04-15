@@ -7,6 +7,7 @@ import { ChakraProvider } from "@/application/providers/chakraProvider";
 import { AuthProvider, SidebarDrawerProvider, UiProvider } from "@/shared/libs";
 import { WebSocketProvider } from "@/application/providers/webSocketProvider";
 import { I18nProvider } from "@/application/providers/i18nProvider";
+
 export type AllProviderProps = {
   children: any;
 };

@@ -12,8 +12,9 @@ import { useTranslation } from "react-i18next";
 
 export const NavBar = ({ showLogo = true }) => {
   const { isAuthenticated } = useAuth() || {};
-  const { i18n } = useTranslation();
-  const { changeLanguage, setCurrentLanguage } = useI18n() || {};
+  const { i18n } = useTranslation() || {};
+  const { changeLanguage, setCurrentLanguage } = useI18n();
+
   const { onOpen = () => {}, onClose } = useSidebarDrawer() || {};
   const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
   const [country, setCountry] = useState(formatLanguageFromi18N(i18n?.language));
@@ -25,16 +26,17 @@ export const NavBar = ({ showLogo = true }) => {
   const Dropdown = CountryDropdown as any;
   useEffect(() => {
     const language = localStorage.getItem("language");
-    if (language) {
+    console.log({ language });
+    if (language && i18n?.changeLanguage) {
       setCountry(formatLanguageFromi18N(language));
-      setCurrentLanguage(language);
+      setCurrentLanguage(formatLanguageFromi18N(language));
       i18n?.changeLanguage?.(language);
     }
   }, []);
   return (
     <Header>
       <Flex alignItems={"center"} w={"100%"}>
-        {isAuthenticated && !isDesktopVersion && (
+        {isAuthenticated && (
           <IconButton
             aria-label="Open sidebar"
             fontSize="24"
@@ -61,8 +63,7 @@ export const NavBar = ({ showLogo = true }) => {
               labelType="short"
               valueType="short"
               showDefaultOption
-              defaultOptionLabel="Selecione o idioma"
-              whitelist={["US", "BR"]}
+              defaultOptionLabel="Selecione um idioma"
               style={{
                 backgroundColor: theme.colors.secondary[400],
                 padding: 10,
@@ -70,6 +71,7 @@ export const NavBar = ({ showLogo = true }) => {
                 marginRight: 15,
                 borderRadius: 8,
               }}
+              whitelist={["US", "BR"]}
             />
             <Profile showProfileData={isDesktopVersion} />
           </Flex>

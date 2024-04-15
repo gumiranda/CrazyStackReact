@@ -3,16 +3,21 @@ import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import { RequestProps } from "../request.model";
+import { useTranslation } from "react-i18next";
 type RequestDetailsProps = {
   request: RequestProps;
 };
 
 export const RequestDetails = ({ request }: RequestDetailsProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   return (
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size={"lg"} fontWeight={"normal"}>
-          Solicitação
+          {t("PAGES:HOME_PAGE.request", {
+            defaultValue: "Solicitação",
+          })}
         </Heading>
         <NextLink passHref href={`/requests/edit/${request?._id}`}>
           <Button
@@ -30,7 +35,12 @@ export const RequestDetails = ({ request }: RequestDetailsProps) => {
         fields={[
           { id: "message", label: "Mensagem" },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
     </>

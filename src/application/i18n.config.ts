@@ -9,14 +9,14 @@ i18next
   .use(ChainedBackend)
   .use(initReactI18next)
   .init({
-    lng: "pt-br",
+    lng: "pt-br", // if you're using a language detector, do not define the lng option
     fallbackLng: "pt-br",
     interpolation: {
-      escapeValue: false,
+      escapeValue: false, // Evita escapar caracteres HTML
     },
     compatibilityJSON: "v3",
     react: {
-      //wait: true,//usar no react native
+      //wait: true,
       useSuspense: false,
     },
     backend: {

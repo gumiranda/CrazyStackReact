@@ -17,7 +17,10 @@ export function useLoadMap(containerRef: React.RefObject<HTMLDivElement>) {
         loader.importLibrary("geometry"),
         getCurrentPosition({ enableHighAccuracy: true }),
       ]);
-      const newMap = new MapGoogle(containerRef.current!, { zoom: 15, center: position });
+      const newMap = new MapGoogle(containerRef.current!, {
+        zoom: 15,
+        center: position,
+      });
       setMap(newMap);
     })();
   }, [containerRef]);

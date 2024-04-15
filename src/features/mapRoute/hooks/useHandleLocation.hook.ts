@@ -130,5 +130,10 @@ export const useHandleLocation = ({
       },
     });
   };
-  return { originListPlaces, destinationListPlaces, fetchDirections, directionsData };
+  return {
+    originListPlaces,
+    destinationListPlaces,
+    fetchDirections,
+    directionsData,
+  };
 };

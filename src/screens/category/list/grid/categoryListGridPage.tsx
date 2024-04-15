@@ -3,8 +3,10 @@
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useCategoryInfiniteList } from "../categoryInfiniteList.hook";
 import { useCategoryUi } from "@/entidades/category/category.ui";
+import { useTranslation } from "react-i18next";
 
 export const CategoryGridPage = () => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     isFetching,
     error,
@@ -26,8 +28,20 @@ export const CategoryGridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
-      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+      {
+        id: "name",
+        label: t("PAGES:FIELDS.name", {
+          defaultValue: "Nome",
+        }),
+        displayKeyText: true,
+      },
+      {
+        id: "createdAt",
+        label: t("PAGES:FIELDS.createdAt", {
+          defaultValue: "Data de criação",
+        }),
+        displayKeyText: true,
+      },
     ],
   };
   const items =
@@ -50,8 +64,12 @@ export const CategoryGridPage = () => {
           route={"/categorys/list"}
           routeList={"/categorys/1"}
           routeCreate={"/categorys/create"}
-          entityDisplayName={"Categoria"}
-          title={"Categorias"}
+          entityDisplayName={t("PAGES:HOME_PAGE.category", {
+            defaultValue: "Categoria",
+          })}
+          title={t("PAGES:HOME_PAGE.categorys", {
+            defaultValue: "Categorias",
+          })}
           {...categoryGridProps}
         />
       </InfiniteList>

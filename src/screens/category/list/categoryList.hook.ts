@@ -6,11 +6,14 @@ import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { CategoryProps } from "@/entidades/category";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 type CategoryListHook = {
   initialData: GetCategorysResponse;
   page: number;
 };
 export const useCategoryList = (data: CategoryListHook) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const router = useRouter();
   const { showModal } = useUi();
   const [page, setPage] = useState(data.page);
@@ -34,8 +37,13 @@ export const useCategoryList = (data: CategoryListHook) => {
     },
     onError: () => {
       showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
+        content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue:
+            "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         type: "error",
       });
     },
@@ -52,8 +60,13 @@ export const useCategoryList = (data: CategoryListHook) => {
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }

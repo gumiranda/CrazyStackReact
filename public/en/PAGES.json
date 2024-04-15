@@ -34,36 +34,36 @@
     "rides": "Rides",
     "createDomain": "Create {{domain}}"
   },
-  "FIELDS":{
-    "name":"Name",
-    "email":"Email",
-    "password":"Password",
-    "passwordConfirm":"Confirm Password",
-    "active":"Active",
-    "initDateFormatted":"Date of appointment",
-    "endHour":"End hour",
-    "initHour":"Init hour",
-    "createdAt":"Created at",
-    "message":"Message",
-    "description":"Description",
-    "price":"Price",
-    "finalPrice":"Final price",
-    "durationOfService":"Duration of service",
-    "productsQuantityNeeded":"Products quantity needed",
-    "comission":"Comission",
-    "havePromotionalPrice":"Have promotional price?",
-    "hasFidelityGenerator":"Has fidelity generator?",
-    "canPayWithFidelityPoints":"Can pay with fidelity points?"
+  "FIELDS": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirm": "Confirm Password",
+    "active": "Active",
+    "initDateFormatted": "Date of appointment",
+    "endHour": "End hour",
+    "initHour": "Init hour",
+    "createdAt": "Created at",
+    "message": "Message",
+    "description": "Description",
+    "price": "Price",
+    "finalPrice": "Final price",
+    "durationOfService": "Duration of service",
+    "productsQuantityNeeded": "Products quantity needed",
+    "comission": "Comission",
+    "havePromotionalPrice": "Have promotional price?",
+    "hasFidelityGenerator": "Has fidelity generator?",
+    "canPayWithFidelityPoints": "Can pay with fidelity points?"
   },
-  "MESSAGES":{
-    "loading":"Loading...",
-    "okUnderstand":"Ok, I understand",
-    "internalServerError":"Internal server error",
-    "errorMessage":"Occurred an error, please try again later",
-    "success":"Success",
-    "edit":"edited",
-    "create":"created",
-    "successMessage":"{{domain}} was {{operation}} with success, you will redirected to list {{domain}} page"
+  "MESSAGES": {
+    "loading": "Loading...",
+    "okUnderstand": "Ok, I understand",
+    "internalServerError": "Internal server error",
+    "errorMessage": "Occurred an error, please try again later",
+    "success": "Success",
+    "edit": "edited",
+    "create": "created",
+    "successMessage": "{{domain}} was {{operation}} with success, you will redirected to list {{domain}} page"
   },
   "NEW_APPOINTMENT": {
     "title": "Create Appointment",
@@ -78,8 +78,8 @@
     "confirmAppointment": "Confirm Appointment",
     "confirmAppointmentMessage": "Verify the information below and confirm the appointment",
     "duration": "Duration",
-    "nameClient":"Name Client",
-    "phone":"Phone",
+    "nameClient": "Name Client",
+    "phone": "Phone",
     "back": "Back",
     "confirm": "Confirm appointment",
     "next": "Next",
@@ -87,6 +87,6 @@
     "observations": "Observations",
     "selectDate": "Select date",
     "loadMore": "Load more",
-    "confirmMessage":"Appointment confirmed successfully, it can already be viewed in the schedule."
+    "confirmMessage": "Appointment confirmed successfully, it can already be viewed in the schedule."
   }
 }

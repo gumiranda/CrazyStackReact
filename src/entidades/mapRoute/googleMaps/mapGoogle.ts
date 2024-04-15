@@ -9,7 +9,10 @@ export class MapGoogle implements MapProtocol {
   public map: google.maps.Map;
   private routes: { [routeId: string]: RouteGoogle } = {};
   constructor(element: HTMLElement, options: google.maps.MapOptions) {
-    this.map = new google.maps.Map(element, { ...options, styles: customStyles });
+    this.map = new google.maps.Map(element, {
+      ...options,
+      styles: customStyles,
+    });
   }
   async addRoute(routeOptions: {
     routeId: string;

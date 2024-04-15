@@ -1,8 +1,9 @@
-import { RouteDriverProps } from "@/entidades/routeDriver";
 import { useCreateRouteDriver } from "./createRouteDriver.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export const CreateRouteDriverForm = () => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -14,13 +15,20 @@ export const CreateRouteDriverForm = () => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRouteDriver)}
-      title={"Criar corrida"}
+      title={t("PAGES:HOME_PAGE.createDomain", {
+        defaultValue: "Criar categoria",
+        domain: t("PAGES:HOME_PAGE.category", {
+          defaultValue: "Categoria",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/routeDrivers/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome da corrida"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />
@@ -30,7 +38,9 @@ export const CreateRouteDriverForm = () => {
           {...register("routeId")}
         />
         <Checkbox
-          label="Ativo"
+          label={t("PAGES:FIELDS.active", {
+            defaultValue: "Ativo",
+          })}
           colorScheme="green"
           isChecked={active}
           onChange={(e) => {

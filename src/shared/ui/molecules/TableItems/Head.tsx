@@ -28,7 +28,10 @@ export const Head = ({
           onChange={(e) => {
             setMainChecked(!mainChecked);
             setItems((prevState: any) =>
-              prevState.map((prevItem: any) => ({ ...prevItem, value: !mainChecked }))
+              prevState.map((prevItem: any) => ({
+                ...prevItem,
+                value: !mainChecked,
+              }))
             );
           }}
         />

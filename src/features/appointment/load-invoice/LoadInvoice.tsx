@@ -1,8 +1,11 @@
 import { Box, Flex, Select, Text } from "@/shared/ui";
 import { MdAttachMoney } from "react-icons/md";
 import { useLoadInvoice } from "./useLoadInvoice.hook";
+import { useTranslation } from "react-i18next";
 
 export const LoadInvoice = () => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { selectedRangeInvoice, setSelectedRangeInvoice, totalIncome } = useLoadInvoice();
   return (
     <Box
@@ -13,7 +16,11 @@ export const LoadInvoice = () => {
     >
       <Flex gap={1} alignItems={"center"}>
         <MdAttachMoney size={25} />
-        <Text fontSize={"2xl"}>Faturamento</Text>
+        <Text fontSize={"2xl"}>
+          {t("PAGES:HOME_PAGE.invoiceLabel", {
+            defaultValue: "Faturamento",
+          })}
+        </Text>
       </Flex>
       <Select
         size="sm"
@@ -23,24 +30,34 @@ export const LoadInvoice = () => {
         list={[
           {
             value: "month",
-            label: "Último mês",
+            label: t("PAGES:HOME_PAGE.lastMonth", {
+              defaultValue: "Último mês",
+            }),
           },
           {
             value: "week",
-            label: "Última semana",
+            label: t("PAGES:HOME_PAGE.lastWeek", {
+              defaultValue: "Última semana",
+            }),
           },
           {
             value: "yesterday",
-            label: "Ontem",
+            label: t("PAGES:HOME_PAGE.yesterday", {
+              defaultValue: "Ontem",
+            }),
           },
           {
             value: "today",
-            label: "Hoje",
+            label: t("PAGES:HOME_PAGE.today", {
+              defaultValue: "Hoje",
+            }),
           },
 
           {
             value: "tomorrow",
-            label: "Amanhã",
+            label: t("PAGES:HOME_PAGE.tomorrow", {
+              defaultValue: "Amanhã",
+            }),
           },
         ]}
         keyValue={"value"}

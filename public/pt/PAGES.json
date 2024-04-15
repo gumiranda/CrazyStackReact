@@ -34,26 +34,26 @@
     "ride": "Corrida",
     "createDomain": "Criar {{domain}}"
   },
-  "FIELDS":{
-    "name":"Nome",
-    "email":"Email",
-    "password":"Senha",
-    "passwordConfirm":"Confirmar senha",
-    "active":"Ativo",
-    "createdAt":"Data de criação" ,
-    "initDateFormatted":"Data do agendamento",
-    "endHour":"Hora final",
-    "initHour":"Hora inicial"
+  "FIELDS": {
+    "name": "Nome",
+    "email": "Email",
+    "password": "Senha",
+    "passwordConfirm": "Confirmar senha",
+    "active": "Ativo",
+    "createdAt": "Data de criação",
+    "initDateFormatted": "Data do agendamento",
+    "endHour": "Hora final",
+    "initHour": "Hora inicial"
   },
-  "MESSAGES":{
-    "loading":"Carregando...",
-    "okUnderstand":"Ok, entendi",
-    "internalServerError":"Erro interno",
-    "errorMessage":"Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-    "success":"Sucesso",
-    "edit":"editado(a)",
-    "create":"criado(a)",
-    "successMessage":"{{domain}} {{operation}} com sucesso, você será redirecionado para a lista de {{domain}}s"
+  "MESSAGES": {
+    "loading": "Carregando...",
+    "okUnderstand": "Ok, entendi",
+    "internalServerError": "Erro interno",
+    "errorMessage": "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+    "success": "Sucesso",
+    "edit": "editado(a)",
+    "create": "criado(a)",
+    "successMessage": "{{domain}} {{operation}} com sucesso, você será redirecionado para a lista de {{domain}}s"
   },
   "NEW_APPOINTMENT": {
     "title": "Criar Agendamento",
@@ -68,8 +68,8 @@
     "confirmAppointment": "Confirmar Agendamento",
     "confirmAppointmentMessage": "Verifique os dados e confirme o agendamento",
     "duration": "Duração",
-    "nameClient":"Nome do(a) cliente",
-    "phone":"Telefone do(a) cliente",
+    "nameClient": "Nome do(a) cliente",
+    "phone": "Telefone do(a) cliente",
     "back": "Voltar",
     "confirm": "Confirmar agendamento",
     "next": "Próximo",

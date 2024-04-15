@@ -62,7 +62,9 @@ export const useServicesSelect = ({
           ""
       );
     } else if (!serviceList && ownerSelected) {
-      const data = await getServices(page, null, { createdById: ownerSelected });
+      const data = await getServices(page, null, {
+        createdById: ownerSelected,
+      });
       if (data?.totalCount > services?.length) {
         setServices((prev) => {
           // Filter out duplicates based on _id

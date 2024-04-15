@@ -6,8 +6,11 @@ import { api } from "@/shared/api";
 import { queryClientInstance } from "@/shared/api";
 import { useRouter } from "next/navigation";
 import { useGetInfiniteCategorys } from "@/entidades/category/category.lib";
+import { useTranslation } from "react-i18next";
 
 export const useCategoryInfiniteList = () => {
+  const { t } = useTranslation(["PAGES"]);
+
   const router = useRouter();
   const { showModal, loading } = useUi();
   const all = useGetInfiniteCategorys({
@@ -41,8 +44,13 @@ export const useCategoryInfiniteList = () => {
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }
@@ -57,8 +65,13 @@ export const useCategoryInfiniteList = () => {
     },
     onError: () => {
       showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
+        content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue:
+            "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         type: "error",
       });
     },

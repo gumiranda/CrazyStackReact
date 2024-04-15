@@ -13,7 +13,10 @@ import {
   listHours,
   EditOwnerFormData,
 } from "@/entidades/owner";
+import { useTranslation } from "react-i18next";
+
 export const useEditOwner = (props: EditOwnerFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const { owner: currentOwner, id, users } = props;
   const [haveAlternativeHour, setHaveAlternativeHour] = useState(
@@ -49,24 +52,44 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
         });
         if (!data) {
           showModal({
-            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-            title: "Erro no servidor",
+            content: t("PAGES:MESSAGES.errorMessage", {
+              defaultValue:
+                "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            }),
+            title: t("PAGES:MESSAGES.internalServerError", {
+              defaultValue: "Erro no servidor",
+            }),
             type: "error",
           });
           return;
         }
         showModal({
-          content:
-            "Estabelecimento editado com sucesso, você será redirecionado para a lista de estabelecimentos",
-          title: "Sucesso",
+          content: t("PAGES:MESSAGES.successMessage", {
+            domain: t("PAGES:HOME_PAGE.owner", {
+              defaultValue: "Estabelecimento",
+            }),
+            operation: t("PAGES:MESSAGES.edit", {
+              defaultValue: "editada",
+            }),
+            defaultValue:
+              "Estabelecimento editada com sucesso, você será redirecionado para a lista de estabelecimentos",
+          }),
+          title: t("PAGES:MESSAGES.success", {
+            defaultValue: "Sucesso",
+          }),
           type: "success",
         });
         router.push("/owners/1");
         return data;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }

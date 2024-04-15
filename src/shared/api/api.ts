@@ -39,7 +39,9 @@ export function setupAPIClient(ctx = undefined) {
           if (!isRefreshing) {
             isRefreshing = true;
             api
-              .get("account/refresh", { headers: { refreshtoken: refreshToken } })
+              .get("account/refresh", {
+                headers: { refreshtoken: refreshToken },
+              })
               .then((response: any) => {
                 const { accessToken: token, refreshToken: newRefreshToken } =
                   response?.data;

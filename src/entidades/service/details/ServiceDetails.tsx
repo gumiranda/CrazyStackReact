@@ -3,11 +3,14 @@ import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import { ServiceProps } from "../service.model";
+import { useTranslation } from "react-i18next";
 type ServiceDetailsProps = {
   service: ServiceProps;
 };
 
 export const ServiceDetails = ({ service }: ServiceDetailsProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   return (
     <>
       <Flex mb="8" justify="space-between" align="center">
@@ -28,9 +31,19 @@ export const ServiceDetails = ({ service }: ServiceDetailsProps) => {
       <GenericDetailsItem
         item={service}
         fields={[
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
     </>

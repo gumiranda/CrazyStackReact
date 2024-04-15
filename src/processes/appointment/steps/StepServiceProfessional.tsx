@@ -5,8 +5,11 @@ import { useStepRequest } from "../context/StepRequest.context";
 import { useUsersSelect } from "@/features/user/userList.hook";
 import { useServicesSelect } from "@/features/service/serviceList.hook";
 import { theme } from "@/application/theme";
+import { useTranslation } from "react-i18next";
 
 export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { setRequest } = useStepRequest();
   const { userSelected, handleChangeUserSelected, users } = useUsersSelect({
     ownerSelected: ownerSelected?._id,
@@ -41,7 +44,9 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
             labelColor="gray.800"
             color="gray.800"
             name="userList"
-            label="Profissional prestador"
+            label={t("PAGES:NEW_APPOINTMENT.professional", {
+              defaultValue: "Profissional prestador",
+            })}
             list={users}
             value={userSelected}
             onChange={handleChangeUserSelected}
@@ -52,7 +57,9 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
               style={{ backgroundColor: theme.colors.grayscale[500] }}
               value="loadMore"
             >
-              Carregar mais
+              {t("PAGES:NEW_APPOINTMENT.loadMore", {
+                defaultValue: "Carregar mais",
+              })}
             </option>
           </Select>
           <Select
@@ -60,7 +67,9 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
             labelColor="gray.800"
             color="gray.800"
             name="serviceList"
-            label="Serviço"
+            label={t("PAGES:NEW_APPOINTMENT.service", {
+              defaultValue: "Serviço",
+            })}
             list={services}
             value={serviceSelected}
             onChange={handleChangeServiceSelected}
@@ -71,7 +80,9 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
               style={{ backgroundColor: theme.colors.grayscale[500] }}
               value="loadMore"
             >
-              Carregar mais
+              {t("PAGES:NEW_APPOINTMENT.loadMore", {
+                defaultValue: "Carregar mais",
+              })}
             </option>
           </Select>
         </GridForm>
@@ -84,7 +95,9 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
             setActiveStep(0);
           }}
         >
-          Voltar
+          {t("PAGES:NEW_APPOINTMENT.back", {
+            defaultValue: "Voltar",
+          })}
         </Button>
         <Button
           colorScheme="tertiary"
@@ -93,7 +106,9 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
           isLoading={false}
           m={2}
         >
-          Próximo
+          {t("PAGES:NEW_APPOINTMENT.next", {
+            defaultValue: "Próximo",
+          })}
         </Button>
       </Flex>
     </>

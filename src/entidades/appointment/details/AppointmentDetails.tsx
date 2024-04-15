@@ -3,11 +3,14 @@ import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import { AppointmentProps } from "../appointment.model";
+import { useTranslation } from "react-i18next";
+
 type AppointmentDetailsProps = {
   appointment: AppointmentProps;
 };
 
 export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => {
+  const { t } = useTranslation(["PAGES"]);
   return (
     <>
       <Flex mb="8" justify="space-between" align="center">
@@ -30,7 +33,12 @@ export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => 
         fields={[
           { id: "message", label: "Mensagem" },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
     </>

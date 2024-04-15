@@ -1,3 +1,4 @@
+import { config } from "@/application/config";
 import { getRequests } from "@/entidades/request";
 import { useRequestInfiniteList } from "@/entidades/request/requestInfiniteList.hook";
 import { useAuth } from "@/shared/libs";
@@ -5,10 +6,19 @@ import { useInfiniteFullList } from "@/shared/libs/hooks/useInfiniteFullList.hoo
 import { calculateDateRange } from "@/shared/libs/utils/dateFunctions";
 import { addDays } from "date-fns";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const useHome = () => {
+  const { t } = useTranslation(["PAGES"]);
   const { user = null } = useAuth() || {};
-  const welcomeTitle = `Olá, ${user?.name || "dev doido"}!`;
+  const welcomeTitle = t("PAGES:HOME_PAGE.title", {
+    defaultValue: `Olá, ${user?.name || "dev doido"}!`,
+    user: user?.name,
+  });
+  const description = t("PAGES:HOME_PAGE.description", {
+    defaultValue: "Bem-vindo ao",
+    systemName: config?.systemName,
+  });
   const {
     isFetching,
     requestList,
@@ -56,6 +66,7 @@ export const useHome = () => {
     selectedRange,
     setSelectedRange,
     result,
+    description,
   };
 };
 export type DayClick = {

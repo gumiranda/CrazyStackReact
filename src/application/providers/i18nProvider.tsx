@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { useTranslation } from "react-i18next";
-import { createContext, useState, useContext } from "react";
-
-const I18NContext = createContext({} as any);
+import { createContext, useContext, useState, useEffect } from "react";
+const I18nContext = createContext({} as any);
 
 export const isBrowser = typeof window !== "undefined";
 
@@ -17,10 +16,11 @@ export const I18nProvider = ({ children }: any) => {
     i18n?.changeLanguage?.(formatLanguageFromSelect(language));
     localStorage.setItem("language", formatLanguageFromSelect(language));
   };
+
   return (
-    <I18NContext.Provider value={{ changeLanguage, currentLanguage, setCurrentLanguage }}>
+    <I18nContext.Provider value={{ currentLanguage, setCurrentLanguage, changeLanguage }}>
       {children}
-    </I18NContext.Provider>
+    </I18nContext.Provider>
   );
 };
 export const useI18n = () => {
@@ -31,7 +31,7 @@ export const useI18n = () => {
       changeLanguage: () => {},
     };
   }
-  return useContext(I18NContext);
+  return useContext(I18nContext);
 };
 const countryToLanguage = {
   BR: "pt-br",

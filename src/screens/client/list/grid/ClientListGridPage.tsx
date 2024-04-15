@@ -2,8 +2,10 @@
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useClientInfiniteList } from "../clientInfiniteList.hook";
 import { useClientUi } from "@/entidades/client/client.ui";
+import { useTranslation } from "react-i18next";
 
 export const ClientGridPage = () => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     isFetching,
     error,
@@ -25,8 +27,20 @@ export const ClientGridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
-      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+      {
+        id: "name",
+        label: t("PAGES:FIELDS.name", {
+          defaultValue: "Nome",
+        }),
+        displayKeyText: true,
+      },
+      {
+        id: "createdAt",
+        label: t("PAGES:FIELDS.createdAt", {
+          defaultValue: "Data de criação",
+        }),
+        displayKeyText: true,
+      },
     ],
   };
   const items =
@@ -38,10 +52,6 @@ export const ClientGridPage = () => {
   const { renderItem } = useClientUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Clientes"}
-        description="Página de listagem de clientes do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}
@@ -53,8 +63,12 @@ export const ClientGridPage = () => {
           route={"/clients/list"}
           routeList={"/clients/1"}
           routeCreate={"/clients/create"}
-          entityDisplayName={"Cliente"}
-          title={"Clientes"}
+          entityDisplayName={t("PAGES:HOME_PAGE.client", {
+            defaultValue: "Cliente",
+          })}
+          title={t("PAGES:HOME_PAGE.clients", {
+            defaultValue: "Clientes",
+          })}
           {...clientGridProps}
         />
       </InfiniteList>

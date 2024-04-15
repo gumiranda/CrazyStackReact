@@ -3,11 +3,15 @@ import { Heading, Icon } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import { UserProps } from "../user.model";
+import { useTranslation } from "react-i18next";
+
 type UserDetailsProps = {
   user: UserProps;
 };
 
 export const UserDetails = ({ user }: UserDetailsProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   return (
     <>
       <Flex mb="8" justify="space-between" align="center">
@@ -28,9 +32,19 @@ export const UserDetails = ({ user }: UserDetailsProps) => {
       <GenericDetailsItem
         item={user}
         fields={[
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
     </>

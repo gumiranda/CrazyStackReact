@@ -1,8 +1,10 @@
 import { AppointmentProps } from "@/entidades/appointment";
 import { useCreateAppointment } from "./createAppointment.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export const CreateAppointmentForm = ({ data }) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -14,18 +16,27 @@ export const CreateAppointmentForm = ({ data }) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateAppointment)}
-      title={"Criar agendamento"}
+      title={t("PAGES:HOME_PAGE.createDomain", {
+        defaultValue: "Criar agendamento",
+        domain: t("PAGES:HOME_PAGE.appointment", {
+          defaultValue: "Agendamento",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/appointments/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome da agendamento"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />
         <Checkbox
-          label="Ativo"
+          label={t("PAGES:FIELDS.active", {
+            defaultValue: "Ativo",
+          })}
           colorScheme="green"
           isChecked={active}
           onChange={(e) => {

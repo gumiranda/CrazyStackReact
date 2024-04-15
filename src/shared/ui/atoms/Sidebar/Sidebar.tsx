@@ -17,7 +17,7 @@ type SidebarProps = {
 };
 export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
   const { isOpen, onClose } = useSidebarDrawer();
-  const isDrawerSidebar = useBreakpointValue({ base: true, lg: false });
+  const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
       <Drawer
@@ -27,7 +27,7 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
         placement="left"
       >
         <DrawerOverlay>
-          <DrawerContent bg="purple.800" p="4">
+          <DrawerContent bg="secondary.500" p="4">
             <DrawerCloseButton mt="6" />
             <DrawerHeader>{title}</DrawerHeader>
             <DrawerBody>{children}</DrawerBody>

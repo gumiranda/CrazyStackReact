@@ -85,7 +85,12 @@ export const TableItems = ({
                   </Link>
                 </Box>
               ) : field?.displayKeyText === false ? (
-                <>{React.cloneElement(field?.children, { ...item, id: field?.id })}</>
+                <>
+                  {React.cloneElement(field?.children, {
+                    ...item,
+                    id: field?.id,
+                  })}
+                </>
               ) : (
                 <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"400"}>
                   {item[field?.id]}

@@ -1,6 +1,7 @@
 import { AppointmentProps } from "@/entidades/appointment";
 import { useEditAppointment } from "./editAppointment.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export interface EditAppointmentFormProps {
   appointment: AppointmentProps;
@@ -12,6 +13,8 @@ export const EditAppointmentForm = ({
   id,
   owners,
 }: EditAppointmentFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { formState, register, handleSubmit, handleEditAppointment } = useEditAppointment(
     {
       appointment,
@@ -32,7 +35,12 @@ export const EditAppointmentForm = ({
           { id: "_id", label: "Id" },
           { id: "message", label: "Mensagem" },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>

@@ -2,6 +2,7 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetServicesResponse } from "@/entidades/service/service.api";
 import { useServiceList } from "../serviceList.hook";
+import { useTranslation } from "react-i18next";
 type ServiceListTablePageProps = {
   data: GetServicesResponse;
   page: number;
@@ -10,6 +11,8 @@ const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
 export const ServiceListTablePage = ({ page = 0, data }: ServiceListTablePageProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const {
     services,
     setServices,
@@ -29,10 +32,18 @@ export const ServiceListTablePage = ({ page = 0, data }: ServiceListTablePagePro
           isLoading={false}
           items={services}
           fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
+            {
+              id: "name",
+              label: t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }),
+              displayKeyText: true,
+            },
             {
               id: "createdAt",
-              label: "Data de criação",
+              label: t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }),
               displayKeyText: false,
               children: <Text />,
             },
@@ -44,7 +55,9 @@ export const ServiceListTablePage = ({ page = 0, data }: ServiceListTablePagePro
           routeDetails={"/services/details"}
           routeCreate={"/services/create"}
           routeList={"/services/list"}
-          title={"Serviços"}
+          title={t("PAGES:HOME_PAGE.services", {
+            defaultValue: "Serviços",
+          })}
         />
         <Pagination
           onPageChange={setPage}
