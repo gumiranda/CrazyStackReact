@@ -3,9 +3,10 @@ import { parseCookies } from "@/shared/libs/utils/parseCookies";
 import { getCookies } from "@/shared/libs/utils/cookies";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { config } from "@/application/config";
 
 export const metadata: Metadata = {
-  title: "Barberix | Agendamentos Online",
+  title: `${config.systemName} | Agendamentos`,
   description: "Agende seu horário com os melhores barbeiros da cidade",
 };
 async function getData() {
