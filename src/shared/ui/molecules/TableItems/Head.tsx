@@ -24,7 +24,7 @@ export const Head = ({
 
   return (
     <Tr>
-      <Th px={["2", "2", "3"]} color="purple.200" width="8">
+      <Th px={["2", "2", "3"]} color="purple.200" width={["2", "4", "8"]}>
         <Checkbox
           colorScheme="green"
           isChecked={mainChecked}
@@ -40,11 +40,19 @@ export const Head = ({
         />
       </Th>
       {fields.map((field, index) => (
-        <Th key={`${Math.random() * 10}-${index}`} color="white.50">
+        <Th
+          key={`${Math.random() * 10}-${index}`}
+          fontSize={["9", "xs", "sm", "sm"]}
+          color="white.50"
+        >
           {field.label}
         </Th>
       ))}
-      <Th color="purple.300" style={{ textAlign: "end" }}>
+      <Th
+        color="purple.300"
+        fontSize={["9", "xs", "sm", "sm"]}
+        style={{ textAlign: "end" }}
+      >
         {t("PAGES:MESSAGES.actions", {
           defaultValue: "Ações",
         })}

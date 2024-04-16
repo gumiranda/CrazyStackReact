@@ -43,8 +43,7 @@ export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps
               label: t("PAGES:FIELDS.createdAt", {
                 defaultValue: "Data de criação",
               }),
-              displayKeyText: false,
-              children: <Text />,
+              displayKeyText: true,
             },
           ]}
           setItems={setClients}

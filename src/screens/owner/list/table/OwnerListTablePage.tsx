@@ -36,8 +36,7 @@ export const OwnerListTablePage = ({ page = 0, data }: OwnerListTablePageProps) 
             label: t("PAGES:FIELDS.createdAt", {
               defaultValue: "Data de criação",
             }),
-            displayKeyText: false,
-            children: <Text />,
+            displayKeyText: true,
           },
         ]}
         setItems={setOwners}

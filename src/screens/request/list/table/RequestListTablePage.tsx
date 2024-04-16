@@ -28,9 +28,16 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
   const isMobile = useBreakpointValue({ base: true, md: false });
   const fieldsMobile = [
     {
-      id: "initDateFormatted",
-      label: t("PAGES:FIELDS.initDateFormatted", {
-        defaultValue: "Data do agendamento",
+      id: "datePickerSelected",
+      label: t("PAGES:FIELDS.datePickerSelected", {
+        defaultValue: "Data",
+      }),
+      displayKeyText: true,
+    },
+    {
+      id: "initHour",
+      label: t("PAGES:FIELDS.initHour", {
+        defaultValue: "Horário Início",
       }),
       displayKeyText: true,
     },
@@ -44,13 +51,7 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
   ];
   const fields = [
     ...fieldsMobile,
-    {
-      id: "initHour",
-      label: t("PAGES:FIELDS.initHour", {
-        defaultValue: "Horário Início",
-      }),
-      displayKeyText: true,
-    },
+
     {
       id: "clientName",
       label: t("PAGES:HOME_PAGE.client", {
@@ -69,6 +70,13 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
       id: "ownerName",
       label: t("PAGES:HOME_PAGE.owner", {
         defaultValue: "Estabelecimento",
+      }),
+      displayKeyText: true,
+    },
+    {
+      id: "statusLabel",
+      label: t("PAGES:FIELDS.statusLabel", {
+        defaultValue: "Status",
       }),
       displayKeyText: true,
     },

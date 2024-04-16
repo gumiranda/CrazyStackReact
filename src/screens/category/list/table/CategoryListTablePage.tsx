@@ -45,8 +45,7 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
               label: t("PAGES:FIELDS.createdAt", {
                 defaultValue: "Data de criação",
               }),
-              displayKeyText: false,
-              children: <Text />,
+              displayKeyText: true,
             },
           ]}
           setItems={setCategorys}

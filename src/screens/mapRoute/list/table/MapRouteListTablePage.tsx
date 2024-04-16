@@ -42,8 +42,7 @@ export const MapRouteListTablePage = ({ page = 0, data }: MapRouteListTablePageP
             label: t("PAGES:FIELDS.createdAt", {
               defaultValue: "Data de criação",
             }),
-            displayKeyText: false,
-            children: <Text />,
+            displayKeyText: true,
           },
         ]}
         setItems={setMapRoutes}

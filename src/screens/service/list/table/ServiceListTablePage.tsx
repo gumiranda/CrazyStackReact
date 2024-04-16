@@ -44,8 +44,7 @@ export const ServiceListTablePage = ({ page = 0, data }: ServiceListTablePagePro
               label: t("PAGES:FIELDS.createdAt", {
                 defaultValue: "Data de criação",
               }),
-              displayKeyText: false,
-              children: <Text />,
+              displayKeyText: true,
             },
           ]}
           setItems={setServices}

@@ -42,6 +42,7 @@
     "passwordConfirm": "Confirm Password",
     "active": "Active",
     "initDateFormatted": "Date of appointment",
+    "datePickerSelected": "Date",
     "endHour": "End hour",
     "initHour": "Init hour",
     "createdAt": "Created at",

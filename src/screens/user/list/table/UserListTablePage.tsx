@@ -37,8 +37,7 @@ export const UserListTablePage = ({ page = 0, data }: UserListTablePageProps) =>
               label: t("PAGES:FIELDS.createdAt", {
                 defaultValue: "Data de criação",
               }),
-              displayKeyText: false,
-              children: <Text />,
+              displayKeyText: true,
             },
           ]}
           setItems={setUsers}

@@ -79,7 +79,7 @@ export const TableItems = ({
                     href={`${routeDetails}/${item?._id}`}
                     onMouseEnter={() => linkOnMouseEnter(item)}
                   >
-                    <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"bold"}>
+                    <Text fontSize={["10", "xs", "sm", "md"]} fontWeight={"bold"}>
                       {item[field?.id]}
                     </Text>
                   </Link>
@@ -92,7 +92,7 @@ export const TableItems = ({
                   })}
                 </>
               ) : (
-                <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"400"}>
+                <Text fontSize={["10", "xs", "sm", "md"]} fontWeight={"400"}>
                   {item[field?.id]}
                 </Text>
               )}

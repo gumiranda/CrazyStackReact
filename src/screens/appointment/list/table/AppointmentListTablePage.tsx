@@ -3,6 +3,7 @@ import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useAppointmentList } from "../appointmentList.hook";
 import { useTranslation } from "react-i18next";
+import { useBreakpointValue } from "@chakra-ui/react";
 type AppointmentListTablePageProps = {
   data: GetAppointmentsResponse;
   page: number;
@@ -26,6 +27,62 @@ export const AppointmentListTablePage = ({
     page,
     initialData: data,
   });
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const fieldsMobile = [
+    {
+      id: "datePickerSelected",
+      label: t("PAGES:FIELDS.datePickerSelected", {
+        defaultValue: "Data",
+      }),
+      displayKeyText: true,
+    },
+    {
+      id: "initHour",
+      label: t("PAGES:FIELDS.initHour", {
+        defaultValue: "Horário Início",
+      }),
+      displayKeyText: true,
+    },
+    {
+      id: "endHour",
+      label: t("PAGES:FIELDS.endHour", {
+        defaultValue: "Horário Fim",
+      }),
+      displayKeyText: true,
+    },
+  ];
+  const fields = [
+    ...fieldsMobile,
+
+    // {
+    //   id: "clientName",
+    //   label: t("PAGES:HOME_PAGE.client", {
+    //     defaultValue: "Cliente",
+    //   }),
+    //   displayKeyText: true,
+    // },
+    // {
+    //   id: "professionalName",
+    //   label: t("PAGES:HOME_PAGE.professional", {
+    //     defaultValue: "Profissional",
+    //   }),
+    //   displayKeyText: true,
+    // },
+    // {
+    //   id: "ownerName",
+    //   label: t("PAGES:HOME_PAGE.owner", {
+    //     defaultValue: "Estabelecimento",
+    //   }),
+    //   displayKeyText: true,
+    // },
+    {
+      id: "statusLabel",
+      label: t("PAGES:FIELDS.statusLabel", {
+        defaultValue: "Status",
+      }),
+      displayKeyText: true,
+    },
+  ];
   return (
     <>
       <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
@@ -33,23 +90,7 @@ export const AppointmentListTablePage = ({
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
           items={appointments}
-          fields={[
-            {
-              id: "message",
-              label: t("PAGES:FIELDS.message", {
-                defaultValue: "Mensagem",
-              }),
-              displayKeyText: true,
-            },
-            {
-              id: "createdAt",
-              label: t("PAGES:FIELDS.createdAt", {
-                defaultValue: "Data de criação",
-              }),
-              displayKeyText: false,
-              children: <Text />,
-            },
-          ]}
+          fields={isMobile ? fieldsMobile : fields}
           setItems={setAppointments}
           linkOnMouseEnter={handlePrefetchAppointment}
           error={undefined}

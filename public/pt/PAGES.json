@@ -42,6 +42,7 @@
     "active": "Ativo",
     "createdAt": "Data de criação",
     "initDateFormatted": "Data do agendamento",
+    "datePickerSelected": "Data",
     "endHour": "Hora final",
     "initHour": "Hora inicial",
     "message": "Mensagem",
