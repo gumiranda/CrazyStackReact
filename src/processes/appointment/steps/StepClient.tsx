@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export const StepClient = ({ clientList, userList, setActiveStep }) => {
   const { t } = useTranslation(["PAGES"]);
-  const { setRequest = () => {}, request, activeStep } = useStepRequest();
+  const { setRequest = () => {}, request } = useStepRequest();
   const [loading, setLoading] = useState(false);
   const { userSelected, users } = useUsersSelect({ role: "client", userList });
   const { register, handleSubmit, formState, watch, setValue, trigger } =
@@ -31,7 +31,7 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
       triggerPhoneClient(existingClient);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientName, activeStep]);
+  }, [clientName]);
   const triggerPhoneClient = (currentClient) => {
     if (currentClient?.phone) {
       setValue("phone", currentClient?.phone);
