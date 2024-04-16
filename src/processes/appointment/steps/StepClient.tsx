@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export const StepClient = ({ clientList, userList, setActiveStep }) => {
   const { t } = useTranslation(["PAGES"]);
-  const { setRequest = () => {}, request } = useStepRequest();
+  const { setRequest = () => {}, request, activeStep } = useStepRequest();
   const [loading, setLoading] = useState(false);
   const { userSelected, users } = useUsersSelect({ role: "client", userList });
   const { register, handleSubmit, formState, watch, setValue, trigger } =
@@ -28,13 +28,16 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
       const existingClient = clientList?.clients?.find?.(
         (item) => item?.name === clientName
       );
-      if (existingClient?.phone) {
-        setValue("phone", existingClient?.phone);
-        trigger("phone");
-      }
+      triggerPhoneClient(existingClient);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientName]);
+  }, [clientName, activeStep]);
+  const triggerPhoneClient = (currentClient) => {
+    if (currentClient?.phone) {
+      setValue("phone", currentClient?.phone);
+      trigger("phone");
+    }
+  };
   const createClient = createClientMutation(
     () => {
       setLoading(false);
@@ -46,9 +49,8 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
     values: CreateClientFormData
   ) => {
     const name = (document.getElementById("name") as HTMLInputElement).value;
-
     const existingClient = clientList?.clients?.find?.((item) => item?.name === name);
-    console.log({ existingClient, values });
+
     setLoading(true);
     const userId = userSelected ?? users?.[0]?._id ?? userList?.[0]?._id ?? "";
     const payload = { ...values, clientUserId: userId, userId, active: true };
@@ -102,6 +104,12 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
               listItemStyleProps: {
                 backgroundColor: "gray.100",
                 color: "black",
+                onClick: (clientSelected) => {
+                  const existingClient = clientList?.clients?.find?.(
+                    (item) => item?._id === clientSelected?.value
+                  );
+                  triggerPhoneClient(existingClient);
+                },
               },
               highlightItemBg: "gray.200",
             }}

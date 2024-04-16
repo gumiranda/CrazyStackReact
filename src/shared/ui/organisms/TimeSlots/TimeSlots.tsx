@@ -119,7 +119,9 @@ export const TimeSlots = ({ list }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        modalHeaderText="Detalhes do agendamento"
+        modalHeaderText={t("PAGES:FIELDS.appointmentDetails", {
+          defaultValue: "Detalhes do agendamento",
+        })}
         modalFooter={null}
       >
         <RequestDetailsV2 props={{ request: requestsSelected, onClose }} />
