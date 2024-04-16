@@ -44,7 +44,7 @@ export const Login: NextPage = () => {
                 >
                   <Text textAlign={"center"}>
                     {t("PAGES:AUTH_PAGE.haventAccount", {
-                      defaultValue: "Não possui uma conta?&nbsp;",
+                      defaultValue: "Não possui uma conta? ",
                     })}
                   </Text>
                   <Link href="/signup">

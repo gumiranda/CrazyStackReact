@@ -39,7 +39,9 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
           {...register("name")}
         />
         <FormControl
-          label="Telefone"
+          label={t("PAGES:AUTH_PAGE.phone", {
+            defaultValue: "Telefone",
+          })}
           error={formState.errors.phone}
           labelColor="white"
           bgColor="secondary.500"

@@ -7,8 +7,10 @@ import { config } from "@/application/config";
 import { SignupForm } from "@/features/auth/signup";
 import Link from "next/link";
 import { useBreakpointValue } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export function SignUpPage() {
+  const { t } = useTranslation(["PAGES"]);
   const { isAuthenticated = false } = useAuth() || {};
   const router = useRouter();
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -23,10 +25,15 @@ export function SignUpPage() {
       <Logo marginBottom={4} mt={5} haveLink={false} />
       <Box>
         <Text textAlign={"center"} fontWeight={"bold"} fontSize={"2xl"} color="white">
-          Faça parte do {config.systemName} 🚀
+          {t("PAGES:AUTH_PAGE.titleCreateAccount", {
+            defaultValue: `Faça parte do ${config.systemName} 🚀`,
+            systemName: config.systemName,
+          })}
         </Text>
         <Text textAlign={"center"}>
-          Insira os dados abaixo para cadastrar seu negócio:
+          {t("PAGES:AUTH_PAGE.descriptionCreateAccount", {
+            defaultValue: "Insira os dados abaixo para cadastrar seu negócio:",
+          })}
         </Text>
         <Flex minW="100%" justifyContent={"center"} mb={5}>
           <Flex width={"90%"}>
@@ -36,14 +43,20 @@ export function SignUpPage() {
                 justifyContent={"center"}
                 mt={5}
               >
-                <Text textAlign={"center"}>Já possui uma conta?&nbsp;</Text>
+                <Text textAlign={"center"}>
+                  {t("PAGES:AUTH_PAGE.haveAccount", {
+                    defaultValue: "Já possui uma conta? ",
+                  })}
+                </Text>
                 <Link href="/login">
                   <Text
                     textAlign={"center"}
                     textDecoration={"underline"}
                     _hover={{ color: "primary.500" }}
                   >
-                    Entre aqui
+                    {t("PAGES:AUTH_PAGE.enterAccount", {
+                      defaultValue: "Entre aqui",
+                    })}
                   </Text>
                 </Link>
               </Flex>

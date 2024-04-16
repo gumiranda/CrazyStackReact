@@ -123,6 +123,8 @@
    "email":"Email",
    "password":"Password",
    "haventAccount":"Haven't account?",
+   "haveAccount":"Have account?",
+   "enterAccount":"Enter here",
    "createAccount":"Create account",
    "signIn":"Sign in",
    "titleCreateAccount":"Be part of {{systemName}} 🚀",
