@@ -114,5 +114,19 @@
     "selectDate": "Selecione a data",
     "loadMore": "Carregar mais",
     "confirmMessage": "Agendamento confirmado com sucesso, já pode ser visualizado na agenda."
-  }
+  },
+  "AUTH_PAGE":{
+    "title":"Olá, seja bem-vindo",
+    "description":"Insira seu e-mail e senha para acessar sua conta",
+    "email":"Email de acesso",
+    "password":"Senha",
+    "haventAccount":"Não possui uma conta?",
+    "createAccount":"Cadastre-se",
+    "signIn":"Entrar",
+    "titleCreateAccount":"Faça parte do {{systemName}} 🚀",
+    "descriptionCreateAccount":"Insira os dados abaixo para cadastrar seu negócio:",
+    "ownerName":"Nome do estabelecimento",
+    "phone":"Telefone",
+    "buttonSignUp":"Cadastrar negócio"
+   }
 }

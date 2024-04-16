@@ -115,5 +115,19 @@
     "selectDate": "Select date",
     "loadMore": "Load more",
     "confirmMessage": "Appointment confirmed successfully, it can already be viewed in the schedule."
+  },
+  "AUTH_PAGE":{
+   "title":"Hi, welcome back!",
+   "description":"Insert your email and password to access the system",
+   "email":"Email",
+   "password":"Password",
+   "haventAccount":"Haven't account?",
+   "createAccount":"Create account",
+   "signIn":"Sign in",
+   "titleCreateAccount":"Be part of {{systemName}} 🚀",
+   "descriptionCreateAccount":"Insert the data below to register your business:",
+   "ownerName":"Owner name",
+   "phone":"Phone number",
+   "buttonSignUp":"Sign up"
   }
 }
