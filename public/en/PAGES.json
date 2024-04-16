@@ -71,6 +71,7 @@
     "create": "created",
     "list": "list",
     "table": "table",
+    "editar": "Edit",
     "actions": "Actions",
     "delete":"Delete all selected",
     "save": "Save",
@@ -117,7 +118,7 @@
     "confirmMessage": "Appointment confirmed successfully, it can already be viewed in the schedule."
   },
   "AUTH_PAGE":{
-   "title":"Hi, welcome back!",
+   "title":"Hi, welcome back! 👋",
    "description":"Insert your email and password to access the system",
    "email":"Email",
    "password":"Password",

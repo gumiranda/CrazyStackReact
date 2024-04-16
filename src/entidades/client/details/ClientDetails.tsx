@@ -15,7 +15,10 @@ export const ClientDetails = ({ client }: ClientDetailsProps) => {
     <>
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight={"normal"}>
-          Cliente {client?.name}
+          {t("PAGES:HOME_PAGE.client", {
+            defaultValue: "Cliente",
+          })}
+          {client?.name}
         </Heading>
         <NextLink passHref href={`/clients/edit/${client?._id}`}>
           <Button
@@ -24,7 +27,9 @@ export const ClientDetails = ({ client }: ClientDetailsProps) => {
             colorScheme="green"
             leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
-            Editar
+            {t("PAGES:MESSAGES.edit", {
+              defaultValue: "Editar",
+            })}
           </Button>
         </NextLink>
       </Flex>

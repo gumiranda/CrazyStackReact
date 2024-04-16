@@ -116,7 +116,7 @@
     "confirmMessage": "Agendamento confirmado com sucesso, já pode ser visualizado na agenda."
   },
   "AUTH_PAGE":{
-    "title":"Olá, seja bem-vindo",
+    "title":"Olá, seja bem-vindo 👋",
     "description":"Insira seu e-mail e senha para acessar sua conta",
     "email":"Email de acesso",
     "password":"Senha",
