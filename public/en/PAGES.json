@@ -1,5 +1,5 @@
 {
-  "HOME_PAGE": {
+"HOME_PAGE": {
     "title": "Hello, {{user}}",
     "description": "Welcome back to {{systemName}}",
     "invoiceLabel": "Invoice",
@@ -54,7 +54,11 @@
     "comission": "Comission",
     "havePromotionalPrice": "Have promotional price?",
     "hasFidelityGenerator": "Has fidelity generator?",
-    "canPayWithFidelityPoints": "Can pay with fidelity points?"
+    "canPayWithFidelityPoints": "Can pay with fidelity points?",
+    "appointmentDetails":"Appointment details",
+    "confirmed": "Confirmed",
+    "duration": "Duration",
+    "reschedule": "Reschedule"
   },
   "MESSAGES": {
     "loading": "Loading...",
@@ -72,6 +76,20 @@
     "cancel": "Cancel",
     "createNew":"Create new",
     "successMessage": "{{domain}} was {{operation}} with success, you will redirected to list {{domain}} page"
+  },
+  "STATUS":{
+    "0": "Requested",
+    "1": "Confirmed",
+    "2": "Canceled by the provider",
+    "3": "Canceled by the client",
+    "4": "Pending due to schedule conflict",
+    "5": "Reschedule requested by the provider",
+    "6": "Reschedule requested by the client",
+    "7": "Reschedule confirmed",
+    "8": "Reschedule denied",
+    "9": "Appointment evaluated by the client",
+    "10": "Order confirmed",
+    "11": "Order confirmed and evaluated by the client"
   },
   "NEW_APPOINTMENT": {
     "title": "Create Appointment",

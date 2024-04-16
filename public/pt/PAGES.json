@@ -43,7 +43,21 @@
     "createdAt": "Data de criação",
     "initDateFormatted": "Data do agendamento",
     "endHour": "Hora final",
-    "initHour": "Hora inicial"
+    "initHour": "Hora inicial",
+    "message": "Mensagem",
+    "description": "Descrição",
+    "price": "Preço",
+    "finalPrice": "Preço final",
+    "durationOfService": "Duração do serviço",
+    "productsQuantityNeeded": "Quantidade de produtos necessários",
+    "comission": "Comissão",
+    "havePromotionalPrice": "Possui preço promocional?",
+    "hasFidelityGenerator": "Possui gerador de fidelidade?",
+    "canPayWithFidelityPoints": "Pode pagar com pontos de fidelidade?",
+    "appointmentDetails":"Detalhes do agendamento",
+    "confirmed": "Confirmado",
+    "duration": "Duração",
+    "reschedule": "Reagendar"
   },
   "MESSAGES": {
     "loading": "Carregando...",
@@ -61,6 +75,20 @@
     "cancel": "Cancelar",
     "createNew":"Criar novo",
     "successMessage": "{{domain}} {{operation}} com sucesso, você será redirecionado para a lista de {{domain}}s"
+  },
+  "STATUS":{
+    "0": "Solicitado",
+    "1": "Confirmado",
+    "2": "Cancelado pelo prestador",
+    "3": "Cancelado pelo cliente",
+    "4": "Pendente por conflito de agenda",
+    "5": "Reagendamento solicitado pelo prestador",
+    "6": "Reagendamento solicitado pelo cliente",
+    "7": "Reagendamento confirmado",
+    "8": "Reagendamento negado",
+    "9": "Agendamento avaliado pelo cliente",
+    "10": "Pedido efetivado",
+    "11": "Pedido efetivado e avaliado pelo cliente"
   },
   "NEW_APPOINTMENT": {
     "title": "Criar Agendamento",

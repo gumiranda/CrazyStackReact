@@ -3,8 +3,10 @@ import { Button, DateDetails, ViewField } from "@/shared/ui";
 import { statusMap } from "../request.model";
 import { useRequestDetailsOwner } from "./useRequestDetailsOwner";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
+  const { t } = useTranslation(["PAGES"]);
   const router = useRouter();
   const { serviceId, clientId, initDate, endDate } = request;
   const { service, client, deleteSelectedAction }: any = useRequestDetailsOwner({
@@ -23,32 +25,60 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
   };
   return (
     <Box>
-      <ViewField.Label>{statusMap?.[request?.status]}</ViewField.Label>
+      <ViewField.Label>
+        {t(`PAGES:STATUS.${request?.status}`, {
+          defaultValue: statusMap?.[request?.status],
+        })}
+      </ViewField.Label>
       <DateDetails initDate={initDate} endDate={endDate} />
       <ViewField>
-        <ViewField.Label>Cliente:</ViewField.Label>
+        <ViewField.Label>
+          {t("PAGES:HOME_PAGE.client", {
+            defaultValue: "Cliente",
+          })}
+          :
+        </ViewField.Label>
         <ViewField.Description>{client?.name}</ViewField.Description>
       </ViewField>
       <ViewField>
-        <ViewField.Label>Serviço:</ViewField.Label>
+        <ViewField.Label>
+          {t("PAGES:HOME_PAGE.service", {
+            defaultValue: "Serviço",
+          })}
+          :
+        </ViewField.Label>
         <ViewField.Description>{service?.name}</ViewField.Description>
       </ViewField>
       <ViewField>
-        <ViewField.Label>Duração:</ViewField.Label>
+        <ViewField.Label>
+          {t("PAGES:FIELDS.duration", {
+            defaultValue: "Duração",
+          })}
+          :
+        </ViewField.Label>
         <ViewField.Description>{duration}</ViewField.Description>
       </ViewField>
       <ViewField>
-        <ViewField.Label>Preço:</ViewField.Label>
+        <ViewField.Label>
+          {t("PAGES:FIELDS.price", {
+            defaultValue: "Preço",
+          })}
+          :
+        </ViewField.Label>
         <ViewField.PriceText>{service?.price}</ViewField.PriceText>
       </ViewField>
       <Box position="relative" float="right" mt={10}>
         {[0, 1, 7].includes(request?.status) && (
           <>
             <Button onClick={onCancel} colorScheme="red">
-              Cancelar
+              {t("PAGES:MESSAGES.cancel", {
+                defaultValue: "Cancelar",
+              })}
             </Button>
             <Button colorScheme="primary" ml={6} onClick={onReschedule}>
-              Reagendar
+              {t("PAGES:FIELDS.reschedule", {
+                defaultValue: "Reagendar",
+              })}
             </Button>
           </>
         )}
