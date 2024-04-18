@@ -68,7 +68,7 @@ export const loadInvoice = async (params: any, ctx: any): Promise<any> => {
     if (!data) {
       return null;
     }
-    return appointmentModel(data).format();
+    return data;
   } catch (error) {
     return null;
   }
