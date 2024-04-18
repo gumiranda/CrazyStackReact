@@ -19,7 +19,7 @@ export const useRequestInfiniteList = () => {
 
   const query = {
     initDate: startOfDay(new Date(selectedDate)),
-    endDate: endOfDay(new Date(selectedDate)),
+    endDate: endOfDay(new Date(endDate)),
   };
   const all = useGetInfiniteRequests(
     {
