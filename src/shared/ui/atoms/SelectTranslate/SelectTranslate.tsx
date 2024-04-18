@@ -13,7 +13,6 @@ export const SelectTranslate = () => {
   const Dropdown = CountryDropdown as any;
   useEffect(() => {
     const language = localStorage.getItem("language");
-    console.log({ language });
     if (language && i18n?.changeLanguage) {
       setCountry(formatLanguageFromi18N(language));
       setCurrentLanguage(formatLanguageFromi18N(language));

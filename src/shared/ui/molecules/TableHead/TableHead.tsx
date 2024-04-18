@@ -45,7 +45,7 @@ export const TableHead = ({
       {...rest}
       data-testid="TableHeadTestId"
     >
-      <Heading fontSize={["sm", "sm", "lg", "xl"]}>
+      <Heading fontSize={["sm", "xl", "2xl", "2xl"]}>
         {title}
         {!isLoading && isFetching && <Spinner size="sm" color="white" ml="4" />}
       </Heading>

@@ -189,7 +189,6 @@ export const DatePicker = (props: IDatePickerProps) => {
                   key={index}
                   onClick={() => {
                     if (day?.month !== 0) {
-                      console.log({ day });
                       return;
                     }
                     onDateClick(day);

@@ -80,7 +80,6 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
           `/routeDriver/update?_id=${routeCreatedResponse?._id}&routeId=${route?._id}&lat=${step.start_location.lat}&lng=${step.start_location.lng}`,
           { updatedAt: new Date() }
         );
-        console.log({ data });
       }
       socket.send(
         JSON.stringify({

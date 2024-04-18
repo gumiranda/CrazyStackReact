@@ -24,7 +24,6 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
 
   const { request, setRequest } = useStepRequest() || {};
   const [dateSelected, setDateSelected] = useState(null);
-  console.log({ dateSelected });
   const { timeAvailable, timeSelected, handleChangeTimeSelected } = useTimeAvailable({
     ownerId: currentOwner?._id,
     professionalId: request?.professionalId,
