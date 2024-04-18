@@ -111,5 +111,7 @@ export const useRequestInfiniteList = () => {
     selectedDate,
     setSelectedDate,
     requestList,
+    endDate,
+    setEndDate,
   };
 };

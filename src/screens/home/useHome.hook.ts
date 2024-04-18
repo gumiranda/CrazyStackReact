@@ -26,6 +26,7 @@ export const useHome = () => {
     hasNextPage,
     selectedDate,
     setSelectedDate,
+    setEndDate,
   } = useRequestInfiniteList();
   useInfiniteFullList({ fetchNextPage, hasNextPage, isFetching });
 
@@ -37,6 +38,7 @@ export const useHome = () => {
     const diff = dayIndex - selectedDay + extraDiff;
     setSelectedDay(selectedDay === dayIndex ? null : dayIndex);
     setSelectedDate((prev) => addDays(prev, diff));
+    setEndDate((prev) => addDays(prev, diff));
   };
   const selectedDayFormatted = new Date(selectedDate).toLocaleDateString("pt-BR", {
     day: "2-digit",

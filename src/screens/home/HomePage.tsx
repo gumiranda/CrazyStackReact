@@ -40,7 +40,7 @@ export function HomePage() {
         </Box>
       </Flex>
       <Flex mt={5}>
-        <Box w={"100%"} p={10}>
+        <Box w={"100%"} p={{ base: 5, md: 10 }}>
           <WeekDaysSelector
             selectedDay={selectedDay}
             onDayClick={handleDayClick}
