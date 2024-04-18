@@ -26,7 +26,7 @@ export const useMapRouteInfiniteList = () => {
     status,
   }: any = all || {};
   const firstPage: any = data?.pages[0];
-  const total: any = (firstPage?.total as any) || {};
+  const total: any = (firstPage?.totalCount as any) || {};
   const deleteSelectedAction = async (item: any) => {
     deleteMapRoute.mutateAsync([item] as any);
   };

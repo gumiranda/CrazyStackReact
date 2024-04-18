@@ -22,7 +22,7 @@ export const use{{pascalCase name}}InfiniteList = () => {
     status,
   } = all || {};
   const firstPage: any = data?.pages[0];
-  const total: any = (firstPage?.total as any) || {};
+  const total: any = (firstPage?.totalCount as any) || {};
   const deleteSelectedAction = async (item: any) => {
     delete{{pascalCase name}}.mutateAsync([item]);
   };

@@ -15,6 +15,8 @@ export const useRequestInfiniteList = () => {
   const { logout = () => {} } = useAuth() || {};
   const { showModal, loading } = useUi();
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
+  const [endDate, setEndDate] = useState<any>(new Date());
+
   const query = {
     initDate: startOfDay(new Date(selectedDate)),
     endDate: endOfDay(new Date(selectedDate)),
@@ -29,11 +31,11 @@ export const useRequestInfiniteList = () => {
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["requestsInfinite", query] });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDate]);
+  }, [selectedDate, endDate]);
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching }: any =
     all || {};
   const firstPage = data?.pages?.[0];
-  const total = firstPage?.total;
+  const total = firstPage?.totalCountCount ?? 0;
   useEffect(() => {
     if ([403, 401, 500].includes(error?.response?.status)) {
       logout?.();
