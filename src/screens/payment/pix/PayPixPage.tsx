@@ -7,8 +7,8 @@ import { useGetSubscriptionById } from "@/entidades/payment/subscription/subscri
 import { PaymentWithPix } from "@/features/payment/with-pix/PaymentWithPix";
 
 export const PayPixPage = ({ user }) => {
-  const { data: userData }: any = useGetUserById(user?.id);
-  const { data }: any = useGetSubscriptionById(user?.id);
+  const { data: userData }: any = useGetUserById(user?._id);
+  const { data }: any = useGetSubscriptionById(user?._id);
   const charge =
     data?.chargesByCustomer?.charges?.sort?.(
       (a, b) => new Date(a.expiresDate).getTime() - new Date(b.expiresDate).getTime()
