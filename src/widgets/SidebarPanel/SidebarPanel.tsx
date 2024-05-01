@@ -13,6 +13,7 @@ import {
 } from "react-icons/ri";
 import { useAuth } from "@/shared/libs";
 import { useTranslation } from "react-i18next";
+import { MdAttachMoney } from "react-icons/md";
 
 export const SidebarPanel = () => {
   const { t } = useTranslation(["PAGES"]);
@@ -22,7 +23,11 @@ export const SidebarPanel = () => {
     return null;
   }
   return (
-    <Sidebar title="Navegar">
+    <Sidebar
+      title={t("PAGES:HOME_PAGE.navigate", {
+        defaultValue: "Navegar",
+      })}
+    >
       <Stack spacing="0" align="flex-start">
         <NavSection title="GERAL">
           {/* <NavLink icon={RiCalendar2Line} href="/new-appointment">
@@ -39,6 +44,11 @@ export const SidebarPanel = () => {
           <NavLink icon={RiCalendar2Line} href="/appointments/new">
             {t("PAGES:HOME_PAGE.createAppointment", {
               defaultValue: "Criar agendamento",
+            })}
+          </NavLink>
+          <NavLink icon={MdAttachMoney} href="/payment/pix">
+            {t("PAGES:HOME_PAGE.mySubscription", {
+              defaultValue: "Minha assinatura",
             })}
           </NavLink>
           <NavLink icon={RiEditCircleLine} href="/categorys/1">
