@@ -27,6 +27,7 @@
     "apexcharts": "^3.48.0",
     "axios": "^1.6.8",
     "chakra-react-select": "^4.7.6",
+    "cpf-cnpj-validator": "^1.0.3",
     "date-fns": "^3.6.0",
     "downshift": "^9.0.1",
     "framer-motion": "^11",

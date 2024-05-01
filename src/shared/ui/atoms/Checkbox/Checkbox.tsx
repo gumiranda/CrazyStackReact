@@ -4,14 +4,14 @@ import {
   Checkbox as CheckboxChakra,
   CheckboxProps,
 } from "@chakra-ui/react";
-export const Checkbox = ({
-  children,
-  label,
-  ...rest
-}: CheckboxProps & { label?: string }) => {
+import { forwardRef } from "react";
+export const Checkbox_ = (
+  { children, label, ...rest }: CheckboxProps & { label?: string },
+  ref
+) => {
   return (
     <Flex justify="flex-start" flexDir="row" alignItems={"center"}>
-      <CheckboxChakra {...rest} data-testid="CheckboxTestId">
+      <CheckboxChakra ref={ref} {...rest} data-testid="CheckboxTestId">
         {children}
       </CheckboxChakra>
       &nbsp;&nbsp;
@@ -23,3 +23,4 @@ export const Checkbox = ({
     </Flex>
   );
 };
+export const Checkbox = forwardRef(Checkbox_);

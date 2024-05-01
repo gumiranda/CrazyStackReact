@@ -7,7 +7,7 @@ export const SignupForm = ({ children }: any) => {
   const isDesktopVersion = useBreakpointValue({ base: false, md: true });
   const { t } = useTranslation(["PAGES"]);
 
-  const { formState, handleSubmit, register, handleSignup } = useSignup();
+  const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup();
 
   const formProps = {
     formState,
@@ -21,6 +21,35 @@ export const SignupForm = ({ children }: any) => {
           defaultValue: "Nome do estabelecimento",
         }),
         name: "name",
+      },
+      {
+        type: "text",
+        name: "cpf",
+        label: t("PAGES:AUTH_PAGE.cpf", {
+          defaultValue: "CPF",
+        }),
+        mask: "999.999.999-99",
+        hide: cnpjActive === true,
+      },
+      {
+        type: "text",
+        name: "cnpj",
+        label: t("PAGES:AUTH_PAGE.cnpj", {
+          defaultValue: "CNPJ",
+        }),
+        mask: "99.999.999/9999-99",
+        hide: !cnpjActive,
+      },
+      {
+        type: "text",
+        name: "cnpjActive",
+        checkboxProps: {
+          defaultChecked: false,
+          colorScheme: "primary",
+          label: t("PAGES:AUTH_PAGE.cnpjActive", {
+            defaultValue: "Cadastrar como pessoa jurídica?",
+          }),
+        },
       },
       {
         type: "tel",

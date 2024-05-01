@@ -7,12 +7,15 @@ import { useUi } from "./UiContext";
 import { api } from "@/shared/api";
 import { useTranslation } from "react-i18next";
 import { parseJSON } from "../utils/parseJSON";
+import { userModel } from "@/entidades/user/user.model";
 
 type User = {
   email: string;
   name: string;
   role: string;
   _id: string;
+  createdAt: string;
+  phone: string;
 };
 type AuthProviderProps = {
   children: ReactNode;
@@ -27,6 +30,9 @@ type SignupCredentials = LoginCredentials & {
   role?: string;
   coord?: any;
   passwordConfirmation?: string;
+  cpf?: string;
+  cnpj?: string;
+  cnpjActive?: boolean;
 };
 type AuthContextData = {
   login(credentials: LoginCredentials): Promise<void>;
@@ -73,7 +79,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // Router.push("/login");
     }
   }, []);
-
+  useEffect(() => {
+    if (user?.role === "client") {
+      Router.push("/login");
+    }
+  }, [user]);
   const login = async ({ email, password }: LoginCredentials) => {
     try {
       setLoading(true);
@@ -83,7 +93,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
         passwordConfirmation: password,
       });
-      const { accessToken: token, refreshToken, user: userComing } = response?.data || {};
+      const {
+        accessToken: token,
+        refreshToken,
+        user: userResponse,
+      } = response?.data || {};
+      const userComing = userModel(userResponse).format();
+
       setCookie(undefined, "belezixadmin.token", token, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
@@ -96,7 +112,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
-      setUser(userComing);
+      setUser(userComing as User);
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
       setLoading(false);
@@ -116,7 +132,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
     }
   };
-  const signup = async ({ email, password, name, phone }: SignupCredentials) => {
+  const signup = async ({
+    email,
+    password,
+    name,
+    phone,
+    cpf,
+    cnpj,
+    cnpjActive,
+  }: SignupCredentials) => {
     try {
       setLoading(true);
 
@@ -131,8 +155,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
           lng: 0,
         },
         role: "owner",
+        cpf: cnpjActive ? null : cpf,
+        cnpj: cnpjActive ? cnpj : null,
       });
-      const { accessToken: token, refreshToken, user: userComing } = response?.data || {};
+      const {
+        accessToken: token,
+        refreshToken,
+        user: userResponse,
+      } = response?.data || {};
+      const userComing = userModel(userResponse).format();
       setCookie(undefined, "belezixadmin.token", token, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
@@ -145,7 +176,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
-      setUser(userComing);
+      setUser(userComing as User);
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
       setLoading(false);

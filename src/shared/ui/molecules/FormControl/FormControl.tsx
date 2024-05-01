@@ -5,11 +5,9 @@ import {
   FormControl as FormControlChakra,
   InputProps as ChakraInputProps,
   FormErrorMessage,
-  InputGroup,
-  InputLeftAddon,
 } from "@chakra-ui/react";
 import { AutoComplete } from "./AutoComplete";
-import { Input } from "@/shared/ui";
+import { Input, Checkbox } from "@/shared/ui";
 import InputMask from "react-input-mask";
 
 interface InputProps extends ChakraInputProps {
@@ -22,6 +20,7 @@ interface InputProps extends ChakraInputProps {
   inputBgColor?: string;
   mask?: string;
   maskChar?: string | null;
+  hide?: any;
 }
 const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   props,
@@ -40,8 +39,12 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
     labelColor = "white",
     inputBgColor = "primary.500",
     type = "text",
+    hide,
     ...rest
   } = props;
+  if (hide) {
+    return null;
+  }
   const AutoCompleteInput = AutoComplete as (props: any) => any;
 
   return (
@@ -85,31 +88,15 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   );
 };
 const FormControlInputMask_ = (props, ref) => {
-  const {
-    bgColor = "primary.600",
-    bgColorHover = "primary.600",
-    labelColor = "white",
-    type = "text",
-    mask,
-  } = props;
-  /* if (type === `tel`) {
-    return (
-      <InputGroup alignItems={`center`}>
-        <InputLeftAddon
-          alignItems={`center`}
-          color={labelColor}
-          h={`46px`}
-          bgColor={bgColor}
-          _hover={{ bgColor: bgColorHover }}
-        >
-          +55
-        </InputLeftAddon>
-        <DefaultInput {...props} ref={ref} as={InputMask} />
-      </InputGroup>
-    );
-  } */
+  const { mask, hide, checkboxProps } = props;
+  if (hide) {
+    return null;
+  }
   if (mask) {
     return <DefaultInput {...props} ref={ref} as={InputMask} />;
+  }
+  if (checkboxProps) {
+    return <Checkbox {...props} {...checkboxProps} ref={ref} />;
   }
   return <DefaultInput {...props} ref={ref} />;
 };
