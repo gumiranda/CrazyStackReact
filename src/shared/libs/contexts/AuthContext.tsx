@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useUi } from "./UiContext";
 import { api } from "@/shared/api";
 import { useTranslation } from "react-i18next";
+import { parseJSON } from "../utils/parseJSON";
 
 type User = {
   email: string;
@@ -36,13 +37,7 @@ type AuthContextData = {
   setUser: (user: User) => void;
 };
 const AuthContext = createContext({} as AuthContextData);
-export const parseJSON = (json: string) => {
-  try {
-    return JSON.parse(json);
-  } catch (error) {
-    return null;
-  }
-};
+
 export function AuthProvider({ children }: AuthProviderProps) {
   const { t } = useTranslation(["PAGES"]);
   const { showModal, setLoading } = useUi();
