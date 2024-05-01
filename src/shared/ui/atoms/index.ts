@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./QrCode";
 export * from "./Chart";
 export * from "./SelectTranslate";
 export * from "./Stepper";
