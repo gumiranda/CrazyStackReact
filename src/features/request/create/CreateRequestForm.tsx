@@ -73,7 +73,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
         <Select
           bg="secondary.600"
           name="userList"
-          label="Profissional prestador"
+          label={t("PAGES:HOME_PAGE.professional", {
+            defaultValue: "Profissional prestador",
+          })}
           list={users}
           value={userSelected}
           onChange={handleChangeUserSelected}
@@ -89,7 +91,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
         <Select
           bg="secondary.600"
           name="serviceList"
-          label="Serviço"
+          label={t("PAGES:HOME_PAGE.service", {
+            defaultValue: "Serviço",
+          })}
           list={services}
           value={serviceSelected}
           onChange={handleChangeServiceSelected}
@@ -105,7 +109,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
         <Select
           bg="secondary.600"
           name="clientList"
-          label="Cliente"
+          label={t("PAGES:HOME_PAGE.client", {
+            defaultValue: "Cliente",
+          })}
           list={clients}
           value={clientSelected}
           onChange={handleChangeClientSelected}
@@ -122,9 +128,13 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           serviceSelected?.length === 24 &&
           userSelected?.length === 24 && (
             <DatePicker
-              placeholder="Selecione uma data"
+              placeholder={t("PAGES:NEW_APPOINTMENT.selectDate", {
+                defaultValue: "Selecione a data do agendamento",
+              })}
               name="date"
-              label="Data do agendamento"
+              label={t("PAGES:NEW_APPOINTMENT.date", {
+                defaultValue: "Data do agendamento",
+              })}
               onChange={(date: string) => {
                 setDateSelected(date as any);
               }}
@@ -137,7 +147,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
             <Select
               bg="secondary.600"
               name="timeList"
-              label="Horário disponível"
+              label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
+                defaultValue: "Horário disponível",
+              })}
               list={timeAvailable?.timeAvailable ?? []}
               value={timeSelected ?? ""}
               onChange={handleChangeTimeSelected}
@@ -146,7 +158,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
             />
           )}
         <FormControl
-          label="Observação"
+          label={t("PAGES:NEW_APPOINTMENT.observations", {
+            defaultValue: "Observação",
+          })}
           error={formState.errors.message}
           {...register("message")}
         />

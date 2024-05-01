@@ -16,7 +16,12 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditRouteDriver)}
-      title={"Editar corrida"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar corrida",
+        domain: t("PAGES:HOME_PAGE.ride", {
+          defaultValue: "Corrida",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/routeDrivers/1"}
     >

@@ -2,6 +2,7 @@
   "HOME_PAGE": {
       "title": "Hello, {{user}}",
       "description": "Welcome back to {{systemName}}",
+      "mySubscription": "My subscription",
       "invoiceLabel": "Invoice",
       "appointmentLabel": "Appointments",
       "lastMonth": "Last month",
@@ -59,7 +60,18 @@
       "appointmentDetails":"Appointment details",
       "confirmed": "Confirmed",
       "duration": "Duration",
-      "reschedule": "Reschedule"
+      "reschedule": "Reschedule",
+      "cnpjActive": "Signup as a company",
+      "timeLimit": "Time limit to cancel (in minutes)",
+      "daysOfHourWorked": "Days of the week and hours worked",
+      "hourInit": "Hour init",
+      "hourEnd": "Hour end",
+      "haveLunchTime": "Have lunch time?",
+      "lunchTimeInit": "Lunch time init",
+      "lunchTimeEnd": "Lunch time end",
+      "haveAlternativeDaysWorked": "Have alternative days worked",
+      "haveAnotherAlternativeDaysWorked": "Have another alternative days worked",
+      "haveAnotherAlternativeLunchTimeDaysWorked": "Have lunch time?"
     },
     "MESSAGES": {
       "loading": "Loading...",
@@ -131,9 +143,40 @@
      "descriptionCreateAccount":"Insert the data below to register your business:",
      "ownerName":"Owner name",
      "phone":"Phone number",
-     "buttonSignUp":"Sign up"
+     "buttonSignUp":"Sign up",
+     "userAssociatedToClient":"User associated to client"
     },
     "WEEK_DAYS_SELECTOR":{
       "titulo":"Select the days of the week"
+    },
+    "PIX_PAGE":{
+      "exclusiveSingleUserLicense":"Plan with no limit of professionals",
+      "accessToAllProComponents":"No limit for services and categories",
+      "limitlessProjectImplementation":"Quick, easy and practical scheduling",
+      "dedicatedCustomerSupport":"24/7 Dedicated Customer Support",
+      "titleBox":"Monthly subscription by only",
+      "title":"Subscription {{systemName}}",
+      "buyNow":"Buy now",
+      "price":"$ 29.90/month",
+      "subtitle":"Enjoy all the benefits of the monthly plan {{systemName}} and have access to all the exclusive resources."
+    },
+    "PIX_PAY_PAGE": {
+      "title": "Almost there! Pay via PIX to complete your subscription",
+      "subtitle": "To pay through your online banking, scan the QR Code or copy the code below and paste it into your bank's app.",
+      "value": "Amount: ",
+      "expiration": "Expiration: ",
+      "titleBox": "Scan this QR Code to pay",
+      "subtitleBox1": "1. Access your bank or payment app.",
+      "subtitleBox2": "2. Choose to pay via PIX.",
+      "subtitleBox3": "3. Scan the QR Code or copy the highlighted code.",
+      "validateMyPayment": "VALIDATE MY PAYMENT",
+      "copyPixCode": "COPY PIX CODE",
+      "copyDone": "COPIED!",
+      "copying": "COPYING"
+    },
+    "PIX_PAID_PAGE": {
+      "title": "All set with your subscription!",
+      "subtitle": "Your subscription is up to date, and you can now enjoy all the benefits of our system!",
+      "expiration": "Subscription valid until: "
     }
   }

@@ -15,14 +15,18 @@ export const useLoadInvoice = () => {
         { initDate, endDate, createdById: user?._id },
         null
       );
-      setResultInvoice(result?.appointments?.[0]);
+      setResultInvoice(result?.appointments);
     }
     if (user?._id) {
       getInvoiceTotal();
     }
   }, [selectedRangeInvoice, user?._id]);
+  const totalSum = resultInvoice?.reduce?.(
+    (accumulator, currentElement) => accumulator + currentElement?.total,
+    0
+  );
   const totalIncome =
-    resultInvoice?.total?.toLocaleString?.("pt-BR", {
+    totalSum?.toLocaleString?.("pt-BR", {
       style: "currency",
       currency: "BRL",
     }) ?? "R$ 0,00";

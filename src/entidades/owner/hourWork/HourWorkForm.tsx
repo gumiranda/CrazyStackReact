@@ -1,6 +1,7 @@
 "use client";
 import { Select, ControlledSelect, Checkbox } from "@/shared/ui";
 import { OptionBase } from "chakra-react-select";
+import { useTranslation } from "react-i18next";
 
 export type HourValidatorInput = {
   hourStart1: string;
@@ -125,16 +126,27 @@ export const HourWorks = ({
     onChangehourLunchStart3,
     onChangehourLunchEnd3,
   } = useOnChanges({ changeHour });
+  const { t } = useTranslation(["PAGES"]);
 
   return (
     <>
       <HourWorkForm
         props={{
-          labelDayWork: "Dias de funcionamento 1",
-          labelHourStart: "Hora de início",
-          labelHourEnd: "Hora de término",
-          labelHourLunchStart: "Hora de início do almoço",
-          labelHourLunchEnd: "Hora de término do almoço",
+          labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
+            defaultValue: "Dias de funcionamento 1",
+          }),
+          labelHourStart: t("PAGES:FIELDS.hourInit", {
+            defaultValue: "Hora de início",
+          }),
+          labelHourEnd: t("PAGES:FIELDS.hourEnd", {
+            defaultValue: "Hora de término",
+          }),
+          labelHourLunchStart: t("PAGES:FIELDS.lunchTimeInit", {
+            defaultValue: "Hora de início do almoço",
+          }),
+          labelHourLunchEnd: t("PAGES:FIELDS.lunchTimeEnd", {
+            defaultValue: "Hora de término do almoço",
+          }),
           control,
           daysOptions: daysOptions1,
           listHours,
@@ -153,7 +165,9 @@ export const HourWorks = ({
       <Checkbox
         colorScheme={"tertiary"}
         isChecked={haveLunchTime1}
-        label="Possui horário de almoço?"
+        label={t("PAGES:FIELDS.haveLunchTime", {
+          defaultValue: "Possui horário de almoço?",
+        })}
         onChange={(e) => {
           e.preventDefault();
           setHaveLunchTime1(e.target.checked);
@@ -162,7 +176,9 @@ export const HourWorks = ({
       <Checkbox
         colorScheme={"tertiary"}
         isChecked={haveAlternativeHour}
-        label="Possui horário alternativo?"
+        label={t("PAGES:FIELDS.haveAlternativeDaysWorked", {
+          defaultValue: "Possui horário alternativo?",
+        })}
         onChange={(e) => {
           e.preventDefault();
           setHaveAlternativeHour(e.target.checked);
@@ -172,11 +188,21 @@ export const HourWorks = ({
         <>
           <HourWorkForm
             props={{
-              labelDayWork: "Dias de funcionamento 2",
-              labelHourStart: "Hora de início",
-              labelHourEnd: "Hora de término",
-              labelHourLunchStart: "Hora de início do almoço",
-              labelHourLunchEnd: "Hora de término do almoço",
+              labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
+                defaultValue: "Dias de funcionamento 1",
+              }),
+              labelHourStart: t("PAGES:FIELDS.hourInit", {
+                defaultValue: "Hora de início",
+              }),
+              labelHourEnd: t("PAGES:FIELDS.hourEnd", {
+                defaultValue: "Hora de término",
+              }),
+              labelHourLunchStart: t("PAGES:FIELDS.lunchTimeInit", {
+                defaultValue: "Hora de início do almoço",
+              }),
+              labelHourLunchEnd: t("PAGES:FIELDS.lunchTimeEnd", {
+                defaultValue: "Hora de término do almoço",
+              }),
               control,
               daysOptions: daysOptions2,
               listHours,
@@ -195,7 +221,9 @@ export const HourWorks = ({
           <Checkbox
             colorScheme={"tertiary"}
             isChecked={haveLunchTime2}
-            label="Possui horário de almoço?"
+            label={t("PAGES:FIELDS.haveLunchTime", {
+              defaultValue: "Possui horário de almoço?",
+            })}
             onChange={(e) => {
               e.preventDefault();
               setHaveLunchTime2(e.target.checked);
@@ -204,7 +232,9 @@ export const HourWorks = ({
           <Checkbox
             colorScheme={"tertiary"}
             isChecked={haveAlternativeHour2}
-            label="Possui horário alternativo além desse?"
+            label={t("PAGES:FIELDS.haveAnotherAlternativeDaysWorked", {
+              defaultValue: "Possui horário alternativo?",
+            })}
             onChange={(e) => {
               e.preventDefault();
               setHaveAlternativeHour2(e.target.checked);
@@ -214,11 +244,21 @@ export const HourWorks = ({
             <>
               <HourWorkForm
                 props={{
-                  labelDayWork: "Dias de funcionamento 3",
-                  labelHourStart: "Hora de início",
-                  labelHourEnd: "Hora de término",
-                  labelHourLunchStart: "Hora de início do almoço",
-                  labelHourLunchEnd: "Hora de término do almoço",
+                  labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
+                    defaultValue: "Dias de funcionamento 1",
+                  }),
+                  labelHourStart: t("PAGES:FIELDS.hourInit", {
+                    defaultValue: "Hora de início",
+                  }),
+                  labelHourEnd: t("PAGES:FIELDS.hourEnd", {
+                    defaultValue: "Hora de término",
+                  }),
+                  labelHourLunchStart: t("PAGES:FIELDS.lunchTimeInit", {
+                    defaultValue: "Hora de início do almoço",
+                  }),
+                  labelHourLunchEnd: t("PAGES:FIELDS.lunchTimeEnd", {
+                    defaultValue: "Hora de término do almoço",
+                  }),
                   control,
                   daysOptions: daysOptions3,
                   listHours,
@@ -237,7 +277,9 @@ export const HourWorks = ({
               <Checkbox
                 colorScheme={"tertiary"}
                 isChecked={haveLunchTime3}
-                label="Possui horário de almoço desse alternativo?"
+                label={t("PAGES:FIELDS.haveAnotherAlternativeLunchTimeDaysWorked", {
+                  defaultValue: "Possui horário de almoço alternativo?",
+                })}
                 onChange={(e) => {
                   e.preventDefault();
                   setHaveLunchTime3(e.target.checked);

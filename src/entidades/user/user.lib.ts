@@ -1,4 +1,4 @@
-import { getUsers, getInfiniteUsers } from "./user.api";
+import { getUsers, getInfiniteUsers, getUserById } from "./user.api";
 import {
   useQuery,
   UseQueryOptions,
@@ -19,6 +19,13 @@ export const useGetInfiniteUsers = (
   return useInfiniteQuery({
     queryKey: ["usersInfinite"],
     queryFn: ({ pageParam = 1 }: any) => getInfiniteUsers(pageParam),
+    ...options,
+  });
+};
+export const useGetUserById = (id, options?: UseQueryOptions) => {
+  return useQuery({
+    queryKey: ["user", id],
+    queryFn: () => getUserById(id, null),
     ...options,
   });
 };

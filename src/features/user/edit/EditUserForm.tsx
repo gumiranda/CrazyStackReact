@@ -40,7 +40,12 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditUser)}
-      title={"Editar profissional"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar profissional",
+        domain: t("PAGES:HOME_PAGE.professional", {
+          defaultValue: "Profissional",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/users/1"}
     >

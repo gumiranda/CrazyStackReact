@@ -23,7 +23,7 @@ export const useGetInfiniteRequests = (
 ) => {
   return useInfiniteQuery({
     queryKey: ["requestsInfinite", params],
-    queryFn: ({ pageParam = 1, queryKey }: any) => {
+    queryFn: ({ pageParam = 1, queryKey }) => {
       return getInfiniteRequests(pageParam, queryKey?.[1]);
     },
     ...options,

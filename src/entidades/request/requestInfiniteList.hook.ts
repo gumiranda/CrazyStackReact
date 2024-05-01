@@ -25,7 +25,8 @@ export const useRequestInfiniteList = () => {
     {
       getNextPageParam: (lastPage: any) => lastPage.next,
       getPreviousPageParam: (lastPage: any) => lastPage.prev,
-    } as any,
+      initialPageParam: 1, // or provide a suitable initial value
+    },
     query
   );
   useEffect(() => {
@@ -35,7 +36,7 @@ export const useRequestInfiniteList = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching }: any =
     all || {};
   const firstPage = data?.pages?.[0];
-  const total = firstPage?.totalCountCount ?? 0;
+  const total = firstPage?.totalCount ?? 0;
   useEffect(() => {
     if ([403, 401, 500].includes(error?.response?.status)) {
       logout?.();

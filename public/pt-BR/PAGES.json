@@ -58,7 +58,17 @@
     "appointmentDetails":"Detalhes do agendamento",
     "confirmed": "Confirmado",
     "duration": "Duração",
-    "reschedule": "Reagendar"
+    "reschedule": "Reagendar",
+    "cnpjActive": "Cadastrar como pessoa jurídica",
+    "timeLimit": "Tempo limite para reagendamento/cancelamento (em minutos)",
+    "daysOfHourWorked": "Dias de funcionamento 1",
+    "hourInit": "Hora de início",
+    "hourEnd": "Hora de término",
+    "haveLunchTime": "Possui horário de almoço?",
+    "lunchTimeInit": "Horário de almoço início",
+    "lunchTimeEnd": "Horário de almoço término",
+    "haveAlternativeDaysWorked": "Possui outro dia de funcionamento?",
+    "haveAnotherAlternativeDaysWorked": "Possui mais outro dia de funcionamento?"
   },
   "MESSAGES": {
     "loading": "Carregando...",
@@ -130,5 +140,35 @@
     "ownerName":"Nome do estabelecimento",
     "phone":"Telefone",
     "buttonSignUp":"Cadastrar negócio"
-   }
+   },
+   "PIX_PAGE":{
+    "exclusiveSingleUserLicense":"Cadastro de profissionais ilimitados",
+    "accessToAllProComponents":"Serviços e categorias ilimitadas",
+    "limitlessProjectImplementation":"Agendamento rápido, fácil e prático",
+    "dedicatedCustomerSupport":"Suporte ao cliente 24/7",
+    "titleBox":"Plano mensal de apenas",
+    "title":"Assinatura {{systemName}}",
+    "buyNow":"Pagar com PIX",
+    "price":"R$ 29,90/mês",
+    "subtitle":"Aproveite todos os benefícios do plano mensal {{systemName}} e tenha acesso a todos os recursos exclusivos."
+  },
+  "PIX_PAY_PAGE":{
+     "title":"Quase lá! Pague via PIX para concluir sua assinatura",
+      "subtitle":"Para pagar no seu banco pela internet, escaneie o QR Code ou copie o código abaixo e cole no app do seu banco.",
+      "value":"Valor: ",
+      "expiration":"Expiração: ",
+      "titleBox":"Escaneie este QR Code para pagar",
+      "subtitleBox1":"1. Acesse o seu banco ou aplicativo de pagamentos.",
+      "subtitleBox2":"2. Escolha pagar via PIX.",
+      "subtitleBox3":"3. Escaneie o QR Code ou copie o código destacado.",
+      "validateMyPayment":"VALIDAR MEU PAGAMENTO",
+      "copyPixCode":"COPIAR CÓDIGO PIX",
+      "copyDone":"COPIADO!",
+      "copying":"COPIANDO"
+  },
+  "PIX_PAID_PAGE":{
+     "title":"Tudo certo com a sua assinatura!",
+      "subtitle":"Sua assinatura está em dia e você já pode aproveitar todos os benefícios do nosso sistema!",
+      "expiration":"Assinatura válida até: "
+  }
 }

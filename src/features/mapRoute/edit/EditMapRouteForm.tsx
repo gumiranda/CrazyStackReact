@@ -31,7 +31,12 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
     <>
       <BoxCreateItem
         onSubmit={handleSubmit(handleEditMapRoute)}
-        title={"Editar rota"}
+        title={t("PAGES:HOME_PAGE.editDomain", {
+          defaultValue: "Editar rota",
+          domain: t("PAGES:HOME_PAGE.mapRoute", {
+            defaultValue: "Rota",
+          }),
+        })}
         isLoadingSaveButton={formState.isSubmitting}
         cancelRoute={"/mapRoutes/1"}
       >

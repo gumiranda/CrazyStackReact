@@ -40,7 +40,12 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditOwner)}
-      title={"Editar estabelecimento"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar estabelecimento",
+        domain: t("PAGES:HOME_PAGE.owner", {
+          defaultValue: "Estabelecimento",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/owners/1"}
     >
@@ -72,7 +77,9 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
           {...register("name")}
         />
         <FormControl
-          label="Descrição do estabelecimento"
+          label={t("PAGES:FIELDS.description", {
+            defaultValue: "Descrição",
+          })}
           error={formState.errors.description}
           {...register("description")}
         />

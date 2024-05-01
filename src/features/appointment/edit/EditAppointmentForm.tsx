@@ -25,7 +25,12 @@ export const EditAppointmentForm = ({
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditAppointment)}
-      title={"Editar agendamento"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar agendamento",
+        domain: t("PAGES:HOME_PAGE.appointment", {
+          defaultValue: "Agendamento",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/appointments/1"}
     >

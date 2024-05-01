@@ -34,13 +34,12 @@ export const getRequests = async (
 };
 type InfiniteProps = {
   pageParam: number;
-  ctx: any;
 };
 export const getInfiniteRequests = async (
-  { pageParam = 1, ctx }: InfiniteProps,
+  page,
   params: any
 ): Promise<GetRequestsResponse> => {
-  return getRequests(pageParam, ctx, params);
+  return getRequests(page, null, params);
 };
 export const getRequestById = async (
   id: string,

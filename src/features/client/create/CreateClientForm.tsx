@@ -53,7 +53,9 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
         <Select
           bg="secondary.600"
           name="clientList"
-          label="Usuário associado ao cliente"
+          label={t("PAGES:AUTH_PAGE.userAssociatedToClient", {
+            defaultValue: "Usuário associado ao cliente",
+          })}
           list={users}
           value={userSelected}
           onChange={handleChangeUserSelected}

@@ -10,6 +10,8 @@ export type UserProps = {
   value?: boolean;
   active?: boolean;
   serviceIds?: string[];
+  daysSinceRegister?: number;
+  phone?: string;
 };
 
 class User {
@@ -53,7 +55,12 @@ class User {
   get value(): boolean | undefined {
     return this.props.value;
   }
-
+  get daysSinceRegister(): number | undefined {
+    return this.props.daysSinceRegister;
+  }
+  get phone(): string | undefined {
+    return this.props.phone;
+  }
   format(): UserProps {
     return {
       ...this.props,
@@ -61,12 +68,20 @@ class User {
       name: this.props.name,
       active: this.props.active,
       value: false,
-      createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }),
+      createdAt: this.props.createdAt,
+      daysSinceRegister: this.props.createdAt
+        ? Math.floor(
+            (new Date().getTime() - new Date(this.props.createdAt).getTime()) /
+              (1000 * 60 * 60 * 24)
+          )
+        : 0,
     };
   }
 }
+export const calculateDaysSinceRegister = (createdAt: string) => {
+  if (!createdAt) return 9999;
+  return Math.floor(
+    (new Date().getTime() - new Date(createdAt).getTime()) / (1000 * 60 * 60 * 24)
+  );
+};
 export const userModel = (props: UserProps) => User.build(props);

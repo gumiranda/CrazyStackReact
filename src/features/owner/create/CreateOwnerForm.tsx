@@ -49,7 +49,9 @@ export const CreateOwnerForm = ({ data }) => {
           {...register("name")}
         />
         <FormControl
-          label="Descrição da estabelecimento"
+          label={t("PAGES:FIELDS.description", {
+            defaultValue: "Descrição",
+          })}
           error={formState.errors.description}
           {...register("description")}
         />
@@ -75,7 +77,9 @@ export const CreateOwnerForm = ({ data }) => {
           }}
         />
         <FormControl
-          label="Tempo limite para reagendamento/cancelamento (em minutos)"
+          label={t("PAGES:FIELDS.timeLimit", {
+            defaultValue: "Tempo limite para reagendamento/cancelamento (em minutos)",
+          })}
           error={formState.errors.minimumTimeForReSchedule}
           {...register("minimumTimeForReSchedule")}
         />

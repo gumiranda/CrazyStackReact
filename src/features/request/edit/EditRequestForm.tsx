@@ -38,7 +38,12 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditRequest)}
-      title={"Editar solicitação"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar solicitação",
+        domain: t("PAGES:HOME_PAGE.request", {
+          defaultValue: "Solicitação",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/requests/1"}
     >
@@ -48,12 +53,12 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
           { id: "_id", label: "Id" },
           { id: "message", label: "Obs" },
           { id: "statusLabel", label: "Status da solicitação" },
-          { id: "createdById", label: "Id do criador" },
-          { id: "ownerId", label: "Id do owner" },
-          { id: "clientId", label: "Id do cliente" },
+          { id: "ownerName", label: "Estabelecimento" },
+          { id: "professionalName", label: "Profissional" },
+          { id: "serviceName", label: "Serviço" },
+          { id: "clientName", label: "Cliente" },
           { id: "initDateFormatted", label: "Data início" },
           { id: "endDateFormatted", label: "Data fim" },
-          { id: "professionalId", label: "Id do profissional" },
           {
             id: "createdAt",
             label: t("PAGES:FIELDS.createdAt", {
@@ -74,10 +79,14 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
           keyLabel="value"
         />
         <DatePicker
-          placeholder="Selecione uma data"
+          placeholder={t("PAGES:NEW_APPOINTMENT.selectDate", {
+            defaultValue: "Selecione a data do agendamento",
+          })}
           name="date"
+          label={t("PAGES:NEW_APPOINTMENT.date", {
+            defaultValue: "Data do agendamento",
+          })}
           defaultValue={dateSelected}
-          label="Data de agendamento"
           onChange={(date: string) => {
             setDateChanged(true);
             setDateSelected(date as any);
@@ -87,7 +96,9 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
           <Select
             bg="secondary.600"
             name="timeList"
-            label="Horário disponível"
+            label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
+              defaultValue: "Horário disponível",
+            })}
             list={timeAvailable?.timeAvailable ?? []}
             value={timeSelected ?? ""}
             onChange={handleChangeTimeSelected}
@@ -96,7 +107,9 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
           />
         )}
         <FormControl
-          label="Mensagem da solicitação"
+          label={t("PAGES:NEW_APPOINTMENT.observations", {
+            defaultValue: "Observação",
+          })}
           error={formState.errors.message}
           {...register("message")}
         />

@@ -21,7 +21,11 @@ export const useLoadAppointmentsByPeriod = () => {
     endDate,
   } = useRequestInfiniteList();
   const hasNextPageCorrect = total > requestList?.length && hasNextPage;
-  useInfiniteFullList({ fetchNextPage, hasNextPage: hasNextPageCorrect, isFetching });
+  useInfiniteFullList({
+    fetchNextPage,
+    hasNextPage: hasNextPageCorrect,
+    isFetching,
+  });
   useEffect(() => {
     async function getRequestTotal() {
       const { initDate, endDate } = calculateDateRange(selectedRange);

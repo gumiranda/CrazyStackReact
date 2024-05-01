@@ -18,7 +18,12 @@ export const EditClientForm = ({ client, id, users }: EditClientFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditClient)}
-      title={"Editar cliente"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar cliente",
+        domain: t("PAGES:HOME_PAGE.client", {
+          defaultValue: "Cliente",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/clients/1"}
     >

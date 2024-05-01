@@ -16,9 +16,9 @@ export const CreateRouteDriverForm = () => {
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRouteDriver)}
       title={t("PAGES:HOME_PAGE.createDomain", {
-        defaultValue: "Criar categoria",
-        domain: t("PAGES:HOME_PAGE.category", {
-          defaultValue: "Categoria",
+        defaultValue: "Criar corrida",
+        domain: t("PAGES:HOME_PAGE.ride", {
+          defaultValue: "Corrida",
         }),
       })}
       isLoadingSaveButton={formState.isSubmitting}
