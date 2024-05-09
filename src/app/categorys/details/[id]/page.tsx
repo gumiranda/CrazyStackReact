@@ -6,6 +6,7 @@ import { CategoryDetailsPage } from "@/screens/category/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Detalhes da Categoria`,
@@ -29,5 +30,9 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data) {
     redirect("/login");
   }
-  return <CategoryDetailsPage data={data} id={id} />;
+  return (
+    <LayoutPayAuthenticated>
+      <CategoryDetailsPage data={data} id={id} />
+    </LayoutPayAuthenticated>
+  );
 }

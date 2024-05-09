@@ -1,6 +1,6 @@
 "use client";
 
-import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
+import { InfiniteList, GenericGrid } from "@/shared/ui";
 import { useCategoryInfiniteList } from "../categoryInfiniteList.hook";
 import { useCategoryUi } from "@/entidades/category/category.ui";
 import { useTranslation } from "react-i18next";
