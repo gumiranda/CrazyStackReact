@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ServiceEditPage } from "@/screens/service/edit";
 import { getCategorys } from "@/entidades/category/category.api";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Serviço`,
@@ -33,5 +34,9 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data || !categorys) {
     redirect("/login");
   }
-  return <ServiceEditPage data={data} id={id} categorys={categorys} />;
+  return (
+    <LayoutPayAuthenticated>
+      <ServiceEditPage data={data} id={id} categorys={categorys} />
+    </LayoutPayAuthenticated>
+  );
 }

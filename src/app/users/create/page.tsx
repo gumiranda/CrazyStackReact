@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getServices } from "@/entidades/service/service.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { getOwners } from "@/entidades/owner";
-import { getUser } from "@/shared/libs/utils/layoutPayAsync";
+import LayoutPayAuthenticated, { getUser } from "@/shared/libs/utils/layoutPayAsync";
 import { redirect } from "next/navigation";
 
 export const revalidate = 3000;
@@ -40,5 +40,9 @@ export default async function Page() {
     redirect("/payment/pix");
   }
   if (!data) return null;
-  return <UserCreatePage data={data?.data} owner={data?.owner} />;
+  return (
+    <LayoutPayAuthenticated>
+      <UserCreatePage data={data?.data} owner={data?.owner} />
+    </LayoutPayAuthenticated>
+  );
 }

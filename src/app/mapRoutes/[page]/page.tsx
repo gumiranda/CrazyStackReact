@@ -1,6 +1,7 @@
 import { getMapRoutes } from "@/entidades/mapRoute/mapRoute.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { MapRouteListTablePage } from "@/screens/mapRoute/list/table/MapRouteListTablePage";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();
@@ -18,5 +19,9 @@ export default async function Page({ params: { page } }: { params: { page: strin
   if (!data) {
     return null;
   }
-  return <MapRouteListTablePage data={data} page={pageNumber} />;
+  return (
+    <LayoutPayAuthenticated>
+      <MapRouteListTablePage data={data} page={pageNumber} />;
+    </LayoutPayAuthenticated>
+  );
 }

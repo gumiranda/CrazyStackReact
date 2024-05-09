@@ -3,6 +3,7 @@ import { ClientCreatePage } from "@/screens/client/create";
 import type { Metadata } from "next";
 import { getUsers } from "@/entidades/user/user.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
@@ -22,5 +23,9 @@ export const metadata: Metadata = {
 export default async function Page() {
   const data = await getData(1);
   if (!data) return null;
-  return <ClientCreatePage users={data} />;
+  return (
+    <LayoutPayAuthenticated>
+      <ClientCreatePage users={data} />
+    </LayoutPayAuthenticated>
+  );
 }

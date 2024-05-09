@@ -1,6 +1,7 @@
 import { getAppointments } from "@/entidades/appointment/appointment.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { AppointmentListTablePage } from "@/screens/appointment/list/table/AppointmentListTablePage";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();
@@ -18,5 +19,9 @@ export default async function Page({ params: { page } }: { params: { page: strin
   if (!data) {
     return null;
   }
-  return <AppointmentListTablePage data={data} page={pageNumber} />;
+  return (
+    <LayoutPayAuthenticated>
+      <AppointmentListTablePage data={data} page={pageNumber} />
+    </LayoutPayAuthenticated>
+  );
 }

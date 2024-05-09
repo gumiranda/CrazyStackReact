@@ -1,6 +1,7 @@
 import { getRequests } from "@/entidades/request/request.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { RequestListTablePage } from "@/screens/request/list/table/RequestListTablePage";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();
@@ -18,5 +19,9 @@ export default async function Page({ params: { page } }: { params: { page: strin
   if (!data) {
     return null;
   }
-  return <RequestListTablePage data={data} page={pageNumber} />;
+  return (
+    <LayoutPayAuthenticated>
+      <RequestListTablePage data={data} page={pageNumber} />
+    </LayoutPayAuthenticated>
+  );
 }

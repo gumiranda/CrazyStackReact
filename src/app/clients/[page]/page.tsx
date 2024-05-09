@@ -1,6 +1,7 @@
 import { getClients } from "@/entidades/client/client.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { ClientListTablePage } from "@/screens/client/list/table/ClientListTablePage";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();
@@ -18,5 +19,9 @@ export default async function Page({ params: { page } }: { params: { page: strin
   if (!data) {
     return null;
   }
-  return <ClientListTablePage data={data} page={pageNumber} />;
+  return (
+    <LayoutPayAuthenticated>
+      <ClientListTablePage data={data} page={pageNumber} />
+    </LayoutPayAuthenticated>
+  );
 }

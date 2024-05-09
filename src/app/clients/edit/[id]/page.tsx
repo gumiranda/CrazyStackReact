@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ClientEditPage } from "@/screens/client/edit";
 import { getUsers } from "@/entidades/user/user.api";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Cliente`,
@@ -33,5 +34,9 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data || !users) {
     redirect("/login");
   }
-  return <ClientEditPage data={data} id={id} users={users} />;
+  return (
+    <LayoutPayAuthenticated>
+      <ClientEditPage data={data} id={id} users={users} />
+    </LayoutPayAuthenticated>
+  );
 }

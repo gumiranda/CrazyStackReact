@@ -6,6 +6,7 @@ import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { MapRouteEditPage } from "@/screens/mapRoute/edit";
+import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Rota`,
@@ -29,5 +30,9 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data) {
     redirect("/login");
   }
-  return <MapRouteEditPage data={data} id={id} />;
+  return (
+    <LayoutPayAuthenticated>
+      <MapRouteEditPage data={data} id={id} />
+    </LayoutPayAuthenticated>
+  );
 }
