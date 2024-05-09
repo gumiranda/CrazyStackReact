@@ -37,13 +37,13 @@ export async function getUser() {
 
 export default async function LayoutPayAuthenticated({ children }) {
   const data = await getUser();
-  if (data?.daysToNextCharge && data?.daysToNextCharge > 1) {
+  if (data?.daysToNextCharge && data?.daysToNextCharge < 1) {
     redirect("/payment/pix");
   }
   if (!data) {
     return null;
   }
-  return <Layout>{children}</Layout>;
+  return <>{children}</>;
 }
 export const calculateDaysToNextPayment = (payDay: string) => {
   if (!payDay) return 0;
