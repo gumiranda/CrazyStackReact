@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { PayPixPage } from "@/screens/payment/pix/PayPixPage";
+import { PayPixPage } from "@/slices/general/screens/payment/pix/PayPixPage";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 import { parseJSON } from "@/shared/libs/utils/parseJSON";
 import type { Metadata } from "next";

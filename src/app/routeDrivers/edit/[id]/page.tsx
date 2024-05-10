@@ -1,11 +1,11 @@
-import { getRouteDriverById } from "@/entidades/routeDriver/routeDriver.api";
+import { getRouteDriverById } from "@/slices/appointments/entidades/routeDriver/routeDriver.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { RouteDriverEditPage } from "@/screens/routeDriver/edit";
+import { RouteDriverEditPage } from "@/slices/appointments/screens/routeDriver/edit";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {

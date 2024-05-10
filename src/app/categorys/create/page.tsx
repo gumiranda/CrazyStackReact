@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { CategoryCreatePage } from "@/screens/category/create";
+import { CategoryCreatePage } from "@/slices/appointments/screens/category/create";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

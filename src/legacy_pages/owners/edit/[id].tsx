@@ -1,5 +1,5 @@
-import { OwnerEditPage } from "@/screens/owner/edit";
-import { getOwnerById } from "@/entidades/owner/owner.api";
+import { OwnerEditPage } from "@/slices/appointments/screens/owner/edit";
+import { getOwnerById } from "@/slices/appointments/entidades/owner/owner.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

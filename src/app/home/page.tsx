@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { HomePage } from "@/screens/home/HomePage";
+import { HomePage } from "@/slices/appointments/screens/home/HomePage";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";

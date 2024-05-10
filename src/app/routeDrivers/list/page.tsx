@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { RouteDriverGridPage } from "@/screens/routeDriver/list/grid";
+import { RouteDriverGridPage } from "@/slices/appointments/screens/routeDriver/list/grid";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

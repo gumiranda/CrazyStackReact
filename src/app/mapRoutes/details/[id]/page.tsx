@@ -1,8 +1,8 @@
-import { getMapRouteById } from "@/entidades/mapRoute/mapRoute.api";
+import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { MapRouteDetailsPage } from "@/screens/mapRoute/details";
+import { MapRouteDetailsPage } from "@/slices/appointments/screens/mapRoute/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

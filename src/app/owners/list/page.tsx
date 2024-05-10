@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { OwnerGridPage } from "@/screens/owner/list/grid";
+import { OwnerGridPage } from "@/slices/appointments/screens/owner/list/grid";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,6 +1,6 @@
-import { getRouteDrivers } from "@/entidades/routeDriver/routeDriver.api";
+import { getRouteDrivers } from "@/slices/appointments/entidades/routeDriver/routeDriver.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { RouteDriverListTablePage } from "@/screens/routeDriver/list/table/RouteDriverListTablePage";
+import { RouteDriverListTablePage } from "@/slices/appointments/screens/routeDriver/list/table/RouteDriverListTablePage";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {

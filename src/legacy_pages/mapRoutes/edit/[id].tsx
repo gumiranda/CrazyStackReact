@@ -1,5 +1,5 @@
-import { MapRouteEditPage } from "@/screens/mapRoute/edit";
-import { getMapRouteById } from "@/entidades/mapRoute/mapRoute.api";
+import { MapRouteEditPage } from "@/slices/appointments/screens/mapRoute/edit";
+import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

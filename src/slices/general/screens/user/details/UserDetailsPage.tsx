@@ -1,0 +1,37 @@
+"use client";
+import { Box, Button, Head } from "@/shared/ui";
+import { UserDetails } from "@/slices/general/entidades/user/details";
+import { UserProps } from "@/slices/general/entidades/user";
+import { deleteUserById } from "@/slices/general/entidades/user/user.api";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/shared/libs";
+
+type UserDetailsProps = {
+  data: UserProps;
+  id: string;
+  canDelete?: boolean;
+};
+export const UserDetailsPage = ({ data, id, canDelete = false }: UserDetailsProps) => {
+  const props = { user: data };
+  const router = useRouter();
+  const { logout = () => {} } = useAuth();
+  return (
+    <>
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
+        <UserDetails {...props} />
+        {canDelete === true && (
+          <Button
+            colorScheme="red"
+            onClick={async () => {
+              logout?.();
+              await deleteUserById(id, null);
+              router.push("/login");
+            }}
+          >
+            Deletar conta
+          </Button>
+        )}
+      </Box>
+    </>
+  );
+};

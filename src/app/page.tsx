@@ -1,4 +1,4 @@
-import { Login } from "@/screens/auth/login/LoginPage";
+import { Login } from "@/slices/general/screens/auth/login/LoginPage";
 import { parseCookies } from "@/shared/libs/utils/parseCookies";
 import { getCookies } from "@/shared/libs/utils/cookies";
 import { redirect } from "next/navigation";

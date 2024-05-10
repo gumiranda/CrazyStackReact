@@ -1,5 +1,5 @@
-import { {{pascalCase name}}EditPage } from "@/screens/{{camelCase name}}/edit";
-import { get{{pascalCase name}}ById } from "@/entidades/{{camelCase name}}/{{camelCase name}}.api";
+import { {{pascalCase name}}EditPage } from "@/slices/appointments/screens/{{camelCase name}}/edit";
+import { get{{pascalCase name}}ById } from "@/slices/appointments/entidades/{{camelCase name}}/{{camelCase name}}.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

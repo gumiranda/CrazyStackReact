@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { PixFeaturesPage } from "@/screens/payment/pix/PixFeaturesPage";
+import { PixFeaturesPage } from "@/slices/general/screens/payment/pix/PixFeaturesPage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

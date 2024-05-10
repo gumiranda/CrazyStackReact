@@ -7,7 +7,7 @@ import { useUi } from "./UiContext";
 import { api } from "@/shared/api";
 import { useTranslation } from "react-i18next";
 import { parseJSON } from "../utils/parseJSON";
-import { userModel } from "@/entidades/user/user.model";
+import { userModel } from "@/slices/general/entidades/user/user.model";
 
 type User = {
   email: string;

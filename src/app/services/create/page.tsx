@@ -1,7 +1,7 @@
 import { config } from "@/application/config";
-import { ServiceCreatePage } from "@/screens/service/create";
+import { ServiceCreatePage } from "@/slices/appointments/screens/service/create";
 import type { Metadata } from "next";
-import { getCategorys } from "@/entidades/category/category.api";
+import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 

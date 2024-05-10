@@ -1,6 +1,6 @@
-import { getCategorys } from "@/entidades/category/category.api";
+import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { CategoryListTablePage } from "@/screens/category/list/table/CategoryListTablePage";
+import { CategoryListTablePage } from "@/slices/appointments/screens/category/list/table/CategoryListTablePage";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {

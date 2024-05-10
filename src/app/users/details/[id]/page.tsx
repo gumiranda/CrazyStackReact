@@ -1,8 +1,8 @@
-import { getUserById } from "@/entidades/user/user.api";
+import { getUserById } from "@/slices/general/entidades/user/user.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { UserDetailsPage } from "@/screens/user/details";
+import { UserDetailsPage } from "@/slices/general/screens/user/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

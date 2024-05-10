@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { MapRouteGridPage } from "@/screens/mapRoute/list/grid";
+import { MapRouteGridPage } from "@/slices/appointments/screens/mapRoute/list/grid";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

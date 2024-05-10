@@ -1,9 +1,9 @@
 import { config } from "@/application/config";
-import { UserCreatePage } from "@/screens/user/create";
+import { UserCreatePage } from "@/slices/general/screens/user/create";
 import type { Metadata } from "next";
-import { getServices } from "@/entidades/service/service.api";
+import { getServices } from "@/slices/appointments/entidades/service/service.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { getOwners } from "@/entidades/owner";
+import { getOwners } from "@/slices/appointments/entidades/owner";
 import LayoutPayAuthenticated, { getUser } from "@/shared/libs/utils/layoutPayAsync";
 import { redirect } from "next/navigation";
 

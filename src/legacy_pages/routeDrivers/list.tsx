@@ -1,2 +1,2 @@
-import { RouteDriverGridPage } from "@/screens/routeDriver/list/grid";
+import { RouteDriverGridPage } from "@/slices/appointments/screens/routeDriver/list/grid";
 export default RouteDriverGridPage;

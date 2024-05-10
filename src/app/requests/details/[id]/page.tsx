@@ -1,8 +1,8 @@
-import { getRequestById } from "@/entidades/request/request.api";
+import { getRequestById } from "@/slices/appointments/entidades/request/request.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { RequestDetailsPage } from "@/screens/request/details";
+import { RequestDetailsPage } from "@/slices/appointments/screens/request/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

@@ -1,7 +1,7 @@
 import { config } from "@/application/config";
-import { RequestCreatePage } from "@/screens/request/create";
+import { RequestCreatePage } from "@/slices/appointments/screens/request/create";
 import type { Metadata } from "next";
-import { getOwners } from "@/entidades/owner/owner.api";
+import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 

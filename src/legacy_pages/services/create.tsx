@@ -1,7 +1,7 @@
-import { ServiceCreatePage } from "@/screens/service/create";
+import { ServiceCreatePage } from "@/slices/appointments/screens/service/create";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
-import { getCategorys } from "@/entidades/category/category.api";
+import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const data = await getCategorys(1, context);
   return {

@@ -1,12 +1,12 @@
-import { getOwnerById } from "@/entidades/owner/owner.api";
+import { getOwnerById } from "@/slices/appointments/entidades/owner/owner.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { OwnerEditPage } from "@/screens/owner/edit";
-import { getUsers } from "@/entidades/user/user.api";
+import { OwnerEditPage } from "@/slices/appointments/screens/owner/edit";
+import { getUsers } from "@/slices/general/entidades/user/user.api";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {

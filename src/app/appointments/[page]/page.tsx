@@ -1,6 +1,6 @@
-import { getAppointments } from "@/entidades/appointment/appointment.api";
+import { getAppointments } from "@/slices/appointments/entidades/appointment/appointment.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { AppointmentListTablePage } from "@/screens/appointment/list/table/AppointmentListTablePage";
+import { AppointmentListTablePage } from "@/slices/appointments/screens/appointment/list/table/AppointmentListTablePage";
 import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 export const revalidate = 3000;
 async function getData(pageNumber) {
