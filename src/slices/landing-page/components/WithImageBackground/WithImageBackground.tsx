@@ -44,25 +44,26 @@ export const WithImageBackground = () => {
               })}
             </Text>
             <Stack direction={{ base: "column", md: "row" }} mt="10" spacing="4">
-              {/* <Link as={NextLink} href="/signup"> */}
-              <Button
-                bgColor="primary.600"
-                _hover={{ bg: "primary.700" }}
-                color="white"
-                px="8"
-                href="/signup"
-                as={NextLink}
-                rounded="full"
-                size="lg"
-                fontSize="md"
-                fontWeight="bold"
-                fontFamily={fonts.inter.style.fontFamily}
-              >
-                {t("LANDING:FIRST_BLOCK.button", {
-                  defaultValue: "Testar 30 dias grátis",
-                })}
-              </Button>
-              {/* </Link> */}
+              <Link href="/signup">
+                <Button
+                  bgColor="primary.600"
+                  _hover={{ bg: "primary.700" }}
+                  color="white"
+                  px="8"
+                  w={"100%"}
+                  // href="/signup"
+                  // as={NextLink}
+                  rounded="full"
+                  size="lg"
+                  fontSize="md"
+                  fontWeight="bold"
+                  fontFamily={fonts.inter.style.fontFamily}
+                >
+                  {t("LANDING:FIRST_BLOCK.button", {
+                    defaultValue: "Testar 30 dias grátis",
+                  })}
+                </Button>
+              </Link>
               <Link as={NextLink} href="/knownMore">
                 <HStack
                   transition="background 0.2s"

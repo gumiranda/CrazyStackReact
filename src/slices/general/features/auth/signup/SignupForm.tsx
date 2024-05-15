@@ -43,7 +43,7 @@ export const SignupForm = ({ children }: any) => {
       {
         type: "text",
         name: "cnpjActive",
-        checkboxProps: {
+        checkboxprops: {
           defaultChecked: false,
           colorScheme: "primary",
           label: t("PAGES:AUTH_PAGE.cnpjActive", {
@@ -79,7 +79,7 @@ export const SignupForm = ({ children }: any) => {
     }),
     id: "signup",
     formControlContainerProps: {
-      maxHeigth: isDesktopVersion ? "15rem" : "100%",
+      maxHeight: isDesktopVersion ? "15rem" : "100%",
       overflowY: isDesktopVersion ? "auto" : "hidden",
       paddingRight: isDesktopVersion ? 8 : 0,
     },
