@@ -14,9 +14,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export const HeroWithSignUp = () => {
+  const [email, setEmail] = useState("");
   const { t } = useTranslation(["LANDING"]);
   return (
     <Box m={10}>
@@ -51,6 +53,8 @@ export const HeroWithSignUp = () => {
                 })}
                 size={"lg"}
                 colorScheme="tertiary"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Button
                 size="lg"
@@ -61,6 +65,7 @@ export const HeroWithSignUp = () => {
                 fontWeight="bold"
                 fontSize="md"
                 fontFamily={fonts.inter.style.fontFamily}
+                onClick={() => console.log(email)}
               >
                 {t("LANDING:THIRD_BLOCK.button", {
                   defaultValue: "Cadastrar",

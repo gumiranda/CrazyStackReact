@@ -62,22 +62,22 @@ export const WithScreenshotBelow = () => {
             spacing="4"
           >
             <LightMode>
-              <Link href="/signup">
-                <Button
-                  size="lg"
-                  bgColor="primary.600"
-                  color="white"
-                  _hover={{ bgColor: "primary.700" }}
-                  px="8"
-                  fontWeight="bold"
-                  fontSize="md"
-                  fontFamily={fonts.inter.style.fontFamily}
-                >
-                  {t("LANDING:SECOND_BLOCK.button", {
-                    defaultValue: "Cadastrar meu negócio",
-                  })}
-                </Button>
-              </Link>
+              {/* <Link href="/signup"> */}
+              <Button
+                size="lg"
+                bgColor="primary.600"
+                color="white"
+                _hover={{ bgColor: "primary.700" }}
+                px="8"
+                fontWeight="bold"
+                fontSize="md"
+                fontFamily={fonts.inter.style.fontFamily}
+              >
+                {t("LANDING:SECOND_BLOCK.button", {
+                  defaultValue: "Cadastrar meu negócio",
+                })}
+              </Button>
+              {/* </Link> */}
               <Button
                 size="lg"
                 colorScheme="whiteAlpha"

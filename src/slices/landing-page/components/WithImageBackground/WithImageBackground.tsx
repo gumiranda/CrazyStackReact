@@ -43,46 +43,45 @@ export const WithImageBackground = () => {
               })}
             </Text>
             <Stack direction={{ base: "column", md: "row" }} mt="10" spacing="4">
-              <Link href="/signup">
-                <Button
-                  as="a"
-                  href="#"
-                  bgColor="primary.600"
-                  _hover={{ bg: "primary.700" }}
-                  color="white"
-                  px="8"
-                  rounded="full"
-                  size="lg"
-                  fontSize="md"
-                  fontWeight="bold"
-                  fontFamily={fonts.inter.style.fontFamily}
-                >
-                  {t("LANDING:FIRST_BLOCK.button", {
-                    defaultValue: "Testar 30 dias grátis",
+              {/* <Link href="/signup"> */}
+              <Button
+                as="a"
+                href="#"
+                bgColor="primary.600"
+                _hover={{ bg: "primary.700" }}
+                color="white"
+                px="8"
+                rounded="full"
+                size="lg"
+                fontSize="md"
+                fontWeight="bold"
+                fontFamily={fonts.inter.style.fontFamily}
+              >
+                {t("LANDING:FIRST_BLOCK.button", {
+                  defaultValue: "Testar 30 dias grátis",
+                })}
+              </Button>
+              {/* </Link> */}
+              {/* <Link href="/knownMore"> */}
+              <HStack
+                transition="background 0.2s"
+                justify={{ base: "center", md: "flex-start" }}
+                color="white"
+                fontFamily={fonts.inter.style.fontFamily}
+                rounded="full"
+                fontWeight="bold"
+                px="6"
+                py="3"
+                _hover={{ bg: "whiteAlpha.300" }}
+              >
+                <span>
+                  {t("LANDING:FIRST_BLOCK.button2", {
+                    defaultValue: "Saiba mais",
                   })}
-                </Button>
-              </Link>
-              <Link href="/knownMore">
-                <HStack
-                  as="a"
-                  transition="background 0.2s"
-                  justify={{ base: "center", md: "flex-start" }}
-                  color="white"
-                  fontFamily={fonts.inter.style.fontFamily}
-                  rounded="full"
-                  fontWeight="bold"
-                  px="6"
-                  py="3"
-                  _hover={{ bg: "whiteAlpha.300" }}
-                >
-                  <span>
-                    {t("LANDING:FIRST_BLOCK.button2", {
-                      defaultValue: "Saiba mais",
-                    })}
-                  </span>
-                  <HiChevronRight />
-                </HStack>
-              </Link>
+                </span>
+                <HiChevronRight />
+              </HStack>
+              {/* </Link> */}
             </Stack>
           </Box>
         </Box>
