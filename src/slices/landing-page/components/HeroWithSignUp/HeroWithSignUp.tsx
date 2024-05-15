@@ -14,12 +14,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export const HeroWithSignUp = () => {
   const [email, setEmail] = useState("");
   const { t } = useTranslation(["LANDING"]);
+  const router = useRouter();
   return (
     <Box m={10}>
       <SimpleGrid columns={{ base: 1, md: 2 }} gap={16}>
@@ -56,6 +58,7 @@ export const HeroWithSignUp = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+
               <Button
                 size="lg"
                 bgColor="primary.600"
@@ -65,7 +68,19 @@ export const HeroWithSignUp = () => {
                 fontWeight="bold"
                 fontSize="md"
                 fontFamily={fonts.inter.style.fontFamily}
-                onClick={() => console.log(email)}
+                onClick={() => {
+                  if (email === "") {
+                    alert("Digite um e-mail válido");
+                    return;
+                  }
+                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expressão regular para validar o formato do e-mail
+
+                  if (!emailRegex.test(email)) {
+                    alert("Digite um e-mail válido");
+                    return;
+                  }
+                  router.push("/signup?email=" + email);
+                }}
               >
                 {t("LANDING:THIRD_BLOCK.button", {
                   defaultValue: "Cadastrar",

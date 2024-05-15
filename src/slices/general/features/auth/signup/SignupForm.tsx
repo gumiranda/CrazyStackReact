@@ -3,11 +3,13 @@ import { useSignup } from "./signup.hook";
 import { useBreakpointValue } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-export const SignupForm = ({ children }: any) => {
+export const SignupForm = ({ children, defaultEmail }: any) => {
   const isDesktopVersion = useBreakpointValue({ base: false, md: true });
   const { t } = useTranslation(["PAGES"]);
 
-  const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup();
+  const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup({
+    defaultEmail,
+  });
 
   const formProps = {
     formState,

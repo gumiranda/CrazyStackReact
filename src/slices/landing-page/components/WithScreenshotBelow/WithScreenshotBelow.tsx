@@ -14,7 +14,6 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
-import NextLink from "next/link";
 import { useTranslation } from "react-i18next";
 import { FaPlay } from "react-icons/fa";
 
@@ -63,22 +62,23 @@ export const WithScreenshotBelow = () => {
             spacing="4"
           >
             <LightMode>
-              {/* <Link as={NextLink} href="/signup"> */}
-              <Button
-                size="lg"
-                bgColor="primary.600"
-                color="white"
-                _hover={{ bgColor: "primary.700" }}
-                px="8"
-                fontWeight="bold"
-                fontSize="md"
-                fontFamily={fonts.inter.style.fontFamily}
-              >
-                {t("LANDING:SECOND_BLOCK.button", {
-                  defaultValue: "Cadastrar meu negócio",
-                })}
-              </Button>
-              {/* </Link> */}
+              <Link href="/signup">
+                <Button
+                  size="lg"
+                  bgColor="primary.600"
+                  color="white"
+                  _hover={{ bgColor: "primary.700" }}
+                  px="8"
+                  fontWeight="bold"
+                  fontSize="md"
+                  fontFamily={fonts.inter.style.fontFamily}
+                  w={"100%"}
+                >
+                  {t("LANDING:SECOND_BLOCK.button", {
+                    defaultValue: "Cadastrar meu negócio",
+                  })}
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 colorScheme="whiteAlpha"
