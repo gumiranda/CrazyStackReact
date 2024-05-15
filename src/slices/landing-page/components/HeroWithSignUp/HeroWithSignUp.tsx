@@ -27,24 +27,55 @@ export const HeroWithSignUp = () => {
               size={{ base: "2xl", md: "3xl" }}
               fontFamily={fonts.inter.style.fontFamily}
             >
-              Chega de passar raiva com plataformas ruins
+              {t("LANDING:THIRD_BLOCK.title", {
+                defaultValue: "Chega de passar raiva com plataformas ruins",
+              })}
             </Heading>
             <Text
               size={{ base: "xl", md: "2xl" }}
               color="fg.muted"
               fontFamily={fonts.inter.style.fontFamily}
             >
-              Com o {config.systemName}, você pode cadastrar e já sair usando! Sem ter que
-              conversar com uma equipe chata de vendas.
+              {t("LANDING:THIRD_BLOCK.subtitle", {
+                defaultValue: `Com o ${config.systemName}, você pode cadastrar e já sair usando! Sem ter que
+                conversar com uma equipe chata de vendas.`,
+                systemName: config.systemName,
+              })}
             </Text>
           </Stack>
           <Stack spacing="3">
             <Stack direction={{ base: "column", md: "row" }} spacing="3">
-              <Input placeholder="Enter your email" size={"lg"} colorScheme="tertiary" />
-              <Button>Sign Up</Button>
+              <Input
+                placeholder={t("LANDING:THIRD_BLOCK.input", {
+                  defaultValue: "Digite seu e-mail",
+                })}
+                size={"lg"}
+                colorScheme="tertiary"
+              />
+              <Button
+                size="lg"
+                bgColor="primary.600"
+                color="white"
+                _hover={{ bgColor: "primary.700" }}
+                px="12"
+                fontWeight="bold"
+                fontSize="md"
+                fontFamily={fonts.inter.style.fontFamily}
+              >
+                {t("LANDING:THIRD_BLOCK.button", {
+                  defaultValue: "Cadastrar",
+                })}
+              </Button>
             </Stack>
             <Text textStyle="xs" color="fg.subtle">
-              By signing up, you accept our <Link href="#">Terms and Conditions.</Link>
+              {t("LANDING:THIRD_BLOCK.footerText", {
+                defaultValue: "Ao cadastrar, você concorda com os nossos ",
+              })}
+              <Link href="#">
+                {t("LANDING:THIRD_BLOCK.footerLink", {
+                  defaultValue: "Termos de Serviço e Política de Privacidade.",
+                })}
+              </Link>
             </Text>
           </Stack>
         </Stack>

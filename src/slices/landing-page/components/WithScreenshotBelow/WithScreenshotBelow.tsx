@@ -13,6 +13,7 @@ import {
   VisuallyHidden,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { FaPlay } from "react-icons/fa";
 
@@ -34,7 +35,9 @@ export const WithScreenshotBelow = () => {
               letterSpacing="tight"
               fontFamily={fonts.inter.style.fontFamily}
             >
-              Chega de complicações, comece a usar agora
+              {t("LANDING:SECOND_BLOCK.title", {
+                defaultValue: "Chega de complicações, comece a usar agora",
+              })}
             </Heading>
             <Text
               size={{ base: "xl", md: "2xl" }}
@@ -43,8 +46,11 @@ export const WithScreenshotBelow = () => {
               mx="auto"
               fontFamily={fonts.inter.style.fontFamily}
             >
-              Com o {config.systemName}, você pode criar e gerenciar seus agendamentos de
-              forma simples e eficiente.
+              {t("LANDING:SECOND_BLOCK.subtitle", {
+                defaultValue: `Com o ${config.systemName}, você pode criar e gerenciar seus agendamentos de
+              forma simples e eficiente.`,
+                systemName: config.systemName,
+              })}
             </Text>
           </Box>
 
@@ -56,18 +62,22 @@ export const WithScreenshotBelow = () => {
             spacing="4"
           >
             <LightMode>
-              <Button
-                size="lg"
-                bgColor="primary.600"
-                color="white"
-                _hover={{ bgColor: "primary.700" }}
-                px="8"
-                fontWeight="bold"
-                fontSize="md"
-                fontFamily={fonts.inter.style.fontFamily}
-              >
-                Cadastrar meu negócio
-              </Button>
+              <Link href="/signup">
+                <Button
+                  size="lg"
+                  bgColor="primary.600"
+                  color="white"
+                  _hover={{ bgColor: "primary.700" }}
+                  px="8"
+                  fontWeight="bold"
+                  fontSize="md"
+                  fontFamily={fonts.inter.style.fontFamily}
+                >
+                  {t("LANDING:SECOND_BLOCK.button", {
+                    defaultValue: "Cadastrar meu negócio",
+                  })}
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 colorScheme="whiteAlpha"
@@ -76,7 +86,9 @@ export const WithScreenshotBelow = () => {
                 fontSize="md"
                 fontFamily={fonts.inter.style.fontFamily}
               >
-                Ver demonstração
+                {t("LANDING:SECOND_BLOCK.button2", {
+                  defaultValue: "Ver demonstração",
+                })}
               </Button>
             </LightMode>
           </Stack>
@@ -89,7 +101,7 @@ export const WithScreenshotBelow = () => {
             overflow="hidden"
           >
             <Img
-              alt="Screenshot of Envelope App"
+              alt="Screenshot do demo do belezix"
               src="https://res.cloudinary.com/chakra-ui-pro/image/upload/v1621085270/pro-website/app-screenshot-light_kit2sp.png"
             />
             <Circle
@@ -108,7 +120,7 @@ export const WithScreenshotBelow = () => {
                 transform: "translate3d(-50%, -50%, 0) scale(1.05)",
               }}
             >
-              <VisuallyHidden>Play demo video</VisuallyHidden>
+              <VisuallyHidden>Iniciar vídeo de demonstração</VisuallyHidden>
               <FaPlay />
             </Circle>
           </Box>
