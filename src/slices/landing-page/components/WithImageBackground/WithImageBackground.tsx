@@ -1,9 +1,13 @@
 import { fonts } from "@/app/fonts";
 import { config } from "@/application/config";
 import { Box, Button, Flex, Heading, HStack, Img, Stack, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
 import { HiChevronRight } from "react-icons/hi";
 
 export const WithImageBackground = () => {
+  const { t } = useTranslation(["LANDING"]);
+
   return (
     <Box bg="gray.800" as="section" minH="140px" position="relative">
       <Box py="32" position="relative" zIndex={1}>
@@ -20,7 +24,9 @@ export const WithImageBackground = () => {
               fontWeight="extrabold"
               fontFamily={fonts.inter.style.fontFamily}
             >
-              Agendamentos online para o seu negócio
+              {t("LANDING:FIRST_BLOCK.title", {
+                defaultValue: "Agendamentos online para o seu negócio",
+              })}
             </Heading>
             <Text
               size={{ base: "xl", md: "2xl" }}
@@ -30,41 +36,53 @@ export const WithImageBackground = () => {
               fontWeight="extrabold"
               fontFamily={fonts.inter.style.fontFamily}
             >
-              Economize tempo, ganhe mais clientes e simplifique a gestão do seu negócio
-              com o {config.systemName}!
+              {t("LANDING:FIRST_BLOCK.subtitle", {
+                defaultValue: `Economize tempo, ganhe mais clientes e simplifique a gestão do seu negócio
+                com o ${config.systemName}!`,
+                systemName: config.systemName,
+              })}
             </Text>
             <Stack direction={{ base: "column", md: "row" }} mt="10" spacing="4">
-              <Button
-                as="a"
-                href="#"
-                bgColor="primary.600"
-                _hover={{ bg: "primary.700" }}
-                color="white"
-                px="8"
-                rounded="full"
-                size="lg"
-                fontSize="md"
-                fontWeight="bold"
-                fontFamily={fonts.inter.style.fontFamily}
-              >
-                Testar 30 dias grátis
-              </Button>
-              <HStack
-                as="a"
-                transition="background 0.2s"
-                justify={{ base: "center", md: "flex-start" }}
-                href="#"
-                color="white"
-                fontFamily={fonts.inter.style.fontFamily}
-                rounded="full"
-                fontWeight="bold"
-                px="6"
-                py="3"
-                _hover={{ bg: "whiteAlpha.300" }}
-              >
-                <span>Saiba mais</span>
-                <HiChevronRight />
-              </HStack>
+              <Link href="/signup">
+                <Button
+                  as="a"
+                  href="#"
+                  bgColor="primary.600"
+                  _hover={{ bg: "primary.700" }}
+                  color="white"
+                  px="8"
+                  rounded="full"
+                  size="lg"
+                  fontSize="md"
+                  fontWeight="bold"
+                  fontFamily={fonts.inter.style.fontFamily}
+                >
+                  {t("LANDING:FIRST_BLOCK.button", {
+                    defaultValue: "Testar 30 dias grátis",
+                  })}
+                </Button>
+              </Link>
+              <Link href="/knownMore">
+                <HStack
+                  as="a"
+                  transition="background 0.2s"
+                  justify={{ base: "center", md: "flex-start" }}
+                  color="white"
+                  fontFamily={fonts.inter.style.fontFamily}
+                  rounded="full"
+                  fontWeight="bold"
+                  px="6"
+                  py="3"
+                  _hover={{ bg: "whiteAlpha.300" }}
+                >
+                  <span>
+                    {t("LANDING:FIRST_BLOCK.button2", {
+                      defaultValue: "Saiba mais",
+                    })}
+                  </span>
+                  <HiChevronRight />
+                </HStack>
+              </Link>
             </Stack>
           </Box>
         </Box>

@@ -15,7 +15,7 @@ export const NavBarWithCallToAction = () => {
             <ToggleButton
               onClick={mobileNavbar.onToggle}
               isOpen={mobileNavbar.isOpen}
-              aria-label="Open Menu"
+              aria-label="Mostrar menu"
             />
           </HStack>
 

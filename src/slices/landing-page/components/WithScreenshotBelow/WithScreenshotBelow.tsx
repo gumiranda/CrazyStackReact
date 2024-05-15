@@ -13,9 +13,12 @@ import {
   VisuallyHidden,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import { FaPlay } from "react-icons/fa";
 
 export const WithScreenshotBelow = () => {
+  const { t } = useTranslation(["LANDING"]);
+
   return (
     <Box>
       <Box as="section" bg="secondary.600" color="white" py="7.5rem">

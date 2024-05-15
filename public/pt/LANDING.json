@@ -1,0 +1,27 @@
+{
+  "FIRST_BLOCK":{
+    "title":"Agendamentos online para o seu negócio",
+    "subtitle":"Economize tempo, ganhe mais clientes e simplifique a gestão do seu negócio com o {{systemName}}!",
+    "button":"Testar 30 dias grátis",
+    "button2":"Saiba mais"
+  },
+  "SECOND_BLOCK":{
+    "title":"Chega de complicações, comece a usar agora",
+    "subtitle":"Com o {{systemName}}, você pode criar e gerenciar seus agendamentos de forma simples e eficiente. ",
+    "button":"Cadastrar meu negócio",
+    "button2":"Ver demonstração"
+  },
+  "THIRD_BLOCK":{
+    "title":"Chega de passar raiva com plataformas ruins",
+    "subtitle":"Com o {{systemName}}, você pode cadastrar e já sair usando! Sem ter que conversar com uma equipe chata de vendas.",
+    "button":"Cadastrar meu negócio",
+    "input":"Digite seu e-mail"
+  },
+  "PAGE_HEADER_CTA":{
+    "title":"Simplifique seus agendamentos",
+    "subtitle":"Assine nossa plataforma e facilite o agendamento de seus serviços.",
+    "button":"Assinar agora",
+    "button2":"Saiba mais",
+    "badge":"Para Estabelecimentos"
+  }
+}
