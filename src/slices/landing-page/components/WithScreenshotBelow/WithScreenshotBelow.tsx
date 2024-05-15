@@ -13,7 +13,8 @@ import {
   VisuallyHidden,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
-import Link from "next/link";
+import { Link } from "@chakra-ui/next-js";
+import NextLink from "next/link";
 import { useTranslation } from "react-i18next";
 import { FaPlay } from "react-icons/fa";
 
@@ -62,7 +63,7 @@ export const WithScreenshotBelow = () => {
             spacing="4"
           >
             <LightMode>
-              {/* <Link href="/signup"> */}
+              {/* <Link as={NextLink} href="/signup"> */}
               <Button
                 size="lg"
                 bgColor="primary.600"
