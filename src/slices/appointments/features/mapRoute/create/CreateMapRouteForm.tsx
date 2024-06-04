@@ -1,7 +1,18 @@
 import { useCreateMapRoute } from "./createMapRoute.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
+import {
+  BoxCreateItem,
+  FormControl,
+  Checkbox,
+  GridForm,
+  Grid,
+  Text,
+  List,
+  ListItem,
+  Card,
+  CardBody,
+  Button,
+} from "@/shared/ui";
 import { useRef } from "react";
-import { Grid, Text, List, ListItem, Card, CardBody, Button } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 export const CreateMapRouteForm = () => {
   const { t } = useTranslation(["PAGES"]);

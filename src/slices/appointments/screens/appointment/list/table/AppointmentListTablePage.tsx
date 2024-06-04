@@ -1,9 +1,8 @@
 "use client";
-import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { Box, GenericTable, useBreakpointValue, Pagination } from "@/shared/ui";
 import { GetAppointmentsResponse } from "@/slices/appointments/entidades/appointment/appointment.api";
 import { useAppointmentList } from "../appointmentList.hook";
 import { useTranslation } from "react-i18next";
-import { useBreakpointValue } from "@chakra-ui/react";
 type AppointmentListTablePageProps = {
   data: GetAppointmentsResponse;
   page: number;

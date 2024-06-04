@@ -1,7 +1,18 @@
 import { MapRouteProps } from "@/slices/appointments/entidades/mapRoute";
 import { useEditMapRoute } from "./editMapRoute.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
-import { Grid, Text, List, ListItem, Card, CardBody, Button } from "@chakra-ui/react";
+import {
+  BoxCreateItem,
+  FormControl,
+  GenericDetailsItem,
+  GridForm,
+  Grid,
+  Text,
+  List,
+  ListItem,
+  Card,
+  CardBody,
+  Button,
+} from "@/shared/ui";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 

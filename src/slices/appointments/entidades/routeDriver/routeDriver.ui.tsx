@@ -1,7 +1,6 @@
-import { Icon } from "@chakra-ui/react";
 import React from "react";
 import { useUi } from "@/shared/libs";
-import { Button, CustomCard, Text } from "@/shared/ui";
+import { Button, CustomCard, Text, Icon } from "@/shared/ui";
 import NextLink from "next/link";
 import { RiEditLine, RiDeleteBin6Line } from "react-icons/ri";
 

@@ -1,10 +1,9 @@
 "use client";
 
 import { PixHeader } from "@/slices/general/features/payment/with-pix/components/PixHeader";
-import { FlexFullCenter, SubFlexField } from "@/shared/ui";
+import { FlexFullCenter, SubFlexField, Image } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import pixPicture from "../../../../../../../public/modal-complete-register.png";
-import { Image } from "@chakra-ui/react";
 
 export const SubscriptionPaid = ({ charge, user }) => {
   const { t } = useTranslation(["PAGES"]);

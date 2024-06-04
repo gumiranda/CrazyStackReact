@@ -1,5 +1,4 @@
-import { Flex, GenericDetailsItem, Text, Button } from "@/shared/ui";
-import { Heading, Icon } from "@chakra-ui/react";
+import { Flex, GenericDetailsItem, Heading, Icon, Button } from "@/shared/ui";
 import NextLink from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import { ServiceProps } from "../service.model";

@@ -1,15 +1,16 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { Flex, Text, Box, AuthLayout, Logo } from "@/shared/ui";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Flex, Text, Box, AuthLayout, Logo, useBreakpointValue } from "@/shared/ui";
 import { useAuth } from "@/shared/libs";
 import { useEffect } from "react";
 import { config } from "@/application/config";
 import { SignupForm } from "@/slices/general/features/auth/signup";
 import Link from "next/link";
-import { useBreakpointValue } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 export function SignUpPage() {
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
   const { t } = useTranslation(["PAGES"]);
   const { isAuthenticated = false } = useAuth() || {};
   const router = useRouter();
@@ -37,7 +38,7 @@ export function SignUpPage() {
         </Text>
         <Flex minW="100%" justifyContent={"center"} mb={5}>
           <Flex width={"90%"}>
-            <SignupForm>
+            <SignupForm defaultEmail={email}>
               <Flex
                 flexDir={isMobile ? "column" : "row"}
                 justifyContent={"center"}

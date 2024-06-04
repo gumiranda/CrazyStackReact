@@ -2,12 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
-import { Text, Flex, AuthLayout, Logo, Box } from "@/shared/ui";
+import { Text, Flex, AuthLayout, Logo, Box, useBreakpointValue } from "@/shared/ui";
 import { useAuth } from "@/shared/libs";
 import { useEffect } from "react";
 import { LoginForm } from "@/slices/general/features/auth/login";
 import Link from "next/link";
-import { useBreakpointValue } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 export const Login: NextPage = () => {
   const { t } = useTranslation(["PAGES"]);

@@ -1,7 +1,6 @@
 "use client";
 
-import { Text } from "@/shared/ui";
-import { Heading } from "@chakra-ui/react";
+import { Text, Heading } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
 export const PixHeader = ({ props: { title, subtitle } }) => {

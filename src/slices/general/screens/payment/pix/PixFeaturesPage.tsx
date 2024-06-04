@@ -1,8 +1,7 @@
 "use client";
 
 import { config } from "@/application/config";
-import { Button, Features, Flex, Text } from "@/shared/ui";
-import { Heading, Image } from "@chakra-ui/react";
+import { Button, Features, Flex, Text, Heading, Image } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import pixPicture from "../../../../../../public/modal-complete-register.png";
 import Link from "next/link";

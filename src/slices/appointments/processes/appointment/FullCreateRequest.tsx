@@ -1,11 +1,10 @@
 "use client";
-import { Box, Stepper, Text } from "@/shared/ui";
+import { Box, Stepper, Text, useSteps } from "@/shared/ui";
 import { StepRequestProvider } from "./context/StepRequest.context";
 import { StepClient } from "./steps/StepClient";
 import { StepDate } from "./steps/StepDate";
 import { StepServiceProfessional } from "./steps/StepServiceProfessional";
 import { StepSuccess } from "./steps/StepSuccess";
-import { useSteps } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {

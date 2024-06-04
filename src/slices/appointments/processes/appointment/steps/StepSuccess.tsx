@@ -1,11 +1,10 @@
 import { useUi } from "@/shared/libs";
 import { useStepRequest } from "../context/StepRequest.context";
 import { useRouter } from "next/navigation";
-import { Box, Button, Text } from "@/shared/ui";
+import { Box, Button, Text, Heading } from "@/shared/ui";
 import { editRequestMutation } from "@/slices/appointments/features/request/edit/editRequest.hook";
 import { format, startOfDay } from "date-fns";
 import { CheckCircleIcon } from "@chakra-ui/icons";
-import { Heading } from "@chakra-ui/react";
 import { ptBR } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
 

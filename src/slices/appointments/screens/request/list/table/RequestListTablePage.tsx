@@ -1,8 +1,7 @@
 "use client";
-import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { Box, GenericTable, Pagination, useBreakpointValue } from "@/shared/ui";
 import { GetRequestsResponse } from "@/slices/appointments/entidades/request/request.api";
 import { useRequestList } from "../requestList.hook";
-import { useBreakpointValue } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 type RequestListTablePageProps = {
   data: GetRequestsResponse;

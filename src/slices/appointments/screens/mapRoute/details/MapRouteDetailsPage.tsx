@@ -1,10 +1,9 @@
 "use client";
-import { Box, Head, Button } from "@/shared/ui";
+import { Box, Grid, Button } from "@/shared/ui";
 import { MapRouteDetails } from "@/slices/appointments/entidades/mapRoute/details";
 import { MapRouteProps } from "@/slices/appointments/entidades/mapRoute";
 import { useRef, useEffect, useState } from "react";
 import { useLoadMap } from "@/slices/appointments/features/mapRoute/load-map";
-import { Grid } from "@chakra-ui/react";
 import { mapRouteModel } from "@/slices/appointments/entidades/mapRoute/mapRoute.model";
 import { parseCookies } from "nookies";
 import { useWS } from "@/application/providers/webSocketProvider";

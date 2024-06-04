@@ -1,13 +1,14 @@
-import { Form } from "@/shared/ui";
+import { Form, useBreakpointValue } from "@/shared/ui";
 import { useSignup } from "./signup.hook";
-import { useBreakpointValue } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-export const SignupForm = ({ children }: any) => {
+export const SignupForm = ({ children, defaultEmail }: any) => {
   const isDesktopVersion = useBreakpointValue({ base: false, md: true });
   const { t } = useTranslation(["PAGES"]);
 
-  const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup();
+  const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup({
+    defaultEmail,
+  });
 
   const formProps = {
     formState,
@@ -43,7 +44,7 @@ export const SignupForm = ({ children }: any) => {
       {
         type: "text",
         name: "cnpjActive",
-        checkboxProps: {
+        checkboxprops: {
           defaultChecked: false,
           colorScheme: "primary",
           label: t("PAGES:AUTH_PAGE.cnpjActive", {
@@ -79,7 +80,7 @@ export const SignupForm = ({ children }: any) => {
     }),
     id: "signup",
     formControlContainerProps: {
-      maxHeigth: isDesktopVersion ? "15rem" : "100%",
+      maxHeight: isDesktopVersion ? "15rem" : "100%",
       overflowY: isDesktopVersion ? "auto" : "hidden",
       paddingRight: isDesktopVersion ? 8 : 0,
     },

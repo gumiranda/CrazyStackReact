@@ -44,8 +44,11 @@ export const signupSchema = yup.object({
     }),
 });
 export type YupSchema = yup.InferType<typeof signupSchema>;
-export const useSignupLib = () => {
-  const formProps = useForm<YupSchema>({ resolver: yupResolver(signupSchema) });
+export const useSignupLib = ({ defaultEmail }) => {
+  const formProps = useForm<YupSchema>({
+    resolver: yupResolver(signupSchema),
+    defaultValues: { email: defaultEmail },
+  });
   return { ...formProps };
 };
 export const replaceDigit = (value: string) => {

@@ -1,11 +1,10 @@
 "use client";
-import { Box } from "@/shared/ui";
+import { Box, Grid } from "@/shared/ui";
 import { RouteDriverDetails } from "@/slices/appointments/entidades/routeDriver/details";
 import { RouteDriverProps } from "@/slices/appointments/entidades/routeDriver";
 import { MapRouteProps } from "@/slices/appointments/entidades/mapRoute";
 import { useRef, useEffect, useState } from "react";
 import { useLoadMap } from "@/slices/appointments/features/mapRoute/load-map";
-import { Grid } from "@chakra-ui/react";
 import { mapRouteModel } from "@/slices/appointments/entidades/mapRoute/mapRoute.model";
 import { useWS } from "@/application/providers/webSocketProvider";
 import { parseJSON, useUi } from "@/shared/libs";
