@@ -55,6 +55,18 @@ function handleLogout(baseUrl: string, request: NextRequest) {
   return response;
 }
 export const config = {
-  matcher: ["/home/:path*", "/categorys/:path*", "/services/:path*"],
+  matcher: [
+    "/home/:path*",
+    "/categorys/:path*",
+    "/services/:path*",
+    "/appointments/:path*",
+    "/requests/:path*",
+    "/users/:path*",
+    "/clients/:path*",
+    "/mapRoutes/:path*",
+    "/owners/:path*",
+    "/routeDrivers/:path*",
+    "/clients/:path*",
+  ],
   unstable_allowDynamic: ["/node_modules/lodash.mergewith/**"],
 };
