@@ -1,6 +1,7 @@
 export * from "./Head";
 export * from "./Flex";
 // IMPORT MODULE FILES
+export * from "./AspectRatio";
 export * from "./QrCode";
 export * from "./Chart";
 export * from "./SelectTranslate";
@@ -10,7 +11,7 @@ export * from "./DatePicker";
 export * from "./ControlledSelect";
 export * from "./HStack";
 export * from "./Select";
-export * from "./Card";
+export * from "./CustomCard";
 export * from "./ListItem";
 export * from "./List";
 export * from "./PaginationItem";

@@ -1,7 +1,7 @@
 import { Icon } from "@chakra-ui/react";
 import React from "react";
 import { useUi } from "@/shared/libs";
-import { Button, Card, Text } from "@/shared/ui";
+import { Button, Text, CustomCard } from "@/shared/ui";
 import NextLink from "next/link";
 import { RiEditLine, RiDeleteBin6Line } from "react-icons/ri";
 
@@ -50,7 +50,7 @@ export const useCategoryUi = ({ deleteSelectedAction }: any) => {
     showModal(modalProps);
   };
   const renderItem = (item: any) => (
-    <Card
+    <CustomCard
       {...item}
       onClick={() => {
         openModalItem(item);
