@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 import { UserEditPage } from "@/slices/general/screens/user/edit";
 import { getServices } from "@/slices/appointments/entidades/service/service.api";
 import { getOwners } from "@/slices/appointments/entidades/owner";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Profissional`,
@@ -36,9 +35,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data || !services || !owners) {
     redirect("/login");
   }
-  return (
-    <LayoutPayAuthenticated>
-      <UserEditPage data={data} id={id} service={services} owner={owners} />
-    </LayoutPayAuthenticated>
-  );
+  return <UserEditPage data={data} id={id} service={services} owner={owners} />;
 }

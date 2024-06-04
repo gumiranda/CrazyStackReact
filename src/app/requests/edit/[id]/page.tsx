@@ -7,7 +7,6 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { RequestEditPage } from "@/slices/appointments/screens/request/edit";
 import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Solicitacoes`,
@@ -34,9 +33,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data || !owners) {
     redirect("/login");
   }
-  return (
-    <LayoutPayAuthenticated>
-      <RequestEditPage data={data} owners={owners} />
-    </LayoutPayAuthenticated>
-  );
+  return <RequestEditPage data={data} owners={owners} />;
 }

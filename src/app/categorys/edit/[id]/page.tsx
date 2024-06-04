@@ -6,7 +6,6 @@ import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { CategoryEditPage } from "@/slices/appointments/screens/category/edit";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Categoria`,
@@ -30,9 +29,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data) {
     redirect("/login");
   }
-  return (
-    <LayoutPayAuthenticated>
-      <CategoryEditPage data={data} id={id} />
-    </LayoutPayAuthenticated>
-  );
+  return <CategoryEditPage data={data} id={id} />;
 }

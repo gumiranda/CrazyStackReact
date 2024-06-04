@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid } from "@/shared/ui/atoms/Grid";
 import { useWS } from "@/application/providers/webSocketProvider";
 import { mapRouteModel } from "@/slices/appointments/entidades/mapRoute/mapRoute.model";
 import { useLoadMap } from "@/slices/appointments/features/mapRoute/load-map";

@@ -6,7 +6,6 @@ import { AppointmentDetailsPage } from "@/slices/appointments/screens/appointmen
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Detalhes da Agendamento`,
@@ -30,9 +29,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data) {
     redirect("/login");
   }
-  return (
-    <LayoutPayAuthenticated>
-      <AppointmentDetailsPage data={data} id={id} />
-    </LayoutPayAuthenticated>
-  );
+  return <AppointmentDetailsPage data={data} id={id} />;
 }

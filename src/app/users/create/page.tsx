@@ -40,9 +40,5 @@ export default async function Page() {
     redirect("/payment/pix");
   }
   if (!data) return null;
-  return (
-    <LayoutPayAuthenticated>
-      <UserCreatePage data={data?.data} owner={data?.owner} />
-    </LayoutPayAuthenticated>
-  );
+  return <UserCreatePage data={data?.data} owner={data?.owner} />;
 }

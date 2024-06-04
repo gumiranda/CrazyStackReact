@@ -7,7 +7,6 @@ import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Detalhes da Corrida`,
@@ -47,12 +46,10 @@ export default async function Page({ params: { id } }: { params: { id: string } 
     redirect("/login");
   }
   return (
-    <LayoutPayAuthenticated>
-      <RouteDriverDetailsPage
-        data={data?.props?.data}
-        mapRoute={data?.props?.mapRoute}
-        id={id}
-      />
-    </LayoutPayAuthenticated>
+    <RouteDriverDetailsPage
+      data={data?.props?.data}
+      mapRoute={data?.props?.mapRoute}
+      id={id}
+    />
   );
 }

@@ -6,7 +6,6 @@ import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { RouteDriverEditPage } from "@/slices/appointments/screens/routeDriver/edit";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Corrida`,
@@ -30,9 +29,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data) {
     redirect("/login");
   }
-  return (
-    <LayoutPayAuthenticated>
-      <RouteDriverEditPage data={data} id={id} />
-    </LayoutPayAuthenticated>
-  );
+  return <RouteDriverEditPage data={data} id={id} />;
 }

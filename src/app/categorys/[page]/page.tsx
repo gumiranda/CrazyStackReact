@@ -1,7 +1,7 @@
 import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { CategoryListTablePage } from "@/slices/appointments/screens/category/list/table/CategoryListTablePage";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
+
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();
@@ -19,9 +19,5 @@ export default async function Page({ params: { page } }: { params: { page: strin
   if (!data) {
     return null;
   }
-  return (
-    <LayoutPayAuthenticated>
-      <CategoryListTablePage data={data} page={pageNumber} />
-    </LayoutPayAuthenticated>
-  );
+  return <CategoryListTablePage data={data} page={pageNumber} />;
 }

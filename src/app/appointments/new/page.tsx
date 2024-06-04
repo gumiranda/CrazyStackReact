@@ -5,7 +5,6 @@ import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { getClients } from "@/slices/appointments/entidades/client";
 import { FullCreateRequest } from "@/slices/appointments/processes/appointment/FullCreateRequest";
 import { getUsers } from "@/slices/general/entidades/user";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
@@ -30,9 +29,5 @@ export default async function Page() {
   const data = await getData(1);
   if (!data?.clients || !data?.owners || !data?.clientUsers) return null;
 
-  return (
-    <LayoutPayAuthenticated>
-      <FullCreateRequest {...data} />
-    </LayoutPayAuthenticated>
-  );
+  return <FullCreateRequest {...data} />;
 }

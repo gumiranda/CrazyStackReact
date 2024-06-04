@@ -3,7 +3,6 @@ import { HomePage } from "@/slices/appointments/screens/home/HomePage";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import LayoutPayAuthenticated from "@/shared/libs/utils/layoutPayAsync";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Agendamentos`,
@@ -27,9 +26,5 @@ export default async function Page() {
   if (!cookies) {
     redirect("/login");
   }
-  return (
-    <LayoutPayAuthenticated>
-      <HomePage />
-    </LayoutPayAuthenticated>
-  );
+  return <HomePage />;
 }
