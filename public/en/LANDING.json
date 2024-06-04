@@ -1,0 +1,27 @@
+{
+  "FIRST_BLOCK": {
+    "title": "Online Scheduling for Your Business",
+    "subtitle": "Save time, gain more clients, and simplify your business management with {{systemName}}!",
+    "button": "Try 30 days for free",
+    "button2": "Learn more"
+  },
+  "SECOND_BLOCK": {
+    "title": "No More Complications, Start Using Now",
+    "subtitle": "With {{systemName}}, you can create and manage your appointments simply and efficiently.",
+    "button": "Register my business",
+    "button2": "See demo"
+  },
+  "THIRD_BLOCK": {
+    "title": "No More Frustration with Bad Platforms",
+    "subtitle": "With {{systemName}}, you can sign up and start using right away! Without having to deal with a pesky sales team.",
+    "button": "Register my business",
+    "input": "Enter your email"
+  },
+  "PAGE_HEADER_CTA": {
+    "title": "Simplify your bookings",
+    "subtitle": "Subscribe to our platform and streamline the scheduling of your services.",
+    "button": "Subscribe now",
+    "button2": "Learn more",
+    "badge": "For Establishments"
+  }
+}
