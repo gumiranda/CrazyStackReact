@@ -30,7 +30,11 @@ export const Form = ({
 }: FormProps) => {
   return (
     <Flex
-      onSubmit={handleSubmit(handleCustomSubmit)}
+      onSubmit={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleSubmit(handleCustomSubmit)(e);
+      }}
       as="form"
       w="100%"
       bg="secondary.500"

@@ -56,6 +56,8 @@ function handleLogout(baseUrl: string, request: NextRequest) {
 }
 export const config = {
   matcher: [
+    "/login/:path*",
+    "/signup/:path*",
     "/home/:path*",
     "/categorys/:path*",
     "/services/:path*",
