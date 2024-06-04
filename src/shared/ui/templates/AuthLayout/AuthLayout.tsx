@@ -1,6 +1,5 @@
 import { config } from "@/application/config";
-import { Flex, Box, Text, SelectTranslate } from "../../atoms";
-import { useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Box, Text, SelectTranslate, useBreakpointValue } from "../../atoms";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
   const isDesktop = useBreakpointValue({ base: false, md: true });

@@ -1,3 +1,4 @@
+"use client";
 import { Flex, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { Text } from "../../atoms";

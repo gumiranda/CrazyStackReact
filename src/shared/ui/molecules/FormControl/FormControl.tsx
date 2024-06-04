@@ -88,17 +88,17 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   );
 };
 const FormControlInputMask_ = (props, ref) => {
-  const { mask, hide, checkboxProps } = props;
+  const { mask, hide, checkboxprops, ...other } = props;
   if (hide) {
     return null;
   }
   if (mask) {
-    return <DefaultInput {...props} ref={ref} as={InputMask} />;
+    return <DefaultInput mask={mask} {...other} ref={ref} as={InputMask} />;
   }
-  if (checkboxProps) {
-    return <Checkbox {...props} {...checkboxProps} ref={ref} />;
+  if (checkboxprops) {
+    return <Checkbox {...other} {...checkboxprops} ref={ref} />;
   }
-  return <DefaultInput {...props} ref={ref} />;
+  return <DefaultInput {...other} ref={ref} />;
 };
 const DefaultInput_ = (props, ref) => {
   const {

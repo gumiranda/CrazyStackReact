@@ -1,20 +1,14 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-interface CustomCardProps {
+interface CardProps {
   item?: any;
   fields?: any;
   mainField?: any;
   children?: React.ReactNode;
   onClick?: Function;
 }
-export const CustomCard = ({
-  item,
-  fields,
-  mainField,
-  children,
-  onClick,
-}: CustomCardProps) => {
+export const CustomCard = ({ item, fields, mainField, children, onClick }: CardProps) => {
   return (
     <>
       {!!item && (
