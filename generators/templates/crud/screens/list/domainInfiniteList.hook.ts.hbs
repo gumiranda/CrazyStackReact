@@ -22,7 +22,7 @@ export const use{{pascalCase name}}InfiniteList = () => {
     status,
   } = all || {};
   const firstPage: any = data?.pages[0];
-  const total: any = (firstPage?.totalCount as any) || {};
+  const total: any = (firstPage?.total as any) || {};
   const deleteSelectedAction = async (item: any) => {
     delete{{pascalCase name}}.mutateAsync([item]);
   };
@@ -39,8 +39,13 @@ export const use{{pascalCase name}}InfiniteList = () => {
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+      defaultValue:
+        "Erro no servidor",
+    }),
           type: "error",
         });
       }
@@ -53,8 +58,13 @@ export const use{{pascalCase name}}InfiniteList = () => {
       },
       onError: () => {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+      defaultValue:
+        "Erro no servidor",
+    }),
           type: "error",
         });
       },
