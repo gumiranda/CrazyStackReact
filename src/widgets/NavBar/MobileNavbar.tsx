@@ -1,3 +1,4 @@
+import { ChakraLink } from "@/shared/ui";
 import {
   Button,
   Drawer,
@@ -15,25 +16,37 @@ export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
       <DrawerContent bgColor={"secondary.500"}>
         <DrawerBody my="16">
           <Stack spacing="6" align="stretch">
-            {["Components", "Pricing", "Marketplace", "Support"].map((item) => (
-              <Button
-                bgColor={"secondary.500"}
-                color="white"
-                _hover={{ bgColor: "secondary.600" }}
-                key={item}
-                size="lg"
-                colorScheme="gray"
-              >
-                {item}
-              </Button>
+            {[
+              {
+                label: t("PAGES:AUTH_PAGE.signIn", {
+                  defaultValue: "Entrar",
+                }),
+                route: "/login",
+              },
+            ].map((item) => (
+              <ChakraLink key={item.label} href={item.route}>
+                <Button
+                  bgColor={"secondary.500"}
+                  color="white"
+                  _hover={{ bgColor: "secondary.600" }}
+                  size="lg"
+                  colorScheme="gray"
+                >
+                  {item.label}
+                </Button>
+              </ChakraLink>
             ))}
-            <Button
-              bgColor="primary.600"
-              color="white"
-              _hover={{ bgColor: "primary.700" }}
-            >
-              Sign Up
-            </Button>
+            <ChakraLink href={"/signup"}>
+              <Button
+                bgColor="primary.600"
+                color="white"
+                _hover={{ bgColor: "primary.700" }}
+              >
+                {t("PAGES:AUTH_PAGE.buttonSignUp", {
+                  defaultValue: "Cadastrar negócio",
+                })}
+              </Button>
+            </ChakraLink>
           </Stack>
         </DrawerBody>
       </DrawerContent>

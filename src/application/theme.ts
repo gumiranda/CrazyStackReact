@@ -12,7 +12,7 @@ const colors = {
     900: "#212121",
   },
   tertiary: {
-    300: "#04D361",
+    300: "#3ee360",
     500: "#04D361",
   },
   grayscale: {
@@ -90,6 +90,14 @@ const colors = {
     default: "red.500",
     _dark: "red.200",
   },
+  purpleDark: {
+    900: "#2a254b",
+    800: "#3c2b64",
+    700: "#4b3780",
+  },
+  pink: {
+    400: "#ff0080",
+  },
 };
 const shadows = {
   xs: {
@@ -135,6 +143,15 @@ export const theme = extendTheme({
       baseStyle: {
         title: {
           color: "black",
+        },
+      },
+    },
+    GradientButton: {
+      baseStyle: {
+        bgGradient: "linear(to-r, pink.500, purple.500)",
+        color: "white",
+        _hover: {
+          bgGradient: "linear(to-r, pink.600, purple.600)",
         },
       },
     },

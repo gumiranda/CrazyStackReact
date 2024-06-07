@@ -1,8 +1,9 @@
-import { Heading as HeadingChakra, HeadingProps } from "@chakra-ui/react";
-export const Heading = ({ children, ...rest }: HeadingProps) => {
+import { Heading as HeadingChakra, forwardRef } from "@chakra-ui/react";
+export const Heading_ = ({ children, datatestid, ...rest }: any, ref) => {
   return (
-    <HeadingChakra {...rest} data-testid="HeadingTestId">
+    <HeadingChakra ref={ref} {...rest} data-testid={datatestid ?? "HeadingTestId"}>
       {children}
     </HeadingChakra>
   );
 };
+export const Heading = forwardRef(Heading_);
