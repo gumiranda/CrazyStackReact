@@ -1,6 +1,10 @@
 import { config } from "@/application/config";
 import { Box, Flex, Text, ChakraLink, Image } from "@/shared/ui";
 
-export const Main = () => {
-  return <Box h={900}></Box>;
+export const Main = (props: any) => {
+  return (
+    <Flex as="main" role="main" direction="column" flex="1" py="0" {...props}>
+      <></>
+    </Flex>
+  );
 };
