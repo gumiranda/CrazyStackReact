@@ -16,6 +16,7 @@ export const SectionFeatures = ({ children, ...rest }) => {
         <Text
           fontFamily={fonts.inter.style.fontFamily}
           fontSize={{ base: "md", md: "lg" }}
+          mt={4}
         >
           {t("LANDING:FEATURES_DESCRIPTION", {
             defaultValue:
@@ -24,51 +25,44 @@ export const SectionFeatures = ({ children, ...rest }) => {
         </Text>
       </Box>
       <ContentGrid>
-        <Box
-          w={"full"}
-          flexDirection={{ base: "column", lg: "row" }}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          <Box mt={{ base: 5, md: 10 }}>
-            <FeatureItem
-              color="gray.50"
-              icon={<Icon as={FaHandshake} boxSize="12" color="primary.500" />}
-              title={t("LANDING:FEATURE_1_TITLE", {
-                defaultValue: "Seja um Belezeiro",
-              })}
-              description={t("LANDING:FEATURE_1_DESCRIPTION", {
-                defaultValue:
-                  "Junte-se à nossa plataforma e comece a oferecer seus serviços com horário marcado para uma ampla base de clientes.",
-              })}
-            />
-          </Box>
+        <Box mt={{ base: 5, md: 10 }}>
+          <FeatureItem
+            color="gray.50"
+            icon={<Icon as={FaHandshake} boxSize="12" color="primary.500" />}
+            title={t("LANDING:FEATURE_1_TITLE", {
+              defaultValue: "Seja um Belezeiro",
+            })}
+            description={t("LANDING:FEATURE_1_DESCRIPTION", {
+              defaultValue:
+                "Junte-se à nossa plataforma e comece a oferecer seus serviços com horário marcado para uma ampla base de clientes.",
+            })}
+          />
+        </Box>
 
-          <Box mt={{ base: 5, md: 10 }}>
-            <FeatureItem
-              color="gray.50"
-              icon={<Icon as={FaUserTie} boxSize="12" color="primary.500" />}
-              title={t("LANDING:FEATURE_2_TITLE", { defaultValue: "Agende um Serviço" })}
-              description={t("LANDING:FEATURE_2_DESCRIPTION", {
-                defaultValue:
-                  "Agende serviços de beleza, bem-estar e saúde com profissionais qualificados e experientes.",
-              })}
-            />
-          </Box>
+        <Box mt={{ base: 5, md: 10 }}>
+          <FeatureItem
+            color="gray.50"
+            icon={<Icon as={FaUserTie} boxSize="12" color="primary.500" />}
+            title={t("LANDING:FEATURE_2_TITLE", { defaultValue: "Agende um Serviço" })}
+            description={t("LANDING:FEATURE_2_DESCRIPTION", {
+              defaultValue:
+                "Agende serviços de beleza, bem-estar e saúde com profissionais qualificados e experientes.",
+            })}
+          />
+        </Box>
 
-          <Box mt={{ base: 5, md: 10 }}>
-            <FeatureItem
-              color="gray.50"
-              icon={<Icon as={FaBriefcase} boxSize="12" color="primary.500" />}
-              title={t("LANDING:FEATURE_3_TITLE", {
-                defaultValue: "Ganhe como profissional",
-              })}
-              description={t("LANDING:FEATURE_3_DESCRIPTION", {
-                defaultValue:
-                  "Torne-se um profissional Belezix e ganhe renda extra oferecendo serviços de beleza.",
-              })}
-            />
-          </Box>
+        <Box mt={{ base: 5, md: 10 }}>
+          <FeatureItem
+            color="gray.50"
+            icon={<Icon as={FaBriefcase} boxSize="12" color="primary.500" />}
+            title={t("LANDING:FEATURE_3_TITLE", {
+              defaultValue: "Ganhe como profissional",
+            })}
+            description={t("LANDING:FEATURE_3_DESCRIPTION", {
+              defaultValue:
+                "Torne-se um profissional Belezix e ganhe renda extra oferecendo serviços de beleza.",
+            })}
+          />
         </Box>
       </ContentGrid>
     </Container>
@@ -78,7 +72,7 @@ export const SectionFeatures = ({ children, ...rest }) => {
 export const ContentGrid = ({ children, ...props }) => {
   return (
     <Grid
-      templateColumns={{ base: "1fr", lg: "1fr 500px", xl: "1fr 550px" }}
+      templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }}
       gap={{ base: 6, lg: 12 }}
       mt={8}
       {...props}
