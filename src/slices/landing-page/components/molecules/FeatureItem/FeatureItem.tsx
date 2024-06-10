@@ -3,7 +3,7 @@ import { Heading, Text, VStack } from "@/shared/ui";
 
 const MotionVStack = motion(VStack);
 
-export const FeatureItem = ({ icon, title, description }) => {
+export const FeatureItem = ({ icon, title, description, color = "gray.700" }) => {
   return (
     <MotionVStack
       spacing={4}
@@ -17,10 +17,10 @@ export const FeatureItem = ({ icon, title, description }) => {
       transition={{ duration: 0.5 }}
     >
       {icon}
-      <Heading color="gray.700" size="md">
+      <Heading color={color} size="md">
         {title}
       </Heading>
-      <Text color="gray.700" fontSize={18}>
+      <Text color={color} fontSize={18}>
         {description}
       </Text>
     </MotionVStack>
