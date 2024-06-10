@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FeatureItem } from "../../molecules/FeatureItem";
 import { FaBriefcase, FaHandshake, FaUserTie } from "react-icons/fa6";
 
-export const SectionFeatures = ({ children, ...rest }) => {
+export const SectionFeatures = ({ children = null, ...rest }) => {
   const { t } = useTranslation(["LANDING"]);
 
   return (
