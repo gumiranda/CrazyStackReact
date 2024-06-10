@@ -3,31 +3,10 @@ import { Box, Container, Grid, Heading, Text, VStack } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { fonts } from "@/app/fonts";
 import { CalendarIcon, CheckIcon, SearchIcon } from "@chakra-ui/icons";
+import { FeatureItem } from "../../molecules/FeatureItem";
 const MotionBox = motion(Box);
 const MotionVStack = motion(VStack);
-export const FeatureItem = ({ icon, title, description }) => {
-  return (
-    <MotionVStack
-      spacing={4}
-      p={5}
-      border="1px"
-      borderColor="gray.200"
-      borderRadius="md"
-      textAlign="center"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      {icon}
-      <Heading color="gray.700" size="md">
-        {title}
-      </Heading>
-      <Text color="gray.700" fontSize={18}>
-        {description}
-      </Text>
-    </MotionVStack>
-  );
-};
+
 export const SectionHowItWorks = () => {
   const { t } = useTranslation(["LANDING"]);
 
