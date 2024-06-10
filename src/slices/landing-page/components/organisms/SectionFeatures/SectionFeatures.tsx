@@ -9,50 +9,67 @@ export const SectionFeatures = ({ children, ...rest }) => {
 
   return (
     <Container py={{ base: 12, md: 24, lg: 32 }} {...rest}>
+      <Box>
+        <Heading as="h2" size="3xl" fontFamily={fonts.inter.style.fontFamily}>
+          {t("LANDING:FEATURES_TITLE", { defaultValue: "Principais Funcionalidades" })}
+        </Heading>
+        <Text
+          fontFamily={fonts.inter.style.fontFamily}
+          fontSize={{ base: "md", md: "lg" }}
+        >
+          {t("LANDING:FEATURES_DESCRIPTION", {
+            defaultValue:
+              "Descubra as poderosas funcionalidades que fazem da nossa plataforma a melhor escolha para suas necessidades de mudança.",
+          })}
+        </Text>
+      </Box>
       <ContentGrid>
-        <TextContent>
-          <Heading as="h2" size="3xl" fontFamily={fonts.inter.style.fontFamily}>
-            {t("LANDING:FEATURES_TITLE", { defaultValue: "Principais Funcionalidades" })}
-          </Heading>
-          <Text fontFamily={fonts.inter.style.fontFamily} fontSize={18}>
-            {t("LANDING:FEATURES_DESCRIPTION", {
-              defaultValue:
-                "Descubra as poderosas funcionalidades que fazem da nossa plataforma a melhor escolha para suas necessidades de mudança.",
-            })}
-          </Text>
-        </TextContent>
-        <Flex gap={8} flexDirection={{ base: "column", lg: "row" }} w={"100%"} my={4}>
-          <FeatureItem
-            color="gray.50"
-            icon={<Icon as={FaHandshake} boxSize="12" color="primary.500" />}
-            title={t("LANDING:FEATURE_1_TITLE", {
-              defaultValue: "Seja um Transportador",
-            })}
-            description={t("LANDING:FEATURE_1_DESCRIPTION", {
-              defaultValue:
-                "Junte-se à nossa plataforma e comece a oferecer seus serviços de mudança para uma ampla base de clientes.",
-            })}
-          />
+        <Box
+          w={"full"}
+          flexDirection={{ base: "column", lg: "row" }}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Box mt={{ base: 5, md: 10 }}>
+            <FeatureItem
+              color="gray.50"
+              icon={<Icon as={FaHandshake} boxSize="12" color="primary.500" />}
+              title={t("LANDING:FEATURE_1_TITLE", {
+                defaultValue: "Seja um Belezeiro",
+              })}
+              description={t("LANDING:FEATURE_1_DESCRIPTION", {
+                defaultValue:
+                  "Junte-se à nossa plataforma e comece a oferecer seus serviços com horário marcado para uma ampla base de clientes.",
+              })}
+            />
+          </Box>
 
-          <FeatureItem
-            color="gray.50"
-            icon={<Icon as={FaUserTie} boxSize="12" color="primary.500" />}
-            title={t("LANDING:FEATURE_2_TITLE", { defaultValue: "Contrate um Frete" })}
-            description={t("LANDING:FEATURE_2_DESCRIPTION", {
-              defaultValue:
-                "Contrate fretes com facilidade através do nosso aplicativo amigável e obtenha serviço de porta a porta.",
-            })}
-          />
-          <FeatureItem
-            color="gray.50"
-            icon={<Icon as={FaBriefcase} boxSize="12" color="primary.500" />}
-            title={t("LANDING:FEATURE_3_TITLE", { defaultValue: "Ganhe como Motorista" })}
-            description={t("LANDING:FEATURE_3_DESCRIPTION", {
-              defaultValue:
-                "Torne-se um motorista e ganhe renda extra oferecendo serviços de mudança.",
-            })}
-          />
-        </Flex>
+          <Box mt={{ base: 5, md: 10 }}>
+            <FeatureItem
+              color="gray.50"
+              icon={<Icon as={FaUserTie} boxSize="12" color="primary.500" />}
+              title={t("LANDING:FEATURE_2_TITLE", { defaultValue: "Agende um Serviço" })}
+              description={t("LANDING:FEATURE_2_DESCRIPTION", {
+                defaultValue:
+                  "Agende serviços de beleza, bem-estar e saúde com profissionais qualificados e experientes.",
+              })}
+            />
+          </Box>
+
+          <Box mt={{ base: 5, md: 10 }}>
+            <FeatureItem
+              color="gray.50"
+              icon={<Icon as={FaBriefcase} boxSize="12" color="primary.500" />}
+              title={t("LANDING:FEATURE_3_TITLE", {
+                defaultValue: "Ganhe como profissional",
+              })}
+              description={t("LANDING:FEATURE_3_DESCRIPTION", {
+                defaultValue:
+                  "Torne-se um profissional Belezix e ganhe renda extra oferecendo serviços de beleza.",
+              })}
+            />
+          </Box>
+        </Box>
       </ContentGrid>
     </Container>
   );
@@ -61,7 +78,7 @@ export const SectionFeatures = ({ children, ...rest }) => {
 export const ContentGrid = ({ children, ...props }) => {
   return (
     <Grid
-      templateColumns={{ lg: "1fr 500px", xl: "1fr 550px" }}
+      templateColumns={{ base: "1fr", lg: "1fr 500px", xl: "1fr 550px" }}
       gap={{ base: 6, lg: 12 }}
       mt={8}
       {...props}
@@ -70,13 +87,7 @@ export const ContentGrid = ({ children, ...props }) => {
     </Grid>
   );
 };
-export const TextContent = ({ children, ...props }) => {
-  return (
-    <Flex flexDirection="column" justifyContent="center" {...props}>
-      <Box>{children}</Box>
-    </Flex>
-  );
-};
+
 const Container = ({ children, ...props }) => {
   return (
     <Box as="section" px={{ base: 4, md: 6 }} {...props}>
