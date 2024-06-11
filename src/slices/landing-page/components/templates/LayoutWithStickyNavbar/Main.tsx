@@ -1,5 +1,4 @@
-import { config } from "@/application/config";
-import { Box, Flex, Text, ChakraLink, Image } from "@/shared/ui";
+import { Flex } from "@/shared/ui";
 import { CookieFooter } from "../../molecules/CookiesPreferences";
 import { FAQSection } from "../../organisms/FAQSection";
 import { SectionHowItWorks } from "../../organisms/SectionHowItWorks";
@@ -7,6 +6,7 @@ import { SectionFeatures } from "../../organisms/SectionFeatures";
 import { WithImageBackground } from "../../organisms/WithImageBackground";
 import { HeroWithSignUp } from "../../organisms/HeroWithSignUp";
 import { HeroTop } from "../../organisms/HeroTop";
+import { PricingSection } from "../../organisms/PricingSection";
 import { WithScreenshotBelow } from "../../organisms/WithScreenshotBelow";
 
 export const Main = (props: any) => {
@@ -18,6 +18,7 @@ export const Main = (props: any) => {
       <WithImageBackground />
       <SectionFeatures />
       <SectionHowItWorks />
+      <PricingSection />
       <FAQSection />
       <CookieFooter />
     </Flex>
