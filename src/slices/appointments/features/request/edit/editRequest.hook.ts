@@ -146,7 +146,7 @@ export function editRequestMutation({
         }
         return data;
       } catch (error) {
-        showModal({
+        ({
           content: t("PAGES:MESSAGES.errorMessage", {
             defaultValue:
               "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",

@@ -7,7 +7,7 @@ export const HeroSubtitle = () => {
 
   return (
     <Text
-      size={{ base: "xl", md: "2xl" }}
+      size={{ base: "2xl", md: "3xl" }}
       color="fg.muted"
       fontFamily={fonts.inter.style.fontFamily}
     >
