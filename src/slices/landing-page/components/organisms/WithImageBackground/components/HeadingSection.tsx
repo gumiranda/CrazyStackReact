@@ -13,6 +13,8 @@ export const HeadingSection = () => {
         size={{ base: "2xl", md: "3xl" }}
         fontWeight="extrabold"
         fontFamily={fonts.inter.style.fontFamily}
+        letterSpacing="tighter"
+        lineHeight="none"
       >
         {t("LANDING:FIRST_BLOCK.title", {
           defaultValue: "Agendamentos online para o seu negócio",

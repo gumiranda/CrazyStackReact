@@ -122,6 +122,8 @@ export const FAQSection = () => {
       py={12}
     >
       <Heading
+        letterSpacing="tighter"
+        lineHeight="none"
         as="h2"
         textAlign="center"
         fontWeight="semibold"

@@ -10,7 +10,13 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
   return (
     <Container py={{ base: 12, md: 24, lg: 32 }} {...rest}>
       <Box>
-        <Heading as="h2" size="3xl" fontFamily={fonts.inter.style.fontFamily}>
+        <Heading
+          letterSpacing="tighter"
+          lineHeight="none"
+          as="h2"
+          size="3xl"
+          fontFamily={fonts.inter.style.fontFamily}
+        >
           {t("LANDING:FEATURES_TITLE", { defaultValue: "Principais Funcionalidades" })}
         </Heading>
         <Text

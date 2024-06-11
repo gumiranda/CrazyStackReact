@@ -28,6 +28,8 @@ export const SectionHowItWorks = () => {
           transition={{ duration: 0.5 }}
         >
           <Heading
+            letterSpacing="tighter"
+            lineHeight="none"
             color="gray.700"
             as="h2"
             size="2xl"
