@@ -18,8 +18,8 @@ export const HeadingSection = () => {
         fontWeight="extrabold"
         maxW="48rem"
         mx="auto"
-        lineHeight="1.2"
-        letterSpacing="tight"
+        lineHeight="none"
+        letterSpacing="tighter"
         fontFamily={fonts.inter.style.fontFamily}
         initial={{ y: -20 }}
         animate={{ y: 0 }}
