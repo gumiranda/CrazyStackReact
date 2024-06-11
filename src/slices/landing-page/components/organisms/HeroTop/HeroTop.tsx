@@ -125,7 +125,7 @@ function LearnMoreLink() {
 }
 function HeroContent() {
   return (
-    <Stack spacing="4">
+    <Stack spacing="4" mx={5}>
       <HeroTitle />
       <HeroDescription />
     </Stack>
