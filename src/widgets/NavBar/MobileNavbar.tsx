@@ -1,9 +1,10 @@
-import { ChakraLink } from "@/shared/ui";
+import { ChakraLink, Logo } from "@/shared/ui";
 import {
   Button,
   Drawer,
   DrawerBody,
   DrawerContent,
+  DrawerHeader,
   DrawerProps,
   Stack,
 } from "@chakra-ui/react";
@@ -14,7 +15,10 @@ export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
   return (
     <Drawer placement="left" {...props}>
       <DrawerContent bgColor={"secondary.500"}>
-        <DrawerBody my="16">
+        <DrawerHeader>
+          <Logo haveLink={false} marginBottom={0} />
+        </DrawerHeader>
+        <DrawerBody>
           <Stack spacing="6" align="stretch">
             {[
               {
