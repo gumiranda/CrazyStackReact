@@ -27,7 +27,7 @@ export const Select = ({
         {list?.map?.((item, index) => (
           <option
             style={{ backgroundColor: theme.colors.secondary[500] }}
-            key={item?.[keyValue] ?? index}
+            key={`${item?.[keyValue]}${item?.[keyLabel]}` ?? index}
             value={item?.[keyValue]}
           >
             {item?.[keyLabel]}

@@ -2,13 +2,7 @@
 
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   InputProps as ChakraInputProps,
   Menu,
@@ -28,6 +22,7 @@ import {
   Heading,
   useColorModeValue,
   FormLabel,
+  ResponsiveValue,
 } from "@chakra-ui/react";
 import React, { useState, createRef } from "react";
 import { daysMap, getMonthDetails, getMonthStr } from "./functions";
@@ -41,6 +36,7 @@ export interface IDatePickerProps extends Omit<ChakraInputProps, "onChange"> {
   onChange: (date: string) => void;
   label: string;
   labelColor?: string;
+  ta?: ResponsiveValue<any> | undefined;
 }
 
 export const DatePicker = (props: IDatePickerProps) => {
@@ -49,6 +45,7 @@ export const DatePicker = (props: IDatePickerProps) => {
     dateFormat = "DD/MM/YYYY",
     label,
     labelColor = "white",
+    ta = null,
     ...rest
   } = props;
   const date = new Date();
@@ -105,7 +102,7 @@ export const DatePicker = (props: IDatePickerProps) => {
     <Menu {...rest}>
       <MenuButton w="100%" type="button">
         <VStack>
-          <FormLabel color={labelColor} textAlign={"left"}>
+          <FormLabel color={labelColor} textAlign={ta ?? "left"}>
             {label}
           </FormLabel>
           <InputGroup>
