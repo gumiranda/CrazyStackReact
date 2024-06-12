@@ -5,6 +5,8 @@ import { calculateDaysToNextPayment } from "./shared/libs/utils/layoutPayAsync";
 export default async function middleware(request: NextRequest) {
   const token = request.cookies.get("belezixadmin.token");
   const user = request.cookies.get("belezixadmin.user");
+  const cache = request.cookies.get("belezixadmin.cache");
+
   const pathname = request.nextUrl.pathname;
   const baseUrl = request.nextUrl.origin;
   if (token?.value && user?.value) {
@@ -15,34 +17,47 @@ export default async function middleware(request: NextRequest) {
     if (!parsedUser?._id) {
       return handleLogout(baseUrl, request);
     }
-    const result = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/load?_id=${parsedUser._id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token.value}`,
-        },
-        cache: "force-cache",
+    let data: any = {};
+    if (cache?.value) {
+      data = parseJSON(cache.value);
+    }
+    if (!data || !data._id || data._id !== parsedUser._id) {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/load?_id=${parsedUser._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token.value}`,
+          },
+          cache: "force-cache",
+        }
+      );
+      if (!result.ok) {
+        return handleLogout(baseUrl, request);
       }
-    );
-    if (!result.ok) {
-      return handleLogout(baseUrl, request);
+      data = await result.json();
+
+      if (!data || Object.keys(data).length === 0) {
+        return handleLogout(baseUrl, request);
+      }
+      const response = NextResponse.next();
+      response.cookies.set("belezixadmin.cache", JSON.stringify(data), {
+        maxAge: 86400, // 1 day in seconds
+        path: "/",
+      });
+
+      const daysToNextCharge = calculateDaysToNextPayment(data?.payDay);
+
+      if (daysToNextCharge < 0) {
+        return NextResponse.redirect(`${baseUrl}/payment/pix`);
+      }
+      if (pathname === "/") {
+        return NextResponse.redirect(`${baseUrl}/home`);
+      }
+      return response;
     }
-    const data = await result.json();
-    if (!data || Object.keys(data).length === 0) {
-      return handleLogout(baseUrl, request);
+    if (pathname !== "/" && pathname !== "/login" && pathname !== "/signup") {
+      return NextResponse.redirect(`${baseUrl}/`);
     }
-    const daysToNextCharge = calculateDaysToNextPayment(data?.payDay);
-    if (daysToNextCharge < 0) {
-      return NextResponse.redirect(`${baseUrl}/payment/pix`);
-    }
-    if (pathname === "/") {
-      return NextResponse.redirect(`${baseUrl}/home`);
-    }
-    console.log({ daysToNextCharge });
-    return NextResponse.next();
-  }
-  if (pathname !== "/" && pathname !== "/login" && pathname !== "/signup") {
-    return NextResponse.redirect(`${baseUrl}/`);
   }
   return NextResponse.next();
 }
