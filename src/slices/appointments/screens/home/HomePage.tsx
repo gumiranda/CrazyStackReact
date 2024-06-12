@@ -15,17 +15,8 @@ import { useHome } from "./useHome.hook";
 import { LoadInvoice } from "@/slices/appointments/features/appointment/load-invoice/LoadInvoice";
 import { LoadAppointmentsByPeriod } from "@/slices/appointments/features/appointment/load-appointments-by-period/LoadAppointmentsByPeriod";
 import { statusMap } from "../../entidades/request/request.model";
+import { RequestFilters } from "./components/RequestFilters";
 
-export function convertToDate(dateString) {
-  // Split the date string into day, month, and year
-  const parts = dateString.split("/");
-
-  // Create a new Date object
-  // Note: Months are zero-indexed in JavaScript Date objects, so we need to subtract 1 from the month
-  const dateObject = new Date(parts[2], parts[1] - 1, parts[0]);
-
-  return dateObject;
-}
 export function HomePage() {
   const {
     welcomeTitle,
@@ -54,6 +45,9 @@ export function HomePage() {
             <HStack spacing={10} justify="center" flexWrap="wrap">
               <LoadInvoice />
               <LoadAppointmentsByPeriod />
+              <RequestFilters
+                props={{ setSelectedDate, status, setStatus, setEndDate }}
+              />
             </HStack>
           </VStack>
         </Box>
