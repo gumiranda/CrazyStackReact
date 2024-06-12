@@ -6,21 +6,24 @@ export default async function middleware(request: NextRequest) {
   const token = request.cookies.get("belezixadmin.token");
   const user = request.cookies.get("belezixadmin.user");
   const cache = request.cookies.get("belezixadmin.cache");
-
   const pathname = request.nextUrl.pathname;
   const baseUrl = request.nextUrl.origin;
+
   if (token?.value && user?.value) {
     if (pathname.includes("pix")) {
       return NextResponse.next();
     }
     const parsedUser = parseJSON(user.value);
+
     if (!parsedUser?._id) {
       return handleLogout(baseUrl, request);
     }
-    let data: any = {};
+
+    let data;
     if (cache?.value) {
       data = parseJSON(cache.value);
     }
+
     if (!data || !data._id || data._id !== parsedUser._id) {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/user/load?_id=${parsedUser._id}`,
@@ -31,36 +34,53 @@ export default async function middleware(request: NextRequest) {
           cache: "force-cache",
         }
       );
+
       if (!result.ok) {
         return handleLogout(baseUrl, request);
       }
-      data = await result.json();
 
+      data = await result.json();
       if (!data || Object.keys(data).length === 0) {
         return handleLogout(baseUrl, request);
       }
+
       const response = NextResponse.next();
       response.cookies.set("belezixadmin.cache", JSON.stringify(data), {
         maxAge: 86400, // 1 day in seconds
         path: "/",
       });
 
-      const daysToNextCharge = calculateDaysToNextPayment(data?.payDay);
-
+      const daysToNextCharge = calculateDaysToNextPayment(data.payDay);
       if (daysToNextCharge < 0) {
         return NextResponse.redirect(`${baseUrl}/payment/pix`);
       }
+
       if (pathname === "/") {
         return NextResponse.redirect(`${baseUrl}/home`);
       }
+
       return response;
     }
-    if (pathname !== "/" && pathname !== "/login" && pathname !== "/signup") {
-      return NextResponse.redirect(`${baseUrl}/`);
+
+    const daysToNextCharge = calculateDaysToNextPayment(data.payDay);
+    if (daysToNextCharge < 0) {
+      return NextResponse.redirect(`${baseUrl}/payment/pix`);
     }
+
+    if (pathname === "/") {
+      return NextResponse.redirect(`${baseUrl}/home`);
+    }
+
+    return NextResponse.next();
   }
+
+  if (pathname !== "/" && pathname !== "/login" && pathname !== "/signup") {
+    return NextResponse.redirect(`${baseUrl}/`);
+  }
+
   return NextResponse.next();
 }
+
 function handleLogout(baseUrl: string, request: NextRequest) {
   const response = NextResponse.redirect(`${baseUrl}/`);
   const cookies = request.cookies.getAll();
@@ -69,6 +89,7 @@ function handleLogout(baseUrl: string, request: NextRequest) {
   });
   return response;
 }
+
 export const config = {
   matcher: [
     // "/login/:path*",
