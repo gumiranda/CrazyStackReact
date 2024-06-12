@@ -23,7 +23,7 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
     router.push(`/requests/edit/${request._id}`);
   };
   return (
-    <Box>
+    <Box bgColor="white">
       <ViewField.Label>
         {t(`PAGES:STATUS.${request?.status}`, {
           defaultValue: statusMap?.[request?.status],

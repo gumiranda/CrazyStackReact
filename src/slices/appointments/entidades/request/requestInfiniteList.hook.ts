@@ -16,23 +16,25 @@ export const useRequestInfiniteList = () => {
   const { showModal, loading } = useUi();
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const [endDate, setEndDate] = useState<any>(new Date());
+  const [status, setStatus] = useState<any>(null);
 
   const query = {
     initDate: startOfDay(new Date(selectedDate)),
     endDate: endOfDay(new Date(endDate)),
   };
+
   const all = useGetInfiniteRequests(
     {
       getNextPageParam: (lastPage: any) => lastPage.next,
       getPreviousPageParam: (lastPage: any) => lastPage.prev,
       initialPageParam: 1, // or provide a suitable initial value
     },
-    query
+    { ...query, status: !isNaN(Number(status)) ? status : null }
   );
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["requestsInfinite", query] });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDate, endDate]);
+  }, [selectedDate, endDate, status]);
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching }: any =
     all || {};
   const firstPage = data?.pages?.[0];
@@ -114,5 +116,7 @@ export const useRequestInfiniteList = () => {
     requestList,
     endDate,
     setEndDate,
+    status,
+    setStatus,
   };
 };

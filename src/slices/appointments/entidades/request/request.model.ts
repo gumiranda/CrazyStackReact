@@ -175,6 +175,7 @@ export const statusMap: any = {
   9: "Agendamento avaliado pelo cliente",
   10: "Pedido efetivado",
   11: "Pedido efetivado e avaliado pelo cliente",
+  " ": "Todos",
 };
 export const statusArray = Object.entries(statusMap).map(([key, value]) => ({
   key,

@@ -27,9 +27,10 @@ export const useHome = () => {
     selectedDate,
     setSelectedDate,
     setEndDate,
+    status,
+    setStatus,
   } = useRequestInfiniteList();
   useInfiniteFullList({ fetchNextPage, hasNextPage, isFetching });
-
   const [selectedDay, setSelectedDay] = useState<any>(new Date().getDay() - 1);
   const [selectedRange, setSelectedRange] = useState<any>("month");
   const [result, setResult] = useState<any>(null);
@@ -69,8 +70,13 @@ export const useHome = () => {
     setSelectedRange,
     result,
     description,
+    setSelectedDate,
+    status,
+    setStatus,
+    setEndDate,
   };
 };
+
 export type DayClick = {
   dayIndex: number;
   extraDiff: number;
