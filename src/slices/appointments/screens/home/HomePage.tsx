@@ -58,8 +58,8 @@ export function HomePage() {
           </VStack>
         </Box>
 
-        <Flex mt={5}>
-          <Box w={"100%"} p={{ base: 5, md: 10 }}>
+        <Flex my={4} mt={5} w="100%">
+          <Box w={"100%"}>
             <WeekDaysSelector
               selectedDay={selectedDay}
               onDayClick={handleDayClick}
