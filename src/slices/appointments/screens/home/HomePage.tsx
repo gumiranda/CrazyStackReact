@@ -1,10 +1,31 @@
 "use client";
 
-import { Box, Flex, Text, TimeSlots, WeekDaysSelector } from "@/shared/ui";
+import {
+  Box,
+  Flex,
+  Text,
+  VStack,
+  HStack,
+  DatePicker,
+  Select,
+  TimeSlots,
+  WeekDaysSelector,
+} from "@/shared/ui";
 import { useHome } from "./useHome.hook";
 import { LoadInvoice } from "@/slices/appointments/features/appointment/load-invoice/LoadInvoice";
 import { LoadAppointmentsByPeriod } from "@/slices/appointments/features/appointment/load-appointments-by-period/LoadAppointmentsByPeriod";
+import { statusMap } from "../../entidades/request/request.model";
 
+export function convertToDate(dateString) {
+  // Split the date string into day, month, and year
+  const parts = dateString.split("/");
+
+  // Create a new Date object
+  // Note: Months are zero-indexed in JavaScript Date objects, so we need to subtract 1 from the month
+  const dateObject = new Date(parts[2], parts[1] - 1, parts[0]);
+
+  return dateObject;
+}
 export function HomePage() {
   const {
     welcomeTitle,
@@ -14,41 +35,40 @@ export function HomePage() {
     handleDayClick,
     dayFormatted,
     requestList,
+    setSelectedDate,
+    status,
+    setStatus,
+    setEndDate,
   } = useHome();
   return (
     <>
-      <Flex w="100%" p={5}>
-        <Box w="100%">
-          <Flex alignItems={"center"} w="100%" justifyContent="space-between">
-            <Box>
-              <Text fontWeight={"500"} fontSize="2xl">
+      <Flex w="100%" p={5} direction="column" align="center" minHeight="100vh">
+        <Box w="100%" maxW="1200px">
+          <VStack spacing={5} align="stretch">
+            <Flex flexDir="column" alignSelf={"flex-start"}>
+              <Text fontWeight="600" fontSize="3xl">
                 {welcomeTitle} 👋
               </Text>
-              <Text fontSize={"xl"}>{description}</Text>
-            </Box>
-          </Flex>
-          <Flex
-            w="100%"
-            alignItems={"center"}
-            justifyContent={{ base: "center", md: "flex-start" }}
-          >
-            <Flex gap={5} mt={5} direction={{ base: "column", md: "row" }}>
+              <Text fontSize={"lg"}>{description}</Text>
+            </Flex>
+            <HStack spacing={10} justify="center" flexWrap="wrap">
               <LoadInvoice />
               <LoadAppointmentsByPeriod />
-            </Flex>
-          </Flex>
+            </HStack>
+          </VStack>
         </Box>
-      </Flex>
-      <Flex mt={5}>
-        <Box w={"100%"} p={{ base: 5, md: 10 }}>
-          <WeekDaysSelector
-            selectedDay={selectedDay}
-            onDayClick={handleDayClick}
-            dayFormatted={dayFormatted}
-            selectedDate={selectedDate}
-          />
-          <TimeSlots list={requestList} />
-        </Box>
+
+        <Flex mt={5}>
+          <Box w={"100%"} p={{ base: 5, md: 10 }}>
+            <WeekDaysSelector
+              selectedDay={selectedDay}
+              onDayClick={handleDayClick}
+              dayFormatted={dayFormatted}
+              selectedDate={selectedDate}
+            />
+            <TimeSlots list={requestList} />
+          </Box>
+        </Flex>
       </Flex>
     </>
   );
