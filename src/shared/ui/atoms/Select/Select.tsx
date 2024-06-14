@@ -16,6 +16,9 @@ export const Select = ({
   label: string;
   labelColor?: string;
 }) => {
+  if (rest?.value === null) {
+    rest.value = "";
+  }
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
       {!!label && (

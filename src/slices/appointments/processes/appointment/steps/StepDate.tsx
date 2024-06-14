@@ -39,7 +39,6 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
     haveRecurrence: false,
     haveRide: false,
     haveFidelity: false,
-    type: "service",
     status: 1,
     serviceId: request?.serviceId,
     clientId: request?.clientCreated?._id,

@@ -117,6 +117,7 @@ export function editRequestMutation({
   return useMutation({
     mutationFn: async (request: EditRequestFormData) => {
       try {
+        delete request?.date;
         const { data } = await api.patch(`/request/update?_id=${currentRequest._id}`, {
           ...request,
           updatedAt: new Date(),

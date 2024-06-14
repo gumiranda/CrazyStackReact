@@ -58,7 +58,6 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     haveRecurrence: false,
     haveFidelity: false,
     haveRide: false,
-    type: "service",
     status: 0,
     serviceId: serviceSelected,
     clientId: clientSelected,
