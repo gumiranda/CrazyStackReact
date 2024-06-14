@@ -7,6 +7,8 @@ export type CreateClientFormData = {
   userId?: string;
   phone: string;
   _id?: string;
+  myOwnerId?: string;
+  ownerId?: string;
 };
 
 export type SubmitCreateClientHandler = SubmitHandler<CreateClientFormData>;

@@ -13,7 +13,7 @@ import { ClientCreateFormProps } from "./CreateClientForm";
 import { useUsersSelect } from "@/slices/general/features/user/userList.hook";
 import { useTranslation } from "react-i18next";
 
-export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
+export const useCreateClient = ({ userList, owners }: ClientCreateFormProps) => {
   const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const router = useRouter();
@@ -31,6 +31,8 @@ export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
       ...values,
       active,
       userId: userSelected ?? users?.[0]?._id,
+      myOwnerId: owners?.[0]?.createdById,
+      ownerId: owners?.[0]?._id,
     });
   };
   return {

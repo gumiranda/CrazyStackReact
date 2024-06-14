@@ -22,7 +22,8 @@ export const useLoadInvoice = () => {
     }
   }, [selectedRangeInvoice, user?._id]);
   const totalSum = resultInvoice?.reduce?.(
-    (accumulator, currentElement) => accumulator + currentElement?.total,
+    (accumulator, currentElement) =>
+      accumulator + Number(currentElement?.total ?? currentElement?.total_price),
     0
   );
   const totalIncome =

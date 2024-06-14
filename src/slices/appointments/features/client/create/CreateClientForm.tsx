@@ -4,8 +4,9 @@ import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "@/shared
 import { useTranslation } from "react-i18next";
 export type ClientCreateFormProps = {
   userList: GetUsersResponse;
+  owners: any;
 };
-export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
+export const CreateClientForm = ({ userList, owners }: ClientCreateFormProps) => {
   const { t } = useTranslation(["PAGES"]);
   const {
     formState,
@@ -17,7 +18,7 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
     userSelected,
     handleChangeUserSelected,
     users,
-  } = useCreateClient({ userList });
+  } = useCreateClient({ userList, owners });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateClient)}
