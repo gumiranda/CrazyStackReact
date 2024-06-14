@@ -102,23 +102,22 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
             labelColor="gray.800"
             onChange={(date) => setDateSelected(date as any)}
           />
-          {currentOwner?._id?.length === 24 &&
-            timeAvailable?.timeAvailable?.length > 0 && (
-              <Select
-                bg="gray.100"
-                labelColor="gray.800"
-                color="gray.800"
-                name="timeList"
-                label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
-                  defaultValue: "Horário disponível",
-                })}
-                list={timeAvailable?.timeAvailable ?? []}
-                value={timeSelected ?? ""}
-                onChange={handleChangeTimeSelected}
-                keyLabel="label"
-                keyValue="value"
-              />
-            )}
+          {currentOwner?._id?.length > 0 && timeAvailable?.timeAvailable?.length > 0 && (
+            <Select
+              bg="gray.100"
+              labelColor="gray.800"
+              color="gray.800"
+              name="timeList"
+              label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
+                defaultValue: "Horário disponível",
+              })}
+              list={timeAvailable?.timeAvailable ?? []}
+              value={timeSelected ?? ""}
+              onChange={handleChangeTimeSelected}
+              keyLabel="label"
+              keyValue="value"
+            />
+          )}
           <FormControl
             label={t("PAGES:NEW_APPOINTMENT.observations", {
               defaultValue: "Observação",

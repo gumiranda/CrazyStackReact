@@ -45,6 +45,7 @@ export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
       userList={clientUsers}
       clientList={clients}
       setActiveStep={setActiveStep}
+      ownerSelected={owners?.owners?.[0]}
     />,
     <StepServiceProfessional
       key={2}

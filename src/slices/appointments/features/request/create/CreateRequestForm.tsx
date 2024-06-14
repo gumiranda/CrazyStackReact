@@ -124,9 +124,10 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
             })}
           </option>
         </Select>
-        {ownerSelected?.length === 24 &&
-          serviceSelected?.length === 24 &&
-          userSelected?.length === 24 && (
+        {ownerSelected &&
+          ownerSelected?.length > 0 &&
+          serviceSelected?.length > 0 &&
+          userSelected?.length > 0 && (
             <DatePicker
               placeholder={t("PAGES:NEW_APPOINTMENT.selectDate", {
                 defaultValue: "Selecione a data do agendamento",
@@ -140,9 +141,10 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
               }}
             />
           )}
-        {ownerSelected?.length === 24 &&
-          serviceSelected?.length === 24 &&
-          userSelected?.length === 24 &&
+        {ownerSelected &&
+          ownerSelected?.length > 0 &&
+          serviceSelected?.length > 0 &&
+          userSelected?.length > 0 &&
           timeAvailable?.timeAvailable?.length > 0 && (
             <Select
               bg="secondary.600"

@@ -11,7 +11,7 @@ import { Box, Button, Flex, FormControl, GridForm } from "@/shared/ui";
 import { useEditClientLib } from "@/slices/appointments/features/client/edit/editClient.lib";
 import { useTranslation } from "react-i18next";
 
-export const StepClient = ({ clientList, userList, setActiveStep }) => {
+export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected }) => {
   const { t } = useTranslation(["PAGES"]);
   const { setRequest = () => {}, request } = useStepRequest();
   const [loading, setLoading] = useState(false);
@@ -53,7 +53,14 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
 
     setLoading(true);
     const userId = userSelected ?? users?.[0]?._id ?? userList?.[0]?._id ?? "";
-    const payload = { ...values, clientUserId: userId, userId, active: true };
+    const payload = {
+      ...values,
+      clientUserId: userId,
+      userId,
+      active: true,
+      ownerId: ownerSelected?._id,
+      myOwnerId: ownerSelected?.createdById,
+    };
     if (existingClient?._id) {
       setRequest((prev) => ({
         ...prev,

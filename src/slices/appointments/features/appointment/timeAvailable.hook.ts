@@ -21,9 +21,9 @@ export const useTimeAvailable = (params: Params) => {
   useEffect(() => {
     if (
       date &&
-      ownerId?.length === 24 &&
-      serviceId?.length === 24 &&
-      professionalId?.length === 24
+      ownerId?.length > 0 &&
+      serviceId?.length > 0 &&
+      professionalId?.length > 0
     ) {
       fetchTimeAvailables(date);
     } else if (timeAvailable?.timeAvailable?.length > 0) {
