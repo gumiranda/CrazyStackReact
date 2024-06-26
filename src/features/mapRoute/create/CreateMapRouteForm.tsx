@@ -1,5 +1,5 @@
 import { useCreateMapRoute } from "./createMapRoute.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 import { useRef } from "react";
 import { Grid, Text, List, ListItem, Card, CardBody, Button } from "@chakra-ui/react";
 export const CreateMapRouteForm = () => {

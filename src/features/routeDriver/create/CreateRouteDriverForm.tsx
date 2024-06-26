@@ -1,6 +1,6 @@
-import { RouteDriverProps } from "entidades/routeDriver";
+import { RouteDriverProps } from "@/entidades/routeDriver";
 import { useCreateRouteDriver } from "./createRouteDriver.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 
 export const CreateRouteDriverForm = () => {
   const {

@@ -1,5 +1,5 @@
 import { Heading, HStack, FlexProps, Spinner, Icon } from "@chakra-ui/react";
-import { Flex, Button } from "shared/ui";
+import { Flex, Button } from "@/shared/ui";
 import NextLink from "next/link";
 import { RiAddLine, RiTable2 } from "react-icons/ri";
 interface GridHeadProps extends FlexProps {

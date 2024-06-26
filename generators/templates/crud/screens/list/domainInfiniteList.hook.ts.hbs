@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { useUi } from "shared/libs";
-import { api } from "shared/api";
-import { queryClientInstance } from "shared/api";
-import { useRouter } from "next/router";
-import { useGetInfinite{{pascalCase name}}s } from "entidades/{{camelCase name}}/{{camelCase name}}.lib";
+import { useUi } from "@/shared/libs";
+import { api } from "@/shared/api";
+import { queryClientInstance } from "@/shared/api";
+import { useRouter } from "next/navigation";
+import { useGetInfinite{{pascalCase name}}s } from "@/entidades/{{camelCase name}}/{{camelCase name}}.lib";
 
 export const use{{pascalCase name}}InfiniteList = () => {
   const router = useRouter();

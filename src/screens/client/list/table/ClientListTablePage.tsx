@@ -1,5 +1,6 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetClientsResponse } from "entidades/client/client.api";
+"use client";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetClientsResponse } from "@/entidades/client/client.api";
 import { useClientList } from "../clientList.hook";
 type ClientListTablePageProps = {
   data: GetClientsResponse;
@@ -26,7 +27,7 @@ export const ClientListTablePage = ({ page = 0, data }: ClientListTablePageProps
         title={"Belezix Admin | Clientes"}
         description="Página de listagem de clientes do painel de Admin Belezix"
       />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

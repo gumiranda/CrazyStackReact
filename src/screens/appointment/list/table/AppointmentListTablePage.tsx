@@ -1,5 +1,6 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetAppointmentsResponse } from "entidades/appointment/appointment.api";
+"use client";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useAppointmentList } from "../appointmentList.hook";
 type AppointmentListTablePageProps = {
   data: GetAppointmentsResponse;
@@ -29,7 +30,7 @@ export const AppointmentListTablePage = ({
         title={"Belezix Admin | Agendamentos"}
         description="Página de listagem de agendamentos do painel de Admin Belezix"
       />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

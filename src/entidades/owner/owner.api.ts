@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { OwnerProps, ownerModel } from "./owner.model";
 export type GetOwnersResponse = {
   owners: OwnerProps[];

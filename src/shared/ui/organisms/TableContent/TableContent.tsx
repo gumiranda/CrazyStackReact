@@ -1,6 +1,6 @@
 import { Skeleton, Stack, Flex, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import { TableItems } from "shared/ui/molecules";
+import { TableItems } from "@/shared/ui/molecules";
 type Field = {
   id: string;
   label: string;

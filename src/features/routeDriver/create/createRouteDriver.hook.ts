@@ -1,19 +1,19 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import {
   CreateRouteDriverFormData,
   SubmitCreateRouteDriverHandler,
   useCreateRouteDriverLib,
 } from "./createRouteDriver.lib";
-import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { useRouter } from "next/navigation";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 export const useCreateRouteDriver = () => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
-  const createRouteDriver = useMutation(
-    async (routeDriver: CreateRouteDriverFormData) => {
+  const createRouteDriver = useMutation({
+    mutationFn: async (routeDriver: CreateRouteDriverFormData) => {
       try {
         const { data } = await api.post("/routeDriver/add", {
           ...routeDriver,
@@ -42,8 +42,7 @@ export const useCreateRouteDriver = () => {
         });
       }
     },
-    {}
-  );
+  });
   const { register, handleSubmit, formState } = useCreateRouteDriverLib();
   const handleCreateRouteDriver: SubmitCreateRouteDriverHandler = async (
     values: CreateRouteDriverFormData

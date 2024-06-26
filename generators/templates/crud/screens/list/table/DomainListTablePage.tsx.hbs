@@ -1,5 +1,5 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { Get{{pascalCase name}}sResponse } from "entidades/{{camelCase name}}/{{camelCase name}}.api";
+"use client"; import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { Get{{pascalCase name}}sResponse } from "@/entidades/{{camelCase name}}/{{camelCase name}}.api";
 import { use{{pascalCase name}}List } from "../{{camelCase name}}List.hook";
 type {{pascalCase name}}ListTablePageProps = {
   data: Get{{pascalCase name}}sResponse;
@@ -26,7 +26,7 @@ export const {{pascalCase name}}ListTablePage = ({ page = 0, data }: {{pascalCas
         title={"Belezix Admin | {{pascalCase label}}s"}
         description="Página de listagem de {{camelCase label}}s do painel de Admin Belezix"
       />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

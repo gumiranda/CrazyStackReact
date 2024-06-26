@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { RequestProps, requestModel } from "./request.model";
 export type GetRequestsResponse = {
   requests: RequestProps[];
@@ -36,11 +36,11 @@ type InfiniteProps = {
   pageParam: number;
   ctx: any;
 };
-export const getInfiniteRequests = async ({
-  pageParam = 1,
-  ctx,
-}: InfiniteProps): Promise<GetRequestsResponse> => {
-  return getRequests(pageParam, ctx);
+export const getInfiniteRequests = async (
+  { pageParam = 1, ctx }: InfiniteProps,
+  params: any
+): Promise<GetRequestsResponse> => {
+  return getRequests(pageParam, ctx, params);
 };
 export const getRequestById = async (
   id: string,

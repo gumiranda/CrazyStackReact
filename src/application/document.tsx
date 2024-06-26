@@ -1,6 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ColorModeScript } from "@chakra-ui/react";
-import { theme } from "application/theme";
+import { theme } from "@/application/theme";
 export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
           <meta name="description" content="CrazyStack Painel" />
           <meta name="theme-color" content="#322659" />
           <link rel="apple-touch-icon" href="images/appleicon.png" />
-          <meta name="application-name" content="CrazyStack" />
+          <meta name="@/application-name" content="CrazyStack" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content="CrazyStack" />

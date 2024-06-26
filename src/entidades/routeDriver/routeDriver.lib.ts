@@ -10,15 +10,19 @@ export const useGetRouteDrivers = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["routeDrivers", page], () => getRouteDrivers(page, ctx), {
+  return useQuery({
+    queryKey: ["routedrivers", page],
+    queryFn: () => getRouteDrivers(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteRouteDrivers = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(
-    ["routeDriversInfinite"],
-    getInfiniteRouteDrivers as any,
-    options as any
-  );
+export const useGetInfiniteRouteDrivers = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["routedriversInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteRouteDrivers(pageParam),
+    ...options,
+  });
 };

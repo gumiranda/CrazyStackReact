@@ -1,17 +1,18 @@
+"use client";
 import { useMutation } from "@tanstack/react-query";
-import { useUi } from "shared/libs";
-import { api } from "shared/api";
-import { queryClientInstance } from "shared/api";
-import { useRouter } from "next/router";
-import { useGetInfiniteAppointments } from "entidades/appointment/appointment.lib";
+import { useUi } from "@/shared/libs";
+import { api } from "@/shared/api";
+import { queryClientInstance } from "@/shared/api";
+import { useRouter } from "next/navigation";
+import { useGetInfiniteAppointments } from "@/entidades/appointment/appointment.lib";
 
 export const useAppointmentInfiniteList = () => {
   const router = useRouter();
   const { showModal, loading } = useUi();
   const all = useGetInfiniteAppointments({
-    getNextPageParam: (lastPage: any, pages) => lastPage.next,
-    getPreviousPageParam: (firstPage: any, pages) => firstPage.prev,
-  });
+    getNextPageParam: (lastPage: any) => lastPage.next,
+    getPreviousPageParam: (firstPage: any) => firstPage.prev,
+  } as any);
   const {
     data,
     error,
@@ -20,14 +21,14 @@ export const useAppointmentInfiniteList = () => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = all || {};
+  }: any = all || {};
   const firstPage: any = data?.pages[0];
   const total: any = (firstPage?.total as any) || {};
   const deleteSelectedAction = async (item: any) => {
-    deleteAppointment.mutateAsync([item]);
+    deleteAppointment.mutateAsync([item] as any);
   };
-  const deleteAppointment = useMutation(
-    async (appointmentsToDelete: any = []) => {
+  const deleteAppointment = useMutation({
+    mutationFn: async (appointmentsToDelete: any = []) => {
       try {
         if (appointmentsToDelete?.length > 0) {
           return Promise.all(
@@ -45,22 +46,23 @@ export const useAppointmentInfiniteList = () => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["appointmentsInfinite", data?.pages ?? 1]);
-        queryClientInstance.refetchQueries(["appointmentsInfinite", data?.pages]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries([
+        "appointmentsInfinite",
+        data?.pages ?? 1,
+      ] as any);
+      queryClientInstance.refetchQueries(["appointmentsInfinite", data?.pages] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   return {
     deleteSelectedAction,
     isFetching,

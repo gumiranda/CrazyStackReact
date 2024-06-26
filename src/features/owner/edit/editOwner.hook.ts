@@ -1,8 +1,8 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { EditOwnerFormProps } from "./EditOwnerForm";
 import { SubmitEditOwnerHandler, useEditOwnerLib } from "./editOwner.lib";
-import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { useRouter } from "next/navigation";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import {
@@ -12,10 +12,10 @@ import {
   daysOptions,
   listHours,
   EditOwnerFormData,
-} from "entidades/owner";
+} from "@/entidades/owner";
 export const useEditOwner = (props: EditOwnerFormProps) => {
   const { showModal } = useUi();
-  const { owner: currentOwner } = props;
+  const { owner: currentOwner, id, users } = props;
   const [haveAlternativeHour, setHaveAlternativeHour] = useState(
     !!currentOwner?.hourStart2
   );
@@ -40,10 +40,10 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     hourLunchStart3: currentOwner?.hourLunchStart3,
   });
   const router = useRouter();
-  const editOwner = useMutation(
-    async (owner: EditOwnerFormData & HourValidatorInput & Days) => {
+  const editOwner = useMutation({
+    mutationFn: async (owner: EditOwnerFormData & HourValidatorInput & Days) => {
       try {
-        const { data } = await api.patch(`/owner/update?_id=${currentOwner._id}`, {
+        const { data } = await api.patch(`/owner/update?_id=${currentOwner?._id ?? id}`, {
           ...owner,
           updatedAt: new Date(),
         });
@@ -57,7 +57,7 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
         }
         showModal({
           content:
-            "Estabelecimento editada com sucesso, você será redirecionado para a lista de estabelecimentos",
+            "Estabelecimento editado com sucesso, você será redirecionado para a lista de estabelecimentos",
           title: "Sucesso",
           type: "success",
         });
@@ -71,13 +71,12 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
         });
       }
     },
-    {}
-  );
+  });
   const { register, handleSubmit, formState, control } = useEditOwnerLib(props);
   const handleEditOwner: SubmitEditOwnerHandler = async (values: EditOwnerFormData) => {
     await editOwner.mutateAsync({
-      ...values,
       ...hourWork,
+      ...values,
       days1: formatDays(values?.days1Options, "1"),
       days2: formatDays(values?.days2Options, "2"),
       days3: formatDays(values?.days3Options, "3"),

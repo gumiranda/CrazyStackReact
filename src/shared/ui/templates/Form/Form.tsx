@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Flex, FormControlProps, FormControlGroup, Button } from "shared/ui";
+import { Flex, FormControlProps, FormControlGroup, Button } from "@/shared/ui";
 import { FieldValues, FormState, UseFormRegister } from "react-hook-form";
 
 interface FormProps {

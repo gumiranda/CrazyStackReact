@@ -1,7 +1,8 @@
+"use client";
 import { Loader } from "@googlemaps/js-api-loader";
-import { MapGoogle } from "entidades/mapRoute/googleMaps/mapGoogle";
+import { MapGoogle } from "@/entidades/mapRoute/googleMaps/mapGoogle";
 import { useState, useEffect } from "react";
-import { getCurrentPosition } from "shared/libs/utils";
+import { getCurrentPosition } from "@/shared/libs/utils/geolocation";
 
 export function useLoadMap(containerRef: React.RefObject<HTMLDivElement>) {
   const [map, setMap] = useState<MapGoogle>();

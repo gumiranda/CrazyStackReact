@@ -12,17 +12,21 @@ export const useGetMapRoutes = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["mapRoutes", page], () => getMapRoutes(page, ctx), {
+  return useQuery({
+    queryKey: ["maproutes", page],
+    queryFn: () => getMapRoutes(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteMapRoutes = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(
-    ["mapRoutesInfinite"],
-    getInfiniteMapRoutes as any,
-    options as any
-  );
+export const useGetInfiniteMapRoutes = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["maproutesInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteMapRoutes(pageParam),
+    ...options,
+  });
 };
 
 export type Route = {

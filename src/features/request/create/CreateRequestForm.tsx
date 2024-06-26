@@ -6,8 +6,8 @@ import {
   GridForm,
   Select,
   DatePicker,
-} from "shared/ui";
-import { GetOwnersResponse } from "entidades/owner";
+} from "@/shared/ui";
+import { GetOwnersResponse } from "@/entidades/owner";
 
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;

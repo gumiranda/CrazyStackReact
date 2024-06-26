@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
 import {
@@ -170,8 +172,8 @@ export const DatePicker = (props: IDatePickerProps) => {
                     isCurrentDay(day)
                       ? "gray.300"
                       : isSelectedDay(day) && day.month === 0
-                      ? "gray.300"
-                      : ""
+                        ? "gray.300"
+                        : ""
                   }
                   variant="ghost"
                   size="sm"

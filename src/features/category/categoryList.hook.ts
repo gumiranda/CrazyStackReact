@@ -1,5 +1,5 @@
-import { ServiceProps } from "entidades/service";
-import { CategoryProps, GetCategorysResponse, getCategorys } from "entidades/category";
+import { ServiceProps } from "@/entidades/service";
+import { CategoryProps, GetCategorysResponse, getCategorys } from "@/entidades/category";
 import { useState, useEffect } from "react";
 export type ServiceFormProps = {
   categoryList: GetCategorysResponse;

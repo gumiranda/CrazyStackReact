@@ -19,7 +19,7 @@ export type CreateServiceFormData = {
 
 export type SubmitCreateServiceHandler = SubmitHandler<CreateServiceFormData>;
 
-export const createServiceFormSchema = yup.object().shape({
+export const createServiceFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
   description: yup.string().required("Descrição obrigatória"),
   price: yup
@@ -36,9 +36,10 @@ export const createServiceFormSchema = yup.object().shape({
     .test("is-decimal", "Valor inválido", (value) => !isNaN(value as number)),
   comission: yup.number().required("Campo obrigatório").min(0).max(100),
 });
+export type YupSchema = yup.InferType<typeof createServiceFormSchema>;
 
 export const useCreateServiceLib = () => {
-  const formProps = useForm<CreateServiceFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(createServiceFormSchema),
     defaultValues: {
       name: "",

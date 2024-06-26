@@ -1,17 +1,21 @@
-import { Form } from "shared/ui";
+import { Form } from "@/shared/ui";
 import { useLogin } from "./login.hook";
-export const LoginForm = () => {
+
+export const LoginForm = ({ children }) => {
   const { formState, handleSubmit, register, handleLogin } = useLogin();
+
   const formProps = {
     formState,
     register,
     handleCustomSubmit: handleLogin,
     handleSubmit,
     formControls: [
-      { type: "email", label: "Email", name: "email" },
-      { type: "password", label: "Senha", name: "password" },
+      { type: "email", label: "E-mail de acesso", name: "email" },
+      { type: "password", label: "Sua senha", name: "password" },
     ],
     buttonLabel: "Entrar",
-  };
-  return <Form {...formProps} />;
+    id: "login",
+  } as any;
+
+  return <Form {...formProps}>{children}</Form>;
 };

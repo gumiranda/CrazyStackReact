@@ -1,4 +1,5 @@
-import { Select, ControlledSelect, Checkbox } from "shared/ui";
+"use client";
+import { Select, ControlledSelect, Checkbox } from "@/shared/ui";
 import { OptionBase } from "chakra-react-select";
 
 export type HourValidatorInput = {
@@ -124,6 +125,7 @@ export const HourWorks = ({
     onChangehourLunchStart3,
     onChangehourLunchEnd3,
   } = useOnChanges({ changeHour });
+
   return (
     <>
       <HourWorkForm
@@ -149,7 +151,7 @@ export const HourWorks = ({
         }}
       />
       <Checkbox
-        colorScheme="green"
+        colorScheme={"tertiary"}
         isChecked={haveLunchTime1}
         label="Possui horário de almoço?"
         onChange={(e) => {
@@ -158,7 +160,7 @@ export const HourWorks = ({
         }}
       />
       <Checkbox
-        colorScheme="green"
+        colorScheme={"tertiary"}
         isChecked={haveAlternativeHour}
         label="Possui horário alternativo?"
         onChange={(e) => {
@@ -191,7 +193,7 @@ export const HourWorks = ({
             }}
           />
           <Checkbox
-            colorScheme="green"
+            colorScheme={"tertiary"}
             isChecked={haveLunchTime2}
             label="Possui horário de almoço?"
             onChange={(e) => {
@@ -200,7 +202,7 @@ export const HourWorks = ({
             }}
           />
           <Checkbox
-            colorScheme="green"
+            colorScheme={"tertiary"}
             isChecked={haveAlternativeHour2}
             label="Possui horário alternativo além desse?"
             onChange={(e) => {
@@ -233,7 +235,7 @@ export const HourWorks = ({
                 }}
               />
               <Checkbox
-                colorScheme="green"
+                colorScheme={"tertiary"}
                 isChecked={haveLunchTime3}
                 label="Possui horário de almoço desse alternativo?"
                 onChange={(e) => {
@@ -342,18 +344,20 @@ export const HourWorkForm = ({
     onChangeHourEnd,
   },
 }: HourWorkFormInput) => {
+  const ControlledSelectAux = ControlledSelect as (props: any) => any;
+
   return (
     <>
-      <ControlledSelect<CreateOwnerFormData, DaysOptions, true>
+      <ControlledSelectAux
         isMulti
-        control={control}
+        control={control as any}
         label={labelDayWork}
         name={daysOptionsName}
         placeholder="Selecione pelo menos 1 dia"
         options={daysOptions}
       />
       <Select
-        bg="purple.700"
+        bg="primary.500"
         name="openHour"
         label={labelHourStart}
         value={valueHourStart}
@@ -363,7 +367,7 @@ export const HourWorkForm = ({
         onChange={onChangeHourStart}
       />
       <Select
-        bg="purple.700"
+        bg="primary.500"
         name="endHour"
         label={labelHourEnd}
         value={valueHourEnd}
@@ -375,7 +379,7 @@ export const HourWorkForm = ({
       {flagDependent && (
         <>
           <Select
-            bg="purple.700"
+            bg="primary.500"
             name="openHourLunch"
             label={labelHourLunchStart}
             value={valueHourLunchStart}
@@ -385,7 +389,7 @@ export const HourWorkForm = ({
             onChange={onChangeHourLunchStart}
           />
           <Select
-            bg="purple.700"
+            bg="primary.500"
             name="endHourLunch"
             label={labelHourLunchEnd}
             value={valueHourLunchEnd}
@@ -454,7 +458,7 @@ export type Days = {
 };
 export function formatOptions(day: Day | undefined) {
   if (!day) return [];
-  const options = [];
+  const options: any = [];
   for (const [dayOfWeek, value] of Object.entries(day)) {
     if (value) {
       const currentValue = dayOfWeek?.substring(0, dayOfWeek?.length - 1);

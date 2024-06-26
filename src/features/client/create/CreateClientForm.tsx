@@ -1,6 +1,6 @@
-import { GetUsersResponse } from "entidades/user";
+import { GetUsersResponse } from "@/entidades/user";
 import { useCreateClient } from "./createClient.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "@/shared/ui";
 export type ClientCreateFormProps = {
   userList: GetUsersResponse;
 };

@@ -1,4 +1,4 @@
-import { getClients, getInfiniteClients } from "./client.api";
+import { getClientById, getClients, getInfiniteClients } from "./client.api";
 import {
   useQuery,
   UseQueryOptions,
@@ -10,11 +10,26 @@ export const useGetClients = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["clients", page], () => getClients(page, ctx), {
+  return useQuery({
+    queryKey: ["clients", page],
+    queryFn: () => getClients(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteClients = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(["clientsInfinite"], getInfiniteClients as any, options as any);
+export const useGetInfiniteClients = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["clientsInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteClients(pageParam),
+    ...options,
+  });
+};
+export const useGetClientById = (id: string, options?: UseQueryOptions) => {
+  return useQuery({
+    queryKey: ["client", id],
+    queryFn: () => getClientById(id, null),
+    ...options,
+  });
 };

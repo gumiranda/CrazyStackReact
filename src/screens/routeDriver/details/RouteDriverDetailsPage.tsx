@@ -1,14 +1,15 @@
-import { Box, Head } from "shared/ui";
-import { RouteDriverDetails } from "entidades/routeDriver/details";
-import { RouteDriverProps } from "entidades/routeDriver";
-import { MapRouteProps } from "entidades/mapRoute";
+"use client";
+import { Box } from "@/shared/ui";
+import { RouteDriverDetails } from "@/entidades/routeDriver/details";
+import { RouteDriverProps } from "@/entidades/routeDriver";
+import { MapRouteProps } from "@/entidades/mapRoute";
 import { useRef, useEffect, useState } from "react";
-import { useLoadMap } from "features/mapRoute/load-map";
+import { useLoadMap } from "@/features/mapRoute/load-map";
 import { Grid } from "@chakra-ui/react";
-import { mapRouteModel } from "entidades/mapRoute/mapRoute.model";
-import { useWS } from "application/providers/webSocketProvider";
-import { parseJSON, useUi } from "shared/libs";
-import { routeDriverModel } from "entidades/routeDriver/routeDriver.model";
+import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
+import { useWS } from "@/application/providers/webSocketProvider";
+import { parseJSON, useUi } from "@/shared/libs";
+import { routeDriverModel } from "@/entidades/routeDriver/routeDriver.model";
 
 type RouteDriverDetailsProps = {
   data: RouteDriverProps;
@@ -168,11 +169,7 @@ export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsPro
   };
   return (
     <>
-      <Head
-        title={"Belezix Admin | Corridas"}
-        description="Página de detalhes de corridas do painel de Admin Belezix"
-      />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <RouteDriverDetails {...props} />
         <Box display="flex" flexDir="column">
           <Grid id="map" p={80} ref={mapContainerRef} />

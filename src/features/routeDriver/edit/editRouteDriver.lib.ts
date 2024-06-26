@@ -9,14 +9,15 @@ export type EditRouteDriverFormData = {
 
 export type SubmitEditRouteDriverHandler = SubmitHandler<EditRouteDriverFormData>;
 
-export const editRouteDriverFormSchema = yup.object().shape({
+export const editRouteDriverFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
   status: yup.string(),
 });
+export type YupSchema = yup.InferType<typeof editRouteDriverFormSchema>;
 
 export const useEditRouteDriverLib = (props: EditRouteDriverFormProps) => {
   const { routeDriver: currentRouteDriver } = props;
-  const formProps = useForm<EditRouteDriverFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(editRouteDriverFormSchema),
     defaultValues: {
       name: currentRouteDriver?.name ?? "",

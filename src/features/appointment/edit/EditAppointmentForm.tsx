@@ -1,14 +1,22 @@
-import { AppointmentProps } from "entidades/appointment";
+import { AppointmentProps } from "@/entidades/appointment";
 import { useEditAppointment } from "./editAppointment.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditAppointmentFormProps {
   appointment: AppointmentProps;
+  id: string;
+  owners: any;
 }
-export const EditAppointmentForm = ({ appointment }: EditAppointmentFormProps) => {
+export const EditAppointmentForm = ({
+  appointment,
+  id,
+  owners,
+}: EditAppointmentFormProps) => {
   const { formState, register, handleSubmit, handleEditAppointment } = useEditAppointment(
     {
       appointment,
+      id,
+      owners,
     }
   );
   return (

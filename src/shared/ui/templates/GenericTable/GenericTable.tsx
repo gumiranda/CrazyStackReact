@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { TableContent, TableHead, Flex } from "shared/ui";
+import { TableContent, TableHead, Flex } from "@/shared/ui";
 type Field = {
   id: string;
   label: string;

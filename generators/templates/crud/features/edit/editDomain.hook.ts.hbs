@@ -1,12 +1,12 @@
-import { useUi } from "shared/libs";
+import { useUi } from "@/shared/libs";
 import { Edit{{pascalCase name}}FormProps } from "./Edit{{pascalCase name}}Form";
 import {
   Edit{{pascalCase name}}FormData,
   SubmitEdit{{pascalCase name}}Handler,
   useEdit{{pascalCase name}}Lib,
 } from "./edit{{pascalCase name}}.lib";
-import { useRouter } from "next/router";
-import { api } from "shared/api";
+import { useRouter } from "next/navigation";
+import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 export const useEdit{{pascalCase name}} = (props: Edit{{pascalCase name}}FormProps) => {
   const { showModal } = useUi();

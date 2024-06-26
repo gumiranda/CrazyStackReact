@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { ServiceProps, serviceModel } from "./service.model";
 export type GetServicesResponse = {
   services: ServiceProps[];

@@ -1,10 +1,11 @@
-import { GetOwnersResponse } from "entidades/owner/owner.api";
+"use client";
+import { GetOwnersResponse } from "@/entidades/owner/owner.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { OwnerProps } from "entidades/owner";
-import { useRouter } from "next/router";
+import { OwnerProps } from "@/entidades/owner";
+import { useRouter } from "next/navigation";
 type OwnerListHook = {
   initialData: GetOwnersResponse;
   page: number;
@@ -15,17 +16,18 @@ export const useOwnerList = (data: OwnerListHook) => {
   const [page, setPage] = useState(data.page);
   const [owners, setOwners] = useState(data?.initialData?.owners ?? []);
   const handlePrefetchOwner = async ({ _id: ownerId }: any) => {
-    await queryClientInstance.prefetchQuery(
-      ["owner", ownerId],
-      async () => {
-        const { data = null } = (await api.get(`/owner/load?_id=${ownerId}`)) || {};
-        return data;
-      },
-      { staleTime: 1000 * 60 * 10 }
-    );
+    // await queryClientInstance.prefetchQuery(
+    //   ["owner", ownerId],
+    //   async () => {
+    //     const { data = null } =
+    //       (await api.get(`/owner/load?_id=${ownerId}`)) || {};
+    //     return data;
+    //   },
+    //   { staleTime: 1000 * 60 * 10 },
+    // );
   };
-  const deleteOwner = useMutation(
-    async (ownersToDelete: any = []) => {
+  const deleteOwner = useMutation({
+    mutationFn: async (ownersToDelete: any = []) => {
       try {
         if (ownersToDelete?.length > 0) {
           return Promise.all(
@@ -43,24 +45,22 @@ export const useOwnerList = (data: OwnerListHook) => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["owners", data.page]);
-        queryClientInstance.refetchQueries(["owners", data.page]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries(["owners", data.page] as any);
+      queryClientInstance.refetchQueries(["owners", data.page] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   const deleteSelectedAction = async () => {
-    deleteOwner.mutateAsync(owners.filter((owner: OwnerProps) => owner.value));
+    deleteOwner.mutateAsync(owners.filter((owner: OwnerProps) => owner.value) as any);
   };
   const changePage = (newpage: number) => {
     router.replace(`/owners/${newpage}`);

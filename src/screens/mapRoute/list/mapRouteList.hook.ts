@@ -1,10 +1,11 @@
-import { GetMapRoutesResponse } from "entidades/mapRoute/mapRoute.api";
+"use client";
+import { GetMapRoutesResponse } from "@/entidades/mapRoute/mapRoute.api";
 import { useState, useEffect } from "react";
-import { useUi } from "shared/libs";
-import { api, queryClientInstance } from "shared/api";
+import { useUi } from "@/shared/libs";
+import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { MapRouteProps } from "entidades/mapRoute";
-import { useRouter } from "next/router";
+import { MapRouteProps } from "@/entidades/mapRoute";
+import { useRouter } from "next/navigation";
 type MapRouteListHook = {
   initialData: GetMapRoutesResponse;
   page: number;
@@ -15,17 +16,18 @@ export const useMapRouteList = (data: MapRouteListHook) => {
   const [page, setPage] = useState(data.page);
   const [mapRoutes, setMapRoutes] = useState(data?.initialData?.mapRoutes ?? []);
   const handlePrefetchMapRoute = async ({ _id: mapRouteId }: any) => {
-    await queryClientInstance.prefetchQuery(
-      ["mapRoute", mapRouteId],
-      async () => {
-        const { data = null } = (await api.get(`/mapRoute/load?_id=${mapRouteId}`)) || {};
-        return data;
-      },
-      { staleTime: 1000 * 60 * 10 }
-    );
+    // await queryClientInstance.prefetchQuery(
+    //   ["mapRoute", mapRouteId],
+    //   async () => {
+    //     const { data = null } =
+    //       (await api.get(`/mapRoute/load?_id=${mapRouteId}`)) || {};
+    //     return data;
+    //   },
+    //   { staleTime: 1000 * 60 * 10 },
+    // );
   };
-  const deleteMapRoute = useMutation(
-    async (mapRoutesToDelete: any = []) => {
+  const deleteMapRoute = useMutation({
+    mutationFn: async (mapRoutesToDelete: any = []) => {
       try {
         if (mapRoutesToDelete?.length > 0) {
           return Promise.all(
@@ -43,25 +45,23 @@ export const useMapRouteList = (data: MapRouteListHook) => {
         });
       }
     },
-    {
-      onSuccess: () => {
-        queryClientInstance.invalidateQueries(["mapRoutes", data.page]);
-        queryClientInstance.refetchQueries(["mapRoutes", data.page]);
-        router.reload();
-      },
-      onError: () => {
-        showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
-          type: "error",
-        });
-      },
-      retry: 3,
-    }
-  );
+    onSuccess: () => {
+      queryClientInstance.invalidateQueries(["mapRoutes", data.page] as any);
+      queryClientInstance.refetchQueries(["mapRoutes", data.page] as any);
+      router.refresh();
+    },
+    onError: () => {
+      showModal({
+        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        title: "Erro no servidor",
+        type: "error",
+      });
+    },
+    retry: 3,
+  } as any);
   const deleteSelectedAction = async () => {
     deleteMapRoute.mutateAsync(
-      mapRoutes.filter((mapRoute: MapRouteProps) => mapRoute.value)
+      mapRoutes.filter((mapRoute: MapRouteProps) => mapRoute.value) as any
     );
   };
   const changePage = (newpage: number) => {

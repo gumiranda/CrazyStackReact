@@ -1,4 +1,4 @@
-import { PageIndicator, PaginationGroupItems } from "shared/ui/molecules";
+import { PageIndicator, PaginationGroupItems } from "@/shared/ui/molecules";
 import { Stack } from "@chakra-ui/react";
 
 interface PaginationProps {

@@ -1,6 +1,6 @@
-import { Icon, HStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { RiNotificationLine } from "react-icons/ri";
-
+import { IconButton } from "@chakra-ui/react";
 export const NotificationsNav = () => {
   return (
     <HStack
@@ -8,12 +8,13 @@ export const NotificationsNav = () => {
       mx={["3", "4"]}
       pr={["3", "4"]}
       py="1"
-      color="purple.300"
-      borderRightWidth={1}
-      borderColor="purple.700"
       data-testid="NotificationsNavTestId"
     >
-      <Icon as={RiNotificationLine} fontSize="20" />
+      <IconButton
+        aria-label="Ver notificações"
+        icon={<RiNotificationLine />}
+        fontSize="20"
+      />
     </HStack>
   );
 };

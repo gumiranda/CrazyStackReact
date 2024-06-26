@@ -1,8 +1,8 @@
-import { AppointmentProps } from "entidades/appointment";
+import { AppointmentProps } from "@/entidades/appointment";
 import { useCreateAppointment } from "./createAppointment.hook";
-import { BoxCreateItem, FormControl, Checkbox, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 
-export const CreateAppointmentForm = () => {
+export const CreateAppointmentForm = ({ data }) => {
   const {
     formState,
     register,
@@ -10,7 +10,7 @@ export const CreateAppointmentForm = () => {
     handleCreateAppointment,
     active,
     setActive,
-  } = useCreateAppointment();
+  } = useCreateAppointment({ data });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateAppointment)}

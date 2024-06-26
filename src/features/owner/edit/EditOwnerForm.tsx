@@ -1,11 +1,13 @@
-import { HourWorks, OwnerProps } from "entidades/owner";
+import { HourWorks, OwnerProps } from "@/entidades/owner";
 import { useEditOwner } from "./editOwner.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditOwnerFormProps {
   owner: OwnerProps;
+  id: string;
+  users: any;
 }
-export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
+export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
   const {
     formState,
     register,
@@ -30,6 +32,8 @@ export const EditOwnerForm = ({ owner }: EditOwnerFormProps) => {
     setHaveAlternativeHour2,
   } = useEditOwner({
     owner,
+    users,
+    id,
   });
   return (
     <BoxCreateItem

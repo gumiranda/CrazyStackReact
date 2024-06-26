@@ -1,7 +1,9 @@
-import { Box, Head } from "shared/ui";
-import { EditServiceForm } from "features/service/edit";
-import { ServiceProps } from "entidades/service";
-import { GetCategorysResponse } from "entidades/category";
+"use client";
+
+import { Box, Head } from "@/shared/ui";
+import { EditServiceForm } from "@/features/service/edit";
+import { ServiceProps } from "@/entidades/service";
+import { GetCategorysResponse } from "@/entidades/category";
 type ServiceEditProps = {
   data: ServiceProps;
   categorys: GetCategorysResponse;
@@ -15,7 +17,7 @@ export const ServiceEditPage = ({ data, id, categorys }: ServiceEditProps) => {
         title={"Belezix Admin | Serviços"}
         description="Página de edição de serviços do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <EditServiceForm {...props} />
       </Box>
     </>

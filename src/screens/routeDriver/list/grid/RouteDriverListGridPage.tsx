@@ -1,6 +1,7 @@
-import { InfiniteList, GenericGrid, Head } from "shared/ui";
+"use client";
+import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useRouteDriverInfiniteList } from "../routeDriverInfiniteList.hook";
-import { useRouteDriverUi } from "entidades/routeDriver/routeDriver.ui";
+import { useRouteDriverUi } from "@/entidades/routeDriver/routeDriver.ui";
 
 export const RouteDriverGridPage = () => {
   const {

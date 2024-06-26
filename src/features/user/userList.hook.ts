@@ -1,4 +1,4 @@
-import { GetUsersResponse, getUsers, UserProps } from "entidades/user";
+import { GetUsersResponse, getUsers, UserProps } from "@/entidades/user";
 import { useState, useEffect } from "react";
 export type UserFormProps = {
   userList?: GetUsersResponse | null;

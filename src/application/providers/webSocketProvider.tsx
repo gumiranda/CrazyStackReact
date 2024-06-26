@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useMemo, useContext } from "react";
 import { parseCookies } from "nookies";
 

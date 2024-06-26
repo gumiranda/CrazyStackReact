@@ -1,4 +1,4 @@
-import { setupAPIClient } from "shared/api";
+import { setupAPIClient } from "@/shared/api";
 import { ClientProps, clientModel } from "./client.model";
 export type GetClientsResponse = {
   clients: ClientProps[];

@@ -1,14 +1,15 @@
-import { Box, Head, Button } from "shared/ui";
-import { MapRouteDetails } from "entidades/mapRoute/details";
-import { MapRouteProps } from "entidades/mapRoute";
-import { useRef, useEffect, useState, useCallback } from "react";
-import { useLoadMap } from "features/mapRoute/load-map";
+"use client";
+import { Box, Head, Button } from "@/shared/ui";
+import { MapRouteDetails } from "@/entidades/mapRoute/details";
+import { MapRouteProps } from "@/entidades/mapRoute";
+import { useRef, useEffect, useState } from "react";
+import { useLoadMap } from "@/features/mapRoute/load-map";
 import { Grid } from "@chakra-ui/react";
-import { mapRouteModel } from "entidades/mapRoute/mapRoute.model";
+import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
 import { parseCookies } from "nookies";
-import { useWS } from "application/providers/webSocketProvider";
-import { api } from "shared/api";
-import { useUi } from "shared/libs";
+import { useWS } from "@/application/providers/webSocketProvider";
+import { api } from "@/shared/api";
+import { useUi } from "@/shared/libs";
 
 type MapRouteDetailsProps = {
   data: MapRouteProps;
@@ -135,7 +136,7 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
         title={"Belezix Admin | Rotas"}
         description="Página de detalhes de rotas do painel de Admin Belezix"
       />
-      <Box flex="1" borderRadius={8} bg="purple.800" p="8">
+      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <MapRouteDetails {...props} />
         <Box display="flex" flexDir="column">
           <Button

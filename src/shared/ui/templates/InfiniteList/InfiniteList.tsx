@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useEffect, useState, useRef } from "react";
-import { Flex, Box } from "shared/ui";
+import { Flex, Box } from "@/shared/ui";
 
 interface InfiniteListProps {
   children: React.ReactNode;
@@ -44,10 +46,10 @@ export const InfiniteList = ({
   }, [element]);
   return (
     <Flex flexGrow="1" flexDir="column">
-      <Box borderRadius={8} bg="purple.800" p="8" minH="89vh">
+      <Box borderRadius={8} bg="secondary.500" p="8" minH="89vh">
         {children}
       </Box>
-      <Box justifySelf={"flex-end"} bg="purple.800" p="8">
+      <Box justifySelf={"flex-end"} bg="secondary.500" p="8">
         {hasNextPage ? (
           <h1 ref={setElement}>Carregando {entityName}...</h1>
         ) : (

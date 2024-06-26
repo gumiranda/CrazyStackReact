@@ -1,5 +1,6 @@
-import { Box, GenericTable, Head, Pagination } from "shared/ui";
-import { GetServicesResponse } from "entidades/service/service.api";
+"use client";
+import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
+import { GetServicesResponse } from "@/entidades/service/service.api";
 import { useServiceList } from "../serviceList.hook";
 type ServiceListTablePageProps = {
   data: GetServicesResponse;
@@ -22,11 +23,7 @@ export const ServiceListTablePage = ({ page = 0, data }: ServiceListTablePagePro
   });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Serviços"}
-        description="Página de listagem de serviços do painel de Admin Belezix"
-      />
-      <Box borderRadius={8} bg="purple.800" p="4" flexGrow="1">
+      <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}

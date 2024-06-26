@@ -1,13 +1,17 @@
-import { ClientProps } from "entidades/client";
+import { ClientProps } from "@/entidades/client";
 import { useEditClient } from "./editClient.hook";
-import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "shared/ui";
+import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
 export interface EditClientFormProps {
   client: ClientProps;
+  id: string;
+  users: any;
 }
-export const EditClientForm = ({ client }: EditClientFormProps) => {
+export const EditClientForm = ({ client, id, users }: EditClientFormProps) => {
   const { formState, register, handleSubmit, handleEditClient } = useEditClient({
     client,
+    id,
+    users,
   });
   return (
     <BoxCreateItem

@@ -1,4 +1,4 @@
-import { GridContent, GridHead, Flex } from "shared/ui";
+import { GridContent, GridHead, Flex } from "@/shared/ui";
 type Field = {
   id: string;
   label: string;

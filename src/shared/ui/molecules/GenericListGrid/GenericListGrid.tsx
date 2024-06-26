@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, Flex } from "shared/ui";
+import { List, ListItem, Flex } from "@/shared/ui";
 
 interface GenericListProps {
   items: any[];

@@ -7,7 +7,7 @@ interface ControlledSelectProps<
   FormValues extends FieldValues = FieldValues,
   Option = unknown,
   IsMulti extends boolean = boolean,
-  Group extends GroupBase<Option> = GroupBase<Option>
+  Group extends GroupBase<Option> = GroupBase<Option>,
 > extends Omit<SelectProps<Option, IsMulti, Group>, "name" | "defaultValue">,
     UseControllerProps<FormValues> {
   label?: string;
@@ -17,7 +17,7 @@ export const ControlledSelect = <
   FormValues extends FieldValues = FieldValues,
   Option = unknown,
   IsMulti extends boolean = boolean,
-  Group extends GroupBase<Option> = GroupBase<Option>
+  Group extends GroupBase<Option> = GroupBase<Option>,
 >({
   name,
   label,

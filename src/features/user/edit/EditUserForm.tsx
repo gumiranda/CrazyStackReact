@@ -1,4 +1,4 @@
-import { UserProps } from "entidades/user";
+import { UserProps } from "@/entidades/user";
 import { useEditUser } from "./editUser.hook";
 import {
   BoxCreateItem,
@@ -7,10 +7,10 @@ import {
   GenericDetailsItem,
   GridForm,
   Select,
-} from "shared/ui";
-import { GetServicesResponse } from "entidades/service";
-import { GetOwnersResponse } from "entidades/owner";
-import { ServiceOptions } from "features/user/serviceListMultiple";
+} from "@/shared/ui";
+import { GetServicesResponse } from "@/entidades/service";
+import { GetOwnersResponse } from "@/entidades/owner";
+import { ServiceOptions } from "@/features/user/serviceListMultiple";
 import { EditUserFormData } from "./editUser.lib";
 export interface EditUserFormProps {
   user: UserProps;
@@ -25,7 +25,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
     handleEditUser,
     serviceOptions,
     control,
-    services,
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
@@ -34,6 +33,8 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
     serviceList,
     ownerList,
   });
+  const ControlledSelectAux = ControlledSelect as (props: any) => any;
+
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditUser)}
@@ -44,13 +45,9 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
       <GenericDetailsItem
         item={user}
         fields={[
-          { id: "_id", label: "Id" },
           { id: "name", label: "Nome" },
           { id: "createdAt", label: "Data de criação" },
           { id: "email", label: "Email" },
-          { id: "createdById", label: "Id do criador" },
-          { id: "ownerId", label: "Id do estabelecimento" },
-          { id: "myOwnerId", label: "Id do usuario do estabelecimento" },
         ]}
       />
       <GridForm>
@@ -60,7 +57,7 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           {...register("name")}
         />
         <Select
-          bg="purple.700"
+          bg="primary.500"
           name="ownerList"
           label="Estabelecimento"
           list={owners}
@@ -73,9 +70,9 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
             Carregar mais
           </option>
         </Select>
-        <ControlledSelect<EditUserFormData, ServiceOptions, true>
+        <ControlledSelectAux
           isMulti
-          control={control}
+          control={control as any}
           label={"Serviços selecionados"}
           placeholder="Selecione pelo menos 1 serviço"
           options={serviceOptions}

@@ -10,15 +10,19 @@ export const useGetAppointments = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["appointments", page], () => getAppointments(page, ctx), {
+  return useQuery({
+    queryKey: ["appointments", page],
+    queryFn: () => getAppointments(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteAppointments = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(
-    ["appointmentsInfinite"],
-    getInfiniteAppointments as any,
-    options as any
-  );
+export const useGetInfiniteAppointments = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["appointmentsInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteAppointments(pageParam),
+    ...options,
+  });
 };

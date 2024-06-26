@@ -1,5 +1,5 @@
-import { UserProps } from "entidades/user";
-import { ServiceProps, GetServicesResponse, getServices } from "entidades/service";
+import { UserProps } from "@/entidades/user";
+import { ServiceProps, GetServicesResponse, getServices } from "@/entidades/service";
 import { useState, useEffect } from "react";
 export type UserFormProps = {
   serviceList?: GetServicesResponse;

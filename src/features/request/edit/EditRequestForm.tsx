@@ -1,4 +1,4 @@
-import { RequestProps } from "entidades/request";
+import { RequestProps } from "@/entidades/request";
 import { useEditRequest } from "./editRequest.hook";
 import {
   BoxCreateItem,
@@ -7,13 +7,14 @@ import {
   GenericDetailsItem,
   GridForm,
   Select,
-} from "shared/ui";
-import { statusArray } from "entidades/request/request.model";
+} from "@/shared/ui";
+import { statusArray } from "@/entidades/request/request.model";
 
 export interface EditRequestFormProps {
   request: RequestProps;
+  owners: any;
 }
-export const EditRequestForm = ({ request }: EditRequestFormProps) => {
+export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
   const {
     formState,
     register,
@@ -30,6 +31,7 @@ export const EditRequestForm = ({ request }: EditRequestFormProps) => {
     setDateChanged,
   } = useEditRequest({
     request,
+    owners,
   });
   return (
     <BoxCreateItem

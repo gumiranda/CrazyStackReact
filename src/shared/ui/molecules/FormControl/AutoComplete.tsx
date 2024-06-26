@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Highlighter from "react-highlight-words";
@@ -102,6 +103,7 @@ const AutoComplete_ = (props: any, ref: any) => {
   function defaultItemRenderer<T extends Item>(selected: T) {
     return selected.label;
   }
+  const CustomHighlighter = Highlighter as any;
   return (
     <Stack>
       <Stack>
@@ -141,7 +143,7 @@ const AutoComplete_ = (props: any, ref: any) => {
                   {itemRenderer ? (
                     itemRenderer(item)
                   ) : (
-                    <Highlighter
+                    <CustomHighlighter
                       autoEscape
                       searchWords={[inputValue ?? ""]}
                       textToHighlight={defaultItemRenderer(item)}

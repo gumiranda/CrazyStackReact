@@ -1,4 +1,4 @@
-import { getServices, getInfiniteServices } from "./service.api";
+import { getServices, getInfiniteServices, getServiceById } from "./service.api";
 import {
   useQuery,
   UseQueryOptions,
@@ -10,15 +10,26 @@ export const useGetServices = (
   options?: UseQueryOptions,
   ctx?: any
 ): any => {
-  return useQuery(["services", page], () => getServices(page, ctx), {
+  return useQuery({
+    queryKey: ["services", page],
+    queryFn: () => getServices(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteServices = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(
-    ["servicesInfinite"],
-    getInfiniteServices as any,
-    options as any
-  );
+export const useGetInfiniteServices = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["servicesInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteServices(pageParam),
+    ...options,
+  });
+};
+export const useGetServiceById = (id: string, options?: UseQueryOptions) => {
+  return useQuery({
+    queryKey: ["service", id],
+    queryFn: () => getServiceById(id, null),
+    ...options,
+  });
 };

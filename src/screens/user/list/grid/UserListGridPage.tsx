@@ -1,6 +1,7 @@
-import { InfiniteList, GenericGrid, Head } from "shared/ui";
+"use client";
+import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useUserInfiniteList } from "../userInfiniteList.hook";
-import { useUserUi } from "entidades/user/user.ui";
+import { useUserUi } from "@/entidades/user/user.ui";
 
 export const UserGridPage = () => {
   const {

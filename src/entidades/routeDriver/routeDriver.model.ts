@@ -1,4 +1,4 @@
-import { Point } from "entidades/mapRoute/mapRoute.model";
+import { Point } from "@/entidades/mapRoute/mapRoute.model";
 
 export type RouteDriverProps = {
   _id: string;

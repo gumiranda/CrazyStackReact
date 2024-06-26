@@ -6,11 +6,19 @@ import {
   UseInfiniteQueryOptions,
 } from "@tanstack/react-query";
 export const useGetOwners = (page: number, options?: UseQueryOptions, ctx?: any): any => {
-  return useQuery(["owners", page], () => getOwners(page, ctx), {
+  return useQuery({
+    queryKey: ["owners", page],
+    queryFn: () => getOwners(page, ctx),
     staleTime: 1000 * 5,
     ...options,
   } as any);
 };
-export const useGetInfiniteOwners = (options?: UseInfiniteQueryOptions) => {
-  return useInfiniteQuery(["ownersInfinite"], getInfiniteOwners as any, options as any);
+export const useGetInfiniteOwners = (
+  options: Omit<UseInfiniteQueryOptions, "queryKey">
+) => {
+  return useInfiniteQuery({
+    queryKey: ["ownersInfinite"],
+    queryFn: ({ pageParam = 1 }: any) => getInfiniteOwners(pageParam),
+    ...options,
+  });
 };
