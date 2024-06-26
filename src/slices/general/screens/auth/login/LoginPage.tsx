@@ -1,23 +1,16 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
 import { Text, Flex, AuthLayout, Logo, Box, useBreakpointValue } from "@/shared/ui";
 import { useAuth } from "@/shared/libs";
-import { useEffect } from "react";
 import { LoginForm } from "@/slices/general/features/auth/login";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 export const Login: NextPage = () => {
   const { t } = useTranslation(["PAGES"]);
-  const router = useRouter();
   const { isAuthenticated } = useAuth();
   const isMobile = useBreakpointValue({ base: true, md: false });
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.push("/home");
-    }
-  }, [isAuthenticated, router]);
+
   return (
     <AuthLayout>
       <Logo marginBottom={4} mt={5} haveLink={false} />
