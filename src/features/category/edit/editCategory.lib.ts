@@ -8,13 +8,14 @@ export type EditCategoryFormData = {
 
 export type SubmitEditCategoryHandler = SubmitHandler<EditCategoryFormData>;
 
-export const editCategoryFormSchema = yup.object().shape({
+export const editCategoryFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
 });
+export type YupSchema = yup.InferType<typeof editCategoryFormSchema>;
 
 export const useEditCategoryLib = (props: EditCategoryFormProps) => {
   const { category: currentCategory } = props;
-  const formProps = useForm<EditCategoryFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(editCategoryFormSchema),
     defaultValues: {
       name: currentCategory?.name ?? "",

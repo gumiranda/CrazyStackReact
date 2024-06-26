@@ -57,16 +57,26 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
       ) : (
         <AutoCompleteInput
           label={label}
-          renderInput={(props: any) => {
-            return <FormControlInputMask {...props} ref={ref} />;
+          renderInput={(currentProps: any) => {
+            return <DefaultInput ref={ref} {...props} {...currentProps} />;
           }}
           ref={ref}
           placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
           _placeholder={{ opacity: 1, color: "gray.500" }}
           items={autoCompleteProps?.list}
-          listStyleProps={{ bgColor: "primary.600", color: "white" }}
-          listItemStyleProps={{ bgColor: "primary.600", color: "white" }}
-          highlightItemBg="primary.500"
+          listStyleProps={
+            autoCompleteProps?.listStyleProps ?? {
+              bgColor: "primary.600",
+              color: "white",
+            }
+          }
+          listItemStyleProps={
+            autoCompleteProps?.listItemStyleProps ?? {
+              bgColor: "primary.600",
+              color: "white",
+            }
+          }
+          highlightItemBg={autoCompleteProps?.highlightItemBg ?? "primary.500"}
         />
       )}
 
@@ -128,11 +138,11 @@ const DefaultInput_ = (props, ref) => {
       bgColor={bgColor}
       variant={variant}
       _hover={{ bgColor: bgColorHover }}
-      ref={ref}
       size={size}
       type={type}
       _placeholder={{ opacity: 1, color: "gray.500" }}
       color={labelColor}
+      ref={ref}
     />
   );
 };

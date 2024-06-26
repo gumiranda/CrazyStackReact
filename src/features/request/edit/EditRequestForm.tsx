@@ -57,7 +57,7 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
       />
       <GridForm>
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="statusList"
           label="Status da solicitação"
           list={statusArray}
@@ -78,7 +78,7 @@ export const EditRequestForm = ({ request, owners }: EditRequestFormProps) => {
         />
         {dateChanged && timeAvailable?.timeAvailable?.length > 0 && (
           <Select
-            bg="purple.700"
+            bg="secondary.600"
             name="timeList"
             label="Horário disponível"
             list={timeAvailable?.timeAvailable ?? []}

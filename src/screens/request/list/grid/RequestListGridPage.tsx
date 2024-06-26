@@ -38,10 +38,6 @@ export const RequestGridPage = () => {
   const { renderItem } = useRequestUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Solicitações"}
-        description="Página de listagem de solicitações do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}

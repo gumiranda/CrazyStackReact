@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { Flex, FormControlProps, FormControlGroup, Button } from "@/shared/ui";
 import { FieldValues, FormState, UseFormRegister } from "react-hook-form";
+import { ScrollbarCss } from "@/shared/css";
 
 interface FormProps {
   handleSubmit: Function;
@@ -9,6 +10,7 @@ interface FormProps {
   children?: ReactNode;
   buttonProps?: any;
   formProps?: any;
+  formControlContainerProps?: any;
   buttonLabel?: string;
   formState: FormState<FieldValues>;
   register: UseFormRegister<FieldValues>;
@@ -21,6 +23,7 @@ export const Form = ({
   handleSubmit,
   formControls,
   formProps,
+  formControlContainerProps,
   buttonProps,
   buttonLabel,
   ...rest
@@ -30,31 +33,42 @@ export const Form = ({
       onSubmit={handleSubmit(handleCustomSubmit)}
       as="form"
       w="100%"
-      bg="purple.800"
+      bg="secondary.500"
       p="8"
-      borderRadius={8}
+      mt={5}
+      borderRadius={4}
       flexDir="column"
+      alignItems={"center"}
       {...formProps}
     >
-      <FormControlGroup
-        spacing="4"
-        formControls={formControls}
-        register={register}
-        formState={formState}
-        {...rest}
-      />
+      <Flex
+        w="100%"
+        flexDirection={"column"}
+        css={ScrollbarCss}
+        {...formControlContainerProps}
+      >
+        <FormControlGroup
+          spacing="4"
+          formControls={formControls}
+          register={register}
+          formState={formState}
+          {...rest}
+        />
+        {children}
+      </Flex>
       <Button
         type="submit"
         mt="6"
-        backgroundColor="green.600"
-        colorScheme="green"
+        backgroundColor="primary.600"
+        _hover={{ backgroundColor: "primary.500" }}
         size="lg"
+        color="white"
+        w={"100%"}
         isLoading={formState?.isSubmitting}
         {...buttonProps}
       >
         {buttonLabel}
       </Button>
-      {children}
     </Flex>
   );
 };

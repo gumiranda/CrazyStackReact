@@ -1,6 +1,6 @@
 import { UserProps } from "@/entidades/user";
 import { ServiceProps, GetServicesResponse, getServices } from "@/entidades/service";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 export type UserFormProps = {
   serviceList?: GetServicesResponse;
   currentUser?: UserProps;
@@ -37,7 +37,7 @@ export const useServicesSelect = ({
       );
     }
   }, [userSelected]);
-  const fetchServicesPaginated = async () => {
+  const fetchServicesPaginated = useCallback(async () => {
     if (serviceList && serviceList?.totalCount > services?.length && page > 1) {
       const params = {};
       if (ownerSelected) {
@@ -45,7 +45,14 @@ export const useServicesSelect = ({
       }
       const data = await getServices(page, null, params);
       if (data?.totalCount > services?.length) {
-        setServices((prev) => [...prev, ...(data?.services ?? [])]);
+        setServices((prev) => {
+          // Filter out duplicates based on _id
+          const uniqueServices = [...prev, ...(data?.services ?? [])].filter(
+            (service, index, self) =>
+              self.findIndex((s) => s._id === service._id) === index
+          );
+          return uniqueServices;
+        });
       }
       setServiceSelected(
         data?.services?.[0]?._id ??
@@ -57,7 +64,14 @@ export const useServicesSelect = ({
     } else if (!serviceList && ownerSelected) {
       const data = await getServices(page, null, { createdById: ownerSelected });
       if (data?.totalCount > services?.length) {
-        setServices((prev) => [...prev, ...(data?.services ?? [])]);
+        setServices((prev) => {
+          // Filter out duplicates based on _id
+          const uniqueServices = [...prev, ...(data?.services ?? [])].filter(
+            (service, index, self) =>
+              self.findIndex((s) => s._id === service._id) === index
+          );
+          return uniqueServices;
+        });
       }
       setServiceSelected(
         data?.services?.[0]?._id ??
@@ -74,7 +88,7 @@ export const useServicesSelect = ({
           ""
       );
     }
-  };
+  }, [serviceList, services, page, ownerSelected, currentUser?.serviceIds]);
   useEffect(() => {
     setServices(serviceList?.services ?? []);
   }, [serviceList?.services]);

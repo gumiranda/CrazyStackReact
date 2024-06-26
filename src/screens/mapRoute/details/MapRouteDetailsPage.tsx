@@ -131,29 +131,23 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
     await simulateFakeRide({ route, routeCreatedResponse });
   }
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Rotas"}
-        description="Página de detalhes de rotas do painel de Admin Belezix"
-      />
-      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
-        <MapRouteDetails {...props} />
-        <Box display="flex" flexDir="column">
-          <Button
-            bgColor="green.500"
-            colorScheme="green"
-            variant="contained"
-            alignSelf={"flex-end"}
-            onClick={startRoute}
-            mb={10}
-            mt={10}
-          >
-            Iniciar a corrida
-          </Button>
-          <Grid id="map" p={40} ref={mapContainerRef} />
-        </Box>
+    <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
+      <MapRouteDetails {...props} />
+      <Box display="flex" flexDir="column">
+        <Button
+          bgColor="green.500"
+          colorScheme="green"
+          variant="contained"
+          alignSelf={"flex-end"}
+          onClick={startRoute}
+          mb={10}
+          mt={10}
+        >
+          Iniciar a corrida
+        </Button>
+        <Grid id="map" p={40} ref={mapContainerRef} />
       </Box>
-    </>
+    </Box>
   );
 };
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

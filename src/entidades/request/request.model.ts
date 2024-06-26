@@ -1,4 +1,4 @@
-import { startOfDay } from "date-fns";
+import { startOfDay, subHours } from "date-fns";
 
 export type RequestProps = {
   _id: string;
@@ -17,6 +17,8 @@ export type RequestProps = {
   endDate: string;
   initDateFormatted: string;
   endDateFormatted: string;
+  initHour: string;
+  endHour: string;
   datePickerSelected?: string;
   date: string;
   haveRecurrence: boolean;
@@ -76,6 +78,12 @@ class Request {
   get endDateFormatted(): string {
     return this.props.endDateFormatted;
   }
+  get initHour(): string {
+    return this.props.initHour;
+  }
+  get endHour(): string {
+    return this.props.endHour;
+  }
   get datePickerSelected(): string | undefined {
     return this.props.datePickerSelected;
   }
@@ -107,25 +115,42 @@ class Request {
       message: this.props.message,
       active: this.props.active,
       value: false,
-      initDateFormatted: new Date(this.props.initDate).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
+      initDateFormatted: subHours(new Date(this.props.initDate), 3).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      ),
+      endDateFormatted: subHours(new Date(this.props.endDate), 3).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      ),
+      date: startOfDay(subHours(new Date(this.props.initDate), 3)).toISOString(),
+      datePickerSelected: subHours(new Date(this.props.initDate), 3).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        }
+      ),
+      initHour: subHours(new Date(this.props.initDate), 3).toLocaleTimeString("pt-BR", {
         hour: "2-digit",
         minute: "2-digit",
       }),
-      endDateFormatted: new Date(this.props.endDate).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
+      endHour: subHours(new Date(this.props.endDate), 3).toLocaleTimeString("pt-BR", {
         hour: "2-digit",
         minute: "2-digit",
-      }),
-      date: startOfDay(new Date(this.props.initDate)).toISOString(),
-      datePickerSelected: new Date(this.props.initDate).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
       }),
       createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
         day: "2-digit",
@@ -137,12 +162,12 @@ class Request {
   }
 }
 export const requestModel = (props: RequestProps) => Request.build(props);
-const statusMap: any = {
+export const statusMap: any = {
   0: "Solicitado",
   1: "Confirmado",
   2: "Cancelado pelo prestador",
   3: "Cancelado pelo cliente",
-  4: "Reagendamento pendente por conflito de agenda",
+  4: "Pendente por conflito de agenda",
   5: "Reagendamento solicitado pelo prestador",
   6: "Reagendamento solicitado pelo cliente",
   7: "Reagendamento confirmado",

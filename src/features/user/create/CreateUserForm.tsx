@@ -64,7 +64,7 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           {...register("passwordConfirmation")}
         />
         <Select
-          bg="primary.500"
+          bg="secondary.600"
           name="ownerList"
           label="Estabelecimento"
           list={owners}

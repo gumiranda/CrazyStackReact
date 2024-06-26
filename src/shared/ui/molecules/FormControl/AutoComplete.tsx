@@ -100,9 +100,7 @@ const AutoComplete_ = (props: any, ref: any) => {
   useDeepCompareEffect(() => {
     setInputItems(items);
   }, [items]);
-  function defaultItemRenderer<T extends Item>(selected: T) {
-    return selected.label;
-  }
+
   const CustomHighlighter = Highlighter as any;
   return (
     <Stack>
@@ -146,7 +144,7 @@ const AutoComplete_ = (props: any, ref: any) => {
                     <CustomHighlighter
                       autoEscape
                       searchWords={[inputValue ?? ""]}
-                      textToHighlight={defaultItemRenderer(item)}
+                      textToHighlight={item?.label ?? ""}
                     />
                   )}
                 </Box>

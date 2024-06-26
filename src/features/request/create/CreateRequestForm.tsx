@@ -46,7 +46,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
     >
       <GridForm>
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="ownerList"
           label="Estabelecimento"
           list={owners}
@@ -60,7 +60,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           </option>
         </Select>
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="userList"
           label="Profissional prestador"
           list={users}
@@ -74,7 +74,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           </option>
         </Select>
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="serviceList"
           label="Serviço"
           list={services}
@@ -88,7 +88,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           </option>
         </Select>
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="clientList"
           label="Cliente"
           list={clients}
@@ -118,7 +118,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           userSelected?.length === 24 &&
           timeAvailable?.timeAvailable?.length > 0 && (
             <Select
-              bg="purple.700"
+              bg="secondary.600"
               name="timeList"
               label="Horário disponível"
               list={timeAvailable?.timeAvailable ?? []}

@@ -3,9 +3,10 @@ export type ClientProps = {
   name: string;
   createdById: string;
   userId: string;
-  createdAt: string;
+  createdAt?: string;
   value?: boolean;
   active?: boolean;
+  phone: string;
 };
 
 class Client {
@@ -22,7 +23,10 @@ class Client {
   get name(): string {
     return this.props.name;
   }
-  get createdAt(): string {
+  get phone(): string {
+    return this.props.phone;
+  }
+  get createdAt(): string | undefined {
     return this.props.createdAt;
   }
   get active(): boolean | undefined {
@@ -41,7 +45,8 @@ class Client {
       name: this.props.name,
       active: this.props.active,
       value: false,
-      createdAt: new Date(this.props.createdAt).toLocaleDateString("pt-BR", {
+      phone: this.props.phone,
+      createdAt: new Date(this.props.createdAt ?? "").toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",

@@ -3,27 +3,27 @@
  */
 
 export const daysMap = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
+  "Domingo",
+  "Segunda",
+  "Terça",
+  "Quarta",
+  "Quinta",
+  "Sexta",
+  "Sábado",
 ];
 export const monthMap = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
 ];
 
 export const getDayDetails = (args: any) => {
@@ -52,12 +52,11 @@ export const getNumberOfDays = (year: number, month: number) => {
   return 40 - new Date(year, month, 40).getDate();
 };
 
-export const getMonthDetails = (year: number, month: number) => {
+export const getMonthDetails = (year: number, month: number, rows: number) => {
   //
   const firstDay = new Date(year, month).getDay();
   const numberOfDays = getNumberOfDays(year, month);
   const monthArray: any = [];
-  const rows = 6;
   let currentDay: any = null;
   let index = 0;
   const cols = 7;
@@ -74,6 +73,12 @@ export const getMonthDetails = (year: number, month: number) => {
       monthArray.push(currentDay);
       index++;
     }
+  }
+  const last = monthArray?.find?.(
+    (day) => day?.date === numberOfDays && day?.month === 0
+  );
+  if (!last) {
+    return getMonthDetails(year, month, rows + 1);
   }
   return monthArray;
 };

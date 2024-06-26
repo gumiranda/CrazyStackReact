@@ -37,27 +37,21 @@ export const MapRouteGridPage = () => {
     })) ?? [];
   const { renderItem } = useMapRouteUi({ deleteSelectedAction });
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Rotas"}
-        description="Página de listagem de rotas do painel de Admin Belezix"
+    <InfiniteList
+      hasNextPage={hasNextPage as any}
+      fetchNextPage={fetchNextPage}
+      entityName="rotas"
+    >
+      <GenericGrid
+        items={items}
+        renderItem={renderItem}
+        route={"/mapRoutes/list"}
+        routeList={"/mapRoutes/1"}
+        routeCreate={"/mapRoutes/create"}
+        entityDisplayName={"Rotas"}
+        title={"Rotas"}
+        {...mapRouteGridProps}
       />
-      <InfiniteList
-        hasNextPage={hasNextPage as any}
-        fetchNextPage={fetchNextPage}
-        entityName="rotas"
-      >
-        <GenericGrid
-          items={items}
-          renderItem={renderItem}
-          route={"/mapRoutes/list"}
-          routeList={"/mapRoutes/1"}
-          routeCreate={"/mapRoutes/create"}
-          entityDisplayName={"Rotas"}
-          title={"Rotas"}
-          {...mapRouteGridProps}
-        />
-      </InfiniteList>
-    </>
+    </InfiniteList>
   );
 };

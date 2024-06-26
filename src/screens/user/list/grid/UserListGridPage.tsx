@@ -38,10 +38,6 @@ export const UserGridPage = () => {
   const { renderItem } = useUserUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Profissionais"}
-        description="Página de listagem de profissionais do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}

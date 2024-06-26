@@ -1,0 +1,57 @@
+import { useGetClientById } from "@/entidades/client/client.lib";
+import { useGetServiceById } from "@/entidades/service/service.lib";
+import { editRequestMutation } from "@/features/request/edit/editRequest.hook";
+import { api } from "@/shared/api";
+import { useUi } from "@/shared/libs";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+
+export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) => {
+  const { showModal } = useUi();
+  const router = useRouter();
+  const { data: service } = useGetServiceById(serviceId);
+  const { data: client } = useGetClientById(clientId);
+  const onSuccess = () => {
+    router.push("/home");
+  };
+  const onError = () => {
+    showModal({
+      type: "error",
+      title: "Erro no servidor",
+      message: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+    });
+  };
+  const editRequest = editRequestMutation({
+    currentRequest,
+    showModal,
+    routeRedirect: "/home",
+    content: "Agendamento confirmado com sucesso, já pode ser visualizado na agenda",
+    router,
+  });
+  const deleteRequest = useMutation({
+    mutationFn: async (requestsToDelete: any = []) => {
+      try {
+        if (requestsToDelete?.length > 0) {
+          return Promise.all(
+            requestsToDelete?.map?.((request: any) =>
+              Promise.all([api.delete(`/appointment/delete?requestId=${request._id}`)])
+            )
+          );
+        }
+        return null;
+      } catch (error) {
+        onError();
+      }
+    },
+    onSuccess,
+    onError,
+    retry: 3,
+  } as any);
+  const deleteSelectedAction = async (item) => {
+    deleteRequest.mutateAsync([item] as any);
+  };
+  const updateRequest = async (newRequest) => {
+    await editRequest.mutateAsync(newRequest as any);
+  };
+  return { service, client, deleteSelectedAction, updateRequest, editRequest };
+};

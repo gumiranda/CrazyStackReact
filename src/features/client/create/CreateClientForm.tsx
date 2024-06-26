@@ -25,12 +25,22 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
     >
       <GridForm>
         <FormControl
-          label="Nome da cliente"
+          label="Nome do(a) cliente"
           error={formState.errors.name}
           {...register("name")}
         />
+        <FormControl
+          label="Telefone"
+          error={formState.errors.phone}
+          labelColor="white"
+          bgColor="secondary.500"
+          bgColorHover="secondary.600"
+          type="tel"
+          mask="(99) 99999-9999"
+          {...register("phone")}
+        />
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="clientList"
           label="Usuário associado ao cliente"
           list={users}

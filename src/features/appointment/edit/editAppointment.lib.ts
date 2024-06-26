@@ -8,13 +8,14 @@ export type EditAppointmentFormData = {
 
 export type SubmitEditAppointmentHandler = SubmitHandler<EditAppointmentFormData>;
 
-export const editAppointmentFormSchema = yup.object().shape({
+export const editAppointmentFormSchema = yup.object({
   message: yup.string().required("Mensagem é obrigatória"),
 });
+export type YupSchema = yup.InferType<typeof editAppointmentFormSchema>;
 
 export const useEditAppointmentLib = (props: EditAppointmentFormProps) => {
   const { appointment: currentAppointment } = props;
-  const formProps = useForm<EditAppointmentFormData>({
+  const formProps = useForm<YupSchema>({
     resolver: yupResolver(editAppointmentFormSchema),
     defaultValues: {
       message: currentAppointment?.message ?? "",

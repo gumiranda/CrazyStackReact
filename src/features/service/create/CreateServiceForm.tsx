@@ -70,7 +70,7 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
           {...register("comission")}
         />
         <Select
-          bg="purple.700"
+          bg="secondary.600"
           name="categoryList"
           label="Categoria"
           list={categorys}

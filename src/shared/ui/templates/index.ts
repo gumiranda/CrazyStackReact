@@ -1,4 +1,5 @@
 // IMPORT MODULE FILES
+export * from "./AuthLayout";
 export * from "./Layout";
 export * from "./GenericGrid";
 export * from "./InfiniteList";

@@ -60,3 +60,16 @@ export const getAppointmentById = async (
     return null;
   }
 };
+export const loadInvoice = async (params: any, ctx: any): Promise<any> => {
+  try {
+    const { data } = await setupAPIClient(ctx).get("/appointment/loadInvoice", {
+      params,
+    });
+    if (!data) {
+      return null;
+    }
+    return appointmentModel(data).format();
+  } catch (error) {
+    return null;
+  }
+};

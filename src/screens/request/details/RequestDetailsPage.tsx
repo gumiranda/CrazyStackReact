@@ -9,14 +9,8 @@ type RequestDetailsProps = {
 export const RequestDetailsPage = ({ data }: RequestDetailsProps) => {
   const props = { request: data };
   return (
-    <>
-      <Head
-        title={"Belezix Admin | Solicitações"}
-        description="Página de detalhes de solicitações do painel de Admin Belezix"
-      />
-      <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
-        <RequestDetails {...props} />
-      </Box>
-    </>
+    <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
+      <RequestDetails {...props} />
+    </Box>
   );
 };

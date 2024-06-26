@@ -21,14 +21,16 @@ export const FormControlGroup = ({
   return (
     <Stack spacing={spacing} data-testid="FormControlGroupTestId">
       {formControls?.map?.(
-        ({ label = "", name = "defaultName", type = "text" }, index: number) => (
+        ({ label = "", name = "defaultName", type = "text", ...rest }, index: number) => (
           <FormControl
             key={index}
             label={label}
             type={type}
             error={formState?.errors?.[name]}
+            {...rest}
             {...register(name)}
             name={name}
+            autoComplete="off"
           />
         )
       )}

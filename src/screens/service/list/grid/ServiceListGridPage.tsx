@@ -39,10 +39,6 @@ export const ServiceGridPage = () => {
   const { renderItem } = useServiceUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Serviços"}
-        description="Página de listagem de serviços do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}

@@ -6,6 +6,7 @@ export const Header = ({ children, ...rest }: HeaderProps) => {
   return (
     <FlexChakra
       as="header"
+      pt={1}
       w="100%"
       align="center"
       paddingX={["0", "0", "2", "4"]}

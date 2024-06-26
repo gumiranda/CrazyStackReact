@@ -10,10 +10,6 @@ export const RouteDriverEditPage = ({ data, id }: RouteDriverEditProps) => {
   const props = { routeDriver: data };
   return (
     <>
-      <Head
-        title={"Belezix Admin | Corridas"}
-        description="Página de edição de corridas do painel de Admin Belezix"
-      />
       <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
         <EditRouteDriverForm {...props} />
       </Box>

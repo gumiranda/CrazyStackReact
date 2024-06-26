@@ -1,4 +1,4 @@
-import { renderWithTheme } from "test/testUtils";
+import { renderWithTheme } from "@/test/testUtils";
 import { screen } from "@testing-library/react";
 import { Form } from "./Form";
 import * as yup from "yup";
@@ -9,12 +9,14 @@ type TestFormData = {
   password: string;
 };
 type SubmitTestHandler = SubmitHandler<TestFormData>;
-const testFormSchema = yup.object().shape({
+const testFormSchema = yup.object({
   email: yup.string().email("Email inválido").required("Email obrigatório"),
   password: yup.string().required("Senha obrigatória"),
 });
+export type YupSchema = yup.InferType<typeof testFormSchema>;
+
 const useTestLib = () => {
-  const form = useForm({
+  const form = useForm<YupSchema>({
     resolver: yupResolver(testFormSchema),
   });
   return { ...form };

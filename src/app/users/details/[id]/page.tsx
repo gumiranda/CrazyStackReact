@@ -29,5 +29,5 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (!data) {
     redirect("/login");
   }
-  return <UserDetailsPage data={data} id={id} />;
+  return <UserDetailsPage canDelete={false} data={data} id={id} />;
 }
