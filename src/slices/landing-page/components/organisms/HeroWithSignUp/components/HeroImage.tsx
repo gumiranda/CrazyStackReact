@@ -2,10 +2,10 @@ import { AspectRatio, Image } from "@/shared/ui";
 
 export const HeroImage = () => {
   return (
-    <AspectRatio ratio={1}>
+    <AspectRatio maxW="460px" ratio={3 / 4}>
       <Image
-        src="https://tinyurl.com/yeyjvptc"
-        alt="Hero image"
+        src="/cellphone.png"
+        alt="Cellphone with app displayed"
         objectFit="cover"
         objectPosition="center"
       />
