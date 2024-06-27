@@ -120,8 +120,17 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
               {({ acceptedFiles }) =>
                 acceptedFiles.map((file) => (
                   <FileUpload.Item asChild key={file.name} file={file}>
-                    <Flex>
-                      <Flex>
+                    <Flex
+                      p={4}
+                      borderRadius="md"
+                      width={{ base: "100%", md: "50%" }}
+                      alignItems="center"
+                      justifyContent="space-between"
+                      boxShadow="sm"
+                      _hover={{ boxShadow: "md", borderColor: "gray.300" }}
+                      _focus={{ boxShadow: "outline", borderColor: "primary.500" }}
+                    >
+                      <Flex alignItems="center" flexDir="column">
                         <Box mb={5}>
                           <Flex>
                             <FileUpload.ItemPreview type="image/*">
@@ -129,7 +138,6 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
                                 alt={`Preview of ${file.name}`}
                               />
                             </FileUpload.ItemPreview>
-
                             <Tooltip label="Remover arquivo" aria-label="Remover arquivo">
                               <FileUpload.ItemDeleteTrigger asChild>
                                 <Button
@@ -154,7 +162,6 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
                                 aria-label={`Icon representing ${file.name}`}
                               />
                             </FileUpload.ItemPreview>
-
                             <Box>
                               <FileUpload.ItemName asChild>
                                 <Text
