@@ -1,5 +1,16 @@
 "use client";
-import { Tooltip, useDisclosure, useToast } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Tooltip,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FileIcon } from "lucide-react";
@@ -202,29 +213,52 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           </VStack>
         </FileUpload.ItemGroup>
         <FileUpload.Dropzone asChild>
-          <Box
-            id="file-upload-dropzone"
-            borderWidth="2px"
-            borderColor="gray.300"
-            borderRadius="md"
-            p={4}
-            my={2}
-            backgroundColor="gray.50"
-            _hover={{ borderColor: "gray.400", backgroundColor: "gray.100" }}
-            _focus={{ boxShadow: "outline", borderColor: "primary.500" }}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            minHeight="100px"
-            color="gray.700"
+          <Tooltip
+            label="Arraste o arquivo aqui ou clique para fazer upload"
+            aria-label="Área de dropzone"
           >
-            Arraste o arquivo aqui ou clique para fazer upload.
-          </Box>
+            <Box
+              id="file-upload-dropzone"
+              borderWidth="2px"
+              borderColor="gray.300"
+              borderRadius="md"
+              p={4}
+              my={2}
+              backgroundColor="gray.50"
+              _hover={{ borderColor: "gray.400", backgroundColor: "gray.100" }}
+              _focus={{ boxShadow: "outline", borderColor: "primary.500" }}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              minHeight="100px"
+              color="gray.700"
+            >
+              Arraste o arquivo aqui ou clique para fazer upload.
+            </Box>
+          </Tooltip>
         </FileUpload.Dropzone>
         <FileUpload.HiddenInput asChild>
           <input id="file-upload-hidden-input" type="file" />
         </FileUpload.HiddenInput>
       </FileUpload.Root>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader color="gray.700">Confirmar Upload</ModalHeader>
+          <ModalCloseButton color="gray.700" />
+          <ModalBody color="gray.700">
+            Tem certeza que deseja fazer o upload desse arquivo?
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
+              Cancelar
+            </Button>
+            <Button colorScheme="green" onClick={() => uploadFiles(filesAccepted)}>
+              {isUploading ? <Spinner size="sm" /> : "Confirmar"}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };
