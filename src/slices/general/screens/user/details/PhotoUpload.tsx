@@ -1,10 +1,10 @@
 "use client";
-import { useDisclosure, useToast } from "@chakra-ui/react";
+import { Tooltip, useDisclosure, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FileIcon } from "lucide-react";
 import { FileUpload } from "@ark-ui/react";
-import { Box, Button, Flex, VStack } from "@/shared/ui";
+import { Box, Button, Flex, Spinner, VStack, Text } from "@/shared/ui";
 
 export const PhotoUpload = ({ userId, updateUserPhoto }) => {
   const router = useRouter();
@@ -62,13 +62,137 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
         onFileReject={handleFileReject}
         validate={validateFile}
       >
-        <Flex>
-          <FileUpload.Trigger asChild>
-            <Button>Trocar foto do perfil</Button>
-          </FileUpload.Trigger>
+        <Flex
+          alignItems={{ base: "center", md: "flex-start" }}
+          gap={{ base: 0, md: 8 }}
+          flexDir={{ base: "column", md: "row" }}
+        >
+          <Tooltip
+            label="Clique aqui para trocar a foto de perfil"
+            aria-label="Trocar foto de perfil"
+          >
+            <FileUpload.Trigger asChild>
+              <Button
+                id="file-upload-trigger"
+                colorScheme="primary"
+                size="md"
+                mt={{ base: 4, md: 8 }}
+                mb={{ base: 0, md: 4 }}
+                p={4}
+                borderRadius="md"
+                boxShadow="sm"
+                _hover={{ boxShadow: "md", backgroundColor: "primary.600" }}
+                _active={{ boxShadow: "lg", backgroundColor: "primary.700" }}
+                _focus={{ boxShadow: "outline", borderColor: "primary.500" }}
+              >
+                Trocar foto do perfil
+              </Button>
+            </FileUpload.Trigger>
+          </Tooltip>
+
+          {filesAccepted?.length > 0 && (
+            <Tooltip
+              label="Clique para confirmar o upload da nova foto"
+              aria-label="Confirmar foto"
+            >
+              <Button
+                id="file-upload-trigger"
+                colorScheme="tertiary"
+                size="md"
+                mt={{ base: 4, md: 8 }}
+                mb={{ base: 0, md: 4 }}
+                p={4}
+                borderRadius="md"
+                boxShadow="sm"
+                _hover={{ boxShadow: "md", backgroundColor: "tertiary.500" }}
+                _active={{ boxShadow: "lg", backgroundColor: "tertiary.300" }}
+                _focus={{ boxShadow: "outline", borderColor: "tertiary.500" }}
+                onClick={onOpen}
+              >
+                {isUploading ? <Spinner size="sm" /> : "Confirmar foto"}
+              </Button>
+            </Tooltip>
+          )}
         </Flex>
         <FileUpload.ItemGroup asChild>
-          <VStack></VStack>
+          <VStack id="file-upload-item-group" spacing={4} mt={4}>
+            <FileUpload.Context>
+              {({ acceptedFiles }) =>
+                acceptedFiles.map((file) => (
+                  <FileUpload.Item asChild key={file.name} file={file}>
+                    <Flex>
+                      <Flex>
+                        <Box mb={5}>
+                          <Flex>
+                            <FileUpload.ItemPreview type="image/*">
+                              <FileUpload.ItemPreviewImage
+                                alt={`Preview of ${file.name}`}
+                              />
+                            </FileUpload.ItemPreview>
+
+                            <Tooltip label="Remover arquivo" aria-label="Remover arquivo">
+                              <FileUpload.ItemDeleteTrigger asChild>
+                                <Button
+                                  id={`file-upload-item-delete-trigger-${file.name}`}
+                                  colorScheme="red"
+                                  size="sm"
+                                  ml={4}
+                                  _focus={{
+                                    boxShadow: "outline",
+                                    borderColor: "red.500",
+                                  }}
+                                >
+                                  X
+                                </Button>
+                              </FileUpload.ItemDeleteTrigger>
+                            </Tooltip>
+                          </Flex>
+                          <Box mt={5}>
+                            <FileUpload.ItemPreview type=".*">
+                              <FileIcon
+                                size={32}
+                                aria-label={`Icon representing ${file.name}`}
+                              />
+                            </FileUpload.ItemPreview>
+
+                            <Box>
+                              <FileUpload.ItemName asChild>
+                                <Text
+                                  id={`file-upload-item-name-${file.name}`}
+                                  fontWeight="bold"
+                                  fontSize="md"
+                                  my={4}
+                                  _focus={{
+                                    boxShadow: "outline",
+                                    borderColor: "primary.500",
+                                  }}
+                                >
+                                  {file.name}
+                                </Text>
+                              </FileUpload.ItemName>
+                              <FileUpload.ItemSizeText asChild>
+                                <Text
+                                  id={`file-upload-item-size-text-${file.name}`}
+                                  color="gray.500"
+                                  fontSize="sm"
+                                  _focus={{
+                                    boxShadow: "outline",
+                                    borderColor: "primary.500",
+                                  }}
+                                >
+                                  {file.size} bytes
+                                </Text>
+                              </FileUpload.ItemSizeText>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Flex>
+                    </Flex>
+                  </FileUpload.Item>
+                ))
+              }
+            </FileUpload.Context>
+          </VStack>
         </FileUpload.ItemGroup>
         <FileUpload.Dropzone asChild>
           <Box
