@@ -41,6 +41,8 @@ type AuthContextData = {
   user: User | null;
   logout: () => void;
   setUser: (user: User) => void;
+  userPhoto: any;
+  updateUserPhoto: (newPhoto: string) => void;
 };
 const AuthContext = createContext({} as AuthContextData);
 
@@ -48,6 +50,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const { t } = useTranslation(["PAGES"]);
   const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
+  const [userPhoto, setUserPhoto] = useState<any>(null);
+
   const isAuthenticated = !!user;
   const Router = useRouter();
   const logout = () => {
@@ -69,6 +73,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const {
       "belezixadmin.user": userComingFromCookie,
+      "belezixadmin.photo": photoComingFromCookie,
       "belezixadmin.refreshToken": refreshToken = null,
     } = parseCookies();
     const parsedUser = parseJSON(userComingFromCookie);
@@ -77,6 +82,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } else {
       signOut();
       // Router.push("/login");
+    }
+    if (photoComingFromCookie) {
+      setUserPhoto(parseJSON(photoComingFromCookie));
     }
   }, []);
   useEffect(() => {
@@ -203,10 +211,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
     }
   };
-
+  const updateUserPhoto = async (newPhoto: string) => {
+    setUserPhoto(newPhoto);
+    destroyCookie(undefined, "belezixadmin.photo");
+    setCookie(undefined, "belezixadmin.photo", newPhoto, { maxAge: 60 * 60 * 24 * 30 });
+    destroyCookie(undefined, "belezixadmin.cache");
+  };
   return (
     <AuthContext.Provider
-      value={{ signup, setUser, login, isAuthenticated, user, logout }}
+      value={{
+        signup,
+        setUser,
+        login,
+        isAuthenticated,
+        user,
+        logout,
+        userPhoto,
+        updateUserPhoto,
+      }}
     >
       {children}
     </AuthContext.Provider>

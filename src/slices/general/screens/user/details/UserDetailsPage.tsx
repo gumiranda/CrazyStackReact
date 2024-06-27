@@ -6,6 +6,7 @@ import { deleteUserById } from "@/slices/general/entidades/user/user.api";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/shared/libs";
 import { ProfileCard } from "./ProfileCard";
+import { PhotoUpload } from "./PhotoUpload";
 
 type UserDetailsProps = {
   data: UserProps;
@@ -15,7 +16,7 @@ type UserDetailsProps = {
 export const UserDetailsPage = ({ data, id, canDelete = false }: UserDetailsProps) => {
   const props = { user: data };
   const router = useRouter();
-  const { logout = () => {} } = useAuth();
+  const { logout, updateUserPhoto } = useAuth();
   return (
     <>
       <Box flex="1" borderRadius={8} bg="secondary.500" p="8">
@@ -39,6 +40,7 @@ export const UserDetailsPage = ({ data, id, canDelete = false }: UserDetailsProp
             </Button>
           )}
         </ProfileCard>
+        <PhotoUpload userId={id} updateUserPhoto={updateUserPhoto} />
       </Box>
     </>
   );
