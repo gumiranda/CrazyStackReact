@@ -1,6 +1,5 @@
 "use client";
-import { Box, Button, Head } from "@/shared/ui";
-import { UserDetails } from "@/slices/general/entidades/user/details";
+import { Box, Button } from "@/shared/ui";
 import { UserProps } from "@/slices/general/entidades/user";
 import { deleteUserById } from "@/slices/general/entidades/user/user.api";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,6 @@ type UserDetailsProps = {
   canDelete?: boolean;
 };
 export const UserDetailsPage = ({ data, id, canDelete = false }: UserDetailsProps) => {
-  const props = { user: data };
   const router = useRouter();
   const { logout, updateUserPhoto } = useAuth();
   return (
