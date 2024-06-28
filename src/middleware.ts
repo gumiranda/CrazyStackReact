@@ -49,7 +49,17 @@ export default async function middleware(request: NextRequest) {
         maxAge: 86400, // 1 day in seconds
         path: "/",
       });
+      const photo = data.photo;
 
+      if (
+        photo?.url?.length > 0 &&
+        photo?._id &&
+        new Date(photo?.expiresIn).getTime() > new Date().getTime()
+      ) {
+        response.cookies.set("belezixadmin.photo", JSON.stringify({ url: photo?.url }), {
+          path: "/",
+        });
+      }
       const daysToNextCharge = calculateDaysToNextPayment(data.payDay);
       if (daysToNextCharge < 0) {
         return NextResponse.redirect(`${baseUrl}/payment/pix`);

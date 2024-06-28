@@ -51,7 +51,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
   const [userPhoto, setUserPhoto] = useState<any>(null);
-
   const isAuthenticated = !!user;
   const Router = useRouter();
   const logout = () => {
@@ -76,6 +75,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       "belezixadmin.photo": photoComingFromCookie,
       "belezixadmin.refreshToken": refreshToken = null,
     } = parseCookies();
+    const parsedPhoto = parseJSON(photoComingFromCookie);
     const parsedUser = parseJSON(userComingFromCookie);
     if (parsedUser && refreshToken && parsedUser?.role !== "client") {
       setUser(parsedUser);
@@ -83,8 +83,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       signOut();
       // Router.push("/login");
     }
-    if (photoComingFromCookie) {
-      setUserPhoto(parseJSON(photoComingFromCookie));
+    if (parsedPhoto?.url) {
+      setUserPhoto(parsedPhoto);
     }
   }, []);
   useEffect(() => {
@@ -211,10 +211,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
     }
   };
-  const updateUserPhoto = async (newPhoto: string) => {
+  const updateUserPhoto = (newPhoto: string) => {
     setUserPhoto(newPhoto);
     destroyCookie(undefined, "belezixadmin.photo");
-    setCookie(undefined, "belezixadmin.photo", newPhoto, { maxAge: 60 * 60 * 24 * 30 });
+    setCookie(undefined, "belezixadmin.photo", JSON.stringify(newPhoto), {
+      maxAge: 60 * 60 * 24 * 30,
+      path: "/",
+    });
     destroyCookie(undefined, "belezixadmin.cache");
   };
   return (
@@ -247,4 +250,6 @@ export function signOut() {
   destroyCookie(undefined, "belezixadmin.token");
   destroyCookie(undefined, "belezixadmin.refreshToken");
   destroyCookie(undefined, "belezixadmin.user");
+  destroyCookie(undefined, "belezixadmin.cache");
+  destroyCookie(undefined, "belezixadmin.photo");
 }

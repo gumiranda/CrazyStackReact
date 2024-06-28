@@ -80,7 +80,6 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
             duration: 3000,
             isClosable: true,
           });
-          const data = await result.json();
           setIsUploading(false);
           onClose();
           updateUserPhoto({ url: data.url });
