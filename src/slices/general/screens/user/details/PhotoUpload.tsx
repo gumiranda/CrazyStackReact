@@ -16,6 +16,7 @@ import { useState } from "react";
 import { FileIcon } from "lucide-react";
 import { FileUpload } from "@ark-ui/react";
 import { Box, Button, Flex, Spinner, VStack, Text } from "@/shared/ui";
+import { parseCookies } from "nookies";
 
 export const PhotoUpload = ({ userId, updateUserPhoto }) => {
   const router = useRouter();
@@ -45,7 +46,68 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
   };
 
   const handleFileReject = (details) => {};
-  const uploadFiles = async (files) => {};
+  const uploadFiles = async (files) => {
+    setIsUploading(true);
+    const cookies = parseCookies();
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploadPhoto`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${cookies["belezixadmin.token"]}`,
+        },
+        body: formData,
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const result = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/user/update?_id=${userId}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${cookies["belezixadmin.token"]}`,
+            },
+            body: JSON.stringify({ photoId: data._id }),
+          }
+        );
+        if (result.ok) {
+          toast({
+            title: "Upload successful.",
+            description: "Your file has been uploaded.",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+          const data = await result.json();
+          setIsUploading(false);
+          onClose();
+          updateUserPhoto({ url: data.url });
+          router.refresh();
+          return;
+        }
+      }
+      toast({
+        title: "Upload failed.",
+        description: "There was an error uploading your file.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: "Upload failed.",
+        description: "There was an error uploading your file.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } finally {
+      setIsUploading(false);
+      onClose();
+    }
+  };
   return (
     <>
       <FileUpload.Root
