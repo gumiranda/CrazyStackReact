@@ -17,12 +17,13 @@ import {
   SubmitCreateRequestHandler,
   useCreateRequestLib,
 } from "@/features/request/create/createRequest.lib";
-import { theme } from "@/application/theme";
+import { useTranslation } from "react-i18next";
 
 export const StepDate = ({ setActiveStep, currentOwner }) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { request, setRequest } = useStepRequest() || {};
   const [dateSelected, setDateSelected] = useState(null);
-  console.log({ dateSelected });
   const { timeAvailable, timeSelected, handleChangeTimeSelected } = useTimeAvailable({
     ownerId: currentOwner?._id,
     professionalId: request?.professionalId,
@@ -59,7 +60,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
       (user) => user?._id === request?.professionalId
     )?.name,
   };
-  const createRequest = createRequestMutation(() => {}, null);
+  const createRequest = createRequestMutation(() => {}, null, t);
   const { register, handleSubmit, formState } = useCreateRequestLib(requestObjectIds);
   const handleCreateRequest: SubmitCreateRequestHandler = async (
     values: CreateRequestFormData
@@ -90,9 +91,13 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
       >
         <GridForm>
           <DatePicker
-            placeholder="Selecione uma data"
+            placeholder={t("PAGES:NEW_APPOINTMENT.selectDate", {
+              defaultValue: "Selecione a data do agendamento",
+            })}
             name="date"
-            label="Data do agendamento"
+            label={t("PAGES:NEW_APPOINTMENT.date", {
+              defaultValue: "Data do agendamento",
+            })}
             bgColor="gray.100"
             labelColor="gray.800"
             onChange={(date) => setDateSelected(date as any)}
@@ -104,7 +109,9 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
                 labelColor="gray.800"
                 color="gray.800"
                 name="timeList"
-                label="Horário disponível"
+                label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
+                  defaultValue: "Horário disponível",
+                })}
                 list={timeAvailable?.timeAvailable ?? []}
                 value={timeSelected ?? ""}
                 onChange={handleChangeTimeSelected}
@@ -113,7 +120,9 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
               />
             )}
           <FormControl
-            label="Observação"
+            label={t("PAGES:NEW_APPOINTMENT.observations", {
+              defaultValue: "Observação",
+            })}
             labelColor="black"
             bgColor="gray.100"
             bgColorHover="gray.100"
@@ -130,7 +139,9 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
             setActiveStep(1);
           }}
         >
-          Voltar
+          {t("PAGES:NEW_APPOINTMENT.back", {
+            defaultValue: "Voltar",
+          })}
         </Button>
         <Button
           colorScheme="tertiary"
@@ -139,7 +150,9 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
           isLoading={false}
           m={2}
         >
-          Próximo
+          {t("PAGES:NEW_APPOINTMENT.next", {
+            defaultValue: "Próximo",
+          })}
         </Button>
       </Flex>
     </>

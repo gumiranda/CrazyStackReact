@@ -6,13 +6,40 @@ import { StepDate } from "./steps/StepDate";
 import { StepServiceProfessional } from "./steps/StepServiceProfessional";
 import { StepSuccess } from "./steps/StepSuccess";
 import { useSteps } from "@chakra-ui/react";
-const steps = [
-  { title: "Cliente", description: "Nome e telefone" },
-  { title: "Profissional e Serviço", description: "Selecione o prestador e o serviço" },
-  { title: "Data", description: "Selecione dia e horário" },
-];
+import { useTranslation } from "react-i18next";
+
 export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
-  const { activeStep, setActiveStep } = useSteps({ index: 0, count: steps.length });
+  const { t } = useTranslation(["PAGES"]);
+  const steps = [
+    {
+      title: t("PAGES:NEW_APPOINTMENT.client", {
+        defaultValue: "Cliente",
+      }),
+      description: t("PAGES:NEW_APPOINTMENT.nameAndPhone", {
+        defaultValue: "Nome e telefone",
+      }),
+    },
+    {
+      title: t("PAGES:NEW_APPOINTMENT.professionalAndService", {
+        defaultValue: "Profissional e Serviço",
+      }),
+      description: t("PAGES:NEW_APPOINTMENT.selectProfessionalAndService", {
+        defaultValue: "Selecione o prestador e o serviço",
+      }),
+    },
+    {
+      title: t("PAGES:NEW_APPOINTMENT.date", {
+        defaultValue: "Data",
+      }),
+      description: t("PAGES:NEW_APPOINTMENT.time", {
+        defaultValue: "Selecione dia e horário",
+      }),
+    },
+  ];
+  const { activeStep, setActiveStep } = useSteps({
+    index: 0,
+    count: steps.length,
+  });
   const stepsComponents = [
     <StepClient
       key={1}
@@ -29,8 +56,13 @@ export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
     <StepSuccess
       key={4}
       setActiveStep={setActiveStep}
-      title={"Confirmar agendamento"}
-      content="Verifique os dados e confirme o agendamento clicando no botão abaixo."
+      title={t("PAGES:NEW_APPOINTMENT.confirmAppointment", {
+        defaultValue: "Confirmar agendamento",
+      })}
+      content={t("PAGES:NEW_APPOINTMENT.confirmAppointmentMessage", {
+        defaultValue:
+          "Verifique os dados e confirme o agendamento clicando no botão abaixo.",
+      })}
     />,
   ];
   return (
@@ -49,7 +81,9 @@ export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
           textAlign={"center"}
           fontSize="2xl"
         >
-          Criar agendamento
+          {t("PAGES:NEW_APPOINTMENT.title", {
+            defaultValue: "Criar agendamento",
+          })}
         </Text>
       )}
       <Stepper activeStep={activeStep} steps={steps} stepsComponents={stepsComponents} />

@@ -5,6 +5,7 @@ import { setCookie, destroyCookie, parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
 import { useUi } from "./UiContext";
 import { api } from "@/shared/api";
+import { useTranslation } from "react-i18next";
 
 type User = {
   email: string;
@@ -43,6 +44,7 @@ export const parseJSON = (json: string) => {
   }
 };
 export function AuthProvider({ children }: AuthProviderProps) {
+  const { t } = useTranslation(["PAGES"]);
   const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
@@ -109,7 +111,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       showModal({
         newModalBody: null,
         type: "error",
-        title: "Erro no servidor",
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         content: formatMessage(
           error?.response?.data?.message ??
             "Não foi possível concluir o login. Tente novamente mais tarde."
@@ -163,7 +167,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       showModal({
         newModalBody: null,
         type: "error",
-        title: "Erro no servidor",
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         content: formatMessage(
           error?.response?.data?.message ??
             "Não foi possível concluir o login. Tente novamente mais tarde."

@@ -4,11 +4,13 @@ import { Text } from "../../atoms";
 import { FaRegClock } from "react-icons/fa6";
 import { statusMap } from "@/entidades/request/request.model";
 import { SlOptions } from "react-icons/sl";
-import { RequestDetails } from "@/entidades/request/details";
 import { Modal } from "@/widgets";
 import { RequestDetailsV2 } from "@/entidades/request/details/RequestDetailsV2";
+import { useTranslation } from "react-i18next";
 
 export const TimeSlots = ({ list }) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [requestsSelected, setRequestsSelected] = useState<any>(null);
   const timeSlots = Array.from({ length: 18 }, (_, i) => ({
@@ -90,7 +92,9 @@ export const TimeSlots = ({ list }) => {
                         </Flex>
                         <Flex flexDir="column">
                           <Text fontWeight={"600"} my={1}>
-                            {statusMap?.[item?.status]}
+                            {t(`PAGES:STATUS.${item?.status}`, {
+                              defaultValue: statusMap?.[item?.status],
+                            })}
                           </Text>
                           <Text>{item?.clientName}</Text>
                           <Text fontSize="xs">{item?.serviceName}</Text>
@@ -115,7 +119,9 @@ export const TimeSlots = ({ list }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        modalHeaderText="Detalhes do agendamento"
+        modalHeaderText={t("PAGES:FIELDS.appointmentDetails", {
+          defaultValue: "Detalhes do agendamento",
+        })}
         modalFooter={null}
       >
         <RequestDetailsV2 props={{ request: requestsSelected, onClose }} />

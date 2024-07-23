@@ -79,15 +79,20 @@ export const TableItems = ({
                     href={`${routeDetails}/${item?._id}`}
                     onMouseEnter={() => linkOnMouseEnter(item)}
                   >
-                    <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"bold"}>
+                    <Text fontSize={["10", "xs", "sm", "md"]} fontWeight={"bold"}>
                       {item[field?.id]}
                     </Text>
                   </Link>
                 </Box>
               ) : field?.displayKeyText === false ? (
-                <>{React.cloneElement(field?.children, { ...item, id: field?.id })}</>
+                <>
+                  {React.cloneElement(field?.children, {
+                    ...item,
+                    id: field?.id,
+                  })}
+                </>
               ) : (
-                <Text fontSize={["xs", "sm", "md", "lg"]} fontWeight={"400"}>
+                <Text fontSize={["10", "xs", "sm", "md"]} fontWeight={"400"}>
                   {item[field?.id]}
                 </Text>
               )}

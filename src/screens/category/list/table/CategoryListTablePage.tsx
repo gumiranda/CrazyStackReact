@@ -3,6 +3,7 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetCategorysResponse } from "@/entidades/category/category.api";
 import { useCategoryList } from "../categoryList.hook";
+import { useTranslation } from "react-i18next";
 type CategoryListTablePageProps = {
   data: GetCategorysResponse;
   page: number;
@@ -11,6 +12,8 @@ const Text = ({ id, ...data }: any) => {
   return <h1 data-testid={"h1TestId" + id}>{data[id]}</h1>;
 };
 export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const {
     categorys,
     setCategorys,
@@ -30,12 +33,19 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
           isLoading={false}
           items={categorys}
           fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
+            {
+              id: "name",
+              label: t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }),
+              displayKeyText: true,
+            },
             {
               id: "createdAt",
-              label: "Data de criação",
-              displayKeyText: false,
-              children: <Text />,
+              label: t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }),
+              displayKeyText: true,
             },
           ]}
           setItems={setCategorys}
@@ -45,7 +55,9 @@ export const CategoryListTablePage = ({ page = 0, data }: CategoryListTablePageP
           routeDetails={"/categorys/details"}
           routeCreate={"/categorys/create"}
           routeList={"/categorys/list"}
-          title={"Categorias"}
+          title={t("PAGES:HOME_PAGE.categorys", {
+            defaultValue: "Categorias",
+          })}
         />
         <Pagination
           onPageChange={setPage}

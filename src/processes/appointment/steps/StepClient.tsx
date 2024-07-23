@@ -9,8 +9,10 @@ import { createClientMutation } from "@/features/client/create/createClient.hook
 import { useEffect, useState } from "react";
 import { Box, Button, Flex, FormControl, GridForm } from "@/shared/ui";
 import { useEditClientLib } from "@/features/client/edit/editClient.lib";
+import { useTranslation } from "react-i18next";
 
 export const StepClient = ({ clientList, userList, setActiveStep }) => {
+  const { t } = useTranslation(["PAGES"]);
   const { setRequest = () => {}, request } = useStepRequest();
   const [loading, setLoading] = useState(false);
   const { userSelected, users } = useUsersSelect({ role: "client", userList });
@@ -26,28 +28,38 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
       const existingClient = clientList?.clients?.find?.(
         (item) => item?.name === clientName
       );
-      if (existingClient?.phone) {
-        setValue("phone", existingClient?.phone);
-        trigger("phone");
-      }
+      triggerPhoneClient(existingClient);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clientName]);
-  const createClient = createClientMutation(() => {
-    setLoading(false);
-  }, null);
+  const triggerPhoneClient = (currentClient) => {
+    if (currentClient?.phone) {
+      setValue("phone", currentClient?.phone);
+      trigger("phone");
+    }
+  };
+  const createClient = createClientMutation(
+    () => {
+      setLoading(false);
+    },
+    null,
+    t
+  );
   const handleCreateClient: SubmitCreateClientHandler = async (
     values: CreateClientFormData
   ) => {
     const name = (document.getElementById("name") as HTMLInputElement).value;
-
     const existingClient = clientList?.clients?.find?.((item) => item?.name === name);
-    console.log({ existingClient, values });
+
     setLoading(true);
     const userId = userSelected ?? users?.[0]?._id ?? userList?.[0]?._id ?? "";
     const payload = { ...values, clientUserId: userId, userId, active: true };
     if (existingClient?._id) {
-      setRequest((prev) => ({ ...prev, ...payload, clientCreated: existingClient }));
+      setRequest((prev) => ({
+        ...prev,
+        ...payload,
+        clientCreated: existingClient,
+      }));
       setActiveStep(1);
       return;
     }
@@ -73,7 +85,9 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
       >
         <GridForm>
           <FormControl
-            label="Nome do(a) cliente"
+            label={t("PAGES:NEW_APPOINTMENT.nameClient", {
+              defaultValue: "Nome do(a) cliente",
+            })}
             error={formState.errors.name}
             labelColor="gray.800"
             inputBgColor="gray.800"
@@ -87,13 +101,24 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
                 })) ?? [],
               placeholder: "",
               listStyleProps: { backgroundColor: "gray.100", color: "black" },
-              listItemStyleProps: { backgroundColor: "gray.100", color: "black" },
+              listItemStyleProps: {
+                backgroundColor: "gray.100",
+                color: "black",
+                onClick: (clientSelected) => {
+                  const existingClient = clientList?.clients?.find?.(
+                    (item) => item?._id === clientSelected?.value
+                  );
+                  triggerPhoneClient(existingClient);
+                },
+              },
               highlightItemBg: "gray.200",
             }}
             {...register("name")}
           />
           <FormControl
-            label="Telefone"
+            label={t("PAGES:NEW_APPOINTMENT.phone", {
+              defaultValue: "Telefone do(a) cliente",
+            })}
             error={formState.errors.phone}
             labelColor="gray.800"
             bgColor="gray.100"
@@ -106,7 +131,9 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
       </Box>
       <Flex justifyContent={"flex-end"} mt={10}>
         <Button colorScheme="purple" m={2}>
-          Voltar
+          {t("PAGES:NEW_APPOINTMENT.back", {
+            defaultValue: "Voltar",
+          })}
         </Button>
         <Button
           colorScheme="tertiary"
@@ -115,7 +142,9 @@ export const StepClient = ({ clientList, userList, setActiveStep }) => {
           isLoading={loading}
           m={2}
         >
-          Próximo
+          {t("PAGES:NEW_APPOINTMENT.next", {
+            defaultValue: "Próximo",
+          })}
         </Button>
       </Flex>
     </>

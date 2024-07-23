@@ -2,8 +2,10 @@
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { useRouteDriverInfiniteList } from "../routeDriverInfiniteList.hook";
 import { useRouteDriverUi } from "@/entidades/routeDriver/routeDriver.ui";
+import { useTranslation } from "react-i18next";
 
 export const RouteDriverGridPage = () => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     isFetching,
     error,
@@ -25,8 +27,20 @@ export const RouteDriverGridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
-      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+      {
+        id: "name",
+        label: t("PAGES:FIELDS.name", {
+          defaultValue: "Nome",
+        }),
+        displayKeyText: true,
+      },
+      {
+        id: "createdAt",
+        label: t("PAGES:FIELDS.createdAt", {
+          defaultValue: "Data de criação",
+        }),
+        displayKeyText: true,
+      },
     ],
   };
   const items =

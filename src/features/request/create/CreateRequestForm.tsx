@@ -8,11 +8,13 @@ import {
   DatePicker,
 } from "@/shared/ui";
 import { GetOwnersResponse } from "@/entidades/owner";
+import { useTranslation } from "react-i18next";
 
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
 };
 export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -40,7 +42,12 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateRequest)}
-      title={"Criar solicitação"}
+      title={t("PAGES:HOME_PAGE.createDomain", {
+        defaultValue: "Criar solicitação",
+        domain: t("PAGES:HOME_PAGE.request", {
+          defaultValue: "Solicitação",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/requests/1"}
     >
@@ -48,7 +55,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
         <Select
           bg="secondary.600"
           name="ownerList"
-          label="Estabelecimento"
+          label={t("PAGES:HOME_PAGE.owner", {
+            defaultValue: "Estabelecimento",
+          })}
           list={owners}
           value={ownerSelected}
           onChange={handleChangeOwnerSelected}
@@ -56,7 +65,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
         <Select
@@ -70,7 +81,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
         <Select
@@ -84,7 +97,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
         <Select
@@ -98,7 +113,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
         {ownerSelected?.length === 24 &&
@@ -134,7 +151,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           {...register("message")}
         />
         <Checkbox
-          label="Ativo"
+          label={t("PAGES:FIELDS.active", {
+            defaultValue: "Ativo",
+          })}
           colorScheme="green"
           isChecked={active}
           onChange={(e) => {

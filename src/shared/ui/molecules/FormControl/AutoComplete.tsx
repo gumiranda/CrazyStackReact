@@ -128,27 +128,33 @@ const AutoComplete_ = (props: any, ref: any) => {
         >
           {isOpen &&
             inputItems?.map?.((item: any, index: number) => (
-              <ListItem
-                px={2}
-                py={1}
-                borderBottom="1px solid rgba(0,0,0,0.01)"
-                {...listItemStyleProps}
-                bg={highlightedIndex === index ? highlightItemBg : "inherit"}
-                key={`${item?.value}${index}`}
-                {...getItemProps({ item, index })}
+              <Box
+                onClick={() => {
+                  listItemStyleProps?.onClick?.(item);
+                }}
               >
-                <Box display="inline-flex" alignItems="center">
-                  {itemRenderer ? (
-                    itemRenderer(item)
-                  ) : (
-                    <CustomHighlighter
-                      autoEscape
-                      searchWords={[inputValue ?? ""]}
-                      textToHighlight={item?.label ?? ""}
-                    />
-                  )}
-                </Box>
-              </ListItem>
+                <ListItem
+                  px={2}
+                  py={1}
+                  borderBottom="1px solid rgba(0,0,0,0.01)"
+                  {...listItemStyleProps}
+                  bg={highlightedIndex === index ? highlightItemBg : "inherit"}
+                  key={`${item?.value}${index}`}
+                  {...getItemProps({ item, index })}
+                >
+                  <Box display="inline-flex" alignItems="center">
+                    {itemRenderer ? (
+                      itemRenderer(item)
+                    ) : (
+                      <CustomHighlighter
+                        autoEscape
+                        searchWords={[inputValue ?? ""]}
+                        textToHighlight={item?.label ?? ""}
+                      />
+                    )}
+                  </Box>
+                </ListItem>
+              </Box>
             ))}
         </List>
       </Box>

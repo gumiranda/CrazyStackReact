@@ -6,11 +6,14 @@ import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { MapRouteProps } from "@/entidades/mapRoute";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 type MapRouteListHook = {
   initialData: GetMapRoutesResponse;
   page: number;
 };
 export const useMapRouteList = (data: MapRouteListHook) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const router = useRouter();
   const { showModal } = useUi();
   const [page, setPage] = useState(data.page);
@@ -39,8 +42,13 @@ export const useMapRouteList = (data: MapRouteListHook) => {
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }
@@ -52,8 +60,13 @@ export const useMapRouteList = (data: MapRouteListHook) => {
     },
     onError: () => {
       showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
+        content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue:
+            "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         type: "error",
       });
     },

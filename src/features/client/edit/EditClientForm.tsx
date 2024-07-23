@@ -1,6 +1,7 @@
 import { ClientProps } from "@/entidades/client";
 import { useEditClient } from "./editClient.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export interface EditClientFormProps {
   client: ClientProps;
@@ -8,6 +9,7 @@ export interface EditClientFormProps {
   users: any;
 }
 export const EditClientForm = ({ client, id, users }: EditClientFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { formState, register, handleSubmit, handleEditClient } = useEditClient({
     client,
     id,
@@ -24,19 +26,33 @@ export const EditClientForm = ({ client, id, users }: EditClientFormProps) => {
         item={client}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome do(a) cliente"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />
         <FormControl
-          label="Telefone"
+          label={t("PAGES:AUTH_PAGE.phone", {
+            defaultValue: "Telefone",
+          })}
           error={formState.errors.phone}
           labelColor="white"
           bgColor="secondary.500"

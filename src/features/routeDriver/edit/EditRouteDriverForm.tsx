@@ -1,11 +1,13 @@
 import { RouteDriverProps } from "@/entidades/routeDriver";
 import { useEditRouteDriver } from "./editRouteDriver.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export interface EditRouteDriverFormProps {
   routeDriver: RouteDriverProps;
 }
 export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { formState, register, handleSubmit, handleEditRouteDriver } = useEditRouteDriver(
     {
       routeDriver,
@@ -22,14 +24,26 @@ export const EditRouteDriverForm = ({ routeDriver }: EditRouteDriverFormProps) =
         item={routeDriver}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome da corrida"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />

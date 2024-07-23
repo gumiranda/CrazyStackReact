@@ -11,8 +11,10 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { ClientCreateFormProps } from "./CreateClientForm";
 import { useUsersSelect } from "@/features/user/userList.hook";
+import { useTranslation } from "react-i18next";
 
 export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
@@ -20,7 +22,7 @@ export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
     role: "client",
     userList,
   });
-  const createClient = createClientMutation(showModal, router);
+  const createClient = createClientMutation(showModal, router, t);
   const { register, handleSubmit, formState } = useCreateClientLib();
   const handleCreateClient: SubmitCreateClientHandler = async (
     values: CreateClientFormData
@@ -44,7 +46,7 @@ export const useCreateClient = ({ userList }: ClientCreateFormProps) => {
   };
 };
 
-export function createClientMutation(showModal: Function, router) {
+export function createClientMutation(showModal: Function, router, t) {
   return useMutation({
     mutationFn: async (client: CreateClientFormData) => {
       try {
@@ -53,16 +55,31 @@ export function createClientMutation(showModal: Function, router) {
         });
         if (!data) {
           showModal({
-            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-            title: "Erro no servidor",
+            content: t("PAGES:MESSAGES.errorMessage", {
+              defaultValue:
+                "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            }),
+            title: t("PAGES:MESSAGES.internalServerError", {
+              defaultValue: "Erro no servidor",
+            }),
             type: "error",
           });
           return;
         }
         showModal({
-          content:
-            "Cliente criada com sucesso, você será redirecionado para a lista de clientes",
-          title: "Sucesso",
+          content: t("PAGES:MESSAGES.successMessage", {
+            domain: t("PAGES:HOME_PAGE.client", {
+              defaultValue: "Cliente",
+            }),
+            operation: t("PAGES:MESSAGES.create", {
+              defaultValue: "criado",
+            }),
+            defaultValue:
+              "Cliente criado com sucesso, você será redirecionado para a lista de clientes",
+          }),
+          title: t("PAGES:MESSAGES.success", {
+            defaultValue: "Sucesso",
+          }),
           type: "success",
         });
         if (router) {
@@ -71,8 +88,13 @@ export function createClientMutation(showModal: Function, router) {
         return data;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }

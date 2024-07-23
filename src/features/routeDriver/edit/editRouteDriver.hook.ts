@@ -8,7 +8,10 @@ import {
 import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
 export const useEditRouteDriver = (props: EditRouteDriverFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const { routeDriver: currentRouteDriver } = props;
   const router = useRouter();
@@ -24,24 +27,44 @@ export const useEditRouteDriver = (props: EditRouteDriverFormProps) => {
         );
         if (!data) {
           showModal({
-            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-            title: "Erro no servidor",
+            content: t("PAGES:MESSAGES.errorMessage", {
+              defaultValue:
+                "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            }),
+            title: t("PAGES:MESSAGES.internalServerError", {
+              defaultValue: "Erro no servidor",
+            }),
             type: "error",
           });
           return;
         }
         showModal({
-          content:
-            "Corrida editada com sucesso, você será redirecionado para a lista de corridas",
-          title: "Sucesso",
+          content: t("PAGES:MESSAGES.successMessage", {
+            domain: t("PAGES:HOME_PAGE.ride", {
+              defaultValue: "Corrida",
+            }),
+            operation: t("PAGES:MESSAGES.edit", {
+              defaultValue: "editada",
+            }),
+            defaultValue:
+              "Corrida editada com sucesso, você será redirecionado para a lista de corridas",
+          }),
+          title: t("PAGES:MESSAGES.success", {
+            defaultValue: "Sucesso",
+          }),
           type: "success",
         });
         router.push("/routeDrivers/1");
         return data;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }

@@ -9,14 +9,14 @@ import {
   ControlledSelect,
 } from "@/shared/ui";
 import { GetOwnersResponse } from "@/entidades/owner";
-import { CreateUserFormData } from "./createUser.lib";
-import { ServiceOptions } from "@/features/user/serviceListMultiple";
+import { useTranslation } from "react-i18next";
 
 type UserCreateFormProps = {
   ownerList: GetOwnersResponse;
   serviceList: GetServicesResponse;
 };
 export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -35,30 +35,43 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateUser)}
-      title={"Criar profissional"}
+      title={t("PAGES:HOME_PAGE.createDomain", {
+        defaultValue: "Criar profissional",
+        domain: t("PAGES:HOME_PAGE.professional", {
+          defaultValue: "Profissional",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/users/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome da profissional"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />
         <FormControl
-          label="Email do profissional"
+          label={t("PAGES:FIELDS.email", {
+            defaultValue: "Email",
+          })}
           error={formState.errors.email}
           type="email"
           {...register("email")}
         />
         <FormControl
-          label="Senha do profissional"
+          label={t("PAGES:FIELDS.password", {
+            defaultValue: "Senha",
+          })}
           type="password"
           error={formState.errors.password}
           {...register("password")}
         />
         <FormControl
-          label="Confirme a senha"
+          label={t("PAGES:FIELDS.passwordConfirm", {
+            defaultValue: "Confirme a senha",
+          })}
           type="password"
           error={formState.errors.passwordConfirmation}
           {...register("passwordConfirmation")}
@@ -66,7 +79,9 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
         <Select
           bg="secondary.600"
           name="ownerList"
-          label="Estabelecimento"
+          label={t("PAGES:HOME_PAGE.owner", {
+            defaultValue: "Estabelecimento",
+          })}
           list={owners}
           value={ownerSelected}
           onChange={handleChangeOwnerSelected}
@@ -74,21 +89,27 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
 
         <ControlledSelectAux
           isMulti
           control={control as any}
-          label="Serviços selecionados"
+          label={t("PAGES:HOME_PAGE.servicesSelected", {
+            defaultValue: "Serviços selecionados",
+          })}
           placeholder="Selecione os serviços"
           options={serviceOptions}
           name={"serviceOptions"}
         />
 
         <Checkbox
-          label="Ativo"
+          label={t("PAGES:FIELDS.active", {
+            defaultValue: "Ativo",
+          })}
           colorScheme={"tertiary"}
           isChecked={active}
           onChange={(e) => {

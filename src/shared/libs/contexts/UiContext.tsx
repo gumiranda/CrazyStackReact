@@ -6,6 +6,7 @@ import { Modal } from "@/widgets";
 import { Button, BoxError, BoxSuccess } from "@/shared/ui";
 import LoadingOverlay from "react-loading-overlay-ts";
 import { useIsMutating, useIsFetching } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 type UiProviderProps = {
   children: ReactNode;
 };
@@ -17,9 +18,13 @@ type UiContextData = UseDisclosureReturn & {
 };
 const UiContext = createContext({} as UiContextData);
 const CloseButton = ({ onClose }: any) => {
+  const { t } = useTranslation(["PAGES"]);
+
   return (
     <Button colorScheme={"purple"} mr={3} onClick={onClose}>
-      Ok, entendi
+      {t("PAGES:MESSAGES.okUnderstand", {
+        defaultValue: "Ok, entendi",
+      })}
     </Button>
   );
 };
@@ -85,7 +90,7 @@ export function UiProvider({ children }: UiProviderProps) {
         }}
         active={!!isFetching || !!isMutating || loading}
         spinner
-        text="Carregando..."
+        text={"Carregando..."}
       />
     </UiContext.Provider>
   );

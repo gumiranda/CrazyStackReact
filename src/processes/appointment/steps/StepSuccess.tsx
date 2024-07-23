@@ -7,8 +7,11 @@ import { format, startOfDay } from "date-fns";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Heading } from "@chakra-ui/react";
 import { ptBR } from "date-fns/locale";
+import { useTranslation } from "react-i18next";
 
 export const StepSuccess = ({ title, content, setActiveStep }) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const { request } = useStepRequest() || {};
   const { showModal } = useUi();
   const router = useRouter();
@@ -17,7 +20,11 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
     showModal,
     router,
     routeRedirect: "/home",
-    content: "Agendamento confirmado com sucesso, já pode ser visualizado na agenda.",
+    content: t("PAGES:NEW_APPOINTMENT.confirmMessage", {
+      defaultValue:
+        "Agendamento confirmado com sucesso, já pode ser visualizado na agenda.",
+    }),
+    t,
   });
   const confirmAppointment = async () => {
     await editRequest.mutateAsync({
@@ -41,9 +48,13 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
             {formatDate(request?.requestCreated?.initDate)}
           </Text>
           <Text mt={4} color="gray.600" fontSize={"2xl"}>
-            {format(request?.requestCreated?.initDate, "HH:mm", { locale: ptBR })}
+            {format(request?.requestCreated?.initDate, "HH:mm", {
+              locale: ptBR,
+            })}
             ....................
-            {format(request?.requestCreated?.endDate, "HH:mm", { locale: ptBR })}
+            {format(request?.requestCreated?.endDate, "HH:mm", {
+              locale: ptBR,
+            })}
           </Text>
           <Text mt={4} color="gray.600" fontWeight={"600"} fontSize={"2xl"}>
             {request?.name}
@@ -62,7 +73,9 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
             colorScheme={"tertiary"}
             onClick={confirmAppointment}
           >
-            Confirmar agendamento
+            {t("PAGES:NEW_APPOINTMENT.confirm", {
+              defaultValue: "Confirmar agendamento",
+            })}
           </Button>
           <Button
             w={"100%"}
@@ -72,7 +85,9 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
               setActiveStep(2);
             }}
           >
-            Voltar
+            {t("PAGES:NEW_APPOINTMENT.back", {
+              defaultValue: "Voltar",
+            })}
           </Button>
         </>
       )}

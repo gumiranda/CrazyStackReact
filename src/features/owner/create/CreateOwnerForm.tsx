@@ -1,8 +1,10 @@
 import { HourWorks } from "@/entidades/owner";
 import { useCreateOwner } from "./createOwner.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export const CreateOwnerForm = ({ data }) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -29,13 +31,20 @@ export const CreateOwnerForm = ({ data }) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateOwner)}
-      title={"Criar estabelecimento"}
+      title={t("PAGES:HOME_PAGE.createDomain", {
+        defaultValue: "Criar estabelecimento",
+        domain: t("PAGES:HOME_PAGE.owner", {
+          defaultValue: "Estabelecimento",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/owners/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome do estabelecimento"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />

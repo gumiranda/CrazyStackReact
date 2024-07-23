@@ -1,10 +1,12 @@
 import { GetUsersResponse } from "@/entidades/user";
 import { useCreateClient } from "./createClient.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 export type ClientCreateFormProps = {
   userList: GetUsersResponse;
 };
 export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -19,18 +21,27 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleCreateClient)}
-      title={"Criar cliente"}
+      title={t("PAGES:HOME_PAGE.createDomain", {
+        defaultValue: "Criar cliente",
+        domain: t("PAGES:HOME_PAGE.client", {
+          defaultValue: "Cliente",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/clients/1"}
     >
       <GridForm>
         <FormControl
-          label="Nome do(a) cliente"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />
         <FormControl
-          label="Telefone"
+          label={t("PAGES:AUTH_PAGE.phone", {
+            defaultValue: "Telefone",
+          })}
           error={formState.errors.phone}
           labelColor="white"
           bgColor="secondary.500"
@@ -50,11 +61,15 @@ export const CreateClientForm = ({ userList }: ClientCreateFormProps) => {
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
         <Checkbox
-          label="Ativo"
+          label={t("PAGES:FIELDS.active", {
+            defaultValue: "Ativo",
+          })}
           colorScheme="green"
           isChecked={active}
           onChange={(e) => {

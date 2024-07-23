@@ -10,6 +10,7 @@ import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
 import { useWS } from "@/application/providers/webSocketProvider";
 import { parseJSON, useUi } from "@/shared/libs";
 import { routeDriverModel } from "@/entidades/routeDriver/routeDriver.model";
+import { useTranslation } from "react-i18next";
 
 type RouteDriverDetailsProps = {
   data: RouteDriverProps;
@@ -17,6 +18,8 @@ type RouteDriverDetailsProps = {
   id: string;
 };
 export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const props = { routeDriver: data, mapRoute };
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const map = useLoadMap(mapContainerRef);
@@ -37,8 +40,13 @@ export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsPro
       socket.onclose = () => {
         setSocketClosed(true);
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
         console.log("conexão websocket fechada");

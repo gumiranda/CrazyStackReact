@@ -13,8 +13,10 @@ import { useState } from "react";
 import { useTimeAvailable } from "@/features/appointment/timeAvailable.hook";
 import { addMinutes } from "date-fns";
 import { RequestProps } from "@/entidades/request";
+import { useTranslation } from "react-i18next";
 
 export const useEditRequest = (props: EditRequestFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const router = useRouter();
   const { showModal } = useUi();
   const { request: currentRequest, owners } = props;
@@ -34,9 +36,18 @@ export const useEditRequest = (props: EditRequestFormProps) => {
     currentRequest,
     showModal,
     router,
+    t,
     routeRedirect: "/requests/1",
-    content:
-      "Solicitação editada com sucesso, você será redirecionado para a lista de solicitações",
+    content: t("PAGES:MESSAGES.successMessage", {
+      domain: t("PAGES:HOME_PAGE.request", {
+        defaultValue: "Solicitação",
+      }),
+      operation: t("PAGES:MESSAGES.edit", {
+        defaultValue: "editada",
+      }),
+      defaultValue:
+        "Solicitação editada com sucesso, você será redirecionado para a lista de solicitações",
+    }),
   });
   const { register, handleSubmit, formState } = useEditRequestLib(props);
   const {
@@ -94,12 +105,14 @@ export function editRequestMutation({
   router,
   content,
   routeRedirect,
+  t,
 }: {
   currentRequest: RequestProps;
   showModal: Function;
   router: any;
   content: string;
   routeRedirect: string;
+  t: any;
 }) {
   return useMutation({
     mutationFn: async (request: EditRequestFormData) => {
@@ -110,15 +123,22 @@ export function editRequestMutation({
         });
         if (!data) {
           showModal({
-            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-            title: "Erro no servidor",
+            content: t("PAGES:MESSAGES.errorMessage", {
+              defaultValue:
+                "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            }),
+            title: t("PAGES:MESSAGES.internalServerError", {
+              defaultValue: "Erro no servidor",
+            }),
             type: "error",
           });
           return;
         }
         showModal({
           content,
-          title: "Sucesso",
+          title: t("PAGES:MESSAGES.success", {
+            defaultValue: "Sucesso",
+          }),
           type: "success",
         });
         if (router) {
@@ -127,8 +147,13 @@ export function editRequestMutation({
         return data;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }

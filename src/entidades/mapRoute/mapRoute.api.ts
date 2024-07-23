@@ -15,7 +15,6 @@ export const getMapRoutes = async (
   const { data } = await setupAPIClient(ctx).get("/mapRoute/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
-  console.log({ dataaa: data });
   const { mapRoutes, total } = data || {};
   const totalCount = Number(total ?? 0);
   const lastPage = Number.isInteger(totalCount / registerByPage)

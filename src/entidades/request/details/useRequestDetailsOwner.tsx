@@ -5,8 +5,10 @@ import { api } from "@/shared/api";
 import { useUi } from "@/shared/libs";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) => {
+  const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const router = useRouter();
   const { data: service } = useGetServiceById(serviceId);
@@ -17,16 +19,25 @@ export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) 
   const onError = () => {
     showModal({
       type: "error",
-      title: "Erro no servidor",
-      message: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+      title: t("PAGES:MESSAGES.internalServerError", {
+        defaultValue: "Erro no servidor",
+      }),
+      message: t("PAGES:MESSAGES.errorMessage", {
+        defaultValue:
+          "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+      }),
     });
   };
   const editRequest = editRequestMutation({
     currentRequest,
     showModal,
     routeRedirect: "/home",
-    content: "Agendamento confirmado com sucesso, já pode ser visualizado na agenda",
+    content: t("PAGES:NEW_APPOINTMENT.confirmMessage", {
+      defaultValue:
+        "Agendamento confirmado com sucesso, já pode ser visualizado na agenda.",
+    }),
     router,
+    t,
   });
   const deleteRequest = useMutation({
     mutationFn: async (requestsToDelete: any = []) => {

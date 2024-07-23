@@ -5,8 +5,11 @@ import { api } from "@/shared/api";
 import { queryClientInstance } from "@/shared/api";
 import { useRouter } from "next/navigation";
 import { useGetInfiniteClients } from "@/entidades/client/client.lib";
+import { useTranslation } from "react-i18next";
 
 export const useClientInfiniteList = () => {
+  const { t } = useTranslation(["PAGES"]);
+
   const router = useRouter();
   const { showModal, loading } = useUi();
   const all = useGetInfiniteClients({
@@ -40,8 +43,13 @@ export const useClientInfiniteList = () => {
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }
@@ -53,8 +61,13 @@ export const useClientInfiniteList = () => {
     },
     onError: () => {
       showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
+        content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue:
+            "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         type: "error",
       });
     },

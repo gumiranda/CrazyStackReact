@@ -20,8 +20,10 @@ export const signupSchema = yup.object({
   phone: yup
     .string()
     .required("Telefone é obrigatório")
-    .min(14, "Telefone inválido")
-    .max(15, "Telefone inválido"),
+    .test("phone", "Telefone inválido", (value) => {
+      const cleanedPhone = value?.replace?.(/\D/g, "");
+      return cleanedPhone?.length === 11;
+    }),
 });
 export type YupSchema = yup.InferType<typeof signupSchema>;
 export const useSignupLib = () => {

@@ -1,6 +1,6 @@
 "use client";
 //@ts-nocheck
-import { Header, Flex, Logo, Profile, NotificationsNav, SearchBar } from "@/shared/ui";
+import { Header, Flex, Logo, Profile, SelectTranslate } from "@/shared/ui";
 import { useBreakpointValue, Icon, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { useAuth, useSidebarDrawer } from "@/shared/libs";
@@ -10,16 +10,16 @@ export const NavBar = ({ showLogo = true }) => {
   const { isAuthenticated } = useAuth() || {};
   const { onOpen = () => {}, onClose } = useSidebarDrawer() || {};
   const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
-  const [isLargerThan560] = useMediaQuery("(min-width: 560px)");
   useEffect(() => {
     return () => {
       onClose?.();
     };
   }, []);
+
   return (
     <Header>
       <Flex alignItems={"center"} w={"100%"}>
-        {isAuthenticated && !isDesktopVersion && (
+        {isAuthenticated && (
           <IconButton
             aria-label="Open sidebar"
             fontSize="24"
@@ -36,7 +36,8 @@ export const NavBar = ({ showLogo = true }) => {
         )} */}
         {isAuthenticated && (
           <Flex align="center" ml="auto">
-            <NotificationsNav />
+            {/* <NotificationsNav /> */}
+            <SelectTranslate />
             <Profile showProfileData={isDesktopVersion} />
           </Flex>
         )}

@@ -9,12 +9,14 @@ import {
   Select,
 } from "@/shared/ui";
 import { GetCategorysResponse } from "@/entidades/category";
+import { useTranslation } from "react-i18next";
 
 export interface EditServiceFormProps {
   service: ServiceProps;
   categoryList: GetCategorysResponse;
 }
 export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -38,7 +40,12 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditService)}
-      title={"Editar serviço"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar serviço",
+        domain: t("PAGES:HOME_PAGE.service", {
+          defaultValue: "Serviço",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/services/1"}
     >
@@ -46,46 +53,70 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
         item={service}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome do serviço"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />
         <FormControl
-          label="Descrição do serviço"
+          label={t("PAGES:FIELDS.description", {
+            defaultValue: "Descrição",
+          })}
           error={formState.errors.description}
           {...register("description")}
         />
         <FormControl
-          label="Preço promocional"
+          label={t("PAGES:FIELDS.price", {
+            defaultValue: "Preço promocional",
+          })}
           error={formState.errors.price}
           {...register("price")}
         />
         <FormControl
-          label="Preço do serviço"
+          label={t("PAGES:FIELDS.finalPrice", {
+            defaultValue: "Preço do serviço",
+          })}
           error={formState.errors.finalPrice}
           {...register("finalPrice")}
         />
         <FormControl
-          label="Duração do serviço (em min)"
+          label={t("PAGES:FIELDS.durationOfService", {
+            defaultValue: "Duração do serviço (em min)",
+          })}
           type={"number"}
           error={formState.errors.duration}
           {...register("duration")}
         />
         <FormControl
-          label="Quantidade de Produtos"
+          label={t("PAGES:FIELDS.productsQuantityNeeded", {
+            defaultValue: "Quantidade de produtos necessários",
+          })}
           type={"number"}
           error={formState.errors.productsQuantityNeeded}
           {...register("productsQuantityNeeded")}
         />
         <FormControl
-          label="Comissão"
+          label={t("PAGES:FIELDS.comission", {
+            defaultValue: "Comissão",
+          })}
           type={"number"}
           error={formState.errors.comission}
           {...register("comission")}
@@ -93,7 +124,9 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
         <Select
           bg="secondary.600"
           name="categoryList"
-          label="Categoria"
+          label={t("PAGES:HOME_PAGE.category", {
+            defaultValue: "Categoria",
+          })}
           list={categorys}
           value={categorySelected}
           onChange={handleChangeCategorySelected}
@@ -101,11 +134,15 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
           keyLabel="name"
         >
           <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            Carregar mais
+            {t("PAGES:NEW_APPOINTMENT.loadMore", {
+              defaultValue: "Carregar mais",
+            })}
           </option>
         </Select>
         <Checkbox
-          label="Ativo"
+          label={t("PAGES:FIELDS.active", {
+            defaultValue: "Ativo",
+          })}
           colorScheme="green"
           isChecked={active}
           onChange={(e) => {
@@ -115,7 +152,9 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
         />
         <Checkbox
           colorScheme="green"
-          label={"Possui preço promocional"}
+          label={t("PAGES:FIELDS.havePromotionalPrice", {
+            defaultValue: "Possui preço promocional?",
+          })}
           isChecked={havePromotionalPrice}
           onChange={(e) => {
             e.preventDefault();
@@ -124,7 +163,9 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
         />
         <Checkbox
           colorScheme="green"
-          label={"Gera pontos de fidelidade"}
+          label={t("PAGES:FIELDS.hasFidelityGenerator", {
+            defaultValue: "Gera pontos de fidelidade?",
+          })}
           isChecked={hasFidelityGenerator}
           onChange={(e) => {
             e.preventDefault();
@@ -133,7 +174,9 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
         />
         <Checkbox
           colorScheme="green"
-          label={"Pontos de fidelidade podem ser usados na compra?"}
+          label={t("PAGES:FIELDS.canPayWithFidelityPoints", {
+            defaultValue: "Pontos de fidelidade podem ser usados na compra?",
+          })}
           isChecked={canPayWithFidelityPoints}
           onChange={(e) => {
             e.preventDefault();

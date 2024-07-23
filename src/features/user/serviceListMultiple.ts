@@ -39,7 +39,10 @@ export const useServiceListMultiple = ({
       setPrevServiceOptions(
         services
           ?.filter?.((service) => prevServicesSelected?.includes?.(service?._id))
-          ?.map?.((service) => ({ label: service?.name, value: service?._id })) ?? []
+          ?.map?.((service) => ({
+            label: service?.name,
+            value: service?._id,
+          })) ?? []
       );
     }
   }, [services]);

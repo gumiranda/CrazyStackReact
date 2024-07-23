@@ -2,6 +2,8 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetAppointmentsResponse } from "@/entidades/appointment/appointment.api";
 import { useAppointmentList } from "../appointmentList.hook";
+import { useTranslation } from "react-i18next";
+import { useBreakpointValue } from "@chakra-ui/react";
 type AppointmentListTablePageProps = {
   data: GetAppointmentsResponse;
   page: number;
@@ -13,6 +15,7 @@ export const AppointmentListTablePage = ({
   page = 0,
   data,
 }: AppointmentListTablePageProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     appointments,
     setAppointments,
@@ -24,26 +27,70 @@ export const AppointmentListTablePage = ({
     page,
     initialData: data,
   });
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const fieldsMobile = [
+    {
+      id: "datePickerSelected",
+      label: t("PAGES:FIELDS.datePickerSelected", {
+        defaultValue: "Data",
+      }),
+      displayKeyText: true,
+    },
+    {
+      id: "initHour",
+      label: t("PAGES:FIELDS.initHour", {
+        defaultValue: "Horário Início",
+      }),
+      displayKeyText: true,
+    },
+    {
+      id: "endHour",
+      label: t("PAGES:FIELDS.endHour", {
+        defaultValue: "Horário Fim",
+      }),
+      displayKeyText: true,
+    },
+  ];
+  const fields = [
+    ...fieldsMobile,
+
+    // {
+    //   id: "clientName",
+    //   label: t("PAGES:HOME_PAGE.client", {
+    //     defaultValue: "Cliente",
+    //   }),
+    //   displayKeyText: true,
+    // },
+    // {
+    //   id: "professionalName",
+    //   label: t("PAGES:HOME_PAGE.professional", {
+    //     defaultValue: "Profissional",
+    //   }),
+    //   displayKeyText: true,
+    // },
+    // {
+    //   id: "ownerName",
+    //   label: t("PAGES:HOME_PAGE.owner", {
+    //     defaultValue: "Estabelecimento",
+    //   }),
+    //   displayKeyText: true,
+    // },
+    {
+      id: "statusLabel",
+      label: t("PAGES:FIELDS.statusLabel", {
+        defaultValue: "Status",
+      }),
+      displayKeyText: true,
+    },
+  ];
   return (
     <>
-      <Head
-        title={"Belezix Admin | Agendamentos"}
-        description="Página de listagem de agendamentos do painel de Admin Belezix"
-      />
       <Box borderRadius={8} bg="secondary.500" p="4" flexGrow="1">
         <GenericTable
           deleteSelectedAction={deleteSelectedAction}
           isLoading={false}
           items={appointments}
-          fields={[
-            { id: "message", label: "Mensagem", displayKeyText: true },
-            {
-              id: "createdAt",
-              label: "Data de criação",
-              displayKeyText: false,
-              children: <Text />,
-            },
-          ]}
+          fields={isMobile ? fieldsMobile : fields}
           setItems={setAppointments}
           linkOnMouseEnter={handlePrefetchAppointment}
           error={undefined}
@@ -51,7 +98,9 @@ export const AppointmentListTablePage = ({
           routeDetails={"/appointments/details"}
           routeCreate={"/appointments/create"}
           routeList={"/appointments/list"}
-          title={"Agendamentos"}
+          title={t("PAGES:HOME_PAGE.appointments", {
+            defaultValue: "Agendamentos",
+          })}
         />
         <Pagination
           onPageChange={setPage}

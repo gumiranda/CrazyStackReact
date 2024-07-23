@@ -17,10 +17,13 @@ import { useServicesSelect } from "@/features/service/serviceList.hook";
 import { useClientsSelect } from "@/features/client/clientList.hook";
 import { useTimeAvailable } from "@/features/appointment/timeAvailable.hook";
 import { addMinutes } from "date-fns";
+import { useTranslation } from "react-i18next";
+
 type CreateRequestFormProps = {
   ownerList: GetOwnersResponse;
 };
 export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const router = useRouter();
   const [dateSelected, setDateSelected] = useState(null);
@@ -45,7 +48,7 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
     date: dateSelected ?? null,
   });
   const [active, setActive] = useState(false);
-  const createRequest = createRequestMutation(showModal, router);
+  const createRequest = createRequestMutation(showModal, router, t);
   const currentService = services?.find?.((service) => service?._id === serviceSelected);
   const serviceDuration = currentService?.duration ?? 60;
   const currentOwner = owners?.find?.((owner) => owner?._id === ownerSelected);
@@ -110,7 +113,7 @@ export const useCreateRequest = ({ ownerList }: CreateRequestFormProps) => {
   };
 };
 
-export function createRequestMutation(showModal: Function, router) {
+export function createRequestMutation(showModal: Function, router, t) {
   return useMutation({
     mutationFn: async (request: CreateRequestFormData) => {
       try {
@@ -120,16 +123,31 @@ export function createRequestMutation(showModal: Function, router) {
         });
         if (!data) {
           showModal({
-            content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-            title: "Erro no servidor",
+            content: t("PAGES:MESSAGES.errorMessage", {
+              defaultValue:
+                "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+            }),
+            title: t("PAGES:MESSAGES.internalServerError", {
+              defaultValue: "Erro no servidor",
+            }),
             type: "error",
           });
           return;
         }
         showModal({
-          content:
-            "Solicitação criada com sucesso, você será redirecionado para a lista de solicitações",
-          title: "Sucesso",
+          content: t("PAGES:MESSAGES.successMessage", {
+            domain: t("PAGES:HOME_PAGE.request", {
+              defaultValue: "Solicitação",
+            }),
+            operation: t("PAGES:MESSAGES.create", {
+              defaultValue: "criada",
+            }),
+            defaultValue:
+              "Solicitação criada com sucesso, você será redirecionado para a lista de solicitações",
+          }),
+          title: t("PAGES:MESSAGES.success", {
+            defaultValue: "Sucesso",
+          }),
           type: "success",
         });
         if (router) {
@@ -138,8 +156,13 @@ export function createRequestMutation(showModal: Function, router) {
         return data;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+            defaultValue:
+              "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+          }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+            defaultValue: "Erro no servidor",
+          }),
           type: "error",
         });
       }

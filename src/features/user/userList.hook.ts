@@ -12,7 +12,6 @@ export const useUsersSelect = ({
   ownerSelected = null,
   role = "professional",
 }: UserFormProps) => {
-  console.log(userList);
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState(userList?.users ?? []);
   const [userSelected, setUserSelected] = useState<string>(

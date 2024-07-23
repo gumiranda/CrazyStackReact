@@ -2,7 +2,9 @@ import { useCreateMapRoute } from "./createMapRoute.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 import { useRef } from "react";
 import { Grid, Text, List, ListItem, Card, CardBody, Button } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 export const CreateMapRouteForm = () => {
+  const { t } = useTranslation(["PAGES"]);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const {
     formState,
@@ -22,13 +24,20 @@ export const CreateMapRouteForm = () => {
     <>
       <BoxCreateItem
         onSubmit={handleSubmit(handleCreateMapRoute)}
-        title={"Criar rotas"}
+        title={t("PAGES:HOME_PAGE.createDomain", {
+          defaultValue: "Criar rotas",
+          domain: t("PAGES:HOME_PAGE.route", {
+            defaultValue: "Rotas",
+          }),
+        })}
         isLoadingSaveButton={formState.isSubmitting}
         cancelRoute={"/mapRoutes/1"}
       >
         <GridForm>
           <FormControl
-            label="Nome da rota"
+            label={t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            })}
             error={formState.errors.name}
             {...register("name")}
           />
@@ -51,7 +60,9 @@ export const CreateMapRouteForm = () => {
             {...register("destinationText")}
           />
           <Checkbox
-            label="Ativo"
+            label={t("PAGES:FIELDS.active", {
+              defaultValue: "Ativo",
+            })}
             colorScheme="green"
             isChecked={active}
             onChange={(e) => {

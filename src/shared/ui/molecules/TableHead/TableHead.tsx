@@ -8,9 +8,12 @@ import {
   Icon,
   Flex,
   Button,
+  useBreakpointValue,
+  IconButton,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine, RiFileListLine, RiDeleteBin6Line } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 
 interface TableHeadProps extends FlexProps {
   children?: ReactNode;
@@ -31,6 +34,9 @@ export const TableHead = ({
   title,
   ...rest
 }: TableHeadProps) => {
+  const { t } = useTranslation(["PAGES"]);
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
     <Flex
       p={["0", "2"]}
@@ -39,36 +45,88 @@ export const TableHead = ({
       {...rest}
       data-testid="TableHeadTestId"
     >
-      <Heading size="lg">
+      <Heading fontSize={["sm", "xl", "2xl", "2xl"]}>
         {title}
         {!isLoading && isFetching && <Spinner size="sm" color="white" ml="4" />}
       </Heading>
       <HStack spacing="2">
         <NextLink passHref href={routeCreate}>
-          <Button
-            size="sm"
-            fontSize="sm"
-            bgColor={"tertiary.500"}
-            _hover={{ bgColor: "tertiary.500" }}
-            leftIcon={<Icon fontSize="20" as={RiAddLine} />}
-          >
-            Cadastrar
-          </Button>
+          {!isMobile ? (
+            <Button
+              size="sm"
+              fontSize="sm"
+              bgColor={"tertiary.500"}
+              _hover={{ bgColor: "tertiary.500" }}
+              leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+            >
+              {t("PAGES:MESSAGES.createNew", {
+                defaultValue: "Cadastrar",
+              })}
+            </Button>
+          ) : (
+            <Tooltip
+              label={t("PAGES:MESSAGES.createNew", {
+                defaultValue: "Cadastrar",
+              })}
+            >
+              <IconButton
+                size="sm"
+                fontSize="sm"
+                bgColor={"tertiary.500"}
+                _hover={{ bgColor: "tertiary.500" }}
+                icon={<Icon fontSize="20" as={RiAddLine} />}
+                aria-label={t("PAGES:MESSAGES.createNew", {
+                  defaultValue: "Cadastrar",
+                })}
+              />
+            </Tooltip>
+          )}
         </NextLink>
         <NextLink passHref href={routeList}>
-          <Button
+          {!isMobile ? (
+            <Button
+              size="sm"
+              fontSize="sm"
+              colorScheme={"purple"}
+              leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
+            >
+              {t("PAGES:MESSAGES.list", {
+                defaultValue: "Lista",
+              })}
+            </Button>
+          ) : (
+            <Tooltip
+              label={t("PAGES:MESSAGES.list", {
+                defaultValue: "Lista",
+              })}
+            >
+              <IconButton
+                size="sm"
+                fontSize="sm"
+                colorScheme={"purple"}
+                icon={<Icon fontSize="20" as={RiFileListLine} />}
+                aria-label={t("PAGES:MESSAGES.list", {
+                  defaultValue: "Lista",
+                })}
+              />
+            </Tooltip>
+          )}
+        </NextLink>
+        <Tooltip
+          label={t("PAGES:MESSAGES.delete", {
+            defaultValue: "Deletar selecionados",
+          })}
+        >
+          <IconButton
             size="sm"
             fontSize="sm"
-            colorScheme={"purple"}
-            leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
-          >
-            Lista
-          </Button>
-        </NextLink>
-        <Tooltip label="Excluir todos os selecionados">
-          <Button onClick={deleteSelectedAction} size="sm" bg="white">
-            <Icon fontSize="20" as={RiDeleteBin6Line} />
-          </Button>
+            colorScheme={"red"}
+            onClick={deleteSelectedAction}
+            icon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
+            aria-label={t("PAGES:MESSAGES.list", {
+              defaultValue: "Lista",
+            })}
+          />
         </Tooltip>
       </HStack>
       {children}

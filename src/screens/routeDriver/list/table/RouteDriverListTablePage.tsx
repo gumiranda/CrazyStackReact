@@ -2,6 +2,7 @@
 import { Box, GenericTable, Head, Pagination } from "@/shared/ui";
 import { GetRouteDriversResponse } from "@/entidades/routeDriver/routeDriver.api";
 import { useRouteDriverList } from "../routeDriverList.hook";
+import { useTranslation } from "react-i18next";
 type RouteDriverListTablePageProps = {
   data: GetRouteDriversResponse;
   page: number;
@@ -13,6 +14,7 @@ export const RouteDriverListTablePage = ({
   page = 0,
   data,
 }: RouteDriverListTablePageProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     routeDrivers,
     setRouteDrivers,
@@ -32,12 +34,19 @@ export const RouteDriverListTablePage = ({
           isLoading={false}
           items={routeDrivers}
           fields={[
-            { id: "name", label: "Nome", displayKeyText: true },
+            {
+              id: "name",
+              label: t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }),
+              displayKeyText: true,
+            },
             {
               id: "createdAt",
-              label: "Data de criação",
-              displayKeyText: false,
-              children: <Text />,
+              label: t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }),
+              displayKeyText: true,
             },
           ]}
           setItems={setRouteDrivers}

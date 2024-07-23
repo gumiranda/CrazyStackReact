@@ -10,12 +10,15 @@ import { parseCookies } from "nookies";
 import { useWS } from "@/application/providers/webSocketProvider";
 import { api } from "@/shared/api";
 import { useUi } from "@/shared/libs";
+import { useTranslation } from "react-i18next";
 
 type MapRouteDetailsProps = {
   data: MapRouteProps;
   id: string;
 };
 export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
+  const { t } = useTranslation(["PAGES"]);
+
   const props = { mapRoute: data };
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const map = useLoadMap(mapContainerRef);
@@ -30,8 +33,13 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
     socket.onclose = () => {
       setSocketClosed(true);
       showModal({
-        content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-        title: "Erro no servidor",
+        content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue:
+            "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+        title: t("PAGES:MESSAGES.internalServerError", {
+          defaultValue: "Erro no servidor",
+        }),
         type: "error",
       });
       console.log("conexão websocket fechada");
@@ -72,7 +80,6 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
           `/routeDriver/update?_id=${routeCreatedResponse?._id}&routeId=${route?._id}&lat=${step.start_location.lat}&lng=${step.start_location.lng}`,
           { updatedAt: new Date() }
         );
-        console.log({ data });
       }
       socket.send(
         JSON.stringify({

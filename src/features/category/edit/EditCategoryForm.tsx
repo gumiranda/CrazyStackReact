@@ -1,18 +1,25 @@
 import { CategoryProps } from "@/entidades/category";
 import { useEditCategory } from "./editCategory.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export interface EditCategoryFormProps {
   category: CategoryProps;
 }
 export const EditCategoryForm = ({ category }: EditCategoryFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { formState, register, handleSubmit, handleEditCategory } = useEditCategory({
     category,
   });
   return (
     <BoxCreateItem
       onSubmit={handleSubmit(handleEditCategory)}
-      title={"Editar categoria"}
+      title={t("PAGES:HOME_PAGE.editDomain", {
+        defaultValue: "Editar categoria",
+        domain: t("PAGES:HOME_PAGE.category", {
+          defaultValue: "Categoria",
+        }),
+      })}
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/categorys/1"}
     >
@@ -20,14 +27,26 @@ export const EditCategoryForm = ({ category }: EditCategoryFormProps) => {
         item={category}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome da categoria"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />

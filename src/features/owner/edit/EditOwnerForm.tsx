@@ -1,6 +1,7 @@
 import { HourWorks, OwnerProps } from "@/entidades/owner";
 import { useEditOwner } from "./editOwner.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
+import { useTranslation } from "react-i18next";
 
 export interface EditOwnerFormProps {
   owner: OwnerProps;
@@ -8,6 +9,7 @@ export interface EditOwnerFormProps {
   users: any;
 }
 export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const {
     formState,
     register,
@@ -46,14 +48,26 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
         item={owner}
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          {
+            id: "name",
+            label: t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            }),
+          },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          {
+            id: "createdAt",
+            label: t("PAGES:FIELDS.createdAt", {
+              defaultValue: "Data de criação",
+            }),
+          },
         ]}
       />
       <GridForm>
         <FormControl
-          label="Nome da estabelecimento"
+          label={t("PAGES:FIELDS.name", {
+            defaultValue: "Nome",
+          })}
           error={formState.errors.name}
           {...register("name")}
         />

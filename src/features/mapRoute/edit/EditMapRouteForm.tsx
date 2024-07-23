@@ -3,12 +3,14 @@ import { useEditMapRoute } from "./editMapRoute.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 import { Grid, Text, List, ListItem, Card, CardBody, Button } from "@chakra-ui/react";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface EditMapRouteFormProps {
   mapRoute: MapRouteProps;
   mapContainerRef?: any;
 }
 export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const {
     formState,
@@ -37,18 +39,30 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
           item={mapRoute}
           fields={[
             { id: "_id", label: "Id" },
-            { id: "name", label: "Nome" },
+            {
+              id: "name",
+              label: t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }),
+            },
             { id: "distance", label: "Distância (em metros)" },
             { id: "duration", label: "Duração (em minutos)" },
             { id: "source", subId: "name", label: "Origem" },
             { id: "destination", subId: "name", label: "Destino" },
             { id: "createdById", label: "Id do criador" },
-            { id: "createdAt", label: "Data de criação" },
+            {
+              id: "createdAt",
+              label: t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }),
+            },
           ]}
         />
         <GridForm>
           <FormControl
-            label="Nome da rota"
+            label={t("PAGES:FIELDS.name", {
+              defaultValue: "Nome",
+            })}
             error={formState.errors.name}
             {...register("name")}
           />

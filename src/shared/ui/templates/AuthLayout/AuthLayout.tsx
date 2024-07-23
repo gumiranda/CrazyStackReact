@@ -1,5 +1,5 @@
 import { config } from "@/application/config";
-import { Flex, Box, Text } from "../../atoms";
+import { Flex, Box, Text, SelectTranslate } from "../../atoms";
 import { useBreakpointValue } from "@chakra-ui/react";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
@@ -13,6 +13,9 @@ export const AuthLayout = ({ children, ...rest }: any) => {
       overflowY={"hidden"}
       {...rest}
     >
+      <Flex alignSelf={"flex-start"} mt={5} ml={5}>
+        <SelectTranslate />
+      </Flex>
       <Flex flexDir={"column"} w={["100%", "85%"]}>
         {children}
       </Flex>

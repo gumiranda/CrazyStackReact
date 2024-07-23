@@ -4,11 +4,13 @@ import { useProfile } from "./useProfile.hook";
 import { Divider } from "@chakra-ui/react";
 import { IoExitOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 type ProfileProps = {
   showProfileData?: boolean;
 };
 export const Profile = ({ showProfileData }: ProfileProps) => {
+  const { t } = useTranslation(["PAGES"]);
   const { user, logout } = useAuth() || {};
   const router = useRouter();
   const { showUserMenu, setShowUserMenu } = useProfile();
@@ -59,7 +61,11 @@ export const Profile = ({ showProfileData }: ProfileProps) => {
               }}
             >
               <IoExitOutline />
-              <Text fontSize="sm">Sair</Text>
+              <Text fontSize="sm">
+                {t("PAGES:HOME_PAGE.logout", {
+                  defaultValue: "Sair",
+                })}
+              </Text>
             </Flex>
           </Box>
         )}
