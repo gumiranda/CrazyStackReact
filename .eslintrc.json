@@ -62,7 +62,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "react-hooks/rules-of-hooks": "error",
-    "prettier/prettier": "warn",
+    "prettier/prettier": "error",
     "indent": "off",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
