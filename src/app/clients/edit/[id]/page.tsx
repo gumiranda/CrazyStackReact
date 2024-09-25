@@ -1,12 +1,12 @@
-import { getClientById } from "@/entidades/client/client.api";
+import { getClientById } from "@/slices/appointments/entidades/client/client.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { ClientEditPage } from "@/screens/client/edit";
-import { getUsers } from "@/entidades/user/user.api";
+import { ClientEditPage } from "@/slices/appointments/screens/client/edit";
+import { getUsers } from "@/slices/general/entidades/user/user.api";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Cliente`,

@@ -1,7 +1,7 @@
-import { RequestListTablePage } from "@/screens/request/list/table";
+import { RequestListTablePage } from "@/slices/appointments/screens/request/list/table";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
-import { getRequests } from "@/entidades/request/request.api";
+import { getRequests } from "@/slices/appointments/entidades/request/request.api";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const page = Number(context?.query?.page ?? 1);
   delete context?.query?.page;

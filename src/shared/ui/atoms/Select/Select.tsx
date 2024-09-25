@@ -16,6 +16,9 @@ export const Select = ({
   label: string;
   labelColor?: string;
 }) => {
+  if (rest?.value === null) {
+    rest.value = "";
+  }
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
       {!!label && (
@@ -27,7 +30,7 @@ export const Select = ({
         {list?.map?.((item, index) => (
           <option
             style={{ backgroundColor: theme.colors.secondary[500] }}
-            key={item?.[keyValue] ?? index}
+            key={`${item?.[keyValue]}${item?.[keyLabel]}` ?? index}
             value={item?.[keyValue]}
           >
             {item?.[keyLabel]}

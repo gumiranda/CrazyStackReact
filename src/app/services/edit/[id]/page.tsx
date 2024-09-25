@@ -1,12 +1,12 @@
-import { getServiceById } from "@/entidades/service/service.api";
+import { getServiceById } from "@/slices/appointments/entidades/service/service.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { ServiceEditPage } from "@/screens/service/edit";
-import { getCategorys } from "@/entidades/category/category.api";
+import { ServiceEditPage } from "@/slices/appointments/screens/service/edit";
+import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Serviço`,

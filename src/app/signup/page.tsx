@@ -1,4 +1,4 @@
-import { SignUpPage } from "@/screens/auth/signup/SignUpPage";
+import { SignUpPage } from "@/slices/general/screens/auth/signup/SignUpPage";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";

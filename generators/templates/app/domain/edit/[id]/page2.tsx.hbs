@@ -1,12 +1,12 @@
-import { get{{pascalCase name}}ById } from "@/entidades/{{camelCase name}}/{{camelCase name}}.api";
+import { get{{pascalCase name}}ById } from "@/slices/appointments/entidades/{{camelCase name}}/{{camelCase name}}.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { {{pascalCase name}}EditPage } from "@/screens/{{camelCase name}}/edit";
-import { get{{pascalCase subdomain}}s } from "@/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
+import { {{pascalCase name}}EditPage } from "@/slices/appointments/screens/{{camelCase name}}/edit";
+import { get{{pascalCase subdomain}}s } from "@/slices/appointments/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar {{pascalCase label}}`,

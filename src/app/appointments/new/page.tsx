@@ -1,10 +1,10 @@
 import { config } from "@/application/config";
 import type { Metadata } from "next";
-import { getOwners } from "@/entidades/owner/owner.api";
+import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { getClients } from "@/entidades/client";
-import { FullCreateRequest } from "@/processes/appointment/FullCreateRequest";
-import { getUsers } from "@/entidades/user";
+import { getClients } from "@/slices/appointments/entidades/client";
+import { FullCreateRequest } from "@/slices/appointments/processes/appointment/FullCreateRequest";
+import { getUsers } from "@/slices/general/entidades/user";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {

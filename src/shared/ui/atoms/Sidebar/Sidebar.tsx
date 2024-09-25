@@ -8,9 +8,10 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerBody,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useSidebarDrawer } from "@/shared/libs";
+import { ScrollbarCss } from "@/shared/css";
+
 type SidebarProps = {
   children?: React.ReactNode;
   title: string;
@@ -30,7 +31,7 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
           <DrawerContent bg="secondary.500" p="4">
             <DrawerCloseButton mt="6" />
             <DrawerHeader>{title}</DrawerHeader>
-            <DrawerBody>{children}</DrawerBody>
+            <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>

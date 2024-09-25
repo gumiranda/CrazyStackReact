@@ -1,12 +1,12 @@
-import { getAppointmentById } from "@/entidades/appointment/appointment.api";
+import { getAppointmentById } from "@/slices/appointments/entidades/appointment/appointment.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { AppointmentEditPage } from "@/screens/appointment/edit";
-import { getOwners } from "@/entidades/owner/owner.api";
+import { AppointmentEditPage } from "@/slices/appointments/screens/appointment/edit";
+import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Agendamento`,

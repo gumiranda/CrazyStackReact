@@ -7,9 +7,16 @@ export const ViewField = ({ children, ...rest }) => {
     </Box>
   );
 };
-export const Label = ({ children }) => {
+export const Label = ({ children, ...props }) => {
   return (
-    <Text color="gray.600" fontSize="md" fontWeight={"500"} textAlign="center" mt={1}>
+    <Text
+      color="gray.600"
+      fontSize="md"
+      fontWeight={"500"}
+      textAlign="center"
+      mt={1}
+      {...props}
+    >
       {children}
     </Text>
   );

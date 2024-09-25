@@ -6,12 +6,16 @@ import { useRouter } from "next/navigation";
 import { useUi } from "./UiContext";
 import { api } from "@/shared/api";
 import { useTranslation } from "react-i18next";
+import { parseJSON } from "../utils/parseJSON";
+import { userModel } from "@/slices/general/entidades/user/user.model";
 
 type User = {
   email: string;
   name: string;
   role: string;
   _id: string;
+  createdAt: string;
+  phone: string;
 };
 type AuthProviderProps = {
   children: ReactNode;
@@ -26,6 +30,9 @@ type SignupCredentials = LoginCredentials & {
   role?: string;
   coord?: any;
   passwordConfirmation?: string;
+  cpf?: string;
+  cnpj?: string;
+  cnpjActive?: boolean;
 };
 type AuthContextData = {
   login(credentials: LoginCredentials): Promise<void>;
@@ -34,19 +41,16 @@ type AuthContextData = {
   user: User | null;
   logout: () => void;
   setUser: (user: User) => void;
+  userPhoto: any;
+  updateUserPhoto: (newPhoto: string) => void;
 };
 const AuthContext = createContext({} as AuthContextData);
-export const parseJSON = (json: string) => {
-  try {
-    return JSON.parse(json);
-  } catch (error) {
-    return null;
-  }
-};
+
 export function AuthProvider({ children }: AuthProviderProps) {
   const { t } = useTranslation(["PAGES"]);
   const { showModal, setLoading } = useUi();
   const [user, setUser] = useState<User | null>(null);
+  const [userPhoto, setUserPhoto] = useState<any>(null);
   const isAuthenticated = !!user;
   const Router = useRouter();
   const logout = () => {
@@ -68,8 +72,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const {
       "belezixadmin.user": userComingFromCookie,
+      "belezixadmin.photo": photoComingFromCookie,
       "belezixadmin.refreshToken": refreshToken = null,
     } = parseCookies();
+    const parsedPhoto = parseJSON(photoComingFromCookie);
     const parsedUser = parseJSON(userComingFromCookie);
     if (parsedUser && refreshToken && parsedUser?.role !== "client") {
       setUser(parsedUser);
@@ -77,8 +83,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       signOut();
       // Router.push("/login");
     }
+    if (parsedPhoto?.url) {
+      setUserPhoto(parsedPhoto);
+    }
   }, []);
-
+  useEffect(() => {
+    if (user?.role === "client") {
+      Router.push("/login");
+    }
+  }, [user]);
   const login = async ({ email, password }: LoginCredentials) => {
     try {
       setLoading(true);
@@ -88,7 +101,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
         passwordConfirmation: password,
       });
-      const { accessToken: token, refreshToken, user: userComing } = response?.data || {};
+      const {
+        accessToken: token,
+        refreshToken,
+        user: userResponse,
+      } = response?.data || {};
+      const userComing = userModel(userResponse).format();
+
       setCookie(undefined, "belezixadmin.token", token, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
@@ -101,7 +120,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
-      setUser(userComing);
+      setUser(userComing as User);
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
       setLoading(false);
@@ -121,7 +140,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
     }
   };
-  const signup = async ({ email, password, name, phone }: SignupCredentials) => {
+  const signup = async ({
+    email,
+    password,
+    name,
+    phone,
+    cpf,
+    cnpj,
+    cnpjActive,
+  }: SignupCredentials) => {
     try {
       setLoading(true);
 
@@ -136,8 +163,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
           lng: 0,
         },
         role: "owner",
+        cpf: cnpjActive ? null : cpf,
+        cnpj: cnpjActive ? cnpj : null,
       });
-      const { accessToken: token, refreshToken, user: userComing } = response?.data || {};
+      const {
+        accessToken: token,
+        refreshToken,
+        user: userResponse,
+      } = response?.data || {};
+      const userComing = userModel(userResponse).format();
       setCookie(undefined, "belezixadmin.token", token, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
@@ -150,7 +184,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
-      setUser(userComing);
+      setUser(userComing as User);
       api.defaults.timeout = 5000;
       api.defaults.headers["authorization"] = `Bearer ${token}`;
       setLoading(false);
@@ -177,10 +211,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
     }
   };
-
+  const updateUserPhoto = (newPhoto: string) => {
+    setUserPhoto(newPhoto);
+    destroyCookie(undefined, "belezixadmin.photo");
+    setCookie(undefined, "belezixadmin.photo", JSON.stringify(newPhoto), {
+      maxAge: 60 * 60 * 24 * 30,
+      path: "/",
+    });
+    destroyCookie(undefined, "belezixadmin.cache");
+  };
   return (
     <AuthContext.Provider
-      value={{ signup, setUser, login, isAuthenticated, user, logout }}
+      value={{
+        signup,
+        setUser,
+        login,
+        isAuthenticated,
+        user,
+        logout,
+        userPhoto,
+        updateUserPhoto,
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -199,4 +250,6 @@ export function signOut() {
   destroyCookie(undefined, "belezixadmin.token");
   destroyCookie(undefined, "belezixadmin.refreshToken");
   destroyCookie(undefined, "belezixadmin.user");
+  destroyCookie(undefined, "belezixadmin.cache");
+  destroyCookie(undefined, "belezixadmin.photo");
 }

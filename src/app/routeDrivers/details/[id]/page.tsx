@@ -1,12 +1,12 @@
-import { getRouteDriverById } from "@/entidades/routeDriver/routeDriver.api";
+import { getRouteDriverById } from "@/slices/appointments/entidades/routeDriver/routeDriver.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { RouteDriverDetailsPage } from "@/screens/routeDriver/details";
+import { RouteDriverDetailsPage } from "@/slices/appointments/screens/routeDriver/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { getMapRouteById } from "@/entidades/mapRoute/mapRoute.api";
+import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Detalhes da Corrida`,

@@ -1,4 +1,4 @@
-import { {{pascalCase name}}Props } from "@/entidades/{{camelCase name}}";
+import { {{pascalCase name}}Props } from "@/slices/appointments/entidades/{{camelCase name}}";
 import { useEdit{{pascalCase name}} } from "./edit{{pascalCase name}}.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 
@@ -20,9 +20,13 @@ export const Edit{{pascalCase name}}Form = ({ {{camelCase name}} }: Edit{{pascal
         item={ {{camelCase name}} }
         fields={[
           { id: "_id", label: "Id" },
-          { id: "name", label: "Nome" },
+          { id: "name", label:t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }) },
           { id: "createdById", label: "Id do criador" },
-          { id: "createdAt", label: "Data de criação" },
+          { id: "createdAt", label:t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }) },
         ]}
       />
       <GridForm>

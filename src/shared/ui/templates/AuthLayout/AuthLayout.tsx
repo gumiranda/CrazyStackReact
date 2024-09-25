@@ -1,6 +1,5 @@
 import { config } from "@/application/config";
-import { Flex, Box, Text, SelectTranslate } from "../../atoms";
-import { useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Box, Text, SelectTranslate, useBreakpointValue } from "../../atoms";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
@@ -13,11 +12,11 @@ export const AuthLayout = ({ children, ...rest }: any) => {
       overflowY={"hidden"}
       {...rest}
     >
-      <Flex alignSelf={"flex-start"} mt={5} ml={5}>
-        <SelectTranslate />
-      </Flex>
-      <Flex flexDir={"column"} w={["100%", "85%"]}>
-        {children}
+      <Flex flexDir="column" w={{ base: "100%", md: "65%" }}>
+        <Flex alignSelf={"flex-start"} mt={5} ml={5}>
+          <SelectTranslate />
+        </Flex>
+        <Flex flexDir={"column"}>{children}</Flex>
       </Flex>
       {isDesktop && (
         <Flex

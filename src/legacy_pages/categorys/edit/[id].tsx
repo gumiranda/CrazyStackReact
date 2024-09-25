@@ -1,5 +1,5 @@
-import { CategoryEditPage } from "@/screens/category/edit";
-import { getCategoryById } from "@/entidades/category/category.api";
+import { CategoryEditPage } from "@/slices/appointments/screens/category/edit";
+import { getCategoryById } from "@/slices/appointments/entidades/category/category.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

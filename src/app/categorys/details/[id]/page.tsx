@@ -1,8 +1,8 @@
-import { getCategoryById } from "@/entidades/category/category.api";
+import { getCategoryById } from "@/slices/appointments/entidades/category/category.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { CategoryDetailsPage } from "@/screens/category/details";
+import { CategoryDetailsPage } from "@/slices/appointments/screens/category/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

@@ -1,5 +1,5 @@
-import { RouteDriverEditPage } from "@/screens/routeDriver/edit";
-import { getRouteDriverById } from "@/entidades/routeDriver/routeDriver.api";
+import { RouteDriverEditPage } from "@/slices/appointments/screens/routeDriver/edit";
+import { getRouteDriverById } from "@/slices/appointments/entidades/routeDriver/routeDriver.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

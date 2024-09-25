@@ -1,11 +1,11 @@
-import { getCategoryById } from "@/entidades/category/category.api";
+import { getCategoryById } from "@/slices/appointments/entidades/category/category.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { CategoryEditPage } from "@/screens/category/edit";
+import { CategoryEditPage } from "@/slices/appointments/screens/category/edit";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Categoria`,

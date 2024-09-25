@@ -1,6 +1,7 @@
-import { getClients } from "@/entidades/client/client.api";
+import { getClients } from "@/slices/appointments/entidades/client/client.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { ClientListTablePage } from "@/screens/client/list/table/ClientListTablePage";
+import { ClientListTablePage } from "@/slices/appointments/screens/client/list/table/ClientListTablePage";
+
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();

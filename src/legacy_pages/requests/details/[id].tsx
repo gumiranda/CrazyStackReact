@@ -1,5 +1,5 @@
-import { RequestDetailsPage } from "@/screens/request/details";
-import { getRequestById } from "@/entidades/request/request.api";
+import { RequestDetailsPage } from "@/slices/appointments/screens/request/details";
+import { getRequestById } from "@/slices/appointments/entidades/request/request.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

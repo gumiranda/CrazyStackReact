@@ -1,11 +1,12 @@
+"use client";
 import { Flex, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { Text } from "../../atoms";
 import { FaRegClock } from "react-icons/fa6";
-import { statusMap } from "@/entidades/request/request.model";
+import { statusMap } from "@/slices/appointments/entidades/request/request.model";
 import { SlOptions } from "react-icons/sl";
 import { Modal } from "@/widgets";
-import { RequestDetailsV2 } from "@/entidades/request/details/RequestDetailsV2";
+import { RequestDetailsV2 } from "@/slices/appointments/entidades/request/details/RequestDetailsV2";
 import { useTranslation } from "react-i18next";
 
 export const TimeSlots = ({ list }) => {

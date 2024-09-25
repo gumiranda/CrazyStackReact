@@ -1,13 +1,13 @@
-import { getUserById } from "@/entidades/user/user.api";
+import { getUserById } from "@/slices/general/entidades/user/user.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { UserEditPage } from "@/screens/user/edit";
-import { getServices } from "@/entidades/service/service.api";
-import { getOwners } from "@/entidades/owner";
+import { UserEditPage } from "@/slices/general/screens/user/edit";
+import { getServices } from "@/slices/appointments/entidades/service/service.api";
+import { getOwners } from "@/slices/appointments/entidades/owner";
 
 export const metadata: Metadata = {
   title: `${config.systemName} | Editar Profissional`,

@@ -23,7 +23,7 @@ export const FormControlGroup = ({
       {formControls?.map?.(
         ({ label = "", name = "defaultName", type = "text", ...rest }, index: number) => (
           <FormControl
-            key={index}
+            key={label + index}
             label={label}
             type={type}
             error={formState?.errors?.[name]}

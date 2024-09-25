@@ -1,8 +1,8 @@
-import { RouteDriverDetailsPage } from "@/screens/routeDriver/details";
-import { getRouteDriverById } from "@/entidades/routeDriver/routeDriver.api";
+import { RouteDriverDetailsPage } from "@/slices/appointments/screens/routeDriver/details";
+import { getRouteDriverById } from "@/slices/appointments/entidades/routeDriver/routeDriver.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
-import { getMapRouteById } from "@/entidades/mapRoute/mapRoute.api";
+import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
 
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;

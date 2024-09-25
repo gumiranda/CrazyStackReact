@@ -1,8 +1,8 @@
-import { getOwnerById } from "@/entidades/owner/owner.api";
+import { getOwnerById } from "@/slices/appointments/entidades/owner/owner.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { OwnerDetailsPage } from "@/screens/owner/details";
+import { OwnerDetailsPage } from "@/slices/appointments/screens/owner/details";
 import { config } from "@/application/config";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

@@ -1,6 +1,7 @@
-import { getUsers } from "@/entidades/user/user.api";
+import { getUsers } from "@/slices/general/entidades/user/user.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { UserListTablePage } from "@/screens/user/list/table/UserListTablePage";
+import { UserListTablePage } from "@/slices/general/screens/user/list/table/UserListTablePage";
+
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();

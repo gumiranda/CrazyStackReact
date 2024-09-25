@@ -1,6 +1,6 @@
 import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
 import { use{{pascalCase name}}InfiniteList } from "../{{camelCase name}}InfiniteList.hook";
-import { use{{pascalCase name}}Ui } from "@/entidades/{{camelCase name}}/{{camelCase name}}.ui";
+import { use{{pascalCase name}}Ui } from "@/slices/appointments/entidades/{{camelCase name}}/{{camelCase name}}.ui";
 
 export const {{pascalCase name}}GridPage = () => {
   const {
@@ -24,8 +24,12 @@ export const {{pascalCase name}}GridPage = () => {
     isFetching,
     deleteSelectedAction,
     fields: [
-      { id: "name", label: "Nome", displayKeyText: true },
-      { id: "createdAt", label: "Data de criação", displayKeyText: true },
+      { id: "name", label:t("PAGES:FIELDS.name", {
+                defaultValue: "Nome",
+              }), displayKeyText: true },
+      { id: "createdAt", label:t("PAGES:FIELDS.createdAt", {
+                defaultValue: "Data de criação",
+              }), displayKeyText: true },
     ],
   };
   const items =

@@ -1,5 +1,5 @@
-import { AppointmentEditPage } from "@/screens/appointment/edit";
-import { getAppointmentById } from "@/entidades/appointment/appointment.api";
+import { AppointmentEditPage } from "@/slices/appointments/screens/appointment/edit";
+import { getAppointmentById } from "@/slices/appointments/entidades/appointment/appointment.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {

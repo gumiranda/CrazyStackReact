@@ -3,7 +3,7 @@ import { useUi } from "@/shared/libs";
 import { api } from "@/shared/api";
 import { queryClientInstance } from "@/shared/api";
 import { useRouter } from "next/navigation";
-import { useGetInfinite{{pascalCase name}}s } from "@/entidades/{{camelCase name}}/{{camelCase name}}.lib";
+import { useGetInfinite{{pascalCase name}}s } from "@/slices/appointments/entidades/{{camelCase name}}/{{camelCase name}}.lib";
 
 export const use{{pascalCase name}}InfiniteList = () => {
   const router = useRouter();
@@ -39,8 +39,13 @@ export const use{{pascalCase name}}InfiniteList = () => {
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+      defaultValue:
+        "Erro no servidor",
+    }),
           type: "error",
         });
       }
@@ -53,8 +58,13 @@ export const use{{pascalCase name}}InfiniteList = () => {
       },
       onError: () => {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+      defaultValue:
+        "Erro no servidor",
+    }),
           type: "error",
         });
       },

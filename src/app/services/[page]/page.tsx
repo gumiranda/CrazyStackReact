@@ -1,6 +1,7 @@
-import { getServices } from "@/entidades/service/service.api";
+import { getServices } from "@/slices/appointments/entidades/service/service.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
-import { ServiceListTablePage } from "@/screens/service/list/table/ServiceListTablePage";
+import { ServiceListTablePage } from "@/slices/appointments/screens/service/list/table/ServiceListTablePage";
+
 export const revalidate = 3000;
 async function getData(pageNumber) {
   const allCookies = getCookies();

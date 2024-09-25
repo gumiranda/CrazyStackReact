@@ -15,6 +15,8 @@ type UiContextData = UseDisclosureReturn & {
   showModal: Function;
   loading: boolean;
   setLoading: Function;
+  setModalBody: Function;
+  setModalFooter: Function;
 };
 const UiContext = createContext({} as UiContextData);
 const CloseButton = ({ onClose }: any) => {
@@ -70,7 +72,15 @@ export function UiProvider({ children }: UiProviderProps) {
   };
   return (
     <UiContext.Provider
-      value={{ ...disclosure, showModal, clearModalProps, loading, setLoading }}
+      value={{
+        ...disclosure,
+        setModalBody,
+        showModal,
+        clearModalProps,
+        loading,
+        setLoading,
+        setModalFooter,
+      }}
     >
       {children}
       <Modal

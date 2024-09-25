@@ -1,8 +1,8 @@
-import { ServiceEditPage } from "@/screens/service/edit";
-import { getServiceById } from "@/entidades/service/service.api";
+import { ServiceEditPage } from "@/slices/appointments/screens/service/edit";
+import { getServiceById } from "@/slices/appointments/entidades/service/service.api";
 import { GetServerSideProps } from "next";
 import { withSSRAuth } from "@/shared/libs/utils";
-import { getCategorys } from "@/entidades/category";
+import { getCategorys } from "@/slices/appointments/entidades/category";
 export const getServerSideProps: GetServerSideProps = withSSRAuth(async (context) => {
   const id = context?.query?.id;
   if (!id || typeof id !== "string") {

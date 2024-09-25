@@ -1,9 +1,9 @@
-import { Get{{pascalCase name}}sResponse } from "@/entidades/{{camelCase name}}/{{camelCase name}}.api";
+import { Get{{pascalCase name}}sResponse } from "@/slices/appointments/entidades/{{camelCase name}}/{{camelCase name}}.api";
 import { useState, useEffect } from "react";
 import { useUi } from "@/shared/libs";
 import { api, queryClientInstance } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { {{pascalCase name}}Props } from "@/entidades/{{camelCase name}}";
+import { {{pascalCase name}}Props } from "@/slices/appointments/entidades/{{camelCase name}}";
 import { useRouter } from "next/navigation";
 type {{pascalCase name}}ListHook = {
   initialData: Get{{pascalCase name}}sResponse;
@@ -37,8 +37,13 @@ export const use{{pascalCase name}}List = (data: {{pascalCase name}}ListHook) =>
         return null;
       } catch (error) {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+      defaultValue:
+        "Erro no servidor",
+    }),
           type: "error",
         });
       }
@@ -51,8 +56,13 @@ export const use{{pascalCase name}}List = (data: {{pascalCase name}}ListHook) =>
       },
       onError: () => {
         showModal({
-          content: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
-          title: "Erro no servidor",
+          content: t("PAGES:MESSAGES.errorMessage", {
+          defaultValue: "Ocorreu um erro inesperado no servidor, tente novamente mais tarde",
+        }),
+          title: t("PAGES:MESSAGES.internalServerError", {
+      defaultValue:
+        "Erro no servidor",
+    }),
           type: "error",
         });
       },

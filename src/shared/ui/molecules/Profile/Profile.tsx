@@ -11,7 +11,7 @@ type ProfileProps = {
 };
 export const Profile = ({ showProfileData }: ProfileProps) => {
   const { t } = useTranslation(["PAGES"]);
-  const { user, logout } = useAuth() || {};
+  const { user, logout, userPhoto } = useAuth() || {};
   const router = useRouter();
   const { showUserMenu, setShowUserMenu } = useProfile();
   if (!user?.name) {
@@ -26,6 +26,7 @@ export const Profile = ({ showProfileData }: ProfileProps) => {
           bg="secondary.500"
           cursor={"pointer"}
           color="primary.500"
+          src={userPhoto?.url}
           onClick={() => setShowUserMenu(!showUserMenu)}
         />
         {showUserMenu && (

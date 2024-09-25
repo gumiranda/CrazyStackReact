@@ -1,2 +1,2 @@
-import { ServiceGridPage } from "@/screens/service/list/grid";
+import { ServiceGridPage } from "@/slices/appointments/screens/service/list/grid";
 export default ServiceGridPage;

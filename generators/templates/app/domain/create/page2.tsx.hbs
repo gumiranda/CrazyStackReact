@@ -1,7 +1,7 @@
 import { config } from "@/application/config";
-import { {{pascalCase name}}CreatePage } from "@/screens/{{camelCase name}}/create";
+import { {{pascalCase name}}CreatePage } from "@/slices/appointments/screens/{{camelCase name}}/create";
 import type { Metadata } from "next";
-import { get{{pascalCase subdomain}}s } from "@/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
+import { get{{pascalCase subdomain}}s } from "@/slices/appointments/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 
 export const revalidate = 3000;

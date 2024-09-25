@@ -1,2 +1,2 @@
-import { AppointmentCreatePage } from "@/screens/appointment/create";
+import { AppointmentCreatePage } from "@/slices/appointments/screens/appointment/create";
 export default AppointmentCreatePage;

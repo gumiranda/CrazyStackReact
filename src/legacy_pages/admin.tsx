@@ -1,7 +1,7 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid } from "@/shared/ui/atoms/Grid";
 import { useWS } from "@/application/providers/webSocketProvider";
-import { mapRouteModel } from "@/entidades/mapRoute/mapRoute.model";
-import { useLoadMap } from "@/features/mapRoute/load-map";
+import { mapRouteModel } from "@/slices/appointments/entidades/mapRoute/mapRoute.model";
+import { useLoadMap } from "@/slices/appointments/features/mapRoute/load-map";
 import { parseCookies } from "nookies";
 import { useEffect, useRef } from "react";
 import { parseJSON } from "@/shared/libs";
