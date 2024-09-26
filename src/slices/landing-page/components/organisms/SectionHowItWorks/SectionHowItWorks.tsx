@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { fonts } from "@/app/fonts";
 import { CalendarIcon, CheckIcon, SearchIcon } from "@chakra-ui/icons";
 import { FeatureItem } from "../../molecules/FeatureItem";
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
+const MotionBox = motion(Box as any);
+const MotionVStack = motion(VStack as any);
 
 export const SectionHowItWorks = () => {
   const { t } = useTranslation(["LANDING"]);

@@ -52,7 +52,7 @@ export function UiProvider({ children }: UiProviderProps) {
   }) => {
     setModalFooter(newModalFooter);
     setModalBody(
-      newModalBody ?? type === "error" ? (
+      (newModalBody ?? type === "error") ? (
         <BoxError title={subtitle} content={content} />
       ) : type === "success" ? (
         <BoxSuccess title={subtitle} content={content} />

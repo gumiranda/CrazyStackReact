@@ -3,9 +3,9 @@ import { config } from "@/application/config";
 import { Box, Heading, Text } from "@/shared/ui";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-const MotionBox = motion(Box);
-const MotionHeading = motion(Heading);
-const MotionText = motion(Text);
+const MotionBox = motion(Box as any);
+const MotionHeading = motion(Heading as any);
+const MotionText = motion(Text as any);
 
 export const HeadingSection = () => {
   const { t } = useTranslation(["LANDING"]);

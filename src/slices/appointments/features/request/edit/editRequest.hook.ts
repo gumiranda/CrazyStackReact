@@ -72,7 +72,7 @@ export const useEditRequest = (props: EditRequestFormProps) => {
       status: statusSelected,
       clientId,
       initDate: dateChanged
-        ? timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value
+        ? (timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value)
         : initDate,
       endDate: dateChanged
         ? addMinutes(

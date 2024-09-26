@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Heading, Text, VStack } from "@/shared/ui";
 
-const MotionVStack = motion(VStack);
+const MotionVStack = motion(VStack as any);
 
 export const FeatureItem = ({ icon, title, description, color = "gray.700" }) => {
   return (

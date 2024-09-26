@@ -2,8 +2,8 @@ import { Box, ChakraLink, Circle, Img, VisuallyHidden } from "@/shared/ui";
 import { FaPlay } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const MotionBox = motion(Box);
-const MotionCircle = motion(Circle);
+const MotionBox = motion(Box as any);
+const MotionCircle = motion(Circle as any);
 
 export const ScreenshotSection = () => {
   return (

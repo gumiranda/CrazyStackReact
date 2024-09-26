@@ -1,7 +1,7 @@
 import { Box } from "@/shared/ui";
 import { motion } from "framer-motion";
 
-const MotionBox = motion(Box);
+const MotionBox = motion(Box as any);
 
 export const Section = ({ children }) => {
   return (
