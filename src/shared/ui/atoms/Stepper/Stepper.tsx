@@ -1,17 +1,4 @@
-import {
-  Step,
-  StepDescription,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
-  Stepper as StepperChakra,
-  Box,
-  useBreakpointValue,
-  Container,
-} from "@chakra-ui/react";
+import { Box, useBreakpointValue, Container } from "@chakra-ui/react";
 export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const StepNumberAny = StepNumber as (props: any) => any;

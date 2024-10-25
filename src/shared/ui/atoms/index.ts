@@ -11,7 +11,6 @@ export * from "./AspectRatio";
 export * from "./SimpleGrid";
 export * from "./ToggleButton";
 export * from "./VisuallyHidden";
-export * from "./LightMode";
 export * from "./Card";
 export * from "./Image";
 export * from "./Container";

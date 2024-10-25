@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CountryDropdown } from "react-country-region-selector";
-import { theme } from "@/application/theme";
+import { colors } from "@/application/theme";
 import { formatLanguageFromi18N, useI18n } from "@/application/providers/i18nProvider";
 import { useTranslation } from "react-i18next";
 
@@ -31,7 +31,7 @@ export const SelectTranslate = () => {
       showDefaultOption
       defaultOptionLabel="Selecione um idioma"
       style={{
-        backgroundColor: theme.colors.secondary[400],
+        backgroundColor: colors.secondary[400],
         padding: 10,
         width: 60,
         marginRight: 15,

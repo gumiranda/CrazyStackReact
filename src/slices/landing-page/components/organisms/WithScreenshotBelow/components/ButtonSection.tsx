@@ -1,5 +1,5 @@
 import { fonts } from "@/app/fonts";
-import { Button, ChakraLink, LightMode, Stack } from "@/shared/ui";
+import { Button, ChakraLink, Stack } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
 // const bounce = keyframes`
@@ -19,44 +19,40 @@ export const ButtonSection = () => {
       mb={20}
       gap="4"
     >
-      <LightMode>
-        <ChakraLink href="/signup">
-          <Button
-            size="lg"
-            bgColor="primary.700"
-            color="white"
-            px="8"
-            _hover={{ bgColor: "primary.600" }}
-            fontWeight={"bold"}
-            fontSize="md"
-            w={"100%"}
-            fontFamily={fonts.inter.style.fontFamily}
-            animation={`${bounce} 1.5s infinite`}
-            transition="background-color 3.2s ease"
-          >
-            {t("LANDING:SECOND_BLOCK.button", {
-              defaultValue: "Cadastrar meu negócio",
-            })}
-          </Button>
-        </ChakraLink>
-        <ChakraLink href="https://youtube.com/devdoido">
-          <Button
-            size="lg"
-            bgColor="tertiary.500"
-            color="white"
-            px="8"
-            _hover={{ bgColor: "tertiary.300" }}
-            fontWeight={"bold"}
-            fontSize="md"
-            w={"100%"}
-            fontFamily={fonts.inter.style.fontFamily}
-          >
-            {t("LANDING:SECOND_BLOCK.button2", {
-              defaultValue: "Ver demonstração",
-            })}
-          </Button>
-        </ChakraLink>
-      </LightMode>
+      <ChakraLink href="/signup">
+        <Button
+          size="lg"
+          bgColor="primary.700"
+          color="white"
+          px="8"
+          _hover={{ bgColor: "primary.600" }}
+          fontWeight={"bold"}
+          fontSize="md"
+          w={"100%"}
+          fontFamily={fonts.inter.style.fontFamily}
+        >
+          {t("LANDING:SECOND_BLOCK.button", {
+            defaultValue: "Cadastrar meu negócio",
+          })}
+        </Button>
+      </ChakraLink>
+      <ChakraLink href="https://youtube.com/devdoido">
+        <Button
+          size="lg"
+          bgColor="tertiary.500"
+          color="white"
+          px="8"
+          _hover={{ bgColor: "tertiary.300" }}
+          fontWeight={"bold"}
+          fontSize="md"
+          w={"100%"}
+          fontFamily={fonts.inter.style.fontFamily}
+        >
+          {t("LANDING:SECOND_BLOCK.button2", {
+            defaultValue: "Ver demonstração",
+          })}
+        </Button>
+      </ChakraLink>
     </Stack>
   );
 };

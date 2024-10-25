@@ -1,7 +1,13 @@
-import { theme } from "@/application/theme";
-import { Select as SelectChakra, SelectProps, Flex, FormLabel } from "@chakra-ui/react";
-
-export const Select = ({
+import { Flex } from "@chakra-ui/react";
+import {
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectTrigger,
+  SelectValueText,
+} from "@/components/ui/select";
+export const Selects = ({
   children,
   list,
   keyValue,
@@ -9,35 +15,35 @@ export const Select = ({
   label,
   labelColor = "white",
   ...rest
-}: SelectProps & {
-  list: any[];
-  keyValue: string;
-  keyLabel: string;
-  label: string;
-  labelColor?: string;
-}) => {
+}: any) => {
   if (rest?.value === null) {
     rest.value = "";
   }
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
-      {!!label && (
+      {/* {!!label && (
         <FormLabel color={labelColor} htmlFor={rest?.name ?? rest?.id}>
           {label}
         </FormLabel>
-      )}
-      <SelectChakra bg="secondary.500" {...rest} data-testid="SelectTestId">
-        {list?.map?.((item, index) => (
-          <option
-            style={{ backgroundColor: theme.colors.secondary[500] }}
-            key={`${item?.[keyValue]}${item?.[keyLabel]}` ?? index}
-            value={item?.[keyValue]}
-          >
-            {item?.[keyLabel]}
-          </option>
-        ))}
-        {children}
-      </SelectChakra>
+      )} */}
+      <SelectRoot bg="secondary.500" {...rest} data-testid="SelectTestId">
+        <SelectLabel />
+        <SelectTrigger>
+          <SelectValueText />
+        </SelectTrigger>
+        <SelectContent>
+          {list?.map?.((item, index) => (
+            <SelectItem
+              // style={{ backgroundColor: colors.secondary[500] }}
+              key={item?.[keyValue]}
+              item={item}
+            >
+              {item?.[keyLabel]}
+            </SelectItem>
+          ))}
+          {children}
+        </SelectContent>
+      </SelectRoot>
     </Flex>
   );
 };
