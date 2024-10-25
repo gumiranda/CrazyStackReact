@@ -1,4 +1,4 @@
-import { Link, HStack, keyframes } from "@chakra-ui/react";
+import { Link, HStack } from "@chakra-ui/react";
 import { Flex, Button } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
@@ -7,28 +7,28 @@ interface CreateItemActionsProps {
   cancelRoute: string;
 }
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-const pulse = keyframes`
-0% {
-  transform: scale(1);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-}
-50% {
-  transform: scale(1.05);
-  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-}
-100% {
-  transform: scale(1);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-}
-`;
+// const fadeIn = keyframes`
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// `;
+// const pulse = keyframes`
+// 0% {
+//   transform: scale(1);
+//   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+// }
+// 50% {
+//   transform: scale(1.05);
+//   box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+// }
+// 100% {
+//   transform: scale(1);
+//   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+// }
+// `;
 
 export const CreateItemActions = ({
   isLoadingSaveButton,
@@ -37,15 +37,7 @@ export const CreateItemActions = ({
   const { t } = useTranslation(["PAGES"]);
 
   return (
-    <Flex
-      mt="8"
-      justify="flex-end"
-      p={4}
-      borderRadius="md"
-      boxShadow={"md"}
-      transition="all 0.3s"
-      animation={`${fadeIn} 0.5s ease-in-out`}
-    >
+    <Flex mt="8" justify="flex-end" p={4} borderRadius="md" boxShadow={"md"}>
       <HStack gap="4">
         <Link href={cancelRoute}>
           <Button
