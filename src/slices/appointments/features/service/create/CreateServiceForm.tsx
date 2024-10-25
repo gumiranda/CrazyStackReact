@@ -112,7 +112,7 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme="green"
+          colorPalette="green"
           isChecked={active}
           onChange={(e) => {
             e.preventDefault();
@@ -120,7 +120,7 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
           }}
         />
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           label={t("PAGES:FIELDS.havePromotionalPrice", {
             defaultValue: "Possui preço promocional?",
           })}
@@ -131,7 +131,7 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
           }}
         />
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           label={t("PAGES:FIELDS.hasFidelityGenerator", {
             defaultValue: "Gera pontos de fidelidade?",
           })}
@@ -142,7 +142,7 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
           }}
         />
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           label={t("PAGES:FIELDS.canPayWithFidelityPoints", {
             defaultValue: "Pontos de fidelidade podem ser usados na compra?",
           })}

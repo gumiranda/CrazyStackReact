@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Avatar } from "@/shared/ui/atoms";
 import { useAuth } from "@/shared/libs";
 import { useProfile } from "./useProfile.hook";
-import { Divider } from "@chakra-ui/react";
+import { Separator } from "@chakra-ui/react";
 import { IoExitOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -46,7 +46,7 @@ export const Profile = ({ showProfileData }: ProfileProps) => {
               <Text color="tertiary.500" fontSize="xs">
                 {user?.email}
               </Text>
-              <Divider orientation="horizontal" color="gray.600" mt={2} mb={2} />
+              <Separator orientation="horizontal" color="gray.600" mt={2} mb={2} />
             </Box>
             <Flex
               cursor="pointer"

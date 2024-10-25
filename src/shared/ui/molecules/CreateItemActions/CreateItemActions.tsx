@@ -46,7 +46,7 @@ export const CreateItemActions = ({
       transition="all 0.3s"
       animation={`${fadeIn} 0.5s ease-in-out`}
     >
-      <HStack spacing="4">
+      <HStack gap="4">
         <Link href={cancelRoute}>
           <Button
             bgColor="gray.300"

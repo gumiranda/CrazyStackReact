@@ -18,7 +18,7 @@ export const ButtonSection = () => {
       direction={{ base: "column", md: "row" }}
       mt={10}
       mb={20}
-      spacing="4"
+      gap="4"
     >
       <LightMode>
         <ChakraLink href="/signup">

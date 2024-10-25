@@ -29,7 +29,7 @@ describe("FormControlGroup component", () => {
         formControls={formControls}
         formState={formState}
         register={register}
-        spacing="sm"
+        gap="sm"
       />
     );
     formControls.forEach(({ name, label, type }) => {

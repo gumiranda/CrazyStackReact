@@ -23,7 +23,7 @@ export const useOwnerUi = ({ deleteSelectedAction }: any) => {
       newModalFooter: (
         <>
           <Button
-            colorScheme="red"
+            colorPalette="red"
             mr={3}
             leftIcon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             onClick={() => {
@@ -35,7 +35,7 @@ export const useOwnerUi = ({ deleteSelectedAction }: any) => {
           </Button>
           <NextLink passHref href={`/owners/edit/${item?._id}`}>
             <Button
-              colorScheme="purple"
+              colorPalette="purple"
               leftIcon={<Icon fontSize="20" as={RiEditLine} />}
               onClick={onClose}
             >

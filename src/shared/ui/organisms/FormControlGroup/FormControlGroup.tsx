@@ -19,7 +19,7 @@ export const FormControlGroup = ({
   register,
 }: FormControlGroupProps) => {
   return (
-    <Stack spacing={spacing} data-testid="FormControlGroupTestId">
+    <Stack gap={spacing} data-testid="FormControlGroupTestId">
       {formControls?.map?.(
         ({ label = "", name = "defaultName", type = "text", ...rest }, index: number) => (
           <FormControl

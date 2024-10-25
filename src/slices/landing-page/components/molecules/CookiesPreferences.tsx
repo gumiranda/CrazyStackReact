@@ -128,7 +128,7 @@ export const ButtonCookies = ({ setCookiesAccepted, setCookiesRejected }) => {
         w="100%"
         my={{ base: 4, md: 0 }}
         mx={{ base: 2, md: 2 }}
-        colorScheme="teal"
+        colorPalette="teal"
         _hover={{ bg: "teal.600", transform: "scale(1.05)" }}
         transition="all 0.3s"
         borderRadius="full"
@@ -143,7 +143,7 @@ export const ButtonCookies = ({ setCookiesAccepted, setCookiesRejected }) => {
         w="100%"
         my={{ base: 4, md: 0 }}
         mx={{ base: 2, md: 2 }}
-        colorScheme="red"
+        colorPalette="red"
         _hover={{ bg: "red.600", transform: "scale(1.05)" }}
         transition="all 0.3s"
         borderRadius="full"
@@ -239,7 +239,7 @@ const CookiePreferenceMolecule = ({ id, label, value }) => {
         </Text>
       </Box>
       <Switch
-        colorScheme="teal"
+        colorPalette="teal"
         id={id}
         ml="auto"
         isChecked={isChecked}

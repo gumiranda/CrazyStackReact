@@ -7,7 +7,7 @@ function ModalTest() {
   const { onClose } = disclosure;
   return (
     <Modal
-      isOpen={true}
+      open={true}
       onClose={onClose}
       modalHeaderText={"Header Text"}
       modalFooter={<></>}

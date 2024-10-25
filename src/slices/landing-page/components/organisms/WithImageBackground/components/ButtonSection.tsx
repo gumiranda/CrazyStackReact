@@ -10,7 +10,7 @@ export const ButtonSection = () => {
   const { t } = useTranslation(["LANDING"]);
 
   return (
-    <Stack direction={{ base: "column", md: "row" }} mt={10} spacing="4">
+    <Stack direction={{ base: "column", md: "row" }} mt={10} gap="4">
       <FirstBlockButton />
       <KnownMoreButton />
     </Stack>

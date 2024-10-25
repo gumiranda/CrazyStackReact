@@ -17,16 +17,11 @@ type SidebarProps = {
   title: string;
 };
 export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
-  const { isOpen, onClose } = useSidebarDrawer();
+  const { open, onClose } = useSidebarDrawer();
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
-      <Drawer
-        isOpen={isOpen}
-        onClose={onClose}
-        data-testid="SidebarTestId"
-        placement="left"
-      >
+      <Drawer open={open} onClose={onClose} data-testid="SidebarTestId" placement="left">
         <DrawerOverlay>
           <DrawerContent bg="secondary.500" p="4">
             <DrawerCloseButton mt="6" />

@@ -86,7 +86,7 @@ export const PricingSection = () => {
         >
           {t("LANDING:PRICING_PLANS", { defaultValue: "Planos e preços" })}
         </Heading>
-        <Stack spacing={8} mt={8} direction={{ base: "column", md: "row" }}>
+        <Stack gap={8} mt={8} direction={{ base: "column", md: "row" }}>
           {pricingPlans.map((plan, index) => (
             <PricingCard key={index} {...plan} />
           ))}
@@ -165,7 +165,7 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
       <Box mt={8}>
         <Button
           w="full"
-          sx={
+          css={
             popular
               ? gradientButtonStyles
               : { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } }
@@ -182,7 +182,7 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
 };
 export const PricingFeatureList = ({ features }: any) => {
   return (
-    <VStack spacing={2} mt={4}>
+    <VStack gap={2} mt={4}>
       {features.map((feature: any, index: number) => (
         <PricingFeature key={index}>{feature}</PricingFeature>
       ))}

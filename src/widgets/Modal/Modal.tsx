@@ -15,14 +15,14 @@ interface ModalProps extends ModalPropsChakra {
 }
 export const Modal = ({
   children,
-  isOpen,
+  open,
   onClose,
   modalHeaderText,
   modalFooter,
   ...rest
 }: ModalProps) => {
   return (
-    <ModalChakra isOpen={isOpen} onClose={onClose} isCentered {...rest}>
+    <ModalChakra open={open} onClose={onClose} isCentered {...rest}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader color="purple.700" textAlign={"center"}>

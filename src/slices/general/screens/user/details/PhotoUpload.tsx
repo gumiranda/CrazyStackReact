@@ -23,7 +23,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
   const [filesAccepted, setFilesAccepted] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
   const validateFile = (file) => {
     const errors: any = [];
     if (file.size > 5000000) {
@@ -146,7 +146,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
             <FileUpload.Trigger asChild>
               <Button
                 id="file-upload-trigger"
-                colorScheme="primary"
+                colorPalette="primary"
                 size="md"
                 mt={{ base: 4, md: 8 }}
                 mb={{ base: 0, md: 4 }}
@@ -169,7 +169,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
             >
               <Button
                 id="file-upload-trigger"
-                colorScheme="tertiary"
+                colorPalette="tertiary"
                 size="md"
                 mt={{ base: 4, md: 8 }}
                 mb={{ base: 0, md: 4 }}
@@ -187,7 +187,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           )}
         </Flex>
         <FileUpload.ItemGroup asChild>
-          <VStack id="file-upload-item-group" spacing={4} mt={4}>
+          <VStack id="file-upload-item-group" gap={4} mt={4}>
             <FileUpload.Context>
               {({ acceptedFiles }) =>
                 acceptedFiles.map((file) => (
@@ -214,7 +214,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
                               <FileUpload.ItemDeleteTrigger asChild>
                                 <Button
                                   id={`file-upload-item-delete-trigger-${file.name}`}
-                                  colorScheme="red"
+                                  colorPalette="red"
                                   size="sm"
                                   ml={4}
                                   _focus={{
@@ -302,7 +302,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           <input id="file-upload-hidden-input" type="file" />
         </FileUpload.HiddenInput>
       </FileUpload.Root>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal open={open} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader color="gray.700">Confirmar Upload</ModalHeader>
@@ -311,10 +311,10 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
             Tem certeza que deseja fazer o upload desse arquivo?
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="gray" mr={3} onClick={onClose}>
+            <Button colorPalette="gray" mr={3} onClick={onClose}>
               Cancelar
             </Button>
-            <Button colorScheme="green" onClick={() => uploadFiles(filesAccepted)}>
+            <Button colorPalette="green" onClick={() => uploadFiles(filesAccepted)}>
               {isUploading ? <Spinner size="sm" /> : "Confirmar"}
             </Button>
           </ModalFooter>

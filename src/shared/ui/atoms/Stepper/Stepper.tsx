@@ -28,7 +28,7 @@ export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) =
             m={8}
             height={isMobile ? "200px" : "auto"}
             index={activeStep}
-            colorScheme="tertiary"
+            colorPalette="tertiary"
           >
             {steps.map((step: any, index: number) => (
               <Step key={index}>

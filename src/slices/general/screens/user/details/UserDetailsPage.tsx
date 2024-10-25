@@ -24,7 +24,7 @@ export const UserDetailsPage = ({ data, id, canDelete = false }: UserDetailsProp
         >
           {canDelete === true && (
             <Button
-              colorScheme="red"
+              colorPalette="red"
               onClick={async () => {
                 logout?.();
                 await deleteUserById(id, null);

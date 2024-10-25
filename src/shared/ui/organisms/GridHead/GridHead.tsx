@@ -32,12 +32,12 @@ export const GridHead = ({
         {title}
         {!isLoading && isFetching && <Spinner size="sm" color="secondary.500" ml="4" />}
       </Heading>
-      <HStack spacing="2">
+      <HStack gap="2">
         <NextLink passHref href={routeCreate}>
           <Button
             size="sm"
             fontSize="sm"
-            colorScheme={"tertiary"}
+            colorPalette={"tertiary"}
             leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             {t("PAGES:MESSAGES.createNew", {
@@ -49,7 +49,7 @@ export const GridHead = ({
           <Button
             size="sm"
             fontSize="sm"
-            colorScheme={"purple"}
+            colorPalette={"purple"}
             leftIcon={<Icon fontSize="20" as={RiTable2} />}
           >
             {t("PAGES:MESSAGES.table", {

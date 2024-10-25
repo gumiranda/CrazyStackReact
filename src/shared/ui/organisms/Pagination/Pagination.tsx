@@ -41,7 +41,7 @@ export const Pagination = ({
   return (
     <Stack
       direction={["column", "row"]}
-      spacing="6"
+      gap="6"
       align="center"
       mt="8"
       justify="space-between"

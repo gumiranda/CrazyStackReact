@@ -21,7 +21,7 @@ export const UserDetails = ({ user }: UserDetailsProps) => {
           <Button
             size="sm"
             fontSize={"sm"}
-            colorScheme="green"
+            colorPalette="green"
             leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             Editar

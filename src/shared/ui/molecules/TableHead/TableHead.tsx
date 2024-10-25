@@ -49,7 +49,7 @@ export const TableHead = ({
         {title}
         {!isLoading && isFetching && <Spinner size="sm" color="white" ml="4" />}
       </Heading>
-      <HStack spacing="2">
+      <HStack gap="2">
         <NextLink passHref href={routeCreate}>
           {!isMobile ? (
             <Button
@@ -87,7 +87,7 @@ export const TableHead = ({
             <Button
               size="sm"
               fontSize="sm"
-              colorScheme={"purple"}
+              colorPalette={"purple"}
               leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
             >
               {t("PAGES:MESSAGES.list", {
@@ -103,7 +103,7 @@ export const TableHead = ({
               <IconButton
                 size="sm"
                 fontSize="sm"
-                colorScheme={"purple"}
+                colorPalette={"purple"}
                 icon={<Icon fontSize="20" as={RiFileListLine} />}
                 aria-label={t("PAGES:MESSAGES.list", {
                   defaultValue: "Lista",
@@ -120,7 +120,7 @@ export const TableHead = ({
           <IconButton
             size="sm"
             fontSize="sm"
-            colorScheme={"red"}
+            colorPalette={"red"}
             onClick={deleteSelectedAction}
             icon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             aria-label={t("PAGES:MESSAGES.list", {

@@ -24,7 +24,7 @@ export const use{{pascalCase name}}Ui = ({ deleteSelectedAction }: any) => {
       newModalFooter: (
         <>
           <Button
-            colorScheme="red"
+            colorPalette="red"
             mr={3}
             leftIcon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             onClick={() => {
@@ -36,7 +36,7 @@ export const use{{pascalCase name}}Ui = ({ deleteSelectedAction }: any) => {
           </Button>
           <NextLink passHref href={`/{{camelCase name}}s/edit/${item?._id}`}>
             <Button
-              colorScheme="purple"
+              colorPalette="purple"
               leftIcon={<Icon fontSize="20" as={RiEditLine} />}
               onClick={onClose}
             >

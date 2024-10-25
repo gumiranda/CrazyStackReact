@@ -129,7 +129,7 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
       {originText?.length > 0 && destinationText?.length > 0 && (
         <Button
           bgColor="green.500"
-          colorScheme="green"
+          colorPalette="green"
           variant="contained"
           mt={1}
           mb={2}

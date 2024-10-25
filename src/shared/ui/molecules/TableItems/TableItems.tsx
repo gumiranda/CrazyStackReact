@@ -39,7 +39,7 @@ export const TableItems = ({
           setItems={setItems}
         />
       }
-      colorScheme="whiteAlpha"
+      colorPalette="whiteAlpha"
       {...rest}
       data-testid="TableItemsTestId"
     >
@@ -53,7 +53,7 @@ export const TableItems = ({
         >
           <Td px={["1", "1", "2"]}>
             <Checkbox
-              colorScheme={"green"}
+              colorPalette={"green"}
               isChecked={item?.value}
               onChange={(e) => {
                 setItems((prevState: any) => {
@@ -103,7 +103,7 @@ export const TableItems = ({
               <Button
                 size={["xs", "sm", "md", "md"]}
                 fontSize={["xs", "sm", "md", "md"]}
-                colorScheme={"purple"}
+                colorPalette={"purple"}
               >
                 <Icon fontSize={["xs", "sm", "md", "lg"]} as={RiPencilLine} />
               </Button>

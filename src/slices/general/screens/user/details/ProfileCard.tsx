@@ -35,7 +35,7 @@ export const ProfileCard = ({ children, userData, handleOnClickButton }) => {
       </Text>
       <Button
         mt="4"
-        colorScheme="teal"
+        colorPalette="teal"
         bg="teal.600"
         _hover={{ bg: "teal.400" }}
         _active={{ bg: "teal.700" }}
@@ -50,7 +50,7 @@ export const ProfileCard = ({ children, userData, handleOnClickButton }) => {
       {children}
       {userData?.serviceOptions?.length > 0 && (
         <Container mt="4" p="4" bg="gray.700" borderRadius="md">
-          <List spacing={2}>
+          <List gap={2}>
             {userData?.serviceOptions?.map?.((item: any, index) => (
               <ListItem key={index} color="teal.300">
                 {item?.label}

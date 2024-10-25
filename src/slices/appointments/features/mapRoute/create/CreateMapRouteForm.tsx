@@ -74,7 +74,7 @@ export const CreateMapRouteForm = () => {
             label={t("PAGES:FIELDS.active", {
               defaultValue: "Ativo",
             })}
-            colorScheme="green"
+            colorPalette="green"
             isChecked={active}
             onChange={(e) => {
               e.preventDefault();
@@ -110,7 +110,7 @@ export const CreateMapRouteForm = () => {
       {originText?.length > 0 && destinationText?.length > 0 && (
         <Button
           bgColor="green.500"
-          colorScheme="green"
+          colorPalette="green"
           variant="contained"
           mt={1}
           mb={2}

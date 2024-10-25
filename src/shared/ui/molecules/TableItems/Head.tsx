@@ -26,7 +26,7 @@ export const Head = ({
     <Tr>
       <Th px={["2", "2", "3"]} color="purple.200" width={["2", "4", "8"]}>
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           isChecked={mainChecked}
           onChange={(e) => {
             setMainChecked(!mainChecked);

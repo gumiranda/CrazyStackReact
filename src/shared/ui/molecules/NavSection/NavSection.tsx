@@ -18,13 +18,13 @@ const CustomStack = ({ children }: any) => {
   const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
   // if (isDesktopVersion) {
   //   return (
-  //     <HStack spacing="4" mt="8" align="stretch">
+  //     <HStack gap="4" mt="8" align="stretch">
   //       {children}
   //     </HStack>
   //   );
   // }
   return (
-    <Stack spacing="4" mt="8" align="stretch">
+    <Stack gap="4" mt="8" align="stretch">
       {children}
     </Stack>
   );

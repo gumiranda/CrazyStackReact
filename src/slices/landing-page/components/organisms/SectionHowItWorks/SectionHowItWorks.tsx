@@ -21,7 +21,7 @@ export const SectionHowItWorks = () => {
     >
       <Container maxW="container.lg">
         <MotionVStack
-          spacing={4}
+          gap={4}
           textAlign="center"
           initial={{ y: -20 }}
           animate={{ y: 0 }}

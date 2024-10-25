@@ -137,13 +137,13 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
         </GridForm>
       </Box>
       <Flex justifyContent={"flex-end"} mt={10}>
-        <Button colorScheme="purple" m={2}>
+        <Button colorPalette="purple" m={2}>
           {t("PAGES:NEW_APPOINTMENT.back", {
             defaultValue: "Voltar",
           })}
         </Button>
         <Button
-          colorScheme="tertiary"
+          colorPalette="tertiary"
           type="submit"
           form="clientFormId"
           isLoading={loading}

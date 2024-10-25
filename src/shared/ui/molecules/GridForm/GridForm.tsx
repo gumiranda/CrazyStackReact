@@ -7,7 +7,7 @@ interface GridFormProps {
 
 export const GridForm = ({ children, ...props }: GridFormProps) => {
   return (
-    <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%" {...props}>
+    <SimpleGrid minChildWidth="240px" gap={["6", "8"]} w="100%" {...props}>
       {children}
     </SimpleGrid>
   );

@@ -4,7 +4,7 @@ import { IconButton } from "@chakra-ui/react";
 export const NotificationsNav = () => {
   return (
     <HStack
-      spacing={["3", "4"]}
+      gap={["3", "4"]}
       mx={["3", "4"]}
       pr={["3", "4"]}
       py="1"

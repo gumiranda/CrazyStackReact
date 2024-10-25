@@ -35,14 +35,14 @@ export function HomePage() {
     <>
       <Flex w="100%" p={5} direction="column" align="center" minHeight="100vh">
         <Box w="100%" maxW="1200px">
-          <VStack spacing={5} align="stretch">
+          <VStack gap={5} align="stretch">
             <Flex flexDir="column" alignSelf={"flex-start"}>
               <Text fontWeight="600" fontSize="3xl">
                 {welcomeTitle} 👋
               </Text>
               <Text fontSize={"lg"}>{description}</Text>
             </Flex>
-            <HStack spacing={10} justify="center" flexWrap="wrap">
+            <HStack gap={10} justify="center" flexWrap="wrap">
               <LoadInvoice />
               <LoadAppointmentsByPeriod />
               <RequestFilters

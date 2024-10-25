@@ -131,7 +131,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
       </Box>
       <Flex justifyContent={"flex-end"} mt={10}>
         <Button
-          colorScheme="purple"
+          colorPalette="purple"
           m={2}
           onClick={() => {
             setActiveStep(1);
@@ -142,7 +142,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
           })}
         </Button>
         <Button
-          colorScheme="tertiary"
+          colorPalette="tertiary"
           type="submit"
           form="step3ID"
           isLoading={false}

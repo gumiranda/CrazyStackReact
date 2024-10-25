@@ -1,19 +1,19 @@
 import {
-  Accordion as AccordionChakra,
   forwardRef,
   AccordionItem as AccordionItemChakra,
   AccordionButton as AccordionButtonChakra,
   AccordionPanel as AccordionPanelChakra,
   AccordionIcon as AccordionIconChakra,
+  Accordion,
 } from "@chakra-ui/react";
 export const Accordion_ = ({ children, datatestid, ...rest }: any, ref) => {
   return (
-    <AccordionChakra ref={ref} {...rest} data-testid={datatestid ?? "AccordionTestId"}>
+    <Accordion ref={ref} {...rest} data-testid={datatestid ?? "AccordionTestId"}>
       {children}
-    </AccordionChakra>
+    </Accordion>
   );
 };
-export const Accordion = forwardRef(Accordion_);
+//export const Accordion = forwardRef(Accordion_);
 
 export const AccordionItem_ = ({ children, datatestid, ...rest }: any, ref) => {
   return (

@@ -54,7 +54,7 @@ export const PixFeaturesPage = () => {
           />
           <Features features={features}>
             <Link href="/payment/pix/pay">
-              <Button colorScheme={"green"} w="100%" onClick={() => {}}>
+              <Button colorPalette={"green"} w="100%" onClick={() => {}}>
                 {t("PAGES:PIX_PAGE.buyNow", {
                   defaultValue: "Buy Now",
                 })}

@@ -69,12 +69,12 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
       <Box position="relative" float="right" mt={10}>
         {[0, 1, 7].includes(request?.status) && (
           <>
-            <Button onClick={onCancel} colorScheme="red">
+            <Button onClick={onCancel} colorPalette="red">
               {t("PAGES:MESSAGES.cancel", {
                 defaultValue: "Cancelar",
               })}
             </Button>
-            <Button colorScheme="primary" ml={6} onClick={onReschedule}>
+            <Button colorPalette="primary" ml={6} onClick={onReschedule}>
               {t("PAGES:FIELDS.reschedule", {
                 defaultValue: "Reagendar",
               })}

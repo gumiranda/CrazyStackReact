@@ -9,7 +9,7 @@ export const ValidateMyPayment = ({ user }) => {
 
   return (
     <Button
-      colorScheme="primary"
+      colorPalette="primary"
       w="100%"
       mt={10}
       onClick={() => {

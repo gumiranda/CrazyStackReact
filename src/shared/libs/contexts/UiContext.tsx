@@ -23,7 +23,7 @@ const CloseButton = ({ onClose }: any) => {
   const { t } = useTranslation(["PAGES"]);
 
   return (
-    <Button colorScheme={"purple"} mr={3} onClick={onClose}>
+    <Button colorPalette={"purple"} mr={3} onClick={onClose}>
       {t("PAGES:MESSAGES.okUnderstand", {
         defaultValue: "Ok, entendi",
       })}
@@ -34,7 +34,7 @@ export function UiProvider({ children }: UiProviderProps) {
   const disclosure = useDisclosure();
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();
-  const { isOpen, onOpen, onClose } = disclosure;
+  const { open, onOpen, onClose } = disclosure;
   const [modalHeaderText, setModalHeaderText] = useState("");
   const [loading, setLoading] = useState(false);
   const [modalBody, setModalBody] = useState<ReactNode>(null);
@@ -63,7 +63,7 @@ export function UiProvider({ children }: UiProviderProps) {
   };
   const clearModalProps = () => {
     setModalFooter(
-      <Button colorScheme="whiteAlpha" mr={3} onClick={onClose}>
+      <Button colorPalette="whiteAlpha" mr={3} onClick={onClose}>
         Fechar
       </Button>
     );
@@ -84,7 +84,7 @@ export function UiProvider({ children }: UiProviderProps) {
     >
       {children}
       <Modal
-        isOpen={isOpen}
+        open={open}
         onClose={onClose}
         modalHeaderText={modalHeaderText}
         modalFooter={modalFooter}

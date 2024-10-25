@@ -89,7 +89,7 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
       </Box>
       <Flex justifyContent={"flex-end"} mt={10}>
         <Button
-          colorScheme="purple"
+          colorPalette="purple"
           m={2}
           onClick={() => {
             setActiveStep(0);
@@ -100,7 +100,7 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
           })}
         </Button>
         <Button
-          colorScheme="tertiary"
+          colorPalette="tertiary"
           type="submit"
           form="step2ID"
           isLoading={false}

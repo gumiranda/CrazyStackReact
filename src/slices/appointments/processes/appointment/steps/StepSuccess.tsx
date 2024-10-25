@@ -69,7 +69,7 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
           <Button
             mt={20}
             w={"100%"}
-            colorScheme={"tertiary"}
+            colorPalette={"tertiary"}
             onClick={confirmAppointment}
           >
             {t("PAGES:NEW_APPOINTMENT.confirm", {
@@ -79,7 +79,7 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
           <Button
             w={"100%"}
             mt={16}
-            colorScheme={"purple"}
+            colorPalette={"purple"}
             onClick={() => {
               setActiveStep(2);
             }}

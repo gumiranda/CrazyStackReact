@@ -19,7 +19,7 @@ export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
           <Logo haveLink={false} marginBottom={0} />
         </DrawerHeader>
         <DrawerBody>
-          <Stack spacing="6" align="stretch">
+          <Stack gap="6" align="stretch">
             {[
               {
                 label: t("PAGES:AUTH_PAGE.signIn", {
@@ -34,7 +34,7 @@ export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
                   color="white"
                   _hover={{ bgColor: "secondary.600" }}
                   size="lg"
-                  colorScheme="gray"
+                  colorPalette="gray"
                 >
                   {item.label}
                 </Button>

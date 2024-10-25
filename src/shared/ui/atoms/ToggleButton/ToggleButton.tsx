@@ -1,17 +1,17 @@
 import { Box, IconButton, chakra, type IconButtonProps } from "@chakra-ui/react";
 
 interface ToggleButtonProps extends IconButtonProps {
-  isOpen: boolean;
+  open: boolean;
 }
 
 export const ToggleButton = (props: ToggleButtonProps) => {
-  const { isOpen, ...iconButtonProps } = props;
+  const { open, ...iconButtonProps } = props;
   return (
     <IconButton
       variant="unstyled"
       display="inline-flex"
       size="xs"
-      icon={<ToggleIcon active={isOpen} />}
+      icon={<ToggleIcon active={open} />}
       {...iconButtonProps}
     />
   );

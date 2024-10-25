@@ -6,12 +6,8 @@ import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon } from "@chakra-ui/icons
 import {
   InputProps as ChakraInputProps,
   Menu,
-  MenuButton,
   Button,
-  MenuList,
   Input,
-  InputGroup,
-  InputRightElement,
   Text,
   Box,
   Grid,
@@ -20,12 +16,11 @@ import {
   IconButton,
   VStack,
   Heading,
-  useColorModeValue,
-  FormLabel,
-  ResponsiveValue,
 } from "@chakra-ui/react";
 import React, { useState, createRef } from "react";
 import { daysMap, getMonthDetails, getMonthStr } from "./functions";
+import { FormLabel } from "../FormLabel";
+import { InputGroup } from "@/components/ui/input-group";
 
 const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp =
@@ -36,7 +31,7 @@ export interface IDatePickerProps extends Omit<ChakraInputProps, "onChange"> {
   onChange: (date: string) => void;
   label: string;
   labelColor?: string;
-  ta?: ResponsiveValue<any> | undefined;
+  ta?: any | undefined;
 }
 
 export const DatePicker = (props: IDatePickerProps) => {
@@ -54,7 +49,7 @@ export const DatePicker = (props: IDatePickerProps) => {
   const [monthDetails, setMonthDetails] = useState(getMonthDetails(year, month, 4));
   const [selectedDay, setSelectedDay] = useState<number>();
   const inputRef = createRef<HTMLInputElement>();
-  const color = useColorModeValue("gray.500", "white");
+  const color = "gray.500";
   const isCurrentDay = (day: any) => {
     return day.timestamp === todayTimestamp;
   };

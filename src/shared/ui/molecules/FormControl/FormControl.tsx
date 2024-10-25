@@ -48,7 +48,7 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   const AutoCompleteInput = AutoComplete as (props: any) => any;
 
   return (
-    <FormControlChakra {...rest} data-testid="FormControlTestId" isInvalid={!!error}>
+    <FormControlChakra {...rest} data-testid="FormControlTestId" invalid={!!error}>
       {!!label && (
         <FormLabel htmlFor={name} color={labelColor}>
           {label}

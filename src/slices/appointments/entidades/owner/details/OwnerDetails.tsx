@@ -20,7 +20,7 @@ export const OwnerDetails = ({ owner }: OwnerDetailsProps) => {
           <Button
             size="sm"
             fontSize={"sm"}
-            colorScheme="green"
+            colorPalette="green"
             leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             Editar

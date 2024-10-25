@@ -6,7 +6,7 @@ const MotionVStack = motion(VStack as any);
 export const FeatureItem = ({ icon, title, description, color = "gray.700" }) => {
   return (
     <MotionVStack
-      spacing={4}
+      gap={4}
       p={5}
       border="1px"
       borderColor="gray.200"

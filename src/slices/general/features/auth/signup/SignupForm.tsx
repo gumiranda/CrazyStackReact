@@ -46,7 +46,7 @@ export const SignupForm = ({ children, defaultEmail }: any) => {
         name: "cnpjActive",
         checkboxprops: {
           defaultChecked: false,
-          colorScheme: "primary",
+          colorPalette: "primary",
           label: t("PAGES:AUTH_PAGE.cnpjActive", {
             defaultValue: "Cadastrar como pessoa jurídica?",
           }),

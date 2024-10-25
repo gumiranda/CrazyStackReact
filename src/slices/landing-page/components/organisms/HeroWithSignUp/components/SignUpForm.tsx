@@ -40,14 +40,14 @@ export const SignUpForm = () => {
     router.push("/signup?email=" + email);
   };
   return (
-    <Stack spacing="3">
-      <Stack spacing="3" direction={{ base: "column", md: "row" }}>
+    <Stack gap="3">
+      <Stack gap="3" direction={{ base: "column", md: "row" }}>
         <Input
           placeholder={t("LANDING:THIRD_BLOCK.input", {
             defaultValue: "Digite seu e-mail",
           })}
           size={"lg"}
-          colorScheme="tertiary"
+          colorPalette="tertiary"
           borderColor="primary.500"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

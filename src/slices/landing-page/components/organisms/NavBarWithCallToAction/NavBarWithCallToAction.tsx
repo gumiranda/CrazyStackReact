@@ -21,11 +21,11 @@ export const NavBarWithCallToAction = () => {
             <SelectTranslate />
             <ToggleButton
               onClick={mobileNavbar.onToggle}
-              isOpen={mobileNavbar.isOpen}
+              open={mobileNavbar.open}
               aria-label="Mostrar menu"
             />
           </HStack>
-          <MobileDrawer isOpen={mobileNavbar.isOpen} onClose={mobileNavbar.onClose} />
+          <MobileDrawer open={mobileNavbar.open} onClose={mobileNavbar.onClose} />
         </Flex>
       </Box>
     </Box>

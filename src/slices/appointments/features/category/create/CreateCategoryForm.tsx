@@ -31,7 +31,7 @@ export const CreateCategoryForm = () => {
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme="green"
+          colorPalette="green"
           isChecked={active}
           onChange={(e) => {
             e.preventDefault();

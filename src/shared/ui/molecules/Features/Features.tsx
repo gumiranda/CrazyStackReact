@@ -19,7 +19,7 @@ export const Features = ({ children, features, ...rest }: any) => {
       {...rest}
       data-testid="FeaturesTestId"
     >
-      <Stack spacing={{ base: 10, md: 8 }} textAlign="center">
+      <Stack gap={{ base: 10, md: 8 }} textAlign="center">
         <Stack align="center">
           <Text fontWeight={"semibold"} textStyle={{ base: "md", md: "lg" }}>
             {t("PAGES:PIX_PAGE.titleBox", {
@@ -32,10 +32,10 @@ export const Features = ({ children, features, ...rest }: any) => {
             })}
           </Heading>
         </Stack>
-        <List spacing="4">
+        <List gap="4">
           {features.map((feature: string, index: number) => (
             <ListItem key={feature} color="fg.muted">
-              <HStack spacing="4">
+              <HStack gap="4">
                 <Icon as={FiCheck} color="accent" boxSize="6" />
                 <Text key={index} textStyle={{ base: "sm", md: "md" }}>
                   {feature}

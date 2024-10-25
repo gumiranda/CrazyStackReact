@@ -41,7 +41,7 @@ const AutoComplete_ = (props: any, ref: any) => {
   const downshiftId = "randomid-:R1ARBDJ9:";
   const { getDropdownProps } = useMultipleSelection(downshiftProps);
   const {
-    isOpen,
+    open,
     getMenuProps,
     getInputProps,
     highlightedIndex,
@@ -60,14 +60,14 @@ const AutoComplete_ = (props: any, ref: any) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
         case useCombobox.stateChangeTypes.InputBlur:
-          return { ...changes, isOpen: false };
+          return { ...changes, open: false };
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
           return {
             ...changes,
             highlightedIndex: state?.highlightedIndex,
             inputValue,
-            isOpen: false,
+            open: false,
           };
         case useCombobox.stateChangeTypes.FunctionSelectItem:
           return {
@@ -109,8 +109,8 @@ const AutoComplete_ = (props: any, ref: any) => {
           ...getInputProps(
             getDropdownProps({
               placeholder,
-              onClick: isOpen ? () => {} : openMenu,
-              onFocus: isOpen ? () => {} : openMenu,
+              onClick: open ? () => {} : openMenu,
+              onFocus: open ? () => {} : openMenu,
               ref,
             })
           ),
@@ -120,13 +120,13 @@ const AutoComplete_ = (props: any, ref: any) => {
         <List
           bg="white"
           borderRadius="4px"
-          border={isOpen ? "1px solid rgba(0,0,0,0.1)" : "none"}
+          border={open ? "1px solid rgba(0,0,0,0.1)" : "none"}
           boxShadow={"6px 5px 8px rgba(0,50,30,0.2)"}
           {...listStyleProps}
           id={downshiftId}
           {...getMenuProps()}
         >
-          {isOpen &&
+          {open &&
             inputItems?.map?.((item: any, index: number) => (
               <Box
                 onClick={() => {

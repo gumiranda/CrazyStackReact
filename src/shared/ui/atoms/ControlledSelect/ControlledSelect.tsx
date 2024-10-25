@@ -44,7 +44,7 @@ export const ControlledSelect = <
         {...field}
         options={options}
         id={name}
-        isInvalid={!!error}
+        invalid={!!error}
       />
       {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
     </FormControl>

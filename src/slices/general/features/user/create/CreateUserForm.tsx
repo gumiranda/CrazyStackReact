@@ -110,7 +110,7 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme={"tertiary"}
+          colorPalette={"tertiary"}
           isChecked={active}
           onChange={(e) => {
             e.preventDefault();
