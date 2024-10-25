@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { Box, Button, Text, Heading } from "@/shared/ui";
 import { editRequestMutation } from "@/slices/appointments/features/request/edit/editRequest.hook";
 import { format, startOfDay } from "date-fns";
-import { CheckCircleIcon } from "@chakra-ui/icons";
 import { ptBR } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
+import { CheckCircleIcon } from "lucide-react";
 
 export const StepSuccess = ({ title, content, setActiveStep }) => {
   const { t } = useTranslation(["PAGES"]);
@@ -34,7 +34,7 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
   };
   return (
     <Box textAlign="center" px={2} py={4}>
-      <CheckCircleIcon boxSize="50px" color="tertiary.500" />
+      <CheckCircleIcon size="50px" color="tertiary.500" />
       {title && (
         <Heading color="gray.600" mt={4}>
           {title}

@@ -6,9 +6,9 @@ import { LayoutWithStickyNavbar } from "../components/templates";
 export const SalesLandingPage = () => {
   return (
     <Flex direction={"column"} flex="1">
-      <LayoutWithStickyNavbar.Navbar />
+      {/* <LayoutWithStickyNavbar.Navbar />
       <LayoutWithStickyNavbar.Main />
-      <LayoutWithStickyNavbar.Footer />
+      <LayoutWithStickyNavbar.Footer /> */}
     </Flex>
   );
 };

@@ -2,7 +2,6 @@
 
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
-import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   InputProps as ChakraInputProps,
   Button,
@@ -21,6 +20,7 @@ import React, { useState, createRef } from "react";
 import { daysMap, getMonthDetails, getMonthStr } from "./functions";
 import { FormLabel } from "../FormLabel";
 import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp =
   Date.now() - (Date.now() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60;

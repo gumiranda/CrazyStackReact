@@ -1,6 +1,6 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import { Heading } from "@chakra-ui/react";
 import { Box, Flex, Text } from "@/shared/ui/atoms";
+import { X } from "lucide-react";
 type BoxErrorProps = {
   title?: string;
   content: string;
@@ -20,7 +20,7 @@ export const BoxError = ({ title, content, children, ...rest }: BoxErrorProps) =
           h="55px"
           textAlign={"center"}
         >
-          <CloseIcon boxSize="20px" color="white" />
+          <X size="20px" color="white" />
         </Flex>
       </Box>
       {title && (
