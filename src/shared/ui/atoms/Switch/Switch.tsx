@@ -1,5 +1,6 @@
-import { Switch as SwitchChakra, SwitchProps } from "@chakra-ui/react";
-export const Switch = ({ children, ...rest }: SwitchProps) => {
+import { Switch as SwitchChakra } from "@/components/ui/switch";
+
+export const Switch = ({ children, ...rest }) => {
   return (
     <SwitchChakra {...rest} data-testid="SwitchTestId">
       {children}

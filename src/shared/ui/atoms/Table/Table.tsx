@@ -1,28 +1,10 @@
-import {
-  Table as TableChakra,
-  TableProps,
-  Thead,
-  Tbody,
-  TableHeadProps,
-  TableBodyProps,
-} from "@chakra-ui/react";
-interface TableAtomProps extends TableProps {
-  head: React.ReactNode;
-  children: React.ReactNode;
-  headProps?: TableHeadProps;
-  bodyProps?: TableBodyProps;
-}
-export const Table = ({
-  children,
-  headProps,
-  bodyProps,
-  head,
-  ...rest
-}: TableAtomProps) => {
+import { Table } from "@chakra-ui/react/table";
+
+export const Table2 = ({ children, headProps, bodyProps, head, ...rest }: any) => {
   return (
-    <TableChakra {...rest} data-testid="TableTestId">
-      <Thead {...headProps}>{head}</Thead>
-      <Tbody {...bodyProps}>{children}</Tbody>
-    </TableChakra>
+    <Table.Root {...rest} data-testid="TableTestId">
+      <Table.Header {...headProps}>{head}</Table.Header>
+      <Table.Body {...bodyProps}>{children}</Table.Body>
+    </Table.Root>
   );
 };
