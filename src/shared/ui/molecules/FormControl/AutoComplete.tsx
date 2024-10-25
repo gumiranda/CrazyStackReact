@@ -3,9 +3,9 @@ import * as React from "react";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Highlighter from "react-highlight-words";
 import { useDeepCompareEffect } from "react-use";
-import { Stack, Box, List, ListItem } from "@chakra-ui/react";
-import { forwardRef, useState } from "react";
-
+import { Stack, Box, ListItem } from "@chakra-ui/react";
+import { useState } from "react";
+import { List } from "../../atoms";
 export interface Item {
   label: string;
   value: string;
@@ -24,7 +24,7 @@ function defaultOptionFilterFunc(items: any, inputValue: string) {
     }) ?? [];
   return resultFiltered;
 }
-const AutoComplete_ = (props: any, ref: any) => {
+export const AutoComplete = (props: any, ref: any) => {
   const {
     items,
     optionFilterFunc = defaultOptionFilterFunc,
@@ -161,5 +161,3 @@ const AutoComplete_ = (props: any, ref: any) => {
     </Stack>
   );
 };
-
-export const AutoComplete = forwardRef(AutoComplete_);

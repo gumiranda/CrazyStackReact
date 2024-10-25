@@ -1,22 +1,9 @@
-import { Grid, GridItem, Text, keyframes } from "@chakra-ui/react";
+import { Grid, GridItem, Text } from "@chakra-ui/react";
 import React from "react";
 interface GenericDetailsItemProps {
   item: any;
   fields: any[];
 }
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const scaleUp = keyframes`
-from {transform: scale(0.9);}
-to {transform: scale(1);}
-`;
 
 export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
   item,
@@ -39,7 +26,6 @@ export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
         bg: "gray.200",
         transform: "scale(1.05)",
       }}
-      animation={`${fadeIn} 0.5s ease-in-out`}
       role="grid"
       aria-labelledby="grid-heading"
     >
@@ -56,7 +42,6 @@ export const GenericDetailsItem: React.FC<GenericDetailsItemProps> = ({
                 borderRadius="md"
                 boxShadow="lg"
                 transition="all 0.3s"
-                animation={`${scaleUp} 0.3s ease-in-out`}
                 role="gridcell"
               >
                 <Text as="span" fontWeight="bold" fontSize="lg" color="teal.600">

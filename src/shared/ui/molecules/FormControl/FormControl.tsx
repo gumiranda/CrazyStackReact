@@ -1,15 +1,10 @@
 "use client";
 import React, { forwardRef, ForwardRefRenderFunction, memo } from "react";
-import {
-  FormLabel,
-  FormControl as FormControlChakra,
-  InputProps as ChakraInputProps,
-  FormErrorMessage,
-} from "@chakra-ui/react";
+import { InputProps as ChakraInputProps } from "@chakra-ui/react";
 import { AutoComplete } from "./AutoComplete";
-import { Input, Checkbox } from "@/shared/ui";
+import { Input, Checkbox, Text } from "@/shared/ui";
 import InputMask from "react-input-mask";
-
+import { Field } from "@/components/ui/field";
 interface InputProps extends ChakraInputProps {
   name: string;
   bgColorHover?: string;
@@ -29,7 +24,6 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   const {
     name,
     size = "lg",
-    focusBorderColor = "tertiary.500",
     variant = "filled",
     bgColor = "#7159C1",
     bgColorHover = "primary.600",
@@ -46,45 +40,51 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
     return null;
   }
   const AutoCompleteInput = AutoComplete as (props: any) => any;
+  const Componente = () => {
+    return (
+      <>
+        {!autoCompleteProps ? (
+          <FormControlInputMask {...props} ref={ref} />
+        ) : (
+          <AutoCompleteInput
+            label={label}
+            renderInput={(currentProps: any) => {
+              return <DefaultInput ref={ref} {...props} {...currentProps} />;
+            }}
+            ref={ref}
+            placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
+            _placeholder={{ opacity: 1, color: "gray.500" }}
+            items={autoCompleteProps?.list}
+            listStyleProps={
+              autoCompleteProps?.listStyleProps ?? {
+                bgColor: "primary.600",
+                color: "white",
+              }
+            }
+            listItemStyleProps={
+              autoCompleteProps?.listItemStyleProps ?? {
+                bgColor: "primary.600",
+                color: "white",
+              }
+            }
+            highlightItemBg={autoCompleteProps?.highlightItemBg ?? "primary.500"}
+          />
+        )}
 
+        {!!error && <Text>{error?.message}</Text>}
+      </>
+    );
+  };
   return (
-    <FormControlChakra {...rest} data-testid="FormControlTestId" invalid={!!error}>
-      {!!label && (
-        <FormLabel htmlFor={name} color={labelColor}>
-          {label}
-        </FormLabel>
-      )}
-
-      {!autoCompleteProps ? (
-        <FormControlInputMask {...props} ref={ref} />
-      ) : (
-        <AutoCompleteInput
-          label={label}
-          renderInput={(currentProps: any) => {
-            return <DefaultInput ref={ref} {...props} {...currentProps} />;
-          }}
-          ref={ref}
-          placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
-          _placeholder={{ opacity: 1, color: "gray.500" }}
-          items={autoCompleteProps?.list}
-          listStyleProps={
-            autoCompleteProps?.listStyleProps ?? {
-              bgColor: "primary.600",
-              color: "white",
-            }
-          }
-          listItemStyleProps={
-            autoCompleteProps?.listItemStyleProps ?? {
-              bgColor: "primary.600",
-              color: "white",
-            }
-          }
-          highlightItemBg={autoCompleteProps?.highlightItemBg ?? "primary.500"}
-        />
-      )}
-
-      {!!error && <FormErrorMessage>{error?.message}</FormErrorMessage>}
-    </FormControlChakra>
+    <Field
+      {...rest}
+      label={label}
+      data-testid="FormControlTestId"
+      invalid={!!error}
+      recipe={undefined}
+    >
+      <Componente />
+    </Field>
   );
 };
 const FormControlInputMask_ = (props, ref) => {

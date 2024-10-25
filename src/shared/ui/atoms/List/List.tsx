@@ -1,8 +1,9 @@
-import { List as ListChakra, ListProps } from "@chakra-ui/react";
-export const List = ({ children, ...rest }: ListProps) => {
+import { Box } from "@chakra-ui/react";
+
+export const List = ({ children, ...rest }) => {
   return (
-    <ListChakra {...rest} data-testid="ListTestId">
+    <Box as="li" {...rest} data-testid="ListTestId">
       {children}
-    </ListChakra>
+    </Box>
   );
 };
