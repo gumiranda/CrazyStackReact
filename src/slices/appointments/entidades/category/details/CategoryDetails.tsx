@@ -21,7 +21,7 @@ export const CategoryDetails = ({ category }: CategoryDetailsProps) => {
             size="sm"
             fontSize={"sm"}
             colorPalette="green"
-            leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+            //leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             Editar
           </Button>

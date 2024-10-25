@@ -25,7 +25,7 @@ export const useMapRouteUi = ({ deleteSelectedAction }: any) => {
           <Button
             colorPalette="red"
             mr={3}
-            leftIcon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
+            //leftIcon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             onClick={() => {
               onClose();
               deleteSelectedAction(item);
@@ -36,7 +36,7 @@ export const useMapRouteUi = ({ deleteSelectedAction }: any) => {
           <NextLink passHref href={`/mapRoutes/edit/${item?._id}`}>
             <Button
               colorPalette="purple"
-              leftIcon={<Icon fontSize="20" as={RiEditLine} />}
+              //leftIcon={<Icon fontSize="20" as={RiEditLine} />}
               onClick={onClose}
             >
               Editar
