@@ -74,7 +74,7 @@ export const TableHead = ({
                 fontSize="sm"
                 bgColor={"tertiary.500"}
                 _hover={{ bgColor: "tertiary.500" }}
-                icon={<Icon fontSize="20" as={RiAddLine} />}
+                children={<Icon fontSize="20" as={RiAddLine} />}
                 aria-label={t("PAGES:MESSAGES.createNew", {
                   defaultValue: "Cadastrar",
                 })}
@@ -104,7 +104,7 @@ export const TableHead = ({
                 size="sm"
                 fontSize="sm"
                 colorPalette={"purple"}
-                icon={<Icon fontSize="20" as={RiFileListLine} />}
+                children={<Icon fontSize="20" as={RiFileListLine} />}
                 aria-label={t("PAGES:MESSAGES.list", {
                   defaultValue: "Lista",
                 })}
@@ -122,7 +122,7 @@ export const TableHead = ({
             fontSize="sm"
             colorPalette={"red"}
             onClick={deleteSelectedAction}
-            icon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
+            children={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             aria-label={t("PAGES:MESSAGES.list", {
               defaultValue: "Lista",
             })}

@@ -23,8 +23,8 @@ export const NavBar = ({ showLogo = true }) => {
           <IconButton
             aria-label="Open sidebar"
             fontSize="24"
-            icon={<Icon as={RiMenuLine} />}
-            variant="unstyled"
+            children={<Icon as={RiMenuLine} />}
+            variant="ghost"
             onClick={onOpen}
             mr="1"
             mt={2}

@@ -7,13 +7,9 @@ interface ToggleButtonProps extends IconButtonProps {
 export const ToggleButton = (props: ToggleButtonProps) => {
   const { open, ...iconButtonProps } = props;
   return (
-    <IconButton
-      variant="unstyled"
-      display="inline-flex"
-      size="xs"
-      icon={<ToggleIcon active={open} />}
-      {...iconButtonProps}
-    />
+    <IconButton variant="ghost" display="inline-flex" size="xs" {...iconButtonProps}>
+      <ToggleIcon active={open} />
+    </IconButton>
   );
 };
 

@@ -33,7 +33,7 @@ export const WeekDaysSelector = ({
           <IconButton
             size={["xs", "sm", "md", "lg"]}
             aria-label="Voltar dia"
-            icon={<BsChevronLeft />}
+            children={<BsChevronLeft />}
             mr={{ base: 0, md: 4 }}
             onClick={() => {
               if (selectedDay > 0 && selectedDay < 7) {
@@ -91,7 +91,7 @@ export const IconRight = ({ props: { selectedDay, onDayClick } }) => {
     <IconButton
       size={["xs", "sm", "md", "lg"]}
       aria-label="Avançar dia"
-      icon={<BsChevronRight />}
+      children={<BsChevronRight />}
       ml={{ base: 0, md: 4 }}
       onClick={() => {
         if (selectedDay >= 6) {

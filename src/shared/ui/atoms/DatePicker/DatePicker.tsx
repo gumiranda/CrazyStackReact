@@ -149,7 +149,7 @@ export const DatePicker = (props: IDatePickerProps) => {
               aria-label="datepicker right button"
               color={color}
               onClick={() => setMonthAction(1)}
-              icon={<ArrowRightIcon />}
+              children={<ArrowRightIcon />}
             />
           </HStack>
         </Center>

@@ -104,7 +104,7 @@ export const TimeSlots = ({ list }) => {
                       <IconButton
                         aria-label="Ver detalhes do agendamento"
                         bg="primary.500"
-                        icon={<SlOptions />}
+                        children={<SlOptions />}
                         onClick={() => {
                           setRequestsSelected(item);
                           onOpen();
