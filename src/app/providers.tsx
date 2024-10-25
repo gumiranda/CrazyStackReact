@@ -7,6 +7,7 @@ import { ChakraProvider } from "@/application/providers/chakraProvider";
 import { AuthProvider, SidebarDrawerProvider, UiProvider } from "@/shared/libs";
 import { WebSocketProvider } from "@/application/providers/webSocketProvider";
 import { I18nProvider } from "@/application/providers/i18nProvider";
+import { ThemeProvider } from "next-themes";
 
 export type AllProviderProps = {
   children: any;
@@ -26,19 +27,21 @@ export const AllProviders = ({ children }: AllProviderProps) => {
       })
   );
   return (
-    <I18nProvider>
-      <QueryClientProvider client={queryClient}>
-        <ChakraProvider>
-          <UiProvider>
-            <AuthProvider>
-              <SidebarDrawerProvider>
-                <WebSocketProvider>{children}</WebSocketProvider>
-              </SidebarDrawerProvider>
-            </AuthProvider>
-          </UiProvider>
-        </ChakraProvider>
-        {process.env.NODE_ENV !== "production" && <ReactQueryDevtools />}
-      </QueryClientProvider>
-    </I18nProvider>
+    <ThemeProvider>
+      <I18nProvider>
+        <QueryClientProvider client={queryClient}>
+          <ChakraProvider>
+            <UiProvider>
+              <AuthProvider>
+                <SidebarDrawerProvider>
+                  <WebSocketProvider>{children}</WebSocketProvider>
+                </SidebarDrawerProvider>
+              </AuthProvider>
+            </UiProvider>
+          </ChakraProvider>
+          {process.env.NODE_ENV !== "production" && <ReactQueryDevtools />}
+        </QueryClientProvider>
+      </I18nProvider>
+    </ThemeProvider>
   );
 };

@@ -1,12 +1,18 @@
 import { createSystem, defineConfig } from "@chakra-ui/react";
 
-const colors = {
+export const colors = {
   primary: {
     500: { value: "#9f7aea" },
     600: { value: "#6936d1" },
     700: { value: "#5932b7" },
   },
   secondary: {
+    400: { value: "#3f3f3f" },
+    500: { value: "#2e2e2e" },
+    600: { value: "#212121" },
+    900: { value: "#212121" },
+  },
+  gray: {
     400: { value: "#3f3f3f" },
     500: { value: "#2e2e2e" },
     600: { value: "#212121" },

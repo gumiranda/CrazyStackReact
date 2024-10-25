@@ -1,5 +1,5 @@
 "use client";
-import { theme } from "@chakra-ui/react";
+import { colors } from "@/application/theme";
 import dynamic from "next/dynamic";
 
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -23,7 +23,7 @@ export const defaultOptions = {
     zoom: {
       enabled: false,
     },
-    foreColor: theme.colors.gray[500],
+    foreColor: colors.gray[500],
   },
   dataLabels: {
     enabled: false,
@@ -39,10 +39,10 @@ export const defaultOptions = {
   },
   xaxis: {
     axisBorder: {
-      color: theme.colors.gray[600],
+      color: colors.gray[600],
     },
     axisTicks: {
-      color: theme.colors.gray[600],
+      color: colors.gray[600],
     },
     categories: [],
   },

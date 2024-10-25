@@ -1,5 +1,5 @@
-import { Box as BoxChakra, BoxProps, forwardRef } from "@chakra-ui/react";
-export const Box_ = (
+import { Box as BoxChakra, BoxProps } from "@chakra-ui/react";
+export const Box = (
   { children, datatestid, ...rest }: BoxProps & { datatestid?: string },
   ref
 ) => {
@@ -9,4 +9,3 @@ export const Box_ = (
     </BoxChakra>
   );
 };
-export const Box = forwardRef(Box_);

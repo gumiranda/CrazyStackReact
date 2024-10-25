@@ -1,26 +1,22 @@
-import {
-  Flex,
-  FormLabel,
-  Checkbox as CheckboxChakra,
-  CheckboxProps,
-} from "@chakra-ui/react";
-import { forwardRef } from "react";
-export const Checkbox_ = (
-  { children, label, ...rest }: CheckboxProps & { label?: string },
-  ref
-) => {
+import { Checkbox } from "@/components/ui/checkbox";
+import { Field } from "@/components/ui/field";
+import { Flex } from "@chakra-ui/react";
+
+export const Checkbox_ = ({ children, label, ...rest }, ref) => {
   return (
     <Flex justify="flex-start" flexDir="row" alignItems={"center"}>
-      <CheckboxChakra ref={ref} {...rest} data-testid="CheckboxTestId">
-        {children}
-      </CheckboxChakra>
       &nbsp;&nbsp;
-      {!!label && (
-        <FormLabel mb={0} htmlFor={rest?.name ?? rest?.id}>
-          {label}
-        </FormLabel>
+      {label ? (
+        <Field mb={0} label={label}>
+          <Checkbox ref={ref} {...rest} data-testid="CheckboxTestId">
+            {children}
+          </Checkbox>
+        </Field>
+      ) : (
+        <Checkbox ref={ref} {...rest} data-testid="CheckboxTestId">
+          {children}
+        </Checkbox>
       )}
     </Flex>
   );
 };
-export const Checkbox = forwardRef(Checkbox_);

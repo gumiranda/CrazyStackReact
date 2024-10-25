@@ -1,21 +1,20 @@
 import {
-  forwardRef,
   AccordionItem as AccordionItemChakra,
-  AccordionButton as AccordionButtonChakra,
-  AccordionPanel as AccordionPanelChakra,
-  AccordionIcon as AccordionIconChakra,
-  Accordion,
-} from "@chakra-ui/react";
-export const Accordion_ = ({ children, datatestid, ...rest }: any, ref) => {
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
+import { Icon } from "@chakra-ui/react";
+
+export const Accordion = ({ children, datatestid, ...rest }: any, ref) => {
   return (
-    <Accordion ref={ref} {...rest} data-testid={datatestid ?? "AccordionTestId"}>
+    <AccordionRoot ref={ref} {...rest} data-testid={datatestid ?? "AccordionTestId"}>
       {children}
-    </Accordion>
+    </AccordionRoot>
   );
 };
-//export const Accordion = forwardRef(Accordion_);
 
-export const AccordionItem_ = ({ children, datatestid, ...rest }: any, ref) => {
+export const AccordionItem = ({ children, datatestid, ...rest }: any, ref) => {
   return (
     <AccordionItemChakra
       ref={ref}
@@ -26,41 +25,31 @@ export const AccordionItem_ = ({ children, datatestid, ...rest }: any, ref) => {
     </AccordionItemChakra>
   );
 };
-export const AccordionItem = forwardRef(AccordionItem_);
 
-export const AccordionButton_ = ({ children, datatestid, ...rest }: any, ref) => {
+export const AccordionButton = ({ children, datatestid, ...rest }: any, ref) => {
   return (
-    <AccordionButtonChakra
+    <AccordionItemTrigger
       ref={ref}
       {...rest}
       data-testid={datatestid ?? "AccordionButtonTestId"}
     >
       {children}
-    </AccordionButtonChakra>
+    </AccordionItemTrigger>
   );
 };
-export const AccordionButton = forwardRef(AccordionButton_);
 
-export const AccordionPanel_ = ({ children, datatestid, ...rest }: any, ref) => {
+export const AccordionPanel = ({ children, datatestid, ...rest }: any, ref) => {
   return (
-    <AccordionPanelChakra
+    <AccordionItemContent
       ref={ref}
       {...rest}
       data-testid={datatestid ?? "AccordionPanelTestId"}
     >
       {children}
-    </AccordionPanelChakra>
+    </AccordionItemContent>
   );
 };
-export const AccordionPanel = forwardRef(AccordionPanel_);
 
-export const AccordionIcon_ = ({ datatestid, ...rest }: any, ref) => {
-  return (
-    <AccordionIconChakra
-      ref={ref}
-      {...rest}
-      data-testid={datatestid ?? "AccordionIconTestId"}
-    />
-  );
+export const AccordionIcon = ({ datatestid, ...rest }: any, ref) => {
+  return <Icon ref={ref} {...rest} data-testid={datatestid ?? "AccordionIconTestId"} />;
 };
-export const AccordionIcon = forwardRef(AccordionIcon_);

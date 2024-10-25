@@ -5,7 +5,7 @@ const ButtonAtom: ForwardRefRenderFunction<
   ButtonProps & { href?: string }
 > = ({ children, href, ...rest }, ref) => {
   return (
-    <ButtonChakra ref={ref} href={href} {...rest} data-testid="ButtonTestId">
+    <ButtonChakra ref={ref} {...rest} data-testid="ButtonTestId">
       {children}
     </ButtonChakra>
   );

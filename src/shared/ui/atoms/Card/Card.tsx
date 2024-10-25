@@ -1,8 +1,9 @@
-import { Card as CardChakra, CardProps } from "@chakra-ui/react";
-export const Card = ({ children, ...rest }: CardProps) => {
+import { Card as CardChakra } from "@chakra-ui/react";
+
+export const Card = ({ children, ...rest }) => {
   return (
-    <CardChakra {...rest} data-testid="CardTestId">
-      {children}
-    </CardChakra>
+    <CardChakra.Root {...rest} data-testid="CardTestId">
+      <CardChakra.Body>{children}</CardChakra.Body>
+    </CardChakra.Root>
   );
 };

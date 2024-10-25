@@ -6,18 +6,16 @@ import {
   Circle,
   Flex,
   Heading,
-  keyframes,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useStyleConfig } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-30px); }
-  60% { transform: translateY(-15px); }
-`;
+// const bounce = keyframes`
+//   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+//   40% { transform: translateY(-30px); }
+//   60% { transform: translateY(-15px); }
+// `;
 export const PricingSection = () => {
   const { t } = useTranslation(["LANDING"]);
 
@@ -171,7 +169,7 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
               : { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } }
           }
           onClick={() => handleWhatsappClick("Quero assinar o plano" + title)}
-          animation={popular ? `${bounce} 1s infinite` : (null as any)}
+          //animation={popular ? `${bounce} 1s infinite` : (null as any)}
           transition="background-color 3.3s ease"
         >
           {t("LANDING:SUBSCRIBE", { defaultValue: "Assinar" })}
