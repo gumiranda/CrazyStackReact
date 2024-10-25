@@ -1,6 +1,5 @@
 "use client";
-import { Select, ControlledSelect, Checkbox } from "@/shared/ui";
-import { OptionBase } from "chakra-react-select";
+import { ControlledSelect, Checkbox, Select } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
 export type HourValidatorInput = {
@@ -18,7 +17,7 @@ export type HourValidatorInput = {
   hourLunchEnd3?: string;
 };
 
-export interface DaysOptions extends OptionBase {
+export interface DaysOptions {
   label: string;
   value: string;
 }
@@ -172,6 +171,7 @@ export const HourWorks = ({
           e.preventDefault();
           setHaveLunchTime1(e.target.checked);
         }}
+        children={undefined}
       />
       <Checkbox
         colorPalette={"tertiary"}
@@ -228,6 +228,7 @@ export const HourWorks = ({
               e.preventDefault();
               setHaveLunchTime2(e.target.checked);
             }}
+            children={undefined}
           />
           <Checkbox
             colorPalette={"tertiary"}

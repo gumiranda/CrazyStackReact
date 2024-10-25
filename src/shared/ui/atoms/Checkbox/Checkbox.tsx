@@ -2,7 +2,7 @@ import { Checkbox as Checkbox2 } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
 import { Flex } from "@chakra-ui/react";
 
-export const Checkbox = ({ children, label, ...rest }, ref) => {
+export const Checkbox = ({ children = null, label, ...rest }, ref) => {
   return (
     <Flex justify="flex-start" flexDir="row" alignItems={"center"}>
       &nbsp;&nbsp;

@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
-export const Selects = ({
+export const Select = ({
   children,
   list,
   keyValue,
