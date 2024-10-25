@@ -1,24 +1,21 @@
 import React from "react";
 import { useController, FieldValues, UseControllerProps } from "react-hook-form";
-import { FormErrorMessage, FormLabel, FormControl } from "@chakra-ui/react";
-import { Select, Props as SelectProps, GroupBase } from "chakra-react-select";
-
+import { Portal } from "@ark-ui/react/portal";
+import { Select, createListCollection } from "@ark-ui/react/select";
+import { ChevronDownIcon } from "lucide-react";
+import { FormControl } from "../../molecules";
+import { FormLabel } from "../FormLabel";
+import { Text } from "@/shared/ui/atoms/Text";
 interface ControlledSelectProps<
   FormValues extends FieldValues = FieldValues,
   Option = unknown,
-  IsMulti extends boolean = boolean,
-  Group extends GroupBase<Option> = GroupBase<Option>,
-> extends Omit<SelectProps<Option, IsMulti, Group>, "name" | "defaultValue">,
+> extends Omit<React.ComponentProps<typeof Select.Root>, "name" | "defaultValue">,
     UseControllerProps<FormValues> {
   label?: string;
+  options: Array<{ label: string; value: string; disabled?: boolean }>;
 }
 
-export const ControlledSelect = <
-  FormValues extends FieldValues = FieldValues,
-  Option = unknown,
-  IsMulti extends boolean = boolean,
-  Group extends GroupBase<Option> = GroupBase<Option>,
->({
+export const ControlledSelect = <FormValues extends FieldValues = FieldValues>({
   name,
   label,
   options,
@@ -26,27 +23,57 @@ export const ControlledSelect = <
   rules,
   shouldUnregister,
   ...selectProps
-}: ControlledSelectProps<FormValues, Option, IsMulti, Group>) => {
+}: ControlledSelectProps<FormValues>) => {
   const {
     field,
     fieldState: { error },
   } = useController<FormValues>({ name, control, rules, shouldUnregister });
+
+  const collection = createListCollection({
+    items: options,
+  });
+
   return (
-    // @ts-ignore
-    <FormControl textColor={"purple.900"}>
+    <FormControl name={name}>
       {label && (
         <FormLabel textColor="white" htmlFor={name}>
           {label}
         </FormLabel>
       )}
-      <Select<Option, IsMulti, Group>
+      <Select.Root
+        //collection={collection}
         {...selectProps}
         {...field}
-        options={options}
-        id={name}
-        invalid={!!error}
-      />
-      {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+        multiple
+      >
+        <Select.Label>{label || "Select an option"}</Select.Label>
+        <Select.Control>
+          <Select.Trigger>
+            <Select.ValueText placeholder="Select a Framework" />
+            <Select.Indicator>
+              <ChevronDownIcon />
+            </Select.Indicator>
+          </Select.Trigger>
+          <Select.ClearTrigger>Clear</Select.ClearTrigger>
+        </Select.Control>
+        <Portal>
+          <Select.Positioner>
+            <Select.Content>
+              <Select.ItemGroup>
+                <Select.ItemGroupLabel>Frameworks</Select.ItemGroupLabel>
+                {collection.items.map((item) => (
+                  <Select.Item key={item.value} item={item}>
+                    <Select.ItemText>{item.label}</Select.ItemText>
+                    <Select.ItemIndicator>✓</Select.ItemIndicator>
+                  </Select.Item>
+                ))}
+              </Select.ItemGroup>
+            </Select.Content>
+          </Select.Positioner>
+        </Portal>
+        <Select.HiddenSelect />
+      </Select.Root>
+      {error && <Text>{error.message}</Text>}
     </FormControl>
   );
 };
