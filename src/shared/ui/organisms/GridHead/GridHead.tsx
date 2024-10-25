@@ -38,7 +38,7 @@ export const GridHead = ({
             size="sm"
             fontSize="sm"
             colorPalette={"tertiary"}
-            leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+            // leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             {t("PAGES:MESSAGES.createNew", {
               defaultValue: "Cadastrar",
@@ -50,7 +50,7 @@ export const GridHead = ({
             size="sm"
             fontSize="sm"
             colorPalette={"purple"}
-            leftIcon={<Icon fontSize="20" as={RiTable2} />}
+            // leftIcon={<Icon fontSize="20" as={RiTable2} />}
           >
             {t("PAGES:MESSAGES.table", {
               defaultValue: "tabela",

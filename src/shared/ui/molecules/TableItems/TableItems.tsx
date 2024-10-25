@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, Icon } from "@chakra-ui/react";
-import { Box, Text, Button, Table } from "@/shared/ui";
+import { Box, Text, Button, Table2 } from "@/shared/ui";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Head, Field } from "./Head";
@@ -31,7 +31,7 @@ export const TableItems = ({
   const router = useRouter();
   const [mainChecked, setMainChecked] = useState(false);
   return (
-    <Table
+    <Table2
       head={
         <Head
           fields={fields}
@@ -114,6 +114,6 @@ export const TableItems = ({
         </Box>
       ))}
       {children}
-    </Table>
+    </Table2>
   );
 };
