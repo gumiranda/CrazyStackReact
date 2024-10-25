@@ -1,14 +1,14 @@
-import { RadioCard } from "@chakra-ui/react"
-import { Fragment, forwardRef } from "react"
+import { RadioCard } from "@chakra-ui/react";
+import { Fragment, forwardRef } from "react";
 
 interface RadioCardItemProps extends RadioCard.ItemProps {
-  icon?: React.ReactElement
-  label?: React.ReactNode
-  description?: React.ReactNode
-  addon?: React.ReactNode
-  indicator?: React.ReactNode | null
-  indicatorPlacement?: "start" | "end" | "inside"
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  icon?: React.ReactElement;
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  addon?: React.ReactNode;
+  indicator?: React.ReactNode | null;
+  indicatorPlacement?: "start" | "end" | "inside";
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
@@ -22,10 +22,10 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
       indicator = <RadioCard.ItemIndicator />,
       indicatorPlacement = "end",
       ...rest
-    } = props
+    } = props;
 
-    const hasContent = label || description || icon
-    const ContentWrapper = indicator ? RadioCard.ItemContent : Fragment
+    const hasContent = label || description || icon;
+    const ContentWrapper = indicator ? RadioCard.ItemContent : Fragment;
 
     return (
       <RadioCard.Item {...rest}>
@@ -37,9 +37,7 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
               {icon}
               {label && <RadioCard.ItemText>{label}</RadioCard.ItemText>}
               {description && (
-                <RadioCard.ItemDescription>
-                  {description}
-                </RadioCard.ItemDescription>
+                <RadioCard.ItemDescription>{description}</RadioCard.ItemDescription>
               )}
               {indicatorPlacement === "inside" && indicator}
             </ContentWrapper>
@@ -48,10 +46,10 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
         </RadioCard.ItemControl>
         {addon && <RadioCard.ItemAddon>{addon}</RadioCard.ItemAddon>}
       </RadioCard.Item>
-    )
-  },
-)
+    );
+  }
+);
 
-export const RadioCardRoot = RadioCard.Root
-export const RadioCardLabel = RadioCard.Label
-export const RadioCardItemIndicator = RadioCard.ItemIndicator
+export const RadioCardRoot = RadioCard.Root;
+export const RadioCardLabel = RadioCard.Label;
+export const RadioCardItemIndicator = RadioCard.ItemIndicator;
