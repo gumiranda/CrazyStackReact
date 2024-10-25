@@ -1,12 +1,13 @@
 "use client";
 
-import { Tr, Td, Checkbox, Link, Icon } from "@chakra-ui/react";
+import { Link, Icon } from "@chakra-ui/react";
 import { Box, Text, Button, Table } from "@/shared/ui";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Head, Field } from "./Head";
 import { RiPencilLine } from "react-icons/ri";
 import NextLink from "next/link";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface TableItemsProps {
   items: any[];
@@ -39,23 +40,23 @@ export const TableItems = ({
           setItems={setItems}
         />
       }
-      colorPalette="whiteAlpha"
       {...rest}
       data-testid="TableItemsTestId"
     >
       {items?.map?.((item, index) => (
-        <Tr
+        <Box
+          as="tr"
           key={`${Math.random() * 10}-${index}`}
           _hover={{
             background: "secondary.400",
             cursor: "pointer",
           }}
         >
-          <Td px={["1", "1", "2"]}>
+          <Box as="td" px={["1", "1", "2"]}>
             <Checkbox
               colorPalette={"green"}
-              isChecked={item?.value}
-              onChange={(e) => {
+              checked={item?.value}
+              onChange={(e: any) => {
                 setItems((prevState: any) => {
                   const newArray = [...prevState];
                   newArray[index].value = e.target.checked;
@@ -63,9 +64,10 @@ export const TableItems = ({
                 });
               }}
             />
-          </Td>
+          </Box>
           {fields?.map?.((field, ix) => (
-            <Td
+            <Box
+              as="td"
               key={`${Math.random() * 10}-${ix}`}
               whiteSpace="nowrap"
               maxW={0}
@@ -96,9 +98,9 @@ export const TableItems = ({
                   {item[field?.id]}
                 </Text>
               )}
-            </Td>
+            </Box>
           ))}
-          <Td style={{ textAlign: "end" }}>
+          <Box as="td" style={{ textAlign: "end" }}>
             <NextLink href={`${route}/edit/${item?._id}`}>
               <Button
                 size={["xs", "sm", "md", "md"]}
@@ -108,8 +110,8 @@ export const TableItems = ({
                 <Icon fontSize={["xs", "sm", "md", "lg"]} as={RiPencilLine} />
               </Button>
             </NextLink>
-          </Td>
-        </Tr>
+          </Box>
+        </Box>
       ))}
       {children}
     </Table>

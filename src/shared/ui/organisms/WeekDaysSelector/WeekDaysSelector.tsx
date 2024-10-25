@@ -1,4 +1,4 @@
-import { IconButton, Hide, Box } from "@chakra-ui/react";
+import { IconButton, Box } from "@chakra-ui/react";
 import { Button, Flex, Text } from "../../atoms";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
@@ -80,9 +80,9 @@ export const WeekDaysSelector = ({
           );
         })}
       </Flex>
-      <Hide breakpoint="(max-width: 765px)">
+      {/* <Hide breakpoint="(max-width: 765px)">
         <IconRight props={{ selectedDay, onDayClick }} />
-      </Hide>
+      </Hide> */}
     </Flex>
   );
 };
