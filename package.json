@@ -15,7 +15,6 @@
   "dependencies": {
     "@ark-ui/react": "^3.4.0",
     "@chakra-ui/icons": "^2.1.1",
-    "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^3.0.1",
     "@emotion/react": "^11.13.3",
     "@googlemaps/google-maps-services-js": "^3.3.42",

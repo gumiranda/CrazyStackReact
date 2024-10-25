@@ -1,2 +1,9 @@
-import { Link } from "@chakra-ui/next-js";
-export const ChakraLink = Link;
+import { Link } from "@chakra-ui/react";
+import Nextlink from "next/link";
+export const ChakraLink = ({ href, ...props }) => {
+  return (
+    <Link {...props} asChild>
+      <Nextlink href={href} />
+    </Link>
+  );
+};
