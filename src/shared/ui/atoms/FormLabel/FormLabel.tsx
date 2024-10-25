@@ -1,9 +1,14 @@
-import { FormLabel as FormLabelChakra, forwardRef } from "@chakra-ui/react";
-export const FormLabel_ = ({ children, datatestid, ...rest }: any, ref) => {
+import { Field } from "@/components/ui/field";
+
+export const FormLabel = ({ children, label, datatestid, ...rest }: any, ref) => {
   return (
-    <FormLabelChakra ref={ref} {...rest} data-testid={datatestid ?? "FormLabelTestId"}>
+    <Field
+      ref={ref}
+      {...rest}
+      label={label}
+      data-testid={datatestid ?? "FormLabelTestId"}
+    >
       {children}
-    </FormLabelChakra>
+    </Field>
   );
 };
-export const FormLabel = forwardRef(FormLabel_);

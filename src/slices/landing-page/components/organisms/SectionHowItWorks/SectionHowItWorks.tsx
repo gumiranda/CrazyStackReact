@@ -1,26 +1,16 @@
-import { motion } from "framer-motion";
 import { Box, Container, Grid, Heading, Text, VStack } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { fonts } from "@/app/fonts";
 import { CalendarIcon, CheckIcon, SearchIcon } from "@chakra-ui/icons";
 import { FeatureItem } from "../../molecules/FeatureItem";
-const MotionBox = motion(Box as any);
-const MotionVStack = motion(VStack as any);
 
 export const SectionHowItWorks = () => {
   const { t } = useTranslation(["LANDING"]);
 
   return (
-    <MotionBox
-      as="section"
-      py={10}
-      bg="white"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <Box as="section" py={10} bg="white">
       <Container maxW="container.lg">
-        <MotionVStack
+        <VStack
           gap={4}
           textAlign="center"
           initial={{ y: -20 }}
@@ -42,7 +32,7 @@ export const SectionHowItWorks = () => {
               defaultValue: "Veja como é fácil utilizar a plataforma Belezix.",
             })}
           </Text>
-        </MotionVStack>
+        </VStack>
         <Grid templateColumns={{ base: "1fr", md: "repeat(3,1fr)" }} gap={6} mt={8}>
           <FeatureItem
             icon={<SearchIcon boxSize={12} color="teal.500" />}
@@ -75,6 +65,6 @@ export const SectionHowItWorks = () => {
           />
         </Grid>
       </Container>
-    </MotionBox>
+    </Box>
   );
 };

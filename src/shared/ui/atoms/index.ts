@@ -5,7 +5,6 @@ export * from "./FormLabel";
 export * from "./Accordion";
 export * from "./Text";
 export * from "./Heading";
-export * from "./Circle";
 export * from "./VStack";
 export * from "./Switch";
 export * from "./AspectRatio";

@@ -5,7 +5,6 @@
 import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   InputProps as ChakraInputProps,
-  Menu,
   Button,
   Input,
   Text,
@@ -16,12 +15,12 @@ import {
   IconButton,
   VStack,
   Heading,
+  Fieldset,
 } from "@chakra-ui/react";
 import React, { useState, createRef } from "react";
 import { daysMap, getMonthDetails, getMonthStr } from "./functions";
 import { FormLabel } from "../FormLabel";
-import { InputGroup } from "@/components/ui/input-group";
-
+import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
 const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp =
   Date.now() - (Date.now() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60;
@@ -94,26 +93,24 @@ export const DatePicker = (props: IDatePickerProps) => {
     setMonthDetails(getMonthDetails(_year, _month, 4));
   };
   return (
-    <Menu {...rest}>
-      <MenuButton w="100%" type="button">
-        <VStack>
-          <FormLabel color={labelColor} textAlign={ta ?? "left"}>
-            {label}
-          </FormLabel>
-          <InputGroup>
-            <Input color={color} ref={inputRef} {...rest} />
-            <InputRightElement children={<ChevronDownIcon w={5} h={5} />} />
-          </InputGroup>
-        </VStack>
-      </MenuButton>
-      <MenuList>
+    <MenuRoot>
+      <MenuTrigger w="100%" type="button">
+        <FormLabel color={labelColor} textAlign={ta ?? "left"}>
+          {label}
+        </FormLabel>
+        <Fieldset.Root>
+          <Input color={color} ref={inputRef} {...rest} />
+          {/* <InputRightElement children={<ChevronDownIcon w={5} h={5} />} /> */}
+        </Fieldset.Root>
+      </MenuTrigger>
+      <MenuContent>
         <Center p={3}>
           <HStack>
             <IconButton
               variant="ghost"
               aria-label="datepicker left button"
               onClick={() => setMonthAction(-1)}
-              icon={<ArrowLeftIcon color={color} />}
+              children={<ArrowLeftIcon color={color} />}
             />
             {/* <IconButton
               variant="ghost"
@@ -122,14 +119,14 @@ export const DatePicker = (props: IDatePickerProps) => {
               icon={<ChevronLeftIcon color={color} />}
             /> */}
             <VStack align="center">
-              <Button variant="ghost" size="none">
+              <Button variant="ghost" size="md">
                 <Heading color={color} m={0} fontWeight={200} as="h5">
                   {year}
                 </Heading>
               </Button>
               <Button
                 variant="ghost"
-                size="none"
+                size="sm"
                 py="0px"
                 color={color}
                 margin="0px !important"
@@ -192,7 +189,7 @@ export const DatePicker = (props: IDatePickerProps) => {
             })}
           </Grid>
         </Box>
-      </MenuList>
-    </Menu>
+      </MenuContent>
+    </MenuRoot>
   );
 };
