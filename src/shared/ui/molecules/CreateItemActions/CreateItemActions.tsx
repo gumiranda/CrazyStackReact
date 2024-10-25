@@ -55,13 +55,12 @@ export const CreateItemActions = ({
         </Link>
         <Button
           type="submit"
-          isLoading={isLoadingSaveButton}
+          // isLoading={isLoadingSaveButton}
           _hover={{ bgColor: "tertiary.300" }}
           bgColor="tertiary.500"
           borderRadius="full"
           boxShadow={"base"}
           color="white"
-          animation={`${pulse} 1.5s infinite`}
         >
           {t("PAGES:MESSAGES.save", {
             defaultValue: "Salvar",

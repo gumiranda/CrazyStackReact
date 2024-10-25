@@ -1,10 +1,11 @@
-import { Box, Flex, Text, Avatar } from "@/shared/ui/atoms";
+import { Box, Flex, Text } from "@/shared/ui/atoms";
 import { useAuth } from "@/shared/libs";
 import { useProfile } from "./useProfile.hook";
 import { Separator } from "@chakra-ui/react";
 import { IoExitOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { Avatar } from "@/components/ui/avatar";
 
 type ProfileProps = {
   showProfileData?: boolean;

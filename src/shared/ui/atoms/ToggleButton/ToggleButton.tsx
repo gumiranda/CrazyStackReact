@@ -27,28 +27,28 @@ const ToggleIcon = (props: { active: boolean }) => {
       aria-hidden
       pointerEvents="none"
     >
-      <Bar
+      {/* <Bar
         top="0.4375rem"
         _groupActive={{ top: "0.6875rem", transform: "rotate(45deg)" }}
       />
       <Bar
         bottom="0.4375rem"
         _groupActive={{ bottom: "0.6875rem", transform: "rotate(-45deg)" }}
-      />
+      /> */}
     </Box>
   );
 };
 
-const Bar = chakra("span", {
-  baseStyle: {
-    display: "block",
-    pos: "absolute",
-    w: "1.25rem",
-    h: "0.125rem",
-    rounded: "full",
-    bg: "currentcolor",
-    mx: "auto",
-    insetStart: "0.125rem",
-    transition: "all 0.12s",
-  },
-});
+// const Bar = chakra("span", {
+//   baseStyle: {
+//     display: "block",
+//     pos: "absolute",
+//     w: "1.25rem",
+//     h: "0.125rem",
+//     rounded: "full",
+//     bg: "currentcolor",
+//     mx: "auto",
+//     insetStart: "0.125rem",
+//     transition: "all 0.12s",
+//   },
+// });

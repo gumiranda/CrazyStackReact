@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import {
   Heading,
   HStack,
-  Tooltip,
   FlexProps,
   Spinner,
   Icon,
@@ -14,6 +13,7 @@ import {
 import NextLink from "next/link";
 import { RiAddLine, RiFileListLine, RiDeleteBin6Line } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface TableHeadProps extends FlexProps {
   children?: ReactNode;
@@ -57,7 +57,7 @@ export const TableHead = ({
               fontSize="sm"
               bgColor={"tertiary.500"}
               _hover={{ bgColor: "tertiary.500" }}
-              leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+              // leftIcon={<Icon fontSize="20" as={RiAddLine} />}
             >
               {t("PAGES:MESSAGES.createNew", {
                 defaultValue: "Cadastrar",
@@ -65,7 +65,7 @@ export const TableHead = ({
             </Button>
           ) : (
             <Tooltip
-              label={t("PAGES:MESSAGES.createNew", {
+              content={t("PAGES:MESSAGES.createNew", {
                 defaultValue: "Cadastrar",
               })}
             >
@@ -88,7 +88,7 @@ export const TableHead = ({
               size="sm"
               fontSize="sm"
               colorPalette={"purple"}
-              leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
+              // leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
             >
               {t("PAGES:MESSAGES.list", {
                 defaultValue: "Lista",
@@ -96,7 +96,7 @@ export const TableHead = ({
             </Button>
           ) : (
             <Tooltip
-              label={t("PAGES:MESSAGES.list", {
+              content={t("PAGES:MESSAGES.list", {
                 defaultValue: "Lista",
               })}
             >
@@ -113,7 +113,7 @@ export const TableHead = ({
           )}
         </NextLink>
         <Tooltip
-          label={t("PAGES:MESSAGES.delete", {
+          content={t("PAGES:MESSAGES.delete", {
             defaultValue: "Deletar selecionados",
           })}
         >
