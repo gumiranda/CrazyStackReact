@@ -1,7 +1,7 @@
 "use client";
 //@ts-nocheck
 import { Header, Flex, Logo, Profile, SelectTranslate } from "@/shared/ui";
-import { useBreakpointValue, Icon, IconButton, useMediaQuery } from "@chakra-ui/react";
+import { useBreakpointValue, Icon, IconButton } from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { useAuth, useSidebarDrawer } from "@/shared/libs";
 import { useEffect } from "react";

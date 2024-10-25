@@ -28,23 +28,23 @@ export const WeekDaysSelector = ({
       boxShadow="md"
       color="white"
     >
-      <Hide breakpoint="(max-width: 765px)">
-        <Flex my={4} justifyContent={"space-between"} w={{ base: "100%", md: "auto" }}>
-          <IconButton
-            size={["xs", "sm", "md", "lg"]}
-            aria-label="Voltar dia"
-            children={<BsChevronLeft />}
-            mr={{ base: 0, md: 4 }}
-            onClick={() => {
-              if (selectedDay > 0 && selectedDay < 7) {
-                onDayClick({ dayIndex: selectedDay - 1, extraDiff: 0 });
-              } else if (selectedDay === 0) {
-                onDayClick({ dayIndex: 6, extraDiff: -7 });
-              }
-            }}
-          />
-        </Flex>
-      </Hide>
+      {/* <Hide breakpoint="(max-width: 765px)"> */}
+      <Flex my={4} justifyContent={"space-between"} w={{ base: "100%", md: "auto" }}>
+        <IconButton
+          size={["xs", "sm", "md", "lg"]}
+          aria-label="Voltar dia"
+          children={<BsChevronLeft />}
+          mr={{ base: 0, md: 4 }}
+          onClick={() => {
+            if (selectedDay > 0 && selectedDay < 7) {
+              onDayClick({ dayIndex: selectedDay - 1, extraDiff: 0 });
+            } else if (selectedDay === 0) {
+              onDayClick({ dayIndex: 6, extraDiff: -7 });
+            }
+          }}
+        />
+      </Flex>
+      {/* </Hide> */}
       <Flex my={4} justifyContent={"center"} w="100%">
         {daysOfWeek.map((day, index) => {
           const newdaynumber = Number(dayFormatted) + (index - selectedDay);

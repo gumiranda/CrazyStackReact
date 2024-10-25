@@ -53,6 +53,7 @@
     "object-curly-newline": "off",
     "import/extensions": "off",
     "no-unused-vars": "off",
+    "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/ban-types": "off",
     "dot-notation": "off",
     "no-console": "off",
@@ -65,8 +66,7 @@
     "react-hooks/rules-of-hooks": "error",
     "prettier/prettier": "error",
     "indent": "off",
-    "react-hooks/exhaustive-deps": "warn",
-    "@typescript-eslint/ban-ts-comment": "off",
+     "@typescript-eslint/ban-ts-comment": "off",
     "react/jsx-key": "off"
   }
 }
