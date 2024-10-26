@@ -1,4 +1,4 @@
-import { AppointmentProps } from "@/slices/appointments/entidades/appointment";
+"use client";
 import { useCreateAppointment } from "./createAppointment.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 import { useTranslation } from "react-i18next";

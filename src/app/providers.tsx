@@ -8,7 +8,7 @@ import { AuthProvider, SidebarDrawerProvider, UiProvider } from "@/shared/libs";
 import { WebSocketProvider } from "@/application/providers/webSocketProvider";
 import { I18nProvider } from "@/application/providers/i18nProvider";
 import { ThemeProvider } from "next-themes";
-
+import { Toaster } from "@/components/ui/toaster";
 export type AllProviderProps = {
   children: any;
 };
@@ -34,7 +34,10 @@ export const AllProviders = ({ children }: AllProviderProps) => {
             <UiProvider>
               <AuthProvider>
                 <SidebarDrawerProvider>
-                  <WebSocketProvider>{children}</WebSocketProvider>
+                  <WebSocketProvider>
+                    {children}
+                    <Toaster />
+                  </WebSocketProvider>
                 </SidebarDrawerProvider>
               </AuthProvider>
             </UiProvider>

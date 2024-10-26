@@ -118,7 +118,7 @@ export function createRequestMutation(showModal: Function, router, t) {
       try {
         const { data } = await api.post("/request/add", {
           ...request,
-          message: request?.message + " " ?? " ",
+          message: request?.message + " ",
         });
         if (!data) {
           showModal({

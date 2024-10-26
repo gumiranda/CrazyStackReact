@@ -1,3 +1,4 @@
+"use client";
 import { useCreateRequest } from "./createRequest.hook";
 import {
   BoxCreateItem,
