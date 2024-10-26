@@ -143,7 +143,7 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
         <Button
           bgColor="green.500"
           colorPalette="green"
-          variant="contained"
+          //variant="contained"
           alignSelf={"flex-end"}
           onClick={startRoute}
           mb={10}

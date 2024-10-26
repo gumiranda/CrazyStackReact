@@ -2,12 +2,15 @@
 
 import {
   Box,
-  Drawer,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
+  DrawerBackdrop,
   DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
 } from "@chakra-ui/react";
 import { useSidebarDrawer } from "@/shared/libs";
 import { ScrollbarCss } from "@/shared/css";
@@ -21,15 +24,19 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
-      <Drawer open={open} onClose={onClose} data-testid="SidebarTestId" placement="left">
-        <DrawerOverlay>
-          <DrawerContent bg="secondary.500" p="4">
-            <DrawerCloseButton mt="6" />
-            <DrawerHeader>{title}</DrawerHeader>
-            <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+      <DrawerRoot
+        open={open}
+        onClose={onClose}
+        data-testid="SidebarTestId"
+        placement="left"
+      >
+        <DrawerBackdrop />
+        <DrawerContent bg="secondary.500" p="4">
+          <DrawerCloseTrigger mt="6" />
+          <DrawerHeader>{title}</DrawerHeader>
+          <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
+        </DrawerContent>
+      </DrawerRoot>
     );
   }
   return (

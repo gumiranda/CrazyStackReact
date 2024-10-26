@@ -1,4 +1,4 @@
-import { Box, useBreakpointValue, Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import {
   StepsContent,
   StepsItem,
@@ -7,8 +7,9 @@ import {
   StepsPrevTrigger,
   StepsRoot,
 } from "@/components/ui/steps";
+import { useBreakpointValue } from "../Hooks";
 export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) => {
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue("(max-width: 768px)");
   return (
     <Container maxW={"5xl"}>
       <Box

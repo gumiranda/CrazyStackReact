@@ -1,7 +1,8 @@
 "use client";
-import { useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-
+import { useMedia } from "react-use";
+const useBreakpointValue = useMedia;
 export { useBreakpointValue, useDisclosure };
 export const useSteps = ({ index, count }) => {
   const [activeStep, setActiveStep] = useState(index);

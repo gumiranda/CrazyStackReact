@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 export const CookieFooter = () => {
   const { setModalBody, onOpen, setModalFooter } = useUi();
   const { t } = useTranslation(["LANDING"]);
-  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const isDesktop = useBreakpointValue("(min-width: 768px)");
   const [cookiesAccepted, setCookiesAccepted] = useState(false);
   const [cookiesRejected, setCookiesRejected] = useState(false);
   useEffect(() => {

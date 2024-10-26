@@ -130,7 +130,7 @@ export const EditMapRouteForm = ({ mapRoute }: EditMapRouteFormProps) => {
         <Button
           bgColor="green.500"
           colorPalette="green"
-          variant="contained"
+          //variant="contained"
           mt={1}
           mb={2}
           onClick={(e) => {

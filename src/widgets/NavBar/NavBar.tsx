@@ -1,7 +1,14 @@
 "use client";
 //@ts-nocheck
-import { Header, Flex, Logo, Profile, SelectTranslate } from "@/shared/ui";
-import { useBreakpointValue, Icon, IconButton } from "@chakra-ui/react";
+import {
+  Header,
+  Flex,
+  Logo,
+  Profile,
+  SelectTranslate,
+  useBreakpointValue,
+} from "@/shared/ui";
+import { Icon, IconButton } from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { useAuth, useSidebarDrawer } from "@/shared/libs";
 import { useEffect } from "react";
@@ -9,7 +16,7 @@ import { useEffect } from "react";
 export const NavBar = ({ showLogo = true }) => {
   const { isAuthenticated } = useAuth() || {};
   const { onOpen = () => {}, onClose } = useSidebarDrawer() || {};
-  const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
+  const isDesktopVersion = useBreakpointValue("(min-width: 768px)");
   useEffect(() => {
     return () => {
       onClose?.();

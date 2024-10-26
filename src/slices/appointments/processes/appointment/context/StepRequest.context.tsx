@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { createContext, useContext, ReactNode, useState } from "react";
@@ -16,4 +17,14 @@ export function StepRequestProvider({ children }: StepRequestProviderProps) {
     </StepRequestContext.Provider>
   );
 }
-export const useStepRequest = () => useContext(StepRequestContext);
+export const isBrowser = typeof window !== "undefined";
+
+export const useStepRequest = () => {
+  if (!isBrowser) {
+    return {
+      request: null,
+      setRequest: () => {},
+    };
+  }
+  return useContext(StepRequestContext);
+};

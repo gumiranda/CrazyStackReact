@@ -4,7 +4,6 @@ import { Box, Button, Flex, GridForm, Select } from "@/shared/ui";
 import { useStepRequest } from "../context/StepRequest.context";
 import { useUsersSelect } from "@/slices/general/features/user/userList.hook";
 import { useServicesSelect } from "@/slices/appointments/features/service/serviceList.hook";
-import { theme } from "@/application/theme";
 import { useTranslation } from "react-i18next";
 
 export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
@@ -53,10 +52,7 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
             keyLabel="name"
             keyValue="_id"
           >
-            <option
-              style={{ backgroundColor: theme.colors.grayscale[500] }}
-              value="loadMore"
-            >
+            <option value="loadMore">
               {t("PAGES:NEW_APPOINTMENT.loadMore", {
                 defaultValue: "Carregar mais",
               })}
@@ -76,10 +72,7 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
             keyLabel="name"
             keyValue="_id"
           >
-            <option
-              style={{ backgroundColor: theme.colors.grayscale[500] }}
-              value="loadMore"
-            >
+            <option value="loadMore">
               {t("PAGES:NEW_APPOINTMENT.loadMore", {
                 defaultValue: "Carregar mais",
               })}
@@ -99,13 +92,7 @@ export const StepServiceProfessional = ({ setActiveStep, ownerSelected }) => {
             defaultValue: "Voltar",
           })}
         </Button>
-        <Button
-          colorPalette="tertiary"
-          type="submit"
-          form="step2ID"
-          isLoading={false}
-          m={2}
-        >
+        <Button colorPalette="tertiary" type="submit" form="step2ID" m={2}>
           {t("PAGES:NEW_APPOINTMENT.next", {
             defaultValue: "Próximo",
           })}

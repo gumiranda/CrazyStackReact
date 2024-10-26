@@ -1,19 +1,25 @@
 import { ChakraLink, Logo } from "@/shared/ui";
 import {
   Button,
-  Drawer,
+  DrawerBackdrop,
   DrawerBody,
+  DrawerCloseTrigger,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
-  DrawerProps,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
   Stack,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
+export const MobileDrawer = (props: any) => {
   const { t } = useTranslation(["LANDING"]);
   return (
-    <Drawer placement="left" {...props}>
+    <DrawerRoot placement="left" {...props}>
+      <DrawerBackdrop />
+      <DrawerTrigger />
       <DrawerContent bgColor={"secondary.500"}>
         <DrawerHeader>
           <Logo haveLink={false} marginBottom={0} />
@@ -54,6 +60,6 @@ export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
           </Stack>
         </DrawerBody>
       </DrawerContent>
-    </Drawer>
+    </DrawerRoot>
   );
 };

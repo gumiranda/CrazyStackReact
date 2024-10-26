@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getServices } from "@/slices/appointments/entidades/service/service.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { getOwners } from "@/slices/appointments/entidades/owner";
-import LayoutPayAuthenticated, { getUser } from "@/shared/libs/utils/layoutPayAsync";
+import { getUser } from "@/shared/libs/utils/layoutPayAsync";
 import { redirect } from "next/navigation";
 
 export const revalidate = 3000;

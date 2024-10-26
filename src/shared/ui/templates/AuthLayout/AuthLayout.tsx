@@ -1,8 +1,9 @@
+"use client";
 import { config } from "@/application/config";
 import { Flex, Box, Text, SelectTranslate, useBreakpointValue } from "../../atoms";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
-  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const isDesktop = useBreakpointValue("(min-width: 768px)");
   return (
     <Flex
       bgColor="secondary.600"

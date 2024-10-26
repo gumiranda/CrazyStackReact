@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { createContext, useContext, ReactNode, useState } from "react";
@@ -105,4 +106,22 @@ export function UiProvider({ children }: UiProviderProps) {
     </UiContext.Provider>
   );
 }
-export const useUi = () => useContext(UiContext);
+const isBrowser = typeof window !== "undefined";
+
+export const useUi = () => {
+  if (!isBrowser) {
+    return {
+      clearModalProps: () => {},
+      showModal: (s) => {},
+      loading: false,
+      setLoading: (t) => {},
+      setModalBody: (a) => {},
+      setModalFooter: (b) => {},
+      onClose: () => {},
+      onOpen: () => {},
+      isOpen: false,
+      open: false,
+    };
+  }
+  return useContext(UiContext);
+};

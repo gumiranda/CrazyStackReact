@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-ignore
-import { Box, Text, HStack, Stack } from "@/shared/ui";
+import { Box, Text, HStack, Stack, useBreakpointValue } from "@/shared/ui";
 import { ReactNode } from "react";
-import { useBreakpointValue } from "@chakra-ui/react";
 interface NavSectionProps {
   title: string;
   children: ReactNode;
@@ -15,7 +14,7 @@ export const NavSection = ({ title, children, ...rest }: NavSectionProps) => {
   );
 };
 const CustomStack = ({ children }: any) => {
-  const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
+  const isDesktopVersion = useBreakpointValue("(min-width: 768px)");
   // if (isDesktopVersion) {
   //   return (
   //     <HStack gap="4" mt="8" align="stretch">

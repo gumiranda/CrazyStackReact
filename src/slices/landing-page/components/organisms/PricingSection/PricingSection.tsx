@@ -107,7 +107,7 @@ export const PricingFeature = ({ children, ...props }: any) => {
 };
 
 export const PricingCard = ({ title, price, features, popular }: any) => {
-  const gradientButtonStyles = useStyleConfig("GradientButton");
+  // const gradientButtonStyles = useStyleConfig("GradientButton");
   const { t } = useTranslation(["LANDING"]);
   return (
     <Box
@@ -165,7 +165,7 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
           w="full"
           css={
             popular
-              ? gradientButtonStyles
+              ? { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } } // gradientButtonStyles
               : { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } }
           }
           onClick={() => handleWhatsappClick("Quero assinar o plano" + title)}

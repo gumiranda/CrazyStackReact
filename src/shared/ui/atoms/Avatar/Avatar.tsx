@@ -1,9 +1,9 @@
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar as Avatar2 } from "@/components/ui/avatar";
 
-export const Avatar2 = ({ children, ...rest }) => {
+export const Avatar = ({ children = null, ...rest }) => {
   return (
-    <Avatar {...rest} data-testid="AvatarTestId">
+    <Avatar2 {...rest} data-testid="AvatarTestId">
       {children}
-    </Avatar>
+    </Avatar2>
   );
 };

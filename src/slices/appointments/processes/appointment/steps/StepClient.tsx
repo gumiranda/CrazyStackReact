@@ -142,13 +142,7 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
             defaultValue: "Voltar",
           })}
         </Button>
-        <Button
-          colorPalette="tertiary"
-          type="submit"
-          form="clientFormId"
-          isLoading={loading}
-          m={2}
-        >
+        <Button colorPalette="tertiary" type="submit" form="clientFormId" m={2}>
           {t("PAGES:NEW_APPOINTMENT.next", {
             defaultValue: "Próximo",
           })}

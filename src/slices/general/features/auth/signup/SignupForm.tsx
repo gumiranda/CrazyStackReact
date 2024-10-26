@@ -3,7 +3,7 @@ import { useSignup } from "./signup.hook";
 import { useTranslation } from "react-i18next";
 
 export const SignupForm = ({ children, defaultEmail }: any) => {
-  const isDesktopVersion = useBreakpointValue({ base: false, md: true });
+  const isDesktopVersion = useBreakpointValue("(min-width: 768px)");
   const { t } = useTranslation(["PAGES"]);
 
   const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup({

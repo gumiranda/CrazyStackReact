@@ -1,5 +1,5 @@
 "use client";
-import { Box, Head } from "@/shared/ui";
+import { Box } from "@/shared/ui";
 import { CreateUserForm } from "@/slices/general/features/user/create";
 import { GetOwnersResponse } from "@/slices/appointments/entidades/owner";
 import { GetServicesResponse } from "@/slices/appointments/entidades/service";

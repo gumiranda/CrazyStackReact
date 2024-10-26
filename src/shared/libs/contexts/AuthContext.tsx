@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { createContext, useEffect, useContext, ReactNode, useState } from "react";
@@ -237,7 +238,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
     </AuthContext.Provider>
   );
 }
-export const useAuth = () => useContext(AuthContext);
+const isBrowser = typeof window !== "undefined";
+
+export const useAuth = () => {
+  if (!isBrowser) {
+    return {
+      signup: (s) => {},
+      setUser: (s) => {},
+      login: (s) => {},
+      isAuthenticated: false,
+      user: null,
+      logout: () => {},
+      userPhoto: null,
+      updateUserPhoto: (s) => {},
+    };
+  }
+  return useContext(AuthContext);
+};
 const formatMessage = (message: string) => {
   switch (message) {
     case "The received email is already in use":

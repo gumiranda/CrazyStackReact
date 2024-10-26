@@ -26,7 +26,7 @@ export const AppointmentListTablePage = ({
     page,
     initialData: data,
   });
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue("(max-width: 768px)");
   const fieldsMobile = [
     {
       id: "datePickerSelected",

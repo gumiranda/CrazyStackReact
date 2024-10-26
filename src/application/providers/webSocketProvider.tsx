@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { createContext, useMemo, useContext } from "react";
@@ -25,4 +26,11 @@ export const WebSocketProvider = ({ children }: any) => {
   }, []);
   return <WSContext.Provider value={{ wsInstance }}>{children}</WSContext.Provider>;
 };
-export const useWS = () => useContext(WSContext);
+export const useWS = () => {
+  if (!isBrowser) {
+    return {
+      wsInstance: null,
+    };
+  }
+  return useContext(WSContext);
+};

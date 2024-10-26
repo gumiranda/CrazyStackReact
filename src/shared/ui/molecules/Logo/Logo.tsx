@@ -1,7 +1,6 @@
-import { Text } from "@/shared/ui/atoms";
+import { Text, useBreakpointValue } from "@/shared/ui/atoms";
 import NextLink from "next/link";
 import { config } from "@/application/config";
-import { useBreakpointValue } from "@chakra-ui/react";
 export const Logo = ({ haveLink = true, ...rest }) => {
   if (haveLink) {
     return (
@@ -13,7 +12,7 @@ export const Logo = ({ haveLink = true, ...rest }) => {
   return <SystemNameText {...rest} />;
 };
 const SystemNameText = ({ marginBottom = 10, ...rest }) => {
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue("(max-width: 768px)");
   return (
     <Text
       textAlign={"center"}

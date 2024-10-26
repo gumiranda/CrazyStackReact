@@ -7,13 +7,13 @@ import {
   Icon,
   Flex,
   Button,
-  useBreakpointValue,
   IconButton,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine, RiFileListLine, RiDeleteBin6Line } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useBreakpointValue } from "../../atoms";
 
 interface TableHeadProps extends FlexProps {
   children?: ReactNode;
@@ -35,7 +35,7 @@ export const TableHead = ({
   ...rest
 }: TableHeadProps) => {
   const { t } = useTranslation(["PAGES"]);
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue("(max-width: 768px)");
 
   return (
     <Flex

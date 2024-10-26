@@ -111,7 +111,7 @@ export const CreateMapRouteForm = () => {
         <Button
           bgColor="green.500"
           colorPalette="green"
-          variant="contained"
+          variant="ghost"
           mt={1}
           mb={2}
           onClick={(e) => {

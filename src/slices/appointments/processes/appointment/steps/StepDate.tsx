@@ -141,13 +141,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
             defaultValue: "Voltar",
           })}
         </Button>
-        <Button
-          colorPalette="tertiary"
-          type="submit"
-          form="step3ID"
-          isLoading={false}
-          m={2}
-        >
+        <Button colorPalette="tertiary" type="submit" form="step3ID" m={2}>
           {t("PAGES:NEW_APPOINTMENT.next", {
             defaultValue: "Próximo",
           })}
