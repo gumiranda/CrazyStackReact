@@ -1,4 +1,9 @@
-import { createSystem, defineConfig } from "@chakra-ui/react";
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react";
 
 export const colors = {
   primary: {
@@ -138,4 +143,5 @@ const config = defineConfig({
     },
   },
 });
-export const theme = createSystem(config);
+const finalConfig = mergeConfigs(defaultConfig, config);
+export const theme = createSystem(finalConfig);

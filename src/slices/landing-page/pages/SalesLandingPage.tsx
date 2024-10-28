@@ -8,8 +8,8 @@ export const SalesLandingPage = () => {
     <>
       <Flex direction={"column"} flex="1">
         <LayoutWithStickyNavbar.Navbar />
-        {/* <LayoutWithStickyNavbar.Main />
-        <LayoutWithStickyNavbar.Footer /> */}
+        <LayoutWithStickyNavbar.Main />
+        <LayoutWithStickyNavbar.Footer />
       </Flex>
     </>
   );
