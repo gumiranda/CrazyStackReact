@@ -13,7 +13,8 @@ export const Main = (props: any) => {
   return (
     <Flex as="main" role="main" direction="column" flex="1" py="0" {...props}>
       <WithScreenshotBelow />
-      {/* <HeroTop />
+      <HeroTop />
+      {/*
       <HeroWithSignUp />
       <WithImageBackground />
       <SectionFeatures />

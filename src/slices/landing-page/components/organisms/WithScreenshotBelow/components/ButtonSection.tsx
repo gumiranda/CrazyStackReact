@@ -1,5 +1,6 @@
 import { fonts } from "@/app/fonts";
 import { Button, ChakraLink, Stack } from "@/shared/ui";
+import { Link } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 // const bounce = keyframes`
@@ -19,7 +20,7 @@ export const ButtonSection = () => {
       mb={20}
       gap="4"
     >
-      <ChakraLink href="/signup">
+      <Link href="/signup">
         <Button
           size="lg"
           bgColor="primary.700"
@@ -35,7 +36,7 @@ export const ButtonSection = () => {
             defaultValue: "Cadastrar meu negócio",
           })}
         </Button>
-      </ChakraLink>
+      </Link>
       <ChakraLink href="https://youtube.com/devdoido">
         <Button
           size="lg"
