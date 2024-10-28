@@ -1,7 +1,7 @@
 "use client";
 
-import { Link, Icon } from "@chakra-ui/react";
-import { Box, Text, Button, Table2 } from "@/shared/ui";
+import { Link } from "@chakra-ui/react";
+import { Icon, Box, Text, Button, Table2 } from "@/shared/ui";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Head, Field } from "./Head";

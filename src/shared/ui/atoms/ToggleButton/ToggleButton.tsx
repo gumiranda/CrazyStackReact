@@ -1,4 +1,4 @@
-import { Box, IconButton, chakra, type IconButtonProps } from "@chakra-ui/react";
+import { Box, IconButton, type IconButtonProps } from "@chakra-ui/react";
 
 interface ToggleButtonProps extends IconButtonProps {
   open: boolean;

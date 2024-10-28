@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Box, HStack, List, ListItem, Stack, Text } from "../../atoms";
-import { Heading, Icon } from "@chakra-ui/react";
+import { Icon, Box, HStack, List, ListItem, Stack, Text } from "../../atoms";
+import { Heading } from "@chakra-ui/react";
 import { FiCheck } from "react-icons/fi";
 
 export const Features = ({ children, features, ...rest }: any) => {

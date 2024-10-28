@@ -4,7 +4,6 @@ import {
   HStack,
   FlexProps,
   Spinner,
-  Icon,
   Flex,
   Button,
   IconButton,
@@ -13,7 +12,7 @@ import NextLink from "next/link";
 import { RiAddLine, RiFileListLine, RiDeleteBin6Line } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 import { Tooltip } from "@/components/ui/tooltip";
-import { useBreakpointValue } from "../../atoms";
+import { Icon, useBreakpointValue } from "../../atoms";
 
 interface TableHeadProps extends FlexProps {
   children?: ReactNode;
