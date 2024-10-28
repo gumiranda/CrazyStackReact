@@ -39,7 +39,7 @@ export const Profile = () => {
             backgroundColor={"secondary.500"}
             borderRadius={4}
           >
-            <Box datatestid="ProfileTestId" pl={4} pr={4}>
+            <Box pl={4} pr={4}>
               <Text fontSize="sm">{user?.name}</Text>
               <Text color="tertiary.500" fontSize="xs">
                 {user?.email}
