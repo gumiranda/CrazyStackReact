@@ -18,7 +18,8 @@ export const Main = (props: any) => {
       <WithImageBackground />
       <SectionFeatures />
       <SectionHowItWorks />
-      {/* <PricingSection />
+      <PricingSection />
+      {/*
       <FAQSection />
       <CookieFooter /> */}
     </Flex>

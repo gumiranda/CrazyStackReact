@@ -78,7 +78,7 @@ export const PricingSection = () => {
           size="3xl"
           letterSpacing={"tighter"}
           textAlign="center"
-          color="gray.700"
+          color="gray.200"
           fontFamily={fonts.inter.style.fontFamily}
           mb={6}
         >
@@ -128,7 +128,9 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
           py={1}
           fontSize="sm"
           color="white"
-          bgGradient={"linear(to-r,pink.500,purple.500)"}
+          bgGradient={"to-r"}
+          gradientFrom="purple.500"
+          gradientTo="pink.500"
           rounded="full"
           position="absolute"
           top={0}
@@ -165,7 +167,17 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
           w="full"
           css={
             popular
-              ? { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } } // gradientButtonStyles
+              ? {
+                  bgGradient: "to-r",
+                  gradientFrom: "purple.500",
+                  gradientTo: "pink.500",
+                  color: "white",
+                  _hover: {
+                    bgGradient: "to-r",
+                    gradientFrom: "purple.400",
+                    gradientTo: "pink.400",
+                  },
+                } // gradientButtonStyles
               : { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } }
           }
           onClick={() => handleWhatsappClick("Quero assinar o plano" + title)}
