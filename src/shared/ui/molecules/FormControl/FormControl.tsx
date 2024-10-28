@@ -117,7 +117,7 @@ const DefaultInput_ = (props) => {
       {...rest}
       id={name}
       name={name}
-      focusBorderColor={focusBorderColor}
+      focusbordercolor={focusBorderColor}
       bgColor={bgColor}
       variant={variant}
       _hover={{ bgColor: bgColorHover }}

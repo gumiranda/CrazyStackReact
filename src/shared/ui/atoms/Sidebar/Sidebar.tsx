@@ -1,7 +1,6 @@
-// @ts-nocheck
-
 import {
   Box,
+  Button,
   DrawerBackdrop,
   DrawerBody,
   DrawerCloseTrigger,
@@ -13,30 +12,32 @@ import {
   DrawerTrigger,
 } from "@chakra-ui/react";
 import { ScrollbarCss } from "@/shared/css";
+import { useState } from "react";
 
 type SidebarProps = {
   children?: React.ReactNode;
   title: string;
 };
 export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
-  const [open, setIsOpen] = React.useState(false);
+  const [open, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
-      <DrawerRoot
-        open={open}
-        onClose={onClose}
-        data-testid="SidebarTestId"
-        placement="left"
-      >
-        <DrawerBackdrop />
-        <DrawerContent bg="secondary.500" p="4">
-          <DrawerCloseTrigger mt="6" />
-          <DrawerHeader>{title}</DrawerHeader>
-          <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
-        </DrawerContent>
-      </DrawerRoot>
+      <></>
+      // <DrawerRoot open={open} data-testid="SidebarTestId">
+      //   <DrawerTrigger asChild>
+      //     <Button variant="outline" size="sm">
+      //       Open Drawer
+      //     </Button>
+      //   </DrawerTrigger>
+      //   <DrawerBackdrop />
+      //   <DrawerContent bg="secondary.500" p="4">
+      //     <DrawerCloseTrigger mt="6" />
+      //     <DrawerHeader>{title}</DrawerHeader>
+      //     <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
+      //   </DrawerContent>
+      // </DrawerRoot>
     );
   }
   return (
