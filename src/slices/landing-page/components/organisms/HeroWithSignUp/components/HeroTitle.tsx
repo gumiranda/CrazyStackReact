@@ -8,8 +8,7 @@ export const HeroTitle = () => {
   return (
     <Heading
       letterSpacing="tighter"
-      lineHeight="none"
-      size={{ base: "2xl", md: "3xl" }}
+      size={{ base: "4xl", md: "5xl" }}
       fontFamily={fonts.inter.style.fontFamily}
     >
       {t("LANDING:THIRD_BLOCK.title", {

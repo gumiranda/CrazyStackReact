@@ -14,7 +14,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
           letterSpacing="tighter"
           lineHeight="none"
           as="h2"
-          size="3xl"
+          fontSize="3xl"
           fontFamily={fonts.inter.style.fontFamily}
         >
           {t("LANDING:FEATURES_TITLE", { defaultValue: "Principais Funcionalidades" })}

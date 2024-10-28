@@ -123,7 +123,7 @@ export const FAQSection = () => {
     >
       <Heading
         letterSpacing="tighter"
-        lineHeight="none"
+        lineHeight="3.4rem"
         as="h2"
         textAlign="center"
         fontWeight="semibold"

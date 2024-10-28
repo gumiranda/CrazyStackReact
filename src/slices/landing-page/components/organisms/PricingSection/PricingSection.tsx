@@ -75,7 +75,7 @@ export const PricingSection = () => {
       <VStack>
         <Heading
           as="h2"
-          size="3xl"
+          fontSize="3xl"
           letterSpacing={"tighter"}
           textAlign="center"
           color="gray.200"
