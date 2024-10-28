@@ -23,7 +23,7 @@ export const SectionHowItWorks = () => {
             lineHeight="none"
             color="gray.700"
             as="h2"
-            size="2xl"
+            size={{ base: "4xl", md: "5xl" }}
             fontFamily={fonts.inter.style.fontFamily}
           >
             {t("LANDING:HOW_IT_WORKS_TITLE", { defaultValue: "Como Funciona" })}

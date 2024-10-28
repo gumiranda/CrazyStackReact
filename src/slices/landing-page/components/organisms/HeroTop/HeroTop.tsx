@@ -30,7 +30,7 @@ function HeroTitle() {
   const { t } = useTranslation(["LANDING"]);
   return (
     <Heading
-      size={{ base: "4xl", sm: "5xl", xl: "6xl" }}
+      size={{ base: "4xl", md: "5xl" }}
       fontWeight="bold"
       color="white"
       fontFamily={fonts.inter.style.fontFamily}

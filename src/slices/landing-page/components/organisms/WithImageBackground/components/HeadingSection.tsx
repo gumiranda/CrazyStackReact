@@ -10,7 +10,7 @@ export const HeadingSection = () => {
     <>
       <Heading
         as="h1"
-        size={{ base: "2xl", md: "3xl" }}
+        size={{ base: "4xl", md: "5xl" }}
         fontWeight="extrabold"
         fontFamily={fonts.inter.style.fontFamily}
         letterSpacing="tighter"

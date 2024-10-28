@@ -10,7 +10,7 @@ export const HeadingSection = () => {
     <Box textAlign="center">
       <Heading
         as="h1"
-        size={{ base: "2xl", md: "3xl" }}
+        size={{ base: "4xl", md: "5xl" }}
         fontWeight="extrabold"
         maxW="48rem"
         mx="auto"
