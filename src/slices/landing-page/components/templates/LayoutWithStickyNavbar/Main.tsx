@@ -20,9 +20,7 @@ export const Main = (props: any) => {
       <SectionHowItWorks />
       <PricingSection />
       <FAQSection />
-      {/*
-
-      <CookieFooter /> */}
+      <CookieFooter />
     </Flex>
   );
 };
