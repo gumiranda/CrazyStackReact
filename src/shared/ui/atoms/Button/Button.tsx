@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { Button as ButtonChakra } from "@chakra-ui/react";
-const ButtonAtom = ({ children = "", href = null, ...rest }, ref) => {
+const ButtonAtom = ({ children = "", href = null, ...rest }) => {
   return (
-    <ButtonChakra ref={ref} {...rest} data-testid="ButtonTestId">
+    <ButtonChakra {...rest} data-testid="ButtonTestId">
       {children}
     </ButtonChakra>
   );

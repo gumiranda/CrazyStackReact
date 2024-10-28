@@ -1,13 +1,8 @@
 import { Field } from "@/components/ui/field";
 
-export const FormLabel = ({ children, label, datatestid, ...rest }: any, ref) => {
+export const FormLabel = ({ children, label, datatestid, ...rest }: any) => {
   return (
-    <Field
-      ref={ref}
-      {...rest}
-      label={label}
-      data-testid={datatestid ?? "FormLabelTestId"}
-    >
+    <Field {...rest} label={label} data-testid={datatestid ?? "FormLabelTestId"}>
       {children}
     </Field>
   );

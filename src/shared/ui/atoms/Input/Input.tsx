@@ -3,9 +3,7 @@ import { memo } from "react";
 interface InputProps extends ChakraInputProps {
   name: string;
 }
-const InputAtom = ({ name, ...rest }, ref) => {
-  return (
-    <InputChakra {...rest} data-testid="InputTestId" id={name} name={name} ref={ref} />
-  );
+const InputAtom = ({ name, ...rest }) => {
+  return <InputChakra {...rest} data-testid="InputTestId" id={name} name={name} />;
 };
 export const Input = memo(InputAtom);

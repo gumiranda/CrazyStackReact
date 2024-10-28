@@ -1,9 +1,9 @@
 "use client";
 
 import { Flex as FlexChakra, FlexProps } from "@chakra-ui/react";
-export const Flex = ({ children, ...rest }: FlexProps, ref) => {
+export const Flex = ({ children, ...rest }: FlexProps) => {
   return (
-    <FlexChakra {...rest} ref={ref} data-testid="FlexTestId">
+    <FlexChakra {...rest} data-testid="FlexTestId">
       {children}
     </FlexChakra>
   );

@@ -17,7 +17,7 @@ interface InputProps extends ChakraInputProps {
   maskChar?: string | null;
   hide?: any;
 }
-const FormControlMolecules = (props, ref) => {
+const FormControlMolecules = (props) => {
   const {
     name,
     size = "lg",
@@ -41,14 +41,13 @@ const FormControlMolecules = (props, ref) => {
     return (
       <>
         {!autoCompleteProps ? (
-          <FormControlInputMask {...props} ref={ref} />
+          <FormControlInputMask {...props} />
         ) : (
           <AutoCompleteInput
             label={label}
             renderInput={(currentProps: any) => {
-              return <DefaultInput ref={ref} {...props} {...currentProps} />;
+              return <DefaultInput {...props} {...currentProps} />;
             }}
-            ref={ref}
             placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
             _placeholder={{ opacity: 1, color: "gray.500" }}
             items={autoCompleteProps?.list}
@@ -84,8 +83,8 @@ const FormControlMolecules = (props, ref) => {
     </Field>
   );
 };
-const FormControlInputMask_ = (props, ref) => {
-  const { mask, hide, checkboxprops, ...other } = props;
+const FormControlInputMask_ = (props) => {
+  const { mask, hide, checkboxprops, ref, ...other } = props;
   if (hide) {
     return null;
   }

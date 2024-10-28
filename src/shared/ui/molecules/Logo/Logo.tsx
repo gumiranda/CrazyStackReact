@@ -1,4 +1,4 @@
-import { Text, useBreakpointValue } from "@/shared/ui/atoms";
+import { Text } from "@/shared/ui/atoms";
 import NextLink from "next/link";
 import { config } from "@/application/config";
 export const Logo = ({ haveLink = true, ...rest }) => {
@@ -12,7 +12,6 @@ export const Logo = ({ haveLink = true, ...rest }) => {
   return <SystemNameText {...rest} />;
 };
 const SystemNameText = ({ marginBottom = 10, ...rest }) => {
-  const isMobile = useBreakpointValue("(max-width: 768px)");
   return (
     <Text
       textAlign={"center"}
@@ -27,7 +26,6 @@ const SystemNameText = ({ marginBottom = 10, ...rest }) => {
       {config.systemName}
       {config.isAdmin && (
         <>
-          {isMobile && <br />}
           <Text color="tertiary.500" marginLeft="2" as="span">
             admin
           </Text>

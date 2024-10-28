@@ -6,50 +6,38 @@ import {
 } from "@/components/ui/accordion";
 import { Icon } from "@chakra-ui/react";
 
-export const Accordion = ({ children, datatestid, ...rest }: any, ref) => {
+export const Accordion = ({ children, datatestid, ...rest }: any) => {
   return (
-    <AccordionRoot ref={ref} {...rest} data-testid={datatestid ?? "AccordionTestId"}>
+    <AccordionRoot {...rest} data-testid={datatestid ?? "AccordionTestId"}>
       {children}
     </AccordionRoot>
   );
 };
 
-export const AccordionItem = ({ children, datatestid, ...rest }: any, ref) => {
+export const AccordionItem = ({ children, datatestid, ...rest }: any) => {
   return (
-    <AccordionItemChakra
-      ref={ref}
-      {...rest}
-      data-testid={datatestid ?? "AccordionItemTestId"}
-    >
+    <AccordionItemChakra {...rest} data-testid={datatestid ?? "AccordionItemTestId"}>
       {children}
     </AccordionItemChakra>
   );
 };
 
-export const AccordionButton = ({ children, datatestid, ...rest }: any, ref) => {
+export const AccordionButton = ({ children, datatestid, ...rest }: any) => {
   return (
-    <AccordionItemTrigger
-      ref={ref}
-      {...rest}
-      data-testid={datatestid ?? "AccordionButtonTestId"}
-    >
+    <AccordionItemTrigger {...rest} data-testid={datatestid ?? "AccordionButtonTestId"}>
       {children}
     </AccordionItemTrigger>
   );
 };
 
-export const AccordionPanel = ({ children, datatestid, ...rest }: any, ref) => {
+export const AccordionPanel = ({ children, datatestid, ...rest }: any) => {
   return (
-    <AccordionItemContent
-      ref={ref}
-      {...rest}
-      data-testid={datatestid ?? "AccordionPanelTestId"}
-    >
+    <AccordionItemContent {...rest} data-testid={datatestid ?? "AccordionPanelTestId"}>
       {children}
     </AccordionItemContent>
   );
 };
 
-export const AccordionIcon = ({ datatestid, ...rest }: any, ref) => {
-  return <Icon ref={ref} {...rest} data-testid={datatestid ?? "AccordionIconTestId"} />;
+export const AccordionIcon = ({ datatestid, ...rest }: any) => {
+  return <Icon {...rest} data-testid={datatestid ?? "AccordionIconTestId"} />;
 };

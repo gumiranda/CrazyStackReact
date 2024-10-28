@@ -5,7 +5,7 @@ import React, { memo } from "react";
 interface InputProps extends ChakraInputProps {
   name: string;
 }
-const InputAtom = ({ name, ...rest }, ref) => {
+const InputAtom = ({ name, ...rest }) => {
   const router = useRouter();
   const handleKeyDown = (event: any) => {
     const newurl = router?.route?.replace?.("[page]", router?.query?.page as any);
@@ -21,7 +21,6 @@ const InputAtom = ({ name, ...rest }, ref) => {
       type="search"
       data-testid="InputSearchId"
       id={name}
-      ref={ref}
       onKeyDown={handleKeyDown}
       pr="1.5rem"
     />
