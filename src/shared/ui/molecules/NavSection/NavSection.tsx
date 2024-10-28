@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-ignore
-import { Box, Text, HStack, Stack, useBreakpointValue } from "@/shared/ui";
+import { Box, Stack, useBreakpointValue } from "@/shared/ui";
 import { ReactNode } from "react";
 interface NavSectionProps {
   title: string;
@@ -8,7 +8,7 @@ interface NavSectionProps {
 }
 export const NavSection = ({ title, children, ...rest }: NavSectionProps) => {
   return (
-    <Box {...rest} datatestid="NavSectionTestId">
+    <Box {...rest}>
       <CustomStack>{children}</CustomStack>
     </Box>
   );
