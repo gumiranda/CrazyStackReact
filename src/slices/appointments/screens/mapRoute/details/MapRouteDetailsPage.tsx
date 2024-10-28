@@ -20,7 +20,7 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
 
   const props = { mapRoute: data };
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const map = useLoadMap(mapContainerRef);
+  const map = useLoadMap(mapContainerRef as React.RefObject<HTMLDivElement>);
   const [routeInitialized, setRouteInitialized] = useState(false);
   const [socketClosed, setSocketClosed] = useState(false);
   const { wsInstance: socket } = useWS();
