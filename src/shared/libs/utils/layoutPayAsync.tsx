@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Layout } from "@/shared/ui/templates/Layout";
 
 export async function getUser() {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   const parsedCookies: any = parseCookies(allCookies);
   const { "belezixadmin.user": userComingFromCookie, "belezixadmin.token": token } =
     parsedCookies || {};

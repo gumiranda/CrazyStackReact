@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 export const revalidate = 3000;
 async function getData() {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const cookies: any = parseCookies(allCookies);
   const { "belezixadmin.user": userComingFromCookie } = cookies;

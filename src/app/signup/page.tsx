@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-  const cookies = getCookies();
+  const cookies = await getCookies();
   if (!cookies) {
     return null;
   }

@@ -2,7 +2,7 @@ import Link, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { cloneElement, ReactElement } from "react";
 interface ActiveLinkProps extends LinkProps {
-  children: ReactElement;
+  children: ReactElement<{ color?: string }>;
   shouldMatchExactHref?: boolean;
 }
 export const ActiveLink = ({

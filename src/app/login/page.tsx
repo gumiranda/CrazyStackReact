@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Agende seu horário com os melhores barbeiros da cidade",
 };
 async function getData() {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) {
     return null;
   }

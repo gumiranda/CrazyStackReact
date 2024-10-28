@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const user = await getUser();
   if (user?.daysToNextCharge && user?.daysToNextCharge < 0) {

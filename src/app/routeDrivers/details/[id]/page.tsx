@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 async function getData(id) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   const parsedCookies = parseCookies(allCookies);
   if (!parsedCookies?.["belezixadmin.token"]) {
     return null;
@@ -40,7 +40,11 @@ async function getData(id) {
     },
   };
 }
-export default async function Page({ params: { id } }: { params: { id: string } }) {
+export default async function Page(props0: { params: Promise<{ id: string }> }) {
+  const params = await props0.params;
+
+  const { id } = params;
+
   const data = await getData(id);
   if (!data?.props?.mapRoute) {
     redirect("/login");

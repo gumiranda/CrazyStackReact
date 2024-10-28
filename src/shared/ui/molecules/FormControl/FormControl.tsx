@@ -96,7 +96,7 @@ const FormControlInputMask_ = (props) => {
   }
   return <DefaultInput {...other} ref={ref} />;
 };
-const DefaultInput_ = (props, ref) => {
+const DefaultInput_ = (props) => {
   const {
     name,
     size = "lg",
@@ -125,7 +125,7 @@ const DefaultInput_ = (props, ref) => {
       type={type}
       _placeholder={{ opacity: 1, color: "gray.500" }}
       color={labelColor}
-      ref={ref}
+      ref={props?.ref}
     />
   );
 };

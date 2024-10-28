@@ -8,7 +8,7 @@ import { getUsers } from "@/slices/general/entidades/user";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const [res, clients, clientUsers] = await Promise.all([
     getOwners(pageNumber, parseCookies(allCookies), {}),

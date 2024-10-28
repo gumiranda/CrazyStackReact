@@ -6,7 +6,7 @@ import { parseCookies, getCookies } from "@/shared/libs/utils";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const res = await getCategorys(pageNumber, parseCookies(allCookies), {});
   if (!res) {

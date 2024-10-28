@@ -4,7 +4,7 @@ import { AppointmentListTablePage } from "@/slices/appointments/screens/appointm
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const res = await getAppointments(pageNumber, parseCookies(allCookies), {});
   if (!res) {
@@ -13,7 +13,11 @@ async function getData(pageNumber) {
   return res;
 }
 
-export default async function Page({ params: { page } }: { params: { page: string } }) {
+export default async function Page(props: { params: Promise<{ page: string }> }) {
+  const params = await props.params;
+
+  const { page } = params;
+
   const pageNumber = Number(page ?? 1);
   const data = await getData(pageNumber);
   if (!data) {

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 async function getData(id) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   const parsedCookies = parseCookies(allCookies);
   if (!parsedCookies?.["belezixadmin.token"]) {
     return null;
