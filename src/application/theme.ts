@@ -31,77 +31,10 @@ export const colors = {
     500: { value: "#f0f0f0" },
     600: { value: "#949191" },
   },
-  "bg.canvas": {
-    default: { value: "gray.25" },
-    _dark: { value: "gray.950" },
-  },
-  "bg.surface": {
-    default: { value: "white" },
-    _dark: { value: "gray.900" },
-  },
-  "bg.subtle": {
-    default: { value: "gray.50" },
-    _dark: { value: "gray.800" },
-  },
-  "bg.muted": {
-    default: { value: "gray.100" },
-    _dark: { value: "gray.700" },
-  },
 
-  "fg.default": {
-    default: { value: "gray.900" },
-    _dark: { value: "white" },
-  },
-  "fg.emphasized": {
-    default: { value: "gray.700" },
-    _dark: { value: "gray.200" },
-  },
-  "fg.muted": {
-    default: { value: "gray.600" },
-    _dark: { value: "gray.300" },
-  },
-  "fg.subtle": {
-    default: { value: "gray.500" },
-    _dark: { value: "gray.400" },
-  },
-  "fg.inverted": {
-    default: { value: "white" },
-    _dark: { value: "gray.950" },
-  },
-
-  "border.default": {
-    default: { value: "gray.200" },
-    _dark: { value: "gray.800" },
-  },
-  "border.emphasized": {
-    default: { value: "gray.300" },
-    _dark: { value: "gray.700" },
-  },
-  "border.active": {
-    default: { value: "gray.400" },
-    _dark: { value: "gray.600" },
-  },
-
-  "bg.accent.default": { value: "brand.600" },
-  "bg.accent.subtle": { value: "brand.500" },
-  "bg.accent.muted": { value: "brand.400" },
-
-  "fg.accent.subtle": { value: "brand.100" },
-  "fg.accent.muted": { value: "brand.50" },
-  "fg.accent.default": { value: "white" },
-
-  accent: {
-    default: { value: "brand.500" },
-    _dark: { value: "brand.200" },
-  },
-  success: {
-    default: { value: "green.500" },
-    _dark: { value: "green.200" },
-  },
-  error: {
-    default: { value: "red.500" },
-    _dark: { value: "red.200" },
-  },
+  accent: { value: "brand.500" },
+  success: { value: "green.500" },
+  error: { value: "red.500" },
   purpleDark: {
     900: { value: "#2a254b" },
     800: { value: "#3c2b64" },

@@ -2,7 +2,16 @@
 "use client";
 
 import { createContext, useContext, ReactNode, useState } from "react";
-//import { Modal } from "@/widgets";
+import {
+  DialogActionTrigger,
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button, BoxError, BoxSuccess } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 type UiProviderProps = {
@@ -91,14 +100,24 @@ export function UiProvider({ children }: UiProviderProps) {
       }}
     >
       {children}
-      {/* <Modal
-        open={open}
-        onClose={onClose}
-        modalHeaderText={modalHeaderText}
-        modalFooter={modalFooter}
-      >
-        {modalBody}
-      </Modal>
+      <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle color={"gray.500"}>{modalHeaderText}</DialogTitle>
+          </DialogHeader>
+          <DialogBody>{modalBody}</DialogBody>
+          <DialogFooter>
+            <DialogActionTrigger asChild>
+              <Button colorPalette="whiteAlpha" mr={3} onClick={onClose}>
+                Fechar
+              </Button>
+            </DialogActionTrigger>
+            {modalFooter}
+          </DialogFooter>
+          <DialogCloseTrigger />
+        </DialogContent>
+      </DialogRoot>
+      {/*
       <LoadingOverlay
         styles={{
           spinner: (base) => ({ ...base }),

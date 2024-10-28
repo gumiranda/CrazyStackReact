@@ -8,7 +8,7 @@ export const Features = ({ children, features, ...rest }: any) => {
 
   return (
     <Box
-      bg="bg.surface"
+      bg="white"
       borderWidth={1}
       borderRadius={8}
       px={{ base: 6, md: 8 }}
@@ -34,7 +34,7 @@ export const Features = ({ children, features, ...rest }: any) => {
         </Stack>
         <List gap="4">
           {features.map((feature: string, index: number) => (
-            <ListItem key={feature} color="fg.muted">
+            <ListItem key={feature} color="gray.300">
               <HStack gap="4">
                 <Icon as={FiCheck} color="accent" boxSize="6" />
                 <Text key={index} textStyle={{ base: "sm", md: "md" }}>

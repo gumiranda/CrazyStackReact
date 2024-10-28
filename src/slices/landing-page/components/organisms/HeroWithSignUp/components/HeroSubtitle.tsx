@@ -8,7 +8,7 @@ export const HeroSubtitle = () => {
   return (
     <Text
       size={{ base: "2xl", md: "3xl" }}
-      color="fg.muted"
+      color="gray.300"
       fontFamily={fonts.inter.style.fontFamily}
     >
       {t("LANDING:THIRD_BLOCK.subtitle", {
