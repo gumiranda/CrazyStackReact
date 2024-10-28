@@ -7,10 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { Avatar } from "@/components/ui/avatar";
 
-type ProfileProps = {
-  showProfileData?: boolean;
-};
-export const Profile = ({ showProfileData }: ProfileProps) => {
+export const Profile = () => {
   const { t } = useTranslation(["PAGES"]);
   const { user, logout, userPhoto } = useAuth() || {};
   const router = useRouter();

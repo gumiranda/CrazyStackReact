@@ -1,16 +1,10 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  Logo,
-  SelectTranslate,
-  ToggleButton,
-  useDisclosure,
-} from "@/shared/ui";
+"use client";
+import { useUi } from "@/shared/libs";
+import { Box, Flex, HStack, Logo, SelectTranslate, ToggleButton } from "@/shared/ui";
 import { MobileDrawer } from "@/widgets/NavBar/MobileNavbar";
 
 export const NavBarWithCallToAction = () => {
-  const mobileNavbar = useDisclosure();
+  const mobileNavbar = useUi();
 
   return (
     <Box as="section">
@@ -20,7 +14,7 @@ export const NavBarWithCallToAction = () => {
           <HStack>
             <SelectTranslate />
             <ToggleButton
-              onClick={mobileNavbar.onToggle}
+              onClick={mobileNavbar.onToggle as any}
               open={mobileNavbar.open}
               aria-label="Mostrar menu"
             />

@@ -2,22 +2,24 @@
 "use client";
 
 import { createContext, useContext, ReactNode, useState } from "react";
-import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react";
-import { Modal } from "@/widgets";
+//import { Modal } from "@/widgets";
 import { Button, BoxError, BoxSuccess } from "@/shared/ui";
-import LoadingOverlay from "react-loading-overlay-ts";
-import { useIsMutating, useIsFetching } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 type UiProviderProps = {
   children: ReactNode;
 };
-type UiContextData = UseDisclosureReturn & {
+type UiContextData = {
   clearModalProps: Function;
   showModal: Function;
   loading: boolean;
   setLoading: Function;
   setModalBody: Function;
   setModalFooter: Function;
+  onClose: Function;
+  onOpen: Function;
+  isOpen: boolean;
+  open: boolean;
+  onToggle: Function;
 };
 const UiContext = createContext({} as UiContextData);
 const CloseButton = ({ onClose }: any) => {
@@ -27,15 +29,19 @@ const CloseButton = ({ onClose }: any) => {
     <Button colorPalette={"purple"} mr={3} onClick={onClose}>
       {t("PAGES:MESSAGES.okUnderstand", {
         defaultValue: "Ok, entendi",
-      })}
+      }) || ""}
     </Button>
   );
 };
 export function UiProvider({ children }: UiProviderProps) {
-  const disclosure = useDisclosure();
-  const isFetching = useIsFetching();
-  const isMutating = useIsMutating();
-  const { open, onOpen, onClose } = disclosure;
+  const [open, setOpen] = useState(false);
+  const disclosure = {
+    open,
+    onOpen: () => setOpen(true),
+    onClose: () => setOpen(false),
+    onToggle: () => setOpen(!open),
+  };
+  const { onOpen, onClose } = disclosure;
   const [modalHeaderText, setModalHeaderText] = useState("");
   const [loading, setLoading] = useState(false);
   const [modalBody, setModalBody] = useState<ReactNode>(null);
@@ -75,6 +81,7 @@ export function UiProvider({ children }: UiProviderProps) {
     <UiContext.Provider
       value={{
         ...disclosure,
+        isOpen: open,
         setModalBody,
         showModal,
         clearModalProps,
@@ -84,7 +91,7 @@ export function UiProvider({ children }: UiProviderProps) {
       }}
     >
       {children}
-      <Modal
+      {/* <Modal
         open={open}
         onClose={onClose}
         modalHeaderText={modalHeaderText}
@@ -96,13 +103,13 @@ export function UiProvider({ children }: UiProviderProps) {
         styles={{
           spinner: (base) => ({ ...base }),
           wrapper: { width: "100%", height: "100%" },
-          content: null,
+          content: null,p
           overlay: (base) => ({ ...base, position: "fixed" }),
         }}
         active={!!isFetching || !!isMutating || loading}
         spinner
         text={"Carregando..."}
-      />
+      /> */}
     </UiContext.Provider>
   );
 }
@@ -121,6 +128,7 @@ export const useUi = () => {
       onOpen: () => {},
       isOpen: false,
       open: false,
+      onToggle: (c) => {},
     };
   }
   return useContext(UiContext);

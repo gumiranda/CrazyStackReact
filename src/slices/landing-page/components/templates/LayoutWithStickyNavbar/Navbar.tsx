@@ -1,3 +1,4 @@
+"use client";
 import { Box } from "@/shared/ui";
 import { NavBarWithCallToAction } from "../../organisms/NavBarWithCallToAction";
 import { useEffect, useState } from "react";

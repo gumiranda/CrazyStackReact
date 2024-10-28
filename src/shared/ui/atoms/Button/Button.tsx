@@ -1,13 +1,10 @@
-import { forwardRef, ForwardRefRenderFunction } from "react";
-import { Button as ButtonChakra, ButtonProps } from "@chakra-ui/react";
-const ButtonAtom: ForwardRefRenderFunction<
-  HTMLButtonElement,
-  ButtonProps & { href?: string }
-> = ({ children, href, ...rest }, ref) => {
+import { memo } from "react";
+import { Button as ButtonChakra } from "@chakra-ui/react";
+const ButtonAtom = ({ children = "", href = null, ...rest }, ref) => {
   return (
     <ButtonChakra ref={ref} {...rest} data-testid="ButtonTestId">
       {children}
     </ButtonChakra>
   );
 };
-export const Button = forwardRef(ButtonAtom);
+export const Button = memo(ButtonAtom);

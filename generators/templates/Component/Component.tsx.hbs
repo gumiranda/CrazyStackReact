@@ -1,4 +1,4 @@
-import { {{pascalCase name}} as {{pascalCase name}}Chakra, forwardRef } from "@chakra-ui/react";
+import { {{pascalCase name}} as {{pascalCase name}}Chakra, memo } from "@chakra-ui/react";
 export const {{pascalCase name}}_ = ({ children, datatestid, ...rest }: any, ref) => {
   return (
     <{{pascalCase name}}Chakra ref={ref} {...rest} data-testid={datatestid ?? "{{pascalCase name}}TestId"}>
@@ -6,4 +6,4 @@ export const {{pascalCase name}}_ = ({ children, datatestid, ...rest }: any, ref
     </{{pascalCase name}}Chakra>
   );
 };
-export const {{pascalCase name}} = forwardRef({{pascalCase name}}_);
+export const {{pascalCase name}} = memo({{pascalCase name}}_);

@@ -1,5 +1,5 @@
 "use client";
-import React, { forwardRef, ForwardRefRenderFunction, memo } from "react";
+import React, { memo } from "react";
 import { InputProps as ChakraInputProps } from "@chakra-ui/react";
 import { AutoComplete } from "./AutoComplete";
 import { Input, Checkbox, Text } from "@/shared/ui";
@@ -17,10 +17,7 @@ interface InputProps extends ChakraInputProps {
   maskChar?: string | null;
   hide?: any;
 }
-const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  props,
-  ref
-) => {
+const FormControlMolecules = (props, ref) => {
   const {
     name,
     size = "lg",
@@ -133,6 +130,6 @@ const DefaultInput_ = (props, ref) => {
     />
   );
 };
-export const DefaultInput = memo(forwardRef(DefaultInput_));
-export const FormControlInputMask = memo(forwardRef(FormControlInputMask_));
-export const FormControl = memo(forwardRef(FormControlMolecules));
+export const DefaultInput = memo(DefaultInput_);
+export const FormControlInputMask = memo(FormControlInputMask_);
+export const FormControl = memo(FormControlMolecules);

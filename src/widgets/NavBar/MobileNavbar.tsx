@@ -1,3 +1,4 @@
+"use client";
 import { ChakraLink, Logo } from "@/shared/ui";
 import {
   Button,

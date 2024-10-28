@@ -3,12 +3,14 @@ import "@/application/i18n.config";
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ChakraProvider } from "@/application/providers/chakraProvider";
-import { AuthProvider, SidebarDrawerProvider, UiProvider } from "@/shared/libs";
+//import { ChakraProvider } from "@/application/providers/chakraProvider";
+import { AuthProvider, UiProvider } from "@/shared/libs";
 import { WebSocketProvider } from "@/application/providers/webSocketProvider";
 import { I18nProvider } from "@/application/providers/i18nProvider";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
+import { Provider as ChakraProvider } from "@/components/ui/provider";
+
 export type AllProviderProps = {
   children: any;
 };
@@ -33,12 +35,10 @@ export const AllProviders = ({ children }: AllProviderProps) => {
           <ChakraProvider>
             <UiProvider>
               <AuthProvider>
-                <SidebarDrawerProvider>
-                  <WebSocketProvider>
-                    {children}
-                    <Toaster />
-                  </WebSocketProvider>
-                </SidebarDrawerProvider>
+                {/* <WebSocketProvider> */}
+                {children}
+                <Toaster />
+                {/* </WebSocketProvider> */}
               </AuthProvider>
             </UiProvider>
           </ChakraProvider>

@@ -13,7 +13,7 @@ export const Modal = ({
   ...rest
 }: any) => {
   return (
-    <DialogRoot open={open} {...rest}>
+    <DialogRoot open={open}>
       <DialogTrigger />
       <DialogContent>
         <DialogHeader color="purple.700" textAlign={"center"}>

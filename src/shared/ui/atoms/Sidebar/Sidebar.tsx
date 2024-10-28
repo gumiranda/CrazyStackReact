@@ -12,7 +12,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@chakra-ui/react";
-import { useSidebarDrawer } from "@/shared/libs";
 import { ScrollbarCss } from "@/shared/css";
 
 type SidebarProps = {
@@ -20,7 +19,8 @@ type SidebarProps = {
   title: string;
 };
 export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
-  const { open, onClose } = useSidebarDrawer();
+  const [open, setIsOpen] = React.useState(false);
+  const onClose = () => setIsOpen(false);
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
