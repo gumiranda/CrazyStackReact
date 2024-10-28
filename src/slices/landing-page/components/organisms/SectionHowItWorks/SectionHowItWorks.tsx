@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { fonts } from "@/app/fonts";
 import { FeatureItem } from "../../molecules/FeatureItem";
 import { CalendarIcon, CheckIcon, SearchIcon } from "lucide-react";
+import { colors } from "@/application/theme";
 
 export const SectionHowItWorks = () => {
   const { t } = useTranslation(["LANDING"]);
@@ -35,7 +36,7 @@ export const SectionHowItWorks = () => {
         </VStack>
         <Grid templateColumns={{ base: "1fr", md: "repeat(3,1fr)" }} gap={6} mt={8}>
           <FeatureItem
-            icon={<SearchIcon size={12} color="teal.500" />}
+            icon={<SearchIcon size={48} style={{ color: colors.teal[500].value }} />}
             title={t("LANDING:FIND_PROVIDER_TITLE", {
               defaultValue: "Encontre um Prestador",
             })}
@@ -44,7 +45,7 @@ export const SectionHowItWorks = () => {
             })}
           />
           <FeatureItem
-            icon={<CalendarIcon size={12} color="teal.500" />}
+            icon={<CalendarIcon size={48} style={{ color: colors.teal[500].value }} />}
             title={t("LANDING:SCHEDULE_SERVICE_TITLE", {
               defaultValue: "Agende o Serviço",
             })}
@@ -54,7 +55,7 @@ export const SectionHowItWorks = () => {
             })}
           />
           <FeatureItem
-            icon={<CheckIcon size={12} color="teal.500" />}
+            icon={<CheckIcon size={48} style={{ color: colors.teal[500].value }} />}
             title={t("LANDING:SERVICE_PERFORMED_TITLE", {
               defaultValue: "Serviço Realizado",
             })}

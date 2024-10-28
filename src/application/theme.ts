@@ -31,7 +31,12 @@ export const colors = {
     500: { value: "#f0f0f0" },
     600: { value: "#949191" },
   },
-
+  teal: {
+    400: { value: "##38B2AC" },
+    500: { value: "#319795" },
+    600: { value: "#2C7A7B" },
+    700: { value: "#285E61" },
+  },
   accent: { value: "brand.500" },
   success: { value: "green.500" },
   error: { value: "red.500" },

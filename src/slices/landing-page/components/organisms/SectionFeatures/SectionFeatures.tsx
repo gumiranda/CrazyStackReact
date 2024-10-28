@@ -30,6 +30,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
           })}
         </Text>
       </Box>
+
       <ContentGrid>
         <Box mt={{ base: 5, md: 10 }}>
           <FeatureItem

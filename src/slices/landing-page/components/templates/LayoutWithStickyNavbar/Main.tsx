@@ -15,12 +15,10 @@ export const Main = (props: any) => {
       <WithScreenshotBelow />
       <HeroTop />
       <HeroWithSignUp />
-      {/*
-
       <WithImageBackground />
       <SectionFeatures />
       <SectionHowItWorks />
-      <PricingSection />
+      {/* <PricingSection />
       <FAQSection />
       <CookieFooter /> */}
     </Flex>
