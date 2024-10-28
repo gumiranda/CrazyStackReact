@@ -19,8 +19,9 @@ export const Main = (props: any) => {
       <SectionFeatures />
       <SectionHowItWorks />
       <PricingSection />
-      {/*
       <FAQSection />
+      {/*
+
       <CookieFooter /> */}
     </Flex>
   );
