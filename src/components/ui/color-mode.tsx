@@ -39,7 +39,7 @@ export const ColorModeButton = forwardRef<HTMLButtonElement, ColorModeButtonProp
   function ColorModeButton(props, ref) {
     const { toggleColorMode } = useColorMode();
     return (
-      <ClientOnly fallback={<Skeleton boxSize="8" />}>
+      <ClientOnly fallback={<Skeleton />}>
         <IconButton
           onClick={toggleColorMode}
           variant="ghost"

@@ -36,7 +36,7 @@ export const Features = ({ children, features, ...rest }: any) => {
           {features.map((feature: string, index: number) => (
             <ListItem key={feature} color="gray.300">
               <HStack gap="4">
-                <Icon as={FiCheck} color="accent" boxSize="6" />
+                <Icon as={FiCheck} color="accent" />
                 <Text key={index} textStyle={{ base: "sm", md: "md" }}>
                   {feature}
                 </Text>
