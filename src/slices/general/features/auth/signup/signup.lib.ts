@@ -10,7 +10,7 @@ export interface SignupFormData {
   role?: string;
   phone: string;
   coord?: any;
-  cnpjActive: boolean;
+  cnpjActive: any;
 }
 export type SubmitSignupHandler = SubmitHandler<SignupFormData>;
 
@@ -27,7 +27,7 @@ export const signupSchema = yup.object({
         .test("isValidCpf", "CPF Inválido", (value) => cpf.isValid(replaceDigit(value))),
   }),
   cnpj: yup.string().when("cnpjActive", {
-    is: true,
+    is: true || "on",
     then: (schema) =>
       schema
         .required("CNPJ é obrigatório")

@@ -131,7 +131,7 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
             bgColor="gray.100"
             bgColorHover="gray.50"
             type="tel"
-            mask="(99) 99999-9999"
+            mask="(__) _____-____"
             {...register("phone")}
           />
         </GridForm>

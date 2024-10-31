@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { InputProps as ChakraInputProps } from "@chakra-ui/react";
 import { AutoComplete } from "./AutoComplete";
 import { Input, Checkbox, Text } from "@/shared/ui";
-import InputMask from "react-input-mask";
+import { InputMask } from "@react-input/mask";
 import { Field } from "@/components/ui/field";
 interface InputProps extends ChakraInputProps {
   name: string;
@@ -89,10 +89,29 @@ const FormControlInputMask_ = (props) => {
     return null;
   }
   if (mask) {
-    return <DefaultInput mask={mask} {...other} ref={ref} as={InputMask} />;
+    return (
+      <InputMask
+        //{...other}
+        name={other?.name}
+        type={other?.type}
+        showMask
+        onMask={other?.onChange}
+        ref={ref}
+        component={DefaultInput}
+        mask={mask}
+        replacement={{ _: /\d/, A: /[a-zA-Z0-9]/, X: /[a-zA-Z]/ }}
+      />
+    );
+    // return <DefaultInput {...other} ref={ref} />;
   }
   if (checkboxprops) {
-    return <Checkbox {...other} {...checkboxprops} ref={ref} />;
+    return (
+      <Checkbox
+        // {...other}
+        {...checkboxprops}
+        ref={ref}
+      />
+    );
   }
   return <DefaultInput {...other} ref={ref} />;
 };
