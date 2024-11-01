@@ -1,11 +1,8 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, IconButton } from "@chakra-ui/react";
 import {
-  DrawerActionTrigger,
   DrawerBackdrop,
   DrawerBody,
-  DrawerCloseTrigger,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerRoot,
   DrawerTitle,
@@ -13,6 +10,8 @@ import {
 } from "@/components/ui/drawer";
 import { ScrollbarCss } from "@/shared/css";
 import { useState } from "react";
+import { Icon } from "../Icon";
+import { RiMenuLine } from "react-icons/ri";
 
 type SidebarProps = {
   children?: React.ReactNode;
@@ -24,13 +23,27 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
-      <DrawerRoot open={open} defaultOpen={false}>
-        <DrawerBackdrop />{" "}
+      <DrawerRoot
+        placement={"start"}
+        //onOpenChange={(e) => setIsOpen(e.open)}
+      >
+        <DrawerBackdrop />
+        <DrawerTrigger asChild>
+          <IconButton
+            aria-label="Open sidebar"
+            fontSize="24"
+            children={<Icon as={RiMenuLine} />}
+            variant="ghost"
+            color={"white"}
+            mr="1"
+            mt={2}
+          />
+        </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>{title}</DrawerTitle>
           </DrawerHeader>
-          <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
+          <DrawerBody>{children}</DrawerBody>
         </DrawerContent>
       </DrawerRoot>
       // <DrawerRoot open={open} data-testid="SidebarTestId">
