@@ -46,19 +46,6 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
           <DrawerBody>{children}</DrawerBody>
         </DrawerContent>
       </DrawerRoot>
-      // <DrawerRoot open={open} data-testid="SidebarTestId">
-      //   <DrawerTrigger asChild>
-      //     <Button variant="outline" size="sm">
-      //       Open Drawer
-      //     </Button>
-      //   </DrawerTrigger>
-      //   <DrawerBackdrop />
-      //   <DrawerContent bg="secondary.500" p="4">
-      //     <DrawerCloseTrigger mt="6" />
-      //     <DrawerHeader>{title}</DrawerHeader>
-      //     <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
-      //   </DrawerContent>
-      // </DrawerRoot>
     );
   }
   return (
