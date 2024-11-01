@@ -1,6 +1,6 @@
 import { Text } from "@/shared/ui/atoms";
 import NextLink from "next/link";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 export const Logo = ({ haveLink = true, ...rest }) => {
   if (haveLink) {
     return (
@@ -23,8 +23,8 @@ const SystemNameText = ({ marginBottom = 10, ...rest }) => {
       fontSize={["4xl", "5xl"]}
       {...rest}
     >
-      {config.systemName}
-      {config.isAdmin && (
+      {whitelabel.systemName}
+      {whitelabel.isAdmin && (
         <>
           <Text color="tertiary.500" marginLeft="2" as="span">
             admin

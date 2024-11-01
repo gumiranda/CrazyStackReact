@@ -2,15 +2,15 @@ import { getAppointmentById } from "@/slices/appointments/entidades/appointment/
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { AppointmentEditPage } from "@/slices/appointments/screens/appointment/edit";
 import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Agendamento`,
-  description: `Página de edição de agendamentos do ${config.systemName}. Aqui você pode editar agendamento.`,
+  title: `${whitelabel.systemName} | Editar Agendamento`,
+  description: `Página de edição de agendamentos do ${whitelabel.systemName}. Aqui você pode editar agendamento.`,
 };
 
 async function getData(id) {

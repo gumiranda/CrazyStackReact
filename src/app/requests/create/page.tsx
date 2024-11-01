@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { RequestCreatePage } from "@/slices/appointments/screens/request/create";
 import type { Metadata } from "next";
 import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
@@ -15,8 +15,8 @@ async function getData(pageNumber) {
   return res;
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Solicitacoes`,
-  description: `Página de criação de solicitações do ${config.systemName}. Aqui você pode criar solicitacoes.`,
+  title: `${whitelabel.systemName} | Criar Solicitacoes`,
+  description: `Página de criação de solicitações do ${whitelabel.systemName}. Aqui você pode criar solicitacoes.`,
 };
 
 export default async function Page() {

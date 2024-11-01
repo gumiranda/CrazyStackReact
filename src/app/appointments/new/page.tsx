@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import type { Metadata } from "next";
 import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
@@ -21,8 +21,8 @@ async function getData(pageNumber) {
   return { owners: res, clients, clientUsers };
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Agendamento`,
-  description: `Página de criação de agendamentos do ${config.systemName}. Aqui você pode criar agendamento.`,
+  title: `${whitelabel.systemName} | Criar Agendamento`,
+  description: `Página de criação de agendamentos do ${whitelabel.systemName}. Aqui você pode criar agendamento.`,
 };
 
 export default async function Page() {

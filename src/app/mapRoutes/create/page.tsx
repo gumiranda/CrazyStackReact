@@ -1,9 +1,9 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { MapRouteCreatePage } from "@/slices/appointments/screens/mapRoute/create";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Rota`,
-  description: `Página de criação de rotas do ${config.systemName}. Aqui você pode criar rota.`,
+  title: `${whitelabel.systemName} | Criar Rota`,
+  description: `Página de criação de rotas do ${whitelabel.systemName}. Aqui você pode criar rota.`,
 };
 export default MapRouteCreatePage;

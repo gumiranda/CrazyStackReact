@@ -1,5 +1,5 @@
 import { fonts } from "@/app/fonts";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Box, ChakraLink, Flex, Heading, Stack, Text } from "@/shared/ui";
 import { getWhatsappLink } from "@/slices/landing-page/utils/landingUtils";
 import { useTranslation } from "react-i18next";
@@ -93,7 +93,7 @@ function LearnMoreLink() {
   const { t } = useTranslation(["LANDING"]);
   return (
     <ChakraLink
-      href={getWhatsappLink(`Quero saber mais sobre o sistema ${config.systemName}!`)}
+      href={getWhatsappLink(`Quero saber mais sobre o sistema ${whitelabel.systemName}!`)}
       display="inline-flex"
       h="10"
       m={5}

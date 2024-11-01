@@ -1,10 +1,10 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Layout } from "@/shared/ui/templates/Layout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Corridas`,
-  description: `Página de listagem de corridas do ${config.systemName}. Aqui você pode criar, editar e excluir corridas.`,
+  title: `${whitelabel.systemName} | Corridas`,
+  description: `Página de listagem de corridas do ${whitelabel.systemName}. Aqui você pode criar, editar e excluir corridas.`,
 };
 
 export default function LayoutAuthenticated({ children }) {

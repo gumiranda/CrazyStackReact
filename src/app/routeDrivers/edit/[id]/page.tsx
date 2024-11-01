@@ -2,14 +2,14 @@ import { getRouteDriverById } from "@/slices/appointments/entidades/routeDriver/
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { RouteDriverEditPage } from "@/slices/appointments/screens/routeDriver/edit";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Corrida`,
-  description: `Página de edição de corridas do ${config.systemName}. Aqui você pode editar corrida.`,
+  title: `${whitelabel.systemName} | Editar Corrida`,
+  description: `Página de edição de corridas do ${whitelabel.systemName}. Aqui você pode editar corrida.`,
 };
 
 async function getData(id) {

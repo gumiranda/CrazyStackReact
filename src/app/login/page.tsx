@@ -3,10 +3,10 @@ import { parseCookies } from "@/shared/libs/utils/parseCookies";
 import { getCookies } from "@/shared/libs/utils/cookies";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Agendamentos`,
+  title: `${whitelabel.systemName} | Agendamentos`,
   description: "Agende seu horário com os melhores barbeiros da cidade",
 };
 async function getData() {

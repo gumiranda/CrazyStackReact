@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { OwnerCreatePage } from "@/slices/appointments/screens/owner/create";
 import type { Metadata } from "next";
 import { getUsers } from "@/slices/general/entidades/user/user.api";
@@ -15,8 +15,8 @@ async function getData(pageNumber) {
   return res;
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Estabelecimento`,
-  description: `Página de criação de estabelecimentos do ${config.systemName}. Aqui você pode criar estabelecimento.`,
+  title: `${whitelabel.systemName} | Criar Estabelecimento`,
+  description: `Página de criação de estabelecimentos do ${whitelabel.systemName}. Aqui você pode criar estabelecimento.`,
 };
 
 export default async function Page() {

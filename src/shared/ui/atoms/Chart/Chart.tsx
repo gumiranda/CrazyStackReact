@@ -2,17 +2,18 @@
 import { colors } from "@/application/theme";
 import dynamic from "next/dynamic";
 
-const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import ApexChart from "react-apexcharts"; //dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export const Chart = ({ options, series }: any) => {
   return (
-    <ApexChart
-      options={options as any}
-      series={series}
-      type="area"
-      width={300}
-      height={160}
-    />
+    <></>
+    // <ApexChart
+    //   options={options as any}
+    //   series={series}
+    //   type="area"
+    //   width={300}
+    //   height={160}
+    // />
   );
 };
 export const defaultOptions = {

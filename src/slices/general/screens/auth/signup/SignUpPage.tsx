@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Flex, Text, Box, AuthLayout, Logo, useBreakpointValue } from "@/shared/ui";
 import { useAuth } from "@/shared/libs";
 import { useEffect } from "react";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { SignupForm } from "@/slices/general/features/auth/signup";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
@@ -27,8 +27,8 @@ export function SignUpPage() {
       <Box>
         <Text textAlign={"center"} fontWeight={"bold"} fontSize={"2xl"} color="white">
           {t("PAGES:AUTH_PAGE.titleCreateAccount", {
-            defaultValue: `Faça parte do ${config.systemName} 🚀`,
-            systemName: config.systemName,
+            defaultValue: `Faça parte do ${whitelabel.systemName} 🚀`,
+            systemName: whitelabel.systemName,
           })}
         </Text>
         <Text textAlign={"center"}>

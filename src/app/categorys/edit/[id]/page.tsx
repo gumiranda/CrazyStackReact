@@ -2,14 +2,14 @@ import { getCategoryById } from "@/slices/appointments/entidades/category/catego
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { CategoryEditPage } from "@/slices/appointments/screens/category/edit";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Categoria`,
-  description: `Página de edição de categorias do ${config.systemName}. Aqui você pode editar uma categoria.`,
+  title: `${whitelabel.systemName} | Editar Categoria`,
+  description: `Página de edição de categorias do ${whitelabel.systemName}. Aqui você pode editar uma categoria.`,
 };
 
 async function getData(id) {

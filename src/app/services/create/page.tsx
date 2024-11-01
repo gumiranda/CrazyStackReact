@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { ServiceCreatePage } from "@/slices/appointments/screens/service/create";
 import type { Metadata } from "next";
 import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
@@ -15,8 +15,8 @@ async function getData(pageNumber) {
   return res;
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Serviço`,
-  description: `Página de criação de serviços do ${config.systemName}. Aqui você pode criar serviço.`,
+  title: `${whitelabel.systemName} | Criar Serviço`,
+  description: `Página de criação de serviços do ${whitelabel.systemName}. Aqui você pode criar serviço.`,
 };
 
 export default async function Page() {

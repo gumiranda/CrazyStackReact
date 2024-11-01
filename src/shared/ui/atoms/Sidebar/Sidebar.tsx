@@ -1,6 +1,6 @@
+import { Box, Button } from "@chakra-ui/react";
 import {
-  Box,
-  Button,
+  DrawerActionTrigger,
   DrawerBackdrop,
   DrawerBody,
   DrawerCloseTrigger,
@@ -10,7 +10,7 @@ import {
   DrawerRoot,
   DrawerTitle,
   DrawerTrigger,
-} from "@chakra-ui/react";
+} from "@/components/ui/drawer";
 import { ScrollbarCss } from "@/shared/css";
 import { useState } from "react";
 
@@ -24,7 +24,15 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
-      <></>
+      <DrawerRoot open={open} defaultOpen={false}>
+        <DrawerBackdrop />{" "}
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{title}</DrawerTitle>
+          </DrawerHeader>
+          <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
+        </DrawerContent>
+      </DrawerRoot>
       // <DrawerRoot open={open} data-testid="SidebarTestId">
       //   <DrawerTrigger asChild>
       //     <Button variant="outline" size="sm">

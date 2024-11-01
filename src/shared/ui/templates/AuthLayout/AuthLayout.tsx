@@ -1,5 +1,5 @@
 "use client";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Flex, Box, Text, SelectTranslate, useBreakpointValue } from "../../atoms";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
@@ -36,7 +36,7 @@ export const AuthLayout = ({ children, ...rest }: any) => {
             backgroundColor="rgba(255,255,255,0.2)"
           >
             <Text fontWeight={"bold"} fontSize={"6xl"} color="white">
-              Pensou {config.typeSystem},
+              Pensou {whitelabel.typeSystem},
             </Text>
             <Flex>
               <Text fontWeight={"bold"} fontSize={"6xl"} color="white">
@@ -44,7 +44,7 @@ export const AuthLayout = ({ children, ...rest }: any) => {
               </Text>
               <Box>
                 <Text fontWeight={"bold"} fontSize={"6xl"} color="white">
-                  {config.systemName}.
+                  {whitelabel.systemName}.
                 </Text>
                 <Flex h={1} bgColor="tertiary.500" />
               </Box>

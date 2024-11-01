@@ -2,14 +2,14 @@ import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRou
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { MapRouteEditPage } from "@/slices/appointments/screens/mapRoute/edit";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Rota`,
-  description: `Página de edição de rotas do ${config.systemName}. Aqui você pode editar rota.`,
+  title: `${whitelabel.systemName} | Editar Rota`,
+  description: `Página de edição de rotas do ${whitelabel.systemName}. Aqui você pode editar rota.`,
 };
 
 async function getData(id) {

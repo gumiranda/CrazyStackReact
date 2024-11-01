@@ -2,15 +2,15 @@ import { getRequestById } from "@/slices/appointments/entidades/request/request.
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { RequestEditPage } from "@/slices/appointments/screens/request/edit";
 import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Solicitacoes`,
-  description: `Página de edição de solicitações do ${config.systemName}. Aqui você pode editar solicitacoes.`,
+  title: `${whitelabel.systemName} | Editar Solicitacoes`,
+  description: `Página de edição de solicitações do ${whitelabel.systemName}. Aqui você pode editar solicitacoes.`,
 };
 
 async function getData(id) {

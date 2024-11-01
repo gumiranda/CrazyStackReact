@@ -2,15 +2,15 @@ import { getServiceById } from "@/slices/appointments/entidades/service/service.
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ServiceEditPage } from "@/slices/appointments/screens/service/edit";
 import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Serviço`,
-  description: `Página de edição de serviços do ${config.systemName}. Aqui você pode editar serviço.`,
+  title: `${whitelabel.systemName} | Editar Serviço`,
+  description: `Página de edição de serviços do ${whitelabel.systemName}. Aqui você pode editar serviço.`,
 };
 
 async function getData(id) {

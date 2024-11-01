@@ -7,7 +7,7 @@ import { PixInstructions } from "./components/PixInstructions";
 import { PixDetails } from "./components/PixDetails";
 import { PixCopyCode } from "./components/PixCopyCode";
 import { ValidateMyPayment } from "./components/ValidateMyPayment";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 
 export const PaymentWithPix = ({ charge, user }) => {
   const { t } = useTranslation(["PAGES"]);
@@ -25,7 +25,7 @@ export const PaymentWithPix = ({ charge, user }) => {
           subtitle: t("PAGES:PIX_PAY_PAGE.subtitle", {
             defaultValue:
               "Para pagar no seu banco pela internet, escaneie o QR Code ou copie o código abaixo e cole no app do seu banco.",
-            systemName: config.systemName,
+            systemName: whitelabel.systemName,
           }),
         }}
       />

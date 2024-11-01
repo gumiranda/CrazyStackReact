@@ -2,15 +2,15 @@ import { getOwnerById } from "@/slices/appointments/entidades/owner/owner.api";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { OwnerEditPage } from "@/slices/appointments/screens/owner/edit";
 import { getUsers } from "@/slices/general/entidades/user/user.api";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Estabelecimento`,
-  description: `Página de edição de estabelecimentos do ${config.systemName}. Aqui você pode editar estabelecimento.`,
+  title: `${whitelabel.systemName} | Editar Estabelecimento`,
+  description: `Página de edição de estabelecimentos do ${whitelabel.systemName}. Aqui você pode editar estabelecimento.`,
 };
 
 async function getData(id) {

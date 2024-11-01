@@ -1,9 +1,9 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { MapRouteGridPage } from "@/slices/appointments/screens/mapRoute/list/grid";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Rotas`,
-  description: `Página de listagem de rotas do ${config.systemName}. Aqui você pode ver as rotas em lista infinita.`,
+  title: `${whitelabel.systemName} | Rotas`,
+  description: `Página de listagem de rotas do ${whitelabel.systemName}. Aqui você pode ver as rotas em lista infinita.`,
 };
 export default MapRouteGridPage;

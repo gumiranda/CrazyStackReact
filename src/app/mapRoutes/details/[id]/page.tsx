@@ -3,13 +3,13 @@ import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { MapRouteDetailsPage } from "@/slices/appointments/screens/mapRoute/details";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Detalhes da Rota`,
-  description: `Página de detalhes de rotas do ${config.systemName}. Aqui você pode ver os detalhes de rota.`,
+  title: `${whitelabel.systemName} | Detalhes da Rota`,
+  description: `Página de detalhes de rotas do ${whitelabel.systemName}. Aqui você pode ver os detalhes de rota.`,
 };
 
 async function getData(id) {

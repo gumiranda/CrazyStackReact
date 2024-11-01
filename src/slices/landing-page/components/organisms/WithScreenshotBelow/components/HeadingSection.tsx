@@ -1,5 +1,5 @@
 import { fonts } from "@/app/fonts";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Box, Heading, Text } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
@@ -36,8 +36,8 @@ export const HeadingSection = () => {
         animate={{ y: 0 }}
       >
         {t("LANDING:SECOND_BLOCK.subtitle", {
-          defaultValue: `Com o ${config.systemName}, você pode criar e gerenciar seus agendamentos de forma simples e eficiente.`,
-          systemName: config.systemName,
+          defaultValue: `Com o ${whitelabel.systemName}, você pode criar e gerenciar seus agendamentos de forma simples e eficiente.`,
+          systemName: whitelabel.systemName,
         })}
       </Text>
     </Box>

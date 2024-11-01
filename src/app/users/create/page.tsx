@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { UserCreatePage } from "@/slices/general/screens/user/create";
 import type { Metadata } from "next";
 import { getServices } from "@/slices/appointments/entidades/service/service.api";
@@ -30,8 +30,8 @@ async function getData(pageNumber) {
   };
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Profissional`,
-  description: `Página de criação de profissionals do ${config.systemName}. Aqui você pode criar profissional.`,
+  title: `${whitelabel.systemName} | Criar Profissional`,
+  description: `Página de criação de profissionals do ${whitelabel.systemName}. Aqui você pode criar profissional.`,
 };
 
 export default async function Page() {

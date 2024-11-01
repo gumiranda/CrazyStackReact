@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { {{pascalCase name}}CreatePage } from "@/slices/appointments/screens/{{camelCase name}}/create";
 import type { Metadata } from "next";
 import { get{{pascalCase subdomain}}s } from "@/slices/appointments/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
@@ -15,8 +15,8 @@ async function getData(pageNumber) {
   return res;
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar {{pascalCase label}}`,
-  description: `Página de criação de {{camelCase label}}s do ${config.systemName}. Aqui você pode criar {{camelCase label}}.`,
+  title: `${whitelabel.systemName} | Criar {{pascalCase label}}`,
+  description: `Página de criação de {{camelCase label}}s do ${whitelabel.systemName}. Aqui você pode criar {{camelCase label}}.`,
 };
 
 export default async function Page() {

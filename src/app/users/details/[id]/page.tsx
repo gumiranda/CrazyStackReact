@@ -3,13 +3,13 @@ import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { UserDetailsPage } from "@/slices/general/screens/user/details";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Detalhes da Profissional`,
-  description: `Página de detalhes de profissionals do ${config.systemName}. Aqui você pode ver os detalhes de profissional.`,
+  title: `${whitelabel.systemName} | Detalhes da Profissional`,
+  description: `Página de detalhes de profissionals do ${whitelabel.systemName}. Aqui você pode ver os detalhes de profissional.`,
 };
 
 async function getData(id) {
