@@ -107,7 +107,7 @@ export const TableItems = ({
                 fontSize={["xs", "sm", "md", "md"]}
                 colorPalette={"purple"}
               >
-                {/* <Icon fontSize={["xs", "sm", "md", "lg"]} as={RiPencilLine as any} /> */}
+                <Icon fontSize={["xs", "sm", "md", "lg"]} as={RiPencilLine as any} />
               </Button>
             </NextLink>
           </Box>
