@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Icon } from "@chakra-ui/react";
 import { Box, Flex, Text } from "@/shared/ui/atoms";
 import { X } from "lucide-react";
 type BoxErrorProps = {
@@ -20,7 +20,9 @@ export const BoxError = ({ title, content, children, ...rest }: BoxErrorProps) =
           h="55px"
           textAlign={"center"}
         >
-          <X size="20px" color="white" />
+          <Icon fontSize="20px" color="white">
+            <X size="20px" color="white" />
+          </Icon>
         </Flex>
       </Box>
       {title && (

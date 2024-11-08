@@ -46,10 +46,10 @@ export const ControlledSelect = <FormValues extends FieldValues = FieldValues>({
         {...field}
         multiple
       >
-        <Select.Label>{label || "Select an option"}</Select.Label>
+        <Select.Label>{label || "Selecione uma opção"}</Select.Label>
         <Select.Control>
           <Select.Trigger>
-            <Select.ValueText placeholder="Select a Framework" />
+            <Select.ValueText placeholder="Selecione uma opção" />
             <Select.Indicator>
               <ChevronDownIcon />
             </Select.Indicator>
@@ -60,7 +60,7 @@ export const ControlledSelect = <FormValues extends FieldValues = FieldValues>({
           <Select.Positioner>
             <Select.Content>
               <Select.ItemGroup>
-                <Select.ItemGroupLabel>Frameworks</Select.ItemGroupLabel>
+                <Select.ItemGroupLabel>Opções</Select.ItemGroupLabel>
                 {collection.items.map((item) => (
                   <Select.Item key={item.value} item={item}>
                     <Select.ItemText>{item.label}</Select.ItemText>

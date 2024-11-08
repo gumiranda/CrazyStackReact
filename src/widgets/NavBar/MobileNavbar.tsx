@@ -1,26 +1,34 @@
 "use client";
-import { ChakraLink, Logo } from "@/shared/ui";
+import { ChakraLink, Icon, Logo } from "@/shared/ui";
+
 import {
-  Button,
-  DrawerBackdrop,
   DrawerBody,
-  DrawerCloseTrigger,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerRoot,
-  DrawerTitle,
   DrawerTrigger,
-  Stack,
-} from "@chakra-ui/react";
+} from "@/components/ui/drawer";
 import { useTranslation } from "react-i18next";
+import { RiMenuLine } from "react-icons/ri";
+import { IconButton, Stack } from "@chakra-ui/react";
+import { Button } from "@/components/ui/button";
 
 export const MobileDrawer = (props: any) => {
   const { t } = useTranslation(["LANDING"]);
   return (
-    <DrawerRoot placement="left" {...props}>
-      <DrawerBackdrop />
-      <DrawerTrigger />
+    <DrawerRoot placement="start">
+      <DrawerTrigger asChild>
+        <IconButton
+          aria-label="Open sidebar"
+          fontSize="24"
+          children={<Icon as={RiMenuLine} />}
+          variant="ghost"
+          color={"white"}
+          mr="1"
+          mt={2}
+          onClick={props?.onToggle}
+        />
+      </DrawerTrigger>
       <DrawerContent bgColor={"secondary.500"}>
         <DrawerHeader>
           <Logo haveLink={false} marginBottom={0} />
@@ -35,19 +43,17 @@ export const MobileDrawer = (props: any) => {
                 route: "/login",
               },
             ].map((item) => (
-              <ChakraLink key={item.label} href={item.route}>
+              <ChakraLink key={item.label} href={item.route} asChild>
                 <Button
-                  bgColor={"secondary.500"}
+                  bgColor={"secondary.400"}
                   color="white"
                   _hover={{ bgColor: "secondary.600" }}
-                  size="lg"
-                  colorPalette="gray"
                 >
                   {item.label}
                 </Button>
               </ChakraLink>
             ))}
-            <ChakraLink href={"/signup"}>
+            <ChakraLink href={"/signup"} asChild>
               <Button
                 bgColor="primary.600"
                 color="white"

@@ -39,7 +39,7 @@ export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
             mt={2}
           />
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent bgColor="secondary.500">
           <DrawerHeader>
             <DrawerTitle>{title}</DrawerTitle>
           </DrawerHeader>

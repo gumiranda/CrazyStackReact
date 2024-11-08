@@ -7,6 +7,8 @@ import {
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
+import { createListCollection } from "@chakra-ui/react";
+
 export const Select = ({
   children,
   list,
@@ -19,6 +21,9 @@ export const Select = ({
   if (rest?.value === null) {
     rest.value = "";
   }
+  const listCollection = createListCollection({
+    items: list,
+  });
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
       {/* {!!label && (
@@ -26,17 +31,25 @@ export const Select = ({
           {label}
         </FormLabel>
       )} */}
-      <SelectRoot bg="secondary.500" {...rest} data-testid="SelectTestId">
+      <SelectRoot
+        colorPalette="secondary.500"
+        {...rest}
+        data-testid="SelectTestId"
+        collection={listCollection}
+        onValueChange={(e) => rest?.onChange?.({ target: { value: e.value } })}
+      >
         <SelectLabel />
         <SelectTrigger>
-          <SelectValueText />
+          <SelectValueText placeholder="Select uma opção" />
         </SelectTrigger>
         <SelectContent>
-          {list?.map?.((item, index) => (
+          {listCollection?.items?.map?.((item, index) => (
             <SelectItem
               // style={{ backgroundColor: colors.secondary[500] }}
               key={item?.[keyValue]}
               item={item}
+              colorPalette="secondary.500"
+              bgColor={"secondary.500"}
             >
               {item?.[keyLabel]}
             </SelectItem>
