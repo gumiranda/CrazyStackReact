@@ -26,17 +26,15 @@ export const Select = ({
   });
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
-      {/* {!!label && (
-        <FormLabel color={labelColor} htmlFor={rest?.name ?? rest?.id}>
-          {label}
-        </FormLabel>
-      )} */}
       <SelectRoot
         colorPalette="secondary.500"
         {...rest}
         data-testid="SelectTestId"
         collection={listCollection}
-        onValueChange={(e) => rest?.onChange?.({ target: { value: e.value } })}
+        value={[rest?.value]}
+        onValueChange={(e) =>
+          rest?.onChange?.({ target: { value: e?.value?.[0] ?? e?.value } })
+        }
       >
         <SelectLabel />
         <SelectTrigger>
