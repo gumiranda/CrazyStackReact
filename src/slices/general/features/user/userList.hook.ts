@@ -19,7 +19,6 @@ export const useUsersSelect = ({
     userList?.users?.[0]?._id ?? ""
   );
   const handleChangeUserSelected = (event: any) => {
-    event.preventDefault();
     setUserSelected(event.target.value);
   };
   const fetchUsersPaginated = useCallback(async () => {

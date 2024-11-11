@@ -30,7 +30,6 @@ export const useServicesSelect = ({
       ""
   );
   const handleChangeServiceSelected = (event: any) => {
-    event.preventDefault();
     setServiceSelected(event.target.value);
   };
   useEffect(() => {
