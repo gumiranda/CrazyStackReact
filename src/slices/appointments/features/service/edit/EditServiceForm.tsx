@@ -144,7 +144,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
             defaultValue: "Ativo",
           })}
           colorPalette="green"
-          isChecked={active}
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);
@@ -155,7 +155,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
           label={t("PAGES:FIELDS.havePromotionalPrice", {
             defaultValue: "Possui preço promocional?",
           })}
-          isChecked={havePromotionalPrice}
+          checked={havePromotionalPrice}
           onChange={(e) => {
             e.preventDefault();
             setHavePromotionalPrice(e.target.checked);
@@ -166,7 +166,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
           label={t("PAGES:FIELDS.hasFidelityGenerator", {
             defaultValue: "Gera pontos de fidelidade?",
           })}
-          isChecked={hasFidelityGenerator}
+          checked={hasFidelityGenerator}
           onChange={(e) => {
             e.preventDefault();
             setHasFidelityGenerator(e.target.checked);
@@ -177,7 +177,7 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
           label={t("PAGES:FIELDS.canPayWithFidelityPoints", {
             defaultValue: "Pontos de fidelidade podem ser usados na compra?",
           })}
-          isChecked={canPayWithFidelityPoints}
+          checked={canPayWithFidelityPoints}
           onChange={(e) => {
             e.preventDefault();
             setCanPayWithFidelityPoints(e.target.checked);

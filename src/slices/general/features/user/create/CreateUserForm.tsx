@@ -111,7 +111,7 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
             defaultValue: "Ativo",
           })}
           colorPalette={"tertiary"}
-          isChecked={active}
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

@@ -28,7 +28,7 @@ export const Head = ({
       <Box as="th" px={["2", "2", "3"]} color="purple.200" width={["2", "4", "8"]}>
         <Checkbox
           colorPalette="green"
-          isChecked={mainChecked}
+          checked={mainChecked}
           onChange={(e) => {
             setMainChecked(!mainChecked);
             setItems((prevState: any) =>

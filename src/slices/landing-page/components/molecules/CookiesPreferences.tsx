@@ -229,7 +229,7 @@ export const CookiesPreferencesBox = () => {
   );
 };
 const CookiePreferenceMolecule = ({ id, label, value }) => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [checked, setIsChecked] = useState(true);
   return (
     <Flex justify="space-between" align="start" my={4}>
       <Box>
@@ -242,8 +242,8 @@ const CookiePreferenceMolecule = ({ id, label, value }) => {
         colorPalette="teal"
         id={id}
         ml="auto"
-        isChecked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        checked={checked}
+        onChange={() => setIsChecked(!checked)}
       />
     </Flex>
   );

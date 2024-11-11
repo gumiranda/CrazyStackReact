@@ -42,7 +42,7 @@ export const CreateRouteDriverForm = () => {
             defaultValue: "Ativo",
           })}
           colorPalette="green"
-          isChecked={active}
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

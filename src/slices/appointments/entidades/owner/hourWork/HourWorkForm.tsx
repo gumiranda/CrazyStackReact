@@ -163,7 +163,7 @@ export const HourWorks = ({
       />
       <Checkbox
         colorPalette={"tertiary"}
-        isChecked={haveLunchTime1}
+        checked={haveLunchTime1}
         label={t("PAGES:FIELDS.haveLunchTime", {
           defaultValue: "Possui horário de almoço?",
         })}
@@ -175,7 +175,7 @@ export const HourWorks = ({
       />
       <Checkbox
         colorPalette={"tertiary"}
-        isChecked={haveAlternativeHour}
+        checked={haveAlternativeHour}
         label={t("PAGES:FIELDS.haveAlternativeDaysWorked", {
           defaultValue: "Possui horário alternativo?",
         })}
@@ -220,7 +220,7 @@ export const HourWorks = ({
           />
           <Checkbox
             colorPalette={"tertiary"}
-            isChecked={haveLunchTime2}
+            checked={haveLunchTime2}
             label={t("PAGES:FIELDS.haveLunchTime", {
               defaultValue: "Possui horário de almoço?",
             })}
@@ -232,7 +232,7 @@ export const HourWorks = ({
           />
           <Checkbox
             colorPalette={"tertiary"}
-            isChecked={haveAlternativeHour2}
+            checked={haveAlternativeHour2}
             label={t("PAGES:FIELDS.haveAnotherAlternativeDaysWorked", {
               defaultValue: "Possui horário alternativo?",
             })}
@@ -277,7 +277,7 @@ export const HourWorks = ({
               />
               <Checkbox
                 colorPalette={"tertiary"}
-                isChecked={haveLunchTime3}
+                checked={haveLunchTime3}
                 label={t("PAGES:FIELDS.haveAnotherAlternativeLunchTimeDaysWorked", {
                   defaultValue: "Possui horário de almoço alternativo?",
                 })}
