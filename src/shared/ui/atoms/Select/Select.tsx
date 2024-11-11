@@ -22,7 +22,9 @@ export const Select = ({
     rest.value = "";
   }
   const listCollection = createListCollection({
-    items: list,
+    items: list
+      ?.map?.((item) => ({ label: item?.[keyLabel], value: item?.[keyValue] }))
+      ?.concat?.([{ label: "Carregar mais", value: "loadMore" }]),
   });
   return (
     <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
@@ -32,26 +34,28 @@ export const Select = ({
         data-testid="SelectTestId"
         collection={listCollection}
         value={[rest?.value]}
-        onValueChange={(e) =>
-          rest?.onChange?.({ target: { value: e?.value?.[0] ?? e?.value } })
-        }
+        onValueChange={(e) => {
+          rest?.onChange?.({ target: { value: e?.value?.[0] ?? e?.value } });
+        }}
       >
         <SelectLabel />
         <SelectTrigger>
           <SelectValueText placeholder="Select uma opção" />
         </SelectTrigger>
         <SelectContent>
-          {listCollection?.items?.map?.((item, index) => (
-            <SelectItem
-              // style={{ backgroundColor: colors.secondary[500] }}
-              key={item?.[keyValue]}
-              item={item}
-              colorPalette="secondary.500"
-              bgColor={"secondary.500"}
-            >
-              {item?.[keyLabel]}
-            </SelectItem>
-          ))}
+          {listCollection?.items?.map?.((item: any, index) => {
+            return (
+              <SelectItem
+                key={item?.value}
+                item={item}
+                colorPalette="secondary.500"
+                bgColor={"secondary.500"}
+              >
+                {item?.label}
+              </SelectItem>
+            );
+          })}
+
           {children}
         </SelectContent>
       </SelectRoot>
