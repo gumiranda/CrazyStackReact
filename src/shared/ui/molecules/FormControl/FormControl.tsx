@@ -1,10 +1,10 @@
 "use client";
 import React, { memo } from "react";
 import { InputProps as ChakraInputProps } from "@chakra-ui/react";
-import { AutoComplete } from "./AutoComplete";
-import { Input, Checkbox, Text } from "@/shared/ui";
+import { Input, Checkbox } from "@/shared/ui";
 import { InputMask } from "@react-input/mask";
 import { Field } from "@/components/ui/field";
+import { AutoComplete } from "./NewAutocomplete";
 interface InputProps extends ChakraInputProps {
   name: string;
   bgColorHover?: string;
@@ -36,41 +36,7 @@ const FormControlMolecules = (props) => {
   if (hide) {
     return null;
   }
-  const AutoCompleteInput = AutoComplete as (props: any) => any;
-  const Componente = () => {
-    return (
-      <>
-        {!autoCompleteProps ? (
-          <FormControlInputMask {...props} />
-        ) : (
-          <AutoCompleteInput
-            label={label}
-            renderInput={(currentProps: any) => {
-              return <DefaultInput {...props} {...currentProps} />;
-            }}
-            placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
-            _placeholder={{ opacity: 1, color: "gray.500" }}
-            items={autoCompleteProps?.list}
-            listStyleProps={
-              autoCompleteProps?.listStyleProps ?? {
-                bgColor: "primary.600",
-                color: "white",
-              }
-            }
-            listItemStyleProps={
-              autoCompleteProps?.listItemStyleProps ?? {
-                bgColor: "primary.600",
-                color: "white",
-              }
-            }
-            highlightItemBg={autoCompleteProps?.highlightItemBg ?? "primary.500"}
-          />
-        )}
 
-        {!!error && <Text>{error?.message}</Text>}
-      </>
-    );
-  };
   return (
     <Field
       {...rest}
@@ -78,13 +44,21 @@ const FormControlMolecules = (props) => {
       data-testid="FormControlTestId"
       invalid={!!error}
       recipe={undefined}
+      errorText={error?.message}
     >
-      <Componente />
+      <>
+        {!autoCompleteProps ? (
+          <FormControlInputMask {...props} labelColor={labelColor} />
+        ) : (
+          <AutoComplete {...props} />
+        )}
+      </>
     </Field>
   );
 };
 const FormControlInputMask_ = (props) => {
-  const { mask, hide, checkboxprops, ref, ...other } = props;
+  const { mask, hide, checkboxprops, ref, labelColor, ...other } = props;
+  console.log({ props, other });
   if (hide) {
     return null;
   }
@@ -92,11 +66,13 @@ const FormControlInputMask_ = (props) => {
     return (
       <InputMask
         //{...other}
+        color={labelColor}
         name={other?.name}
         type={other?.type}
         showMask
         onMask={other?.onChange}
         ref={ref}
+        style={{ color: labelColor }}
         component={DefaultInput}
         mask={mask}
         replacement={{ _: /\d/, A: /[a-zA-Z0-9]/, X: /[a-zA-Z]/ }}
@@ -143,7 +119,6 @@ const DefaultInput_ = (props) => {
       size={size}
       type={type}
       _placeholder={{ opacity: 1, color: "gray.500" }}
-      color={labelColor}
       ref={props?.ref}
     />
   );

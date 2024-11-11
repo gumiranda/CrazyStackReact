@@ -35,12 +35,14 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
   const triggerPhoneClient = (currentClient) => {
     if (currentClient?.phone) {
       setValue("phone", currentClient?.phone);
+      setValue("name", currentClient?.name);
       trigger("phone");
+      trigger("name");
     }
   };
   const createClient = createClientMutation(
     () => {
-      setLoading(false);
+      setLoading?.(false);
     },
     null,
     t
@@ -48,8 +50,9 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
   const handleCreateClient: SubmitCreateClientHandler = async (
     values: CreateClientFormData
   ) => {
-    const name = (document.getElementById("name") as HTMLInputElement).value;
-    const existingClient = clientList?.clients?.find?.((item) => item?.name === name);
+    const existingClient = clientList?.clients?.find?.(
+      (item) => item?.name === values.name
+    );
 
     setLoading(true);
     const userId = userSelected ?? users?.[0]?._id ?? userList?.[0]?._id ?? "";
@@ -99,7 +102,6 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
             labelColor="gray.800"
             inputBgColor="gray.800"
             bgColor="gray.100"
-            bgColorHover="gray.50"
             autoCompleteProps={{
               list:
                 clientList?.clients?.map?.((item) => ({
@@ -107,9 +109,9 @@ export const StepClient = ({ clientList, userList, setActiveStep, ownerSelected 
                   label: item.name,
                 })) ?? [],
               placeholder: "",
-              listStyleProps: { backgroundColor: "gray.100", color: "black" },
+              listStyleProps: { bgColor: "gray.100", color: "black" },
               listItemStyleProps: {
-                backgroundColor: "gray.100",
+                bgColor: "gray.100",
                 color: "black",
                 onClick: (clientSelected) => {
                   const existingClient = clientList?.clients?.find?.(
