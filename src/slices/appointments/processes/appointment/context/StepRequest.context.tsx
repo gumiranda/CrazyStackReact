@@ -22,7 +22,7 @@ export const isBrowser = typeof window !== "undefined";
 export const useStepRequest = () => {
   if (!isBrowser) {
     return {
-      request: null,
+      request: {},
       setRequest: () => {},
     };
   }

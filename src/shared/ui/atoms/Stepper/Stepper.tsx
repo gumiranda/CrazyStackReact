@@ -1,15 +1,12 @@
-import { Box, Container } from "@chakra-ui/react";
-import {
-  StepsContent,
-  StepsItem,
-  StepsList,
-  StepsNextTrigger,
-  StepsPrevTrigger,
-  StepsRoot,
-} from "@/components/ui/steps";
+import { Box, Container, StepsCompletedContent } from "@chakra-ui/react";
+import { StepsContent, StepsItem, StepsList, StepsRoot } from "@/components/ui/steps";
 import { useBreakpointValue } from "../Hooks";
+import React from "react";
 export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) => {
-  const isMobile = useBreakpointValue("(max-width: 768px)");
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  if (steps?.length < 1) {
+    return null;
+  }
   return (
     <Container maxW={"5xl"}>
       <Box
@@ -17,40 +14,36 @@ export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) =
         alignItems={"center"}
         justifyContent={"center"}
       >
-        {activeStep < steps.length && (
-          <StepsRoot
-            orientation={isMobile ? "vertical" : "horizontal"}
-            m={8}
-            height={isMobile ? "200px" : "auto"}
-            colorPalette="tertiary"
-          >
-            <StepsList>
-              {steps.map((step: any, index: number) => (
-                <StepsItem index={activeStep}>
-                  {/* <StepIndicator>
-                    <StepStatus
-                      complete={<StepIcon />}
-                      incomplete={<StepNumberAny mt={1} color="primary.500" />}
-                      active={<StepNumberAny mt={1} color="tertiary.500" />}
-                    />
-                  </StepIndicator> */}
-                  <StepsContent index={index}>
-                    {/* <StepTitle> */}
-                    {step.title}
-                    {/* </StepTitle>
-                    <StepDescription> */}
-                    {step.description}
-                    {/* </StepDescription> */}
-                  </StepsContent>
-                </StepsItem>
-              ))}
-            </StepsList>
-            <StepsPrevTrigger />
-            <StepsNextTrigger />
-          </StepsRoot>
-        )}
+        <StepsRoot
+          defaultValue={1}
+          count={steps.length}
+          orientation={isMobile ? "vertical" : "horizontal"}
+          colorPalette="purple"
+          defaultStep={activeStep}
+          step={activeStep}
+        >
+          <StepsList m={8}>
+            {steps?.map?.((step: any, index: number) => (
+              <StepsItem
+                key={index}
+                index={index}
+                title={step.title}
+                description={step.description}
+                icon={step.icon}
+                mt={index > 0 && isMobile ? 4 : 0}
+              />
+            ))}
+          </StepsList>
+          {steps?.map?.((step: any, index: number) => (
+            <StepsContent key={index} index={index}>
+              {stepsComponents[index]}
+            </StepsContent>
+          ))}
+          <StepsCompletedContent>
+            {stepsComponents[steps.length - 1]}
+          </StepsCompletedContent>
+        </StepsRoot>
       </Box>
-      {stepsComponents[activeStep]}
       {children}
     </Container>
   );

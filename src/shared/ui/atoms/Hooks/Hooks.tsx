@@ -1,8 +1,7 @@
 "use client";
-import { isBrowser } from "@/application/providers/i18nProvider";
+import { useBreakpointValue } from "@chakra-ui/react";
 import { useState, useCallback } from "react";
 import { useMedia } from "react-use";
-const useBreakpointValue = isBrowser ? useMedia : () => ({});
 export { useBreakpointValue, useDisclosure };
 export const useSteps = ({ index, count }) => {
   const [activeStep, setActiveStep] = useState(index);
