@@ -45,6 +45,7 @@ const FormControlMolecules = (props) => {
       invalid={!!error}
       recipe={undefined}
       errorText={error?.message}
+      color={labelColor}
     >
       <>
         {!autoCompleteProps ? (
