@@ -62,13 +62,7 @@ export const CreateClientForm = ({ userList, owners }: ClientCreateFormProps) =>
           onChange={handleChangeUserSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Checkbox
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",

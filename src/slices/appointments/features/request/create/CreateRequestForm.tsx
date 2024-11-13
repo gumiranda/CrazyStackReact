@@ -64,13 +64,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Select
           bg="secondary.500"
           name="userList"
@@ -82,13 +76,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeUserSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Select
           bg="secondary.500"
           name="serviceList"
@@ -100,13 +88,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeServiceSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Select
           bg="secondary.500"
           name="clientList"
@@ -118,13 +100,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeClientSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         {ownerSelected &&
           ownerSelected?.length > 0 &&
           serviceSelected?.length > 0 &&

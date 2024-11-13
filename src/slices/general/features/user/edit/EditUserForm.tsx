@@ -2,7 +2,6 @@ import { UserProps } from "@/slices/general/entidades/user";
 import { useEditUser } from "./editUser.hook";
 import {
   BoxCreateItem,
-  ControlledSelect,
   FormControl,
   GenericDetailsItem,
   GridForm,
@@ -35,7 +34,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
     serviceList,
     ownerList,
   });
-  const ControlledSelectAux = ControlledSelect as (props: any) => any;
 
   return (
     <BoxCreateItem
@@ -76,7 +74,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           {...register("name")}
         />
         <Select
-          bg="primary.500"
           name="ownerList"
           label={t("PAGES:HOME_PAGE.owner", {
             defaultValue: "Estabelecimento",
@@ -86,21 +83,15 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
-        <ControlledSelectAux
-          isMulti
+        ></Select>
+        <Select
+          multiple
           control={control as any}
           label={t("PAGES:HOME_PAGE.servicesSelected", {
             defaultValue: "Serviços selecionados",
           })}
           placeholder="Selecione pelo menos 1 serviço"
-          options={serviceOptions}
+          list={serviceOptions}
           name={"serviceOptions"}
         />
       </GridForm>

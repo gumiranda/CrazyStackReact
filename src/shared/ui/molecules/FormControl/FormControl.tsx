@@ -22,7 +22,7 @@ const FormControlMolecules = (props) => {
     name,
     size = "lg",
     variant = "filled",
-    bgColor = "#7159C1",
+    bgColor = "secondary.500",
     bgColorHover = "primary.600",
     label,
     error = null,
