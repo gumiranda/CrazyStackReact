@@ -38,14 +38,16 @@ export const Select = ({
         {...rest}
         data-testid="SelectTestId"
         collection={listCollection}
-        value={[rest?.value]}
+        value={rest?.multiple ? rest?.value : [rest?.value]}
         onValueChange={(e) => {
-          rest?.onChange?.({ target: { value: e?.value?.[0] ?? e?.value } });
+          rest?.onChange?.({
+            target: { value: rest?.multiple ? e?.value : (e?.value?.[0] ?? e?.value) },
+          });
         }}
       >
         <SelectLabel bgColor={"transparent"}>{label}</SelectLabel>
         <SelectTrigger>
-          <SelectValueText placeholder="Selecione uma opção" />
+          <SelectValueText placeholder="Selecione uma opção" color={labelColor} />
         </SelectTrigger>
         <SelectContent>
           {listCollection?.items?.map?.((item: any, index) => {

@@ -49,25 +49,6 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/owners/1"}
     >
-      <GenericDetailsItem
-        item={owner}
-        fields={[
-          { id: "_id", label: "Id" },
-          {
-            id: "name",
-            label: t("PAGES:FIELDS.name", {
-              defaultValue: "Nome",
-            }),
-          },
-          { id: "createdById", label: "Id do criador" },
-          {
-            id: "createdAt",
-            label: t("PAGES:FIELDS.createdAt", {
-              defaultValue: "Data de criação",
-            }),
-          },
-        ]}
-      />
       <GridForm>
         <FormControl
           label={t("PAGES:FIELDS.name", {

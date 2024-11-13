@@ -52,7 +52,7 @@ export const CreateClientForm = ({ userList, owners }: ClientCreateFormProps) =>
           {...register("phone")}
         />
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="clientList"
           label={t("PAGES:AUTH_PAGE.userAssociatedToClient", {
             defaultValue: "Usuário associado ao cliente",

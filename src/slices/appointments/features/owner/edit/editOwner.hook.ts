@@ -121,7 +121,6 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
       (item) => currentOwner?.days3?.[item?.value] === false || !currentOwner?.days3
     );
   const changeHour = (event: any, nameField: string) => {
-    event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
   return {

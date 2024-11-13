@@ -104,7 +104,6 @@ export const useCreateOwner = ({ data }) => {
     });
   };
   const changeHour = (event: any, nameField: string) => {
-    event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
   const daysOptions1 = daysOptions.map((item) => ({

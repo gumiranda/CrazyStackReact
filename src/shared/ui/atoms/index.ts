@@ -25,7 +25,6 @@ export * from "./SelectTranslate";
 export * from "./Stepper";
 export * from "./SearchBar";
 export * from "./DatePicker";
-export * from "./ControlledSelect";
 export * from "./HStack";
 export * from "./Select";
 export * from "./CustomCard";

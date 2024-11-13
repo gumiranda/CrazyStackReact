@@ -54,7 +54,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
     >
       <GridForm>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="ownerList"
           label={t("PAGES:HOME_PAGE.owner", {
             defaultValue: "Estabelecimento",
@@ -72,7 +72,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           </option>
         </Select>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="userList"
           label={t("PAGES:HOME_PAGE.professional", {
             defaultValue: "Profissional prestador",
@@ -90,7 +90,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           </option>
         </Select>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="serviceList"
           label={t("PAGES:HOME_PAGE.service", {
             defaultValue: "Serviço",
@@ -108,7 +108,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           </option>
         </Select>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="clientList"
           label={t("PAGES:HOME_PAGE.client", {
             defaultValue: "Cliente",
@@ -148,7 +148,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           userSelected?.length > 0 &&
           timeAvailable?.timeAvailable?.length > 0 && (
             <Select
-              bg="secondary.600"
+              bg="secondary.500"
               name="timeList"
               label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
                 defaultValue: "Horário disponível",

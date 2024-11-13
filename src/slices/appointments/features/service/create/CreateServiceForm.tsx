@@ -91,7 +91,7 @@ export const CreateServiceForm = ({ categoryList }: CreateServiceFormProps) => {
           {...register("comission")}
         />
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="categoryList"
           label={t("PAGES:HOME_PAGE.category", {
             defaultValue: "Categoria",

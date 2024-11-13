@@ -23,7 +23,7 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
   const { showModal } = useUi();
   const router = useRouter();
   const { serviceOptions } = useServiceListMultiple({ serviceList });
-
+  const [serviceIdsSelected, setServiceIdsSelected] = useState<string[]>([]);
   const { ownerSelected, handleChangeOwnerSelected, owners } = useOwnersSelect({
     ownerList,
   });
@@ -84,7 +84,7 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
     await createUser.mutateAsync({
       ...values,
       active,
-      serviceIds: values?.serviceOptions?.map?.((service) => service?.value),
+      serviceIds: serviceIdsSelected, //values?.serviceOptions?.map?.((service) => service?.value),
       ownerId: ownerSelected,
       myOwnerId: owners?.find?.((owner: OwnerProps) => owner?._id === ownerSelected)?._id,
       role: "professional",
@@ -102,5 +102,7 @@ export const useCreateUser = ({ serviceList, ownerList }: CreateUserFormProps) =
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    serviceIdsSelected,
+    setServiceIdsSelected,
   };
 };
