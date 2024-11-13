@@ -99,8 +99,7 @@ export const DatePicker = (props: IDatePickerProps) => {
           {label}
         </FormLabel>
         <Fieldset.Root>
-          <Input color={color} ref={inputRef} {...rest} />
-          {/* <InputRightElement children={<ChevronDownIcon w={5} h={5} />} /> */}
+          <Input color={labelColor} ref={inputRef} {...rest} />
         </Fieldset.Root>
       </MenuTrigger>
       <MenuContent>
@@ -109,15 +108,11 @@ export const DatePicker = (props: IDatePickerProps) => {
             <IconButton
               variant="ghost"
               aria-label="datepicker left button"
+              color={color}
               onClick={() => setMonthAction(-1)}
-              children={<ArrowLeftIcon color={color} />}
+              children={<ArrowLeftIcon />}
             />
-            {/* <IconButton
-              variant="ghost"
-              aria-label="datepicker left button"
-              onClick={() => setMonthAction(-1)}
-              icon={<ChevronLeftIcon color={color} />}
-            /> */}
+
             <VStack align="center">
               <Button variant="ghost" size="md">
                 <Heading color={color} m={0} fontWeight={200} as="h5">
@@ -134,13 +129,6 @@ export const DatePicker = (props: IDatePickerProps) => {
                 {getMonthStr(month).toUpperCase()}
               </Button>
             </VStack>
-            {/* <IconButton
-              variant="ghost"
-              aria-label="datepicker right button"
-              color={color}
-              onClick={() => setMonthAction(1)}
-              icon={<ChevronRightIcon />}
-            /> */}
             <IconButton
               variant="ghost"
               aria-label="datepicker right button"

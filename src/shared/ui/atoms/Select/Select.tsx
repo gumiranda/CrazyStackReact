@@ -27,9 +27,14 @@ export const Select = ({
       ?.concat?.([{ label: "Carregar mais", value: "loadMore" }]),
   });
   return (
-    <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
+    <Flex
+      alignItems="flex-start"
+      justifyContent={"center"}
+      flexDir="column"
+      bgColor={"transparent"}
+      minW="100%"
+    >
       <SelectRoot
-        colorPalette="secondary.500"
         {...rest}
         data-testid="SelectTestId"
         collection={listCollection}
@@ -38,9 +43,9 @@ export const Select = ({
           rest?.onChange?.({ target: { value: e?.value?.[0] ?? e?.value } });
         }}
       >
-        <SelectLabel />
+        <SelectLabel bgColor={"transparent"}>{label}</SelectLabel>
         <SelectTrigger>
-          <SelectValueText placeholder="Select uma opção" />
+          <SelectValueText placeholder="Selecione uma opção" />
         </SelectTrigger>
         <SelectContent>
           {listCollection?.items?.map?.((item: any, index) => {

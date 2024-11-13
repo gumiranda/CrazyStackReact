@@ -21,23 +21,20 @@ export const RequestFilters = ({
           setEndDate(convertToDate(date));
         }}
       />
-      <Box mt={6}>
-        <Select
-          size="sm"
-          bg="secondary.500"
-          borderRadius="md"
-          h={10}
-          list={[" ", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => ({
-            value: item,
-            label: statusMap[item as any],
-          }))}
-          keyValue="value"
-          keyLabel="label"
-          label="Status do agendamento"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        />
-      </Box>
+      <Select
+        mt={4}
+        w={"16rem"}
+        borderRadius="md"
+        list={[" ", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => ({
+          value: item,
+          label: statusMap[item as any],
+        }))}
+        keyValue="value"
+        keyLabel="label"
+        label="Status do agendamento"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      />
     </Flex>
   );
 };
