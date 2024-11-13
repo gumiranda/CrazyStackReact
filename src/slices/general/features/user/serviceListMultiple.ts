@@ -26,7 +26,7 @@ export const useServiceListMultiple = ({
   );
   const serviceOptions =
     services
-      ?.filter?.((service) => !prevServicesSelected?.includes?.(service?._id))
+      // ?.filter?.((service) => !prevServicesSelected?.includes?.(service?._id))
       ?.map?.((service) => ({ label: service?.name, value: service?._id })) ?? [];
   useEffect(() => {
     if (services?.length < serviceList?.totalCount) {

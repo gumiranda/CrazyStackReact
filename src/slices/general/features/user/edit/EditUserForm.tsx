@@ -29,6 +29,8 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    serviceIds,
+    setServiceIds,
   } = useEditUser({
     user,
     serviceList,
@@ -47,24 +49,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/users/1"}
     >
-      <GenericDetailsItem
-        item={user}
-        fields={[
-          {
-            id: "name",
-            label: t("PAGES:FIELDS.name", {
-              defaultValue: "Nome",
-            }),
-          },
-          {
-            id: "createdAt",
-            label: t("PAGES:FIELDS.createdAt", {
-              defaultValue: "Data de criação",
-            }),
-          },
-          { id: "email", label: "Email" },
-        ]}
-      />
       <GridForm>
         <FormControl
           label={t("PAGES:FIELDS.name", {
@@ -93,6 +77,10 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           placeholder="Selecione pelo menos 1 serviço"
           list={serviceOptions}
           name={"serviceOptions"}
+          keyValue="value"
+          keyLabel="label"
+          value={serviceIds}
+          onChange={(e) => setServiceIds(e.target.value)}
         />
       </GridForm>
     </BoxCreateItem>

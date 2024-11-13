@@ -59,7 +59,6 @@ const FormControlMolecules = (props) => {
 };
 const FormControlInputMask_ = (props) => {
   const { mask, hide, checkboxprops, ref, labelColor, ...other } = props;
-  console.log({ props, other });
   if (hide) {
     return null;
   }

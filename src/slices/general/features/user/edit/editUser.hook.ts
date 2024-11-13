@@ -8,12 +8,16 @@ import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { OwnerProps } from "@/slices/appointments/entidades/owner";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 export const useEditUser = (props: EditUserFormProps) => {
   const { t } = useTranslation(["PAGES"]);
   const { showModal } = useUi();
   const { user: currentUser, serviceList, ownerList } = props;
   const router = useRouter();
+  const [serviceIds, setServiceIds] = useState<string[] | undefined>(
+    currentUser?.serviceIds
+  );
   const { serviceOptions, services, prevServiceOptions } = useServiceListMultiple({
     serviceList,
     prevServicesSelected: currentUser?.serviceIds,
@@ -82,7 +86,7 @@ export const useEditUser = (props: EditUserFormProps) => {
   const handleEditUser: SubmitEditUserHandler = async (values: EditUserFormData) => {
     await editUser.mutateAsync({
       ...values,
-      serviceIds: values?.serviceOptions?.map?.((service) => service?.value),
+      serviceIds,
       ownerId: ownerSelected,
       myOwnerId: owners?.find?.((owner: OwnerProps) => owner?._id === ownerSelected)?._id,
       role: "professional",
@@ -99,5 +103,7 @@ export const useEditUser = (props: EditUserFormProps) => {
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    serviceIds,
+    setServiceIds,
   };
 };
