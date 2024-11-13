@@ -21,6 +21,7 @@ export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) =
           colorPalette="purple"
           defaultStep={activeStep}
           step={activeStep}
+          flexDir={"column"}
         >
           <StepsList m={8}>
             {steps?.map?.((step: any, index: number) => (

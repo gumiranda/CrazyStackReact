@@ -1,7 +1,7 @@
 import { useUi } from "@/shared/libs";
 import { useStepRequest } from "../context/StepRequest.context";
 import { useRouter } from "next/navigation";
-import { Box, Button, Text, Heading } from "@/shared/ui";
+import { Box, Button, Text, Heading, Icon } from "@/shared/ui";
 import { editRequestMutation } from "@/slices/appointments/features/request/edit/editRequest.hook";
 import { format, startOfDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -34,7 +34,7 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
   };
   return (
     <Box textAlign="center" px={2} py={4}>
-      <CheckCircleIcon size="50px" color="tertiary.500" />
+      <Icon fontSize="50px" color="green.500" as={CheckCircleIcon} />
       {title && (
         <Heading color="gray.600" mt={4}>
           {title}

@@ -7,7 +7,7 @@ import { StepServiceProfessional } from "./steps/StepServiceProfessional";
 import { StepSuccess } from "./steps/StepSuccess";
 import { useTranslation } from "react-i18next";
 import { LuCalendar, LuUser } from "react-icons/lu";
-import { SquareScissors } from "lucide-react";
+import { CheckCircle, SquareScissors } from "lucide-react";
 
 export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
   const { t } = useTranslation(["PAGES"]);
@@ -38,6 +38,16 @@ export const FullCreateRequestPage = ({ owners, clients, clientUsers }) => {
         defaultValue: "Selecione dia e horário",
       }),
       icon: <LuCalendar />,
+    },
+    {
+      title: t("PAGES:NEW_APPOINTMENT.confirmAppointment", {
+        defaultValue: "Confirmar",
+      }),
+      description: t("PAGES:NEW_APPOINTMENT.confirmAppointmentMessage", {
+        defaultValue:
+          "Verifique os dados e confirme o agendamento clicando no botão abaixo.",
+      }),
+      icon: <CheckCircle />,
     },
   ];
   const { activeStep, setActiveStep } = useSteps({
