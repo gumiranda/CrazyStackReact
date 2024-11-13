@@ -11,7 +11,7 @@ type BoxSuccessProps = {
 export const BoxSuccess = ({ title, content, children, ...rest }: BoxSuccessProps) => {
   return (
     <Box textAlign={"center"} py={4} px={2} {...rest}>
-      <Icon fontSize="50px" color="green.500">
+      <Icon fontSize="50px" color="tertiary.500">
         <CheckCircleIcon size="50px" />
       </Icon>
 
