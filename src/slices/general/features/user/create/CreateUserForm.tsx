@@ -22,8 +22,8 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
-    serviceIdsSelected,
-    setServiceIdsSelected,
+    serviceIds,
+    setServiceIds,
   } = useCreateUser({ ownerList, serviceList });
 
   return (
@@ -89,13 +89,14 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           label={t("PAGES:HOME_PAGE.servicesSelected", {
             defaultValue: "Serviços selecionados",
           })}
-          placeholder="Selecione os serviços"
+          placeholder="Selecione pelo menos 1 serviço"
           list={serviceOptions}
           name={"serviceOptions"}
-          value={serviceIdsSelected}
-          onChange={(e) => setServiceIdsSelected(e.target.value)}
+          keyValue="value"
+          keyLabel="label"
+          value={serviceIds}
+          onChange={(e) => setServiceIds(e.target.value)}
         />
-
         <Checkbox
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
