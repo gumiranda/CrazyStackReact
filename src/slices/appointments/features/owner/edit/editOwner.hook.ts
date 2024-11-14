@@ -1,3 +1,4 @@
+"use client";
 import { useUi } from "@/shared/libs";
 import { EditOwnerFormProps } from "./EditOwnerForm";
 import { SubmitEditOwnerHandler, useEditOwnerLib } from "./editOwner.lib";
@@ -100,26 +101,63 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     await editOwner.mutateAsync({
       ...hourWork,
       ...values,
-      days1: formatDays(values?.days1Options, "1"),
-      days2: formatDays(values?.days2Options, "2"),
-      days3: formatDays(values?.days3Options, "3"),
+      days1: {
+        monday1: !!hourWork?.days1?.includes?.("monday1"),
+        tuesday1: !!hourWork?.days1?.includes?.("tuesday1"),
+        wednesday1: !!hourWork?.days1?.includes?.("wednesday1"),
+        thursday1: !!hourWork?.days1?.includes?.("thursday1"),
+        friday1: !!hourWork?.days1?.includes?.("friday1"),
+        saturday1: !!hourWork?.days1?.includes?.("saturday1"),
+        sunday1: !!hourWork?.days1?.includes?.("sunday1"),
+      },
+      days2: {
+        monday2: !!hourWork?.days2?.includes?.("monday2"),
+        tuesday2: !!hourWork?.days2?.includes?.("tuesday2"),
+        wednesday2: !!hourWork?.days2?.includes?.("wednesday2"),
+        thursday2: !!hourWork?.days2?.includes?.("thursday2"),
+        friday2: !!hourWork?.days2?.includes?.("friday2"),
+        saturday2: !!hourWork?.days2?.includes?.("saturday2"),
+        sunday2: !!hourWork?.days2?.includes?.("sunday2"),
+      },
+      days3: {
+        monday3: !!hourWork?.days3?.includes?.("monday3"),
+        tuesday3: !!hourWork?.days3?.includes?.("tuesday3"),
+        wednesday3: !!hourWork?.days3?.includes?.("wednesday3"),
+        thursday3: !!hourWork?.days3?.includes?.("thursday3"),
+        friday3: !!hourWork?.days3?.includes?.("friday3"),
+        saturday3: !!hourWork?.days3?.includes?.("saturday3"),
+        sunday3: !!hourWork?.days3?.includes?.("sunday3"),
+      },
     });
   };
-  const daysOptions1 = daysOptions
-    .map((item) => ({ ...item, value: item?.value + "1" }))
-    ?.filter?.(
-      (item) => currentOwner?.days1?.[item?.value] === false || !currentOwner?.days1
-    );
-  const daysOptions2 = daysOptions
-    .map((item) => ({ ...item, value: item?.value + "2" }))
-    ?.filter?.(
-      (item) => currentOwner?.days2?.[item?.value] === false || !currentOwner?.days2
-    );
-  const daysOptions3 = daysOptions
-    .map((item) => ({ ...item, value: item?.value + "3" }))
-    ?.filter?.(
-      (item) => currentOwner?.days3?.[item?.value] === false || !currentOwner?.days3
-    );
+  const daysOptions1 =
+    daysOptions?.map?.((item) => ({
+      ...item,
+      value: item?.value + "1",
+    })) ?? [];
+
+  const daysOptions2 =
+    daysOptions?.map?.((item) => ({
+      ...item,
+      value: item?.value + "2",
+    })) ?? [];
+
+  const daysOptions3 =
+    daysOptions?.map?.((item) => ({
+      ...item,
+      value: item?.value + "3",
+    })) ?? [];
+
+  const daysOptionsSelected1 = daysOptions1?.filter?.(
+    (item) => currentOwner?.days1?.[item?.value] === false || !currentOwner?.days1
+  );
+  const daysOptionsSelected2 = daysOptions2?.filter?.(
+    (item) => currentOwner?.days2?.[item?.value] === false || !currentOwner?.days2
+  );
+  const daysOptionsSelected3 = daysOptions3?.filter?.(
+    (item) => currentOwner?.days3?.[item?.value] === false || !currentOwner?.days3
+  );
+
   const changeHour = (event: any, nameField: string) => {
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
@@ -145,5 +183,8 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     setHaveAlternativeHour,
     haveAlternativeHour2,
     setHaveAlternativeHour2,
+    daysOptionsSelected1,
+    daysOptionsSelected2,
+    daysOptionsSelected3,
   };
 };

@@ -16,6 +16,7 @@ export const Select = ({
   keyLabel,
   label,
   labelColor = "white",
+  defaultValue,
   ...rest
 }: any) => {
   if (rest?.value === null) {
@@ -38,6 +39,7 @@ export const Select = ({
         {...rest}
         data-testid="SelectTestId"
         collection={listCollection}
+        //defaultValue={defaultValue ?? ""}
         value={rest?.multiple ? rest?.value : [rest?.value]}
         onValueChange={(e) => {
           rest?.onChange?.({

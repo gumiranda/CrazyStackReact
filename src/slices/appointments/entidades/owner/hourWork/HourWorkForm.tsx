@@ -15,6 +15,9 @@ export type HourValidatorInput = {
   hourEnd3?: string;
   hourLunchStart3?: string;
   hourLunchEnd3?: string;
+  days1?: any;
+  days2?: any;
+  days3?: any;
 };
 
 export interface DaysOptions {
@@ -66,6 +69,7 @@ type HourWorkFormInput = {
     onChangeHourEnd: any;
     onChangedays: any;
     valueDays: any;
+    defaultValueDays: any;
   };
 };
 
@@ -87,6 +91,9 @@ type HourWorkProps = {
   setHaveLunchTime2: any;
   haveLunchTime3: boolean;
   setHaveLunchTime3: any;
+  daysOptionsSelected1: any;
+  daysOptionsSelected2: any;
+  daysOptionsSelected3: any;
 };
 type HourWorksInput = {
   props: HourWorkProps;
@@ -111,6 +118,9 @@ export const HourWorks = ({
     setHaveAlternativeHour,
     haveAlternativeHour2,
     setHaveAlternativeHour2,
+    daysOptionsSelected1,
+    daysOptionsSelected2,
+    daysOptionsSelected3,
   },
 }: HourWorksInput) => {
   const {
@@ -166,6 +176,7 @@ export const HourWorks = ({
           onChangeHourEnd: onChangehourEnd1,
           onChangedays: onChangedays1,
           valueDays: hourWork.days1,
+          defaultValueDays: daysOptionsSelected1,
         }}
       />
       <Checkbox
@@ -195,8 +206,8 @@ export const HourWorks = ({
         <>
           <HourWorkForm
             props={{
-              labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
-                defaultValue: "Dias de funcionamento 1",
+              labelDayWork: t("PAGES:FIELDS.daysOfHourWorked2", {
+                defaultValue: "Dias de funcionamento 2",
               }),
               labelHourStart: t("PAGES:FIELDS.hourInit", {
                 defaultValue: "Hora de início",
@@ -225,6 +236,7 @@ export const HourWorks = ({
               onChangeHourEnd: onChangehourEnd2,
               onChangedays: onChangedays2,
               valueDays: hourWork.days2,
+              defaultValueDays: daysOptionsSelected2,
             }}
           />
           <Checkbox
@@ -254,8 +266,8 @@ export const HourWorks = ({
             <>
               <HourWorkForm
                 props={{
-                  labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
-                    defaultValue: "Dias de funcionamento 1",
+                  labelDayWork: t("PAGES:FIELDS.daysOfHourWorked3", {
+                    defaultValue: "Dias de funcionamento 3",
                   }),
                   labelHourStart: t("PAGES:FIELDS.hourInit", {
                     defaultValue: "Hora de início",
@@ -284,6 +296,7 @@ export const HourWorks = ({
                   onChangeHourEnd: onChangehourEnd3,
                   onChangedays: onChangedays3,
                   valueDays: hourWork.days3,
+                  defaultValueDays: daysOptionsSelected3,
                 }}
               />
               <Checkbox
@@ -351,6 +364,7 @@ export const HourWorkForm = ({
     onChangeHourEnd,
     onChangedays,
     valueDays,
+    defaultValueDays,
   },
 }: HourWorkFormInput) => {
   return (
@@ -367,6 +381,7 @@ export const HourWorkForm = ({
         keyValue="value"
         keyLabel="label"
         value={valueDays}
+        //defaultValue={defaultValueDays?.map?.((item: any) => item?.value) ?? null}
       />
       <Select
         bg="secondary.500"

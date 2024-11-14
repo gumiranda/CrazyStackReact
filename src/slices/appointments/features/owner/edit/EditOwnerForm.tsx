@@ -32,6 +32,9 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
     setHaveAlternativeHour,
     haveAlternativeHour2,
     setHaveAlternativeHour2,
+    daysOptionsSelected1,
+    daysOptionsSelected2,
+    daysOptionsSelected3,
   } = useEditOwner({
     owner,
     users,
@@ -83,6 +86,9 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
             setHaveAlternativeHour,
             haveAlternativeHour2,
             setHaveAlternativeHour2,
+            daysOptionsSelected1,
+            daysOptionsSelected2,
+            daysOptionsSelected3,
           }}
         />
         <FormControl
