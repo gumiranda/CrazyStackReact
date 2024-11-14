@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 export const Login: NextPage = () => {
   const { t } = useTranslation(["PAGES"]);
   const { isAuthenticated } = useAuth();
-  const isMobile = useBreakpointValue("(max-width: 768px)");
+  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return (
     <AuthLayout>

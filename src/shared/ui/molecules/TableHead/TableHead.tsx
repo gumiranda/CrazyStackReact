@@ -34,7 +34,7 @@ export const TableHead = ({
   ...rest
 }: TableHeadProps) => {
   const { t } = useTranslation(["PAGES"]);
-  const isMobile = useBreakpointValue("(max-width: 768px)");
+  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return (
     <Flex

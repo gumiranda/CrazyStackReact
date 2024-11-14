@@ -14,7 +14,7 @@ export function SignUpPage() {
   const { t } = useTranslation(["PAGES"]);
   const { isAuthenticated = false } = useAuth() || {};
   const router = useRouter();
-  const isMobile = useBreakpointValue("(max-width: 768px)");
+  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   useEffect(() => {
     if (isAuthenticated) {
