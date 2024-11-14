@@ -142,7 +142,7 @@ export const useCreateOwner = ({ data }) => {
     setHaveAlternativeHour2,
   };
 };
-function applyDefaultLunchTime(haveLunchTime: boolean, field: string | undefined) {
+function applyDefaultLunchTime(haveLunchTime: boolean, field: string | null | undefined) {
   if (!haveLunchTime) {
     return;
   }
