@@ -43,27 +43,28 @@ export const MobileDrawer = (props: any) => {
                 route: "/login",
               },
             ].map((item) => (
-              <ChakraLink key={item.label} href={item.route} asChild>
-                <Button
-                  bgColor={"secondary.400"}
-                  color="white"
-                  _hover={{ bgColor: "secondary.600" }}
-                >
-                  {item.label}
-                </Button>
-              </ChakraLink>
-            ))}
-            <ChakraLink href={"/signup"} asChild>
               <Button
-                bgColor="primary.600"
+                bgColor={"secondary.400"}
                 color="white"
-                _hover={{ bgColor: "primary.700" }}
+                _hover={{ bgColor: "secondary.600" }}
+                asChild
+                key={item.label}
               >
+                <ChakraLink href={item.route}>{item.label}</ChakraLink>
+              </Button>
+            ))}
+            <Button
+              bgColor="primary.600"
+              color="white"
+              _hover={{ bgColor: "primary.700" }}
+              asChild
+            >
+              <ChakraLink href={"/signup"}>
                 {t("PAGES:AUTH_PAGE.buttonSignUp", {
                   defaultValue: "Cadastrar negócio",
                 })}
-              </Button>
-            </ChakraLink>
+              </ChakraLink>
+            </Button>
           </Stack>
         </DrawerBody>
       </DrawerContent>

@@ -5,7 +5,7 @@ import { SubmitEditOwnerHandler, useEditOwnerLib } from "./editOwner.lib";
 import { useRouter } from "next/navigation";
 import { api } from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   HourValidatorInput,
   formatDays,
@@ -29,6 +29,33 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
   const [haveLunchTime1, setHaveLunchTime1] = useState(!!currentOwner?.hourLunchStart1);
   const [haveLunchTime2, setHaveLunchTime2] = useState(!!currentOwner?.hourLunchStart2);
   const [haveLunchTime3, setHaveLunchTime3] = useState(!!currentOwner?.hourLunchStart2);
+  const daysOptions1 =
+    daysOptions?.map?.((item) => ({
+      ...item,
+      value: item?.value + "1",
+    })) ?? [];
+
+  const daysOptions2 =
+    daysOptions?.map?.((item) => ({
+      ...item,
+      value: item?.value + "2",
+    })) ?? [];
+
+  const daysOptions3 =
+    daysOptions?.map?.((item) => ({
+      ...item,
+      value: item?.value + "3",
+    })) ?? [];
+
+  const daysOptionsSelected1 = daysOptions1?.filter?.(
+    (item) => currentOwner?.days1?.[item?.value] === true
+  );
+  const daysOptionsSelected2 = daysOptions2?.filter?.(
+    (item) => currentOwner?.days2?.[item?.value] === true
+  );
+  const daysOptionsSelected3 = daysOptions3?.filter?.(
+    (item) => currentOwner?.days3?.[item?.value] === true
+  );
   const [hourWork, setHourWork] = useState<HourValidatorInput>({
     hourStart1: currentOwner?.hourStart1 ?? "8:00",
     hourEnd1: currentOwner?.hourEnd1 ?? "18:00",
@@ -42,6 +69,9 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     hourEnd3: currentOwner?.hourEnd3,
     hourLunchEnd3: currentOwner?.hourLunchEnd3,
     hourLunchStart3: currentOwner?.hourLunchStart3,
+    days1: daysOptionsSelected1?.map?.((item) => item?.value),
+    days2: daysOptionsSelected2?.map?.((item) => item?.value),
+    days3: daysOptionsSelected3?.map?.((item) => item?.value),
   });
   const router = useRouter();
   const editOwner = useMutation({
@@ -130,37 +160,53 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
       },
     });
   };
-  const daysOptions1 =
-    daysOptions?.map?.((item) => ({
-      ...item,
-      value: item?.value + "1",
-    })) ?? [];
-
-  const daysOptions2 =
-    daysOptions?.map?.((item) => ({
-      ...item,
-      value: item?.value + "2",
-    })) ?? [];
-
-  const daysOptions3 =
-    daysOptions?.map?.((item) => ({
-      ...item,
-      value: item?.value + "3",
-    })) ?? [];
-
-  const daysOptionsSelected1 = daysOptions1?.filter?.(
-    (item) => currentOwner?.days1?.[item?.value] === false || !currentOwner?.days1
-  );
-  const daysOptionsSelected2 = daysOptions2?.filter?.(
-    (item) => currentOwner?.days2?.[item?.value] === false || !currentOwner?.days2
-  );
-  const daysOptionsSelected3 = daysOptions3?.filter?.(
-    (item) => currentOwner?.days3?.[item?.value] === false || !currentOwner?.days3
-  );
 
   const changeHour = (event: any, nameField: string) => {
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
+  useEffect(() => {
+    if (!haveLunchTime1) {
+      setHourWork((prev) => ({
+        ...prev,
+        hourLunchStart1: null,
+        hourLunchEnd1: null,
+      }));
+    }
+    if (!haveLunchTime2) {
+      setHourWork((prev) => ({
+        ...prev,
+        hourLunchStart2: null,
+        hourLunchEnd2: null,
+      }));
+    }
+    if (!haveLunchTime3) {
+      setHourWork((prev) => ({
+        ...prev,
+        hourLunchStart3: null,
+        hourLunchEnd3: null,
+      }));
+    }
+    if (!haveAlternativeHour) {
+      setHourWork((prev) => ({
+        ...prev,
+        hourStart2: null,
+        hourEnd2: null,
+      }));
+    }
+    if (!haveAlternativeHour2) {
+      setHourWork((prev) => ({
+        ...prev,
+        hourStart3: null,
+        hourEnd3: null,
+      }));
+    }
+  }, [
+    haveLunchTime1,
+    haveLunchTime2,
+    haveLunchTime3,
+    haveAlternativeHour,
+    haveAlternativeHour2,
+  ]);
   return {
     formState,
     register,
