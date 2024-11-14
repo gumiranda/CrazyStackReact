@@ -381,7 +381,7 @@ export const HourWorkForm = ({
         keyValue="value"
         keyLabel="label"
         value={valueDays}
-        //defaultValue={defaultValueDays?.map?.((item: any) => item?.value) ?? null}
+        defaultValue={defaultValueDays?.map?.((item: any) => item?.value) ?? null}
       />
       <Select
         bg="secondary.500"

@@ -39,7 +39,7 @@ export const Select = ({
         {...rest}
         data-testid="SelectTestId"
         collection={listCollection}
-        //defaultValue={defaultValue ?? ""}
+        defaultValue={defaultValue ?? []}
         value={rest?.multiple ? rest?.value : [rest?.value]}
         onValueChange={(e) => {
           rest?.onChange?.({
