@@ -3,7 +3,7 @@ import { whitelabel } from "@/application/whitelabel";
 import { Flex, Box, Text, SelectTranslate, useBreakpointValue } from "../../atoms";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
-  const isDesktop = useBreakpointValue("(min-width: 768px)");
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
   return (
     <Flex
       bgColor="secondary.600"
