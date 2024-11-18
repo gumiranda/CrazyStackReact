@@ -9,6 +9,7 @@ export const AutoComplete = (props) => {
     inputBgColor = "gray.800",
     autoCompleteProps,
     onChange,
+    defaultsuggestionsOpen,
     ...rest
   } = props;
   const {
@@ -20,25 +21,21 @@ export const AutoComplete = (props) => {
   } = autoCompleteProps || {};
   const inputProps = { ...rest, color: labelColor, placeholder };
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [suggestionsOpen, setSuggestionsOpen] = useState(defaultsuggestionsOpen);
 
   const openChange = (e) => {
     onChange(e);
-    const value = e.target.value;
-    // Filtra sugestões conforme o texto do input
-    const filtered = list.filter((suggestion) =>
-      suggestion.label.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredSuggestions(filtered);
+    setFilteredSuggestions(list);
     setSuggestionsOpen(true);
   };
   const handleInputChange = (e) => {
     onChange(e);
     const value = e.target.value;
 
-    const filtered = list.filter((suggestion) =>
-      suggestion.label.toLowerCase().includes(value.toLowerCase())
-    );
+    const filtered = list.filter((suggestion) => {
+      const regex = new RegExp(value.toLowerCase(), "i"); // 'i' para case insensitive
+      return regex.test(suggestion.label.toLowerCase());
+    });
     setFilteredSuggestions(filtered);
     setSuggestionsOpen(false);
   };
@@ -52,8 +49,12 @@ export const AutoComplete = (props) => {
   };
   return (
     <>
-      <Box position="relative">
-        <Input {...inputProps} onChange={openChange} />
+      <Box position="relative" w={"100%"}>
+        <Input
+          {...inputProps}
+          onChange={openChange}
+          _placeholder={{ color: labelColor }}
+        />
         {suggestionsOpen && filteredSuggestions.length > 0 && (
           <List.Root
             position="absolute"
@@ -77,6 +78,7 @@ export const AutoComplete = (props) => {
                   padding="8px"
                   cursor="pointer"
                   _hover={{ backgroundColor: highlightItemBg }}
+                  wordBreak={"break-word"}
                   {...listItemStyleProps}
                 >
                   {suggestion.label}

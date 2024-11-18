@@ -68,7 +68,7 @@ export const useCreateMapRoute = ({ mapContainerRef }: any) => {
       }
     },
   });
-  const { register, handleSubmit, formState, watch } = useCreateMapRouteLib();
+  const { register, handleSubmit, formState, watch, setValue } = useCreateMapRouteLib();
   const handleCreateMapRoute: SubmitCreateMapRouteHandler = async (
     values: CreateMapRouteFormData
   ) => {
@@ -106,5 +106,6 @@ export const useCreateMapRoute = ({ mapContainerRef }: any) => {
     fetchDirections,
     originText,
     destinationText,
+    setValue,
   };
 };

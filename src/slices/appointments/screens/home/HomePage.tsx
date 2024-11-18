@@ -6,15 +6,12 @@ import {
   Text,
   VStack,
   HStack,
-  DatePicker,
-  Select,
   TimeSlots,
   WeekDaysSelector,
 } from "@/shared/ui";
 import { useHome } from "./useHome.hook";
 import { LoadInvoice } from "@/slices/appointments/features/appointment/load-invoice/LoadInvoice";
 import { LoadAppointmentsByPeriod } from "@/slices/appointments/features/appointment/load-appointments-by-period/LoadAppointmentsByPeriod";
-import { statusMap } from "../../entidades/request/request.model";
 import { RequestFilters } from "./components/RequestFilters";
 
 export function HomePage() {

@@ -30,6 +30,7 @@ export const CreateMapRouteForm = () => {
     fetchDirections,
     originText,
     destinationText,
+    setValue,
   } = useCreateMapRoute({ mapContainerRef });
   return (
     <>
@@ -52,24 +53,72 @@ export const CreateMapRouteForm = () => {
             error={formState.errors.name}
             {...register("name")}
           />
-          <FormControl
-            label="Origem"
-            error={formState.errors.originText}
-            autoCompleteProps={{
-              list: originListPlaces,
-              placeholder: "Digite para pesquisar a origem",
-            }}
-            {...register("originText")}
-          />
-          <FormControl
-            label="Destino"
-            error={formState.errors.destinationText}
-            autoCompleteProps={{
-              list: destinationListPlaces,
-              placeholder: "Digite para pesquisar a destino",
-            }}
-            {...register("destinationText")}
-          />
+
+          {originListPlaces && (
+            <FormControl
+              label="Origem"
+              bgColor="secondary.500"
+              color="white"
+              labelColor="white"
+              error={formState.errors.originText}
+              autoCompleteProps={{
+                defaultsuggestionsOpen: originListPlaces?.length > 0,
+                list: originListPlaces,
+                placeholder: "Digite para pesquisar a origem",
+                listItemStyleProps: {
+                  bgColor: "gray.800",
+                  color: "white",
+                  onClick: ({ value }) => {
+                    if (value?.length > 0) {
+                      const origin = (
+                        originListPlaces?.find?.(
+                          (item: any) => item?.value === value
+                        ) as any
+                      )?.label;
+                      if (origin) {
+                        setValue("originText", origin);
+                      }
+                    }
+                  },
+                },
+                highlightItemBg: "gray.200",
+              }}
+              {...register("originText")}
+            />
+          )}
+          {destinationListPlaces && (
+            <FormControl
+              label="Destino"
+              bgColor="secondary.500"
+              color="white"
+              labelColor="white"
+              error={formState.errors.destinationText}
+              autoCompleteProps={{
+                defaultsuggestionsOpen: destinationListPlaces?.length > 0,
+                list: destinationListPlaces,
+                placeholder: "Digite para pesquisar a destino",
+                listItemStyleProps: {
+                  bgColor: "gray.800",
+                  color: "white",
+                  onClick: ({ value }) => {
+                    if (value?.length > 0) {
+                      const destination = (
+                        destinationListPlaces?.find?.(
+                          (item: any) => item?.value === value
+                        ) as any
+                      )?.label;
+                      if (destination) {
+                        setValue("destinationText", destination);
+                      }
+                    }
+                  },
+                },
+                highlightItemBg: "gray.200",
+              }}
+              {...register("destinationText")}
+            />
+          )}
+
           <Checkbox
             label={t("PAGES:FIELDS.active", {
               defaultValue: "Ativo",

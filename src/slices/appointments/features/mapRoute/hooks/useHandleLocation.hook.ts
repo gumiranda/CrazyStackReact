@@ -71,38 +71,40 @@ export const useHandleLocation = ({
       await fetchTextOptions(destinationText, setDestinationListPlaces);
     }
     if (timeoutId === null) {
-      const id: any = window.setTimeout(getTextPlaces, 1500);
+      const id: any = window.setTimeout(getTextPlaces, 500);
       setTimeoutId(id);
     } else {
       window.clearTimeout(timeoutId);
-      const id: any = window.setTimeout(getTextPlaces, 1500);
+      const id: any = window.setTimeout(getTextPlaces, 500);
       setTimeoutId(id);
     }
   }, [destinationText]);
   const fetchDirections = useCallback(async () => {
-    const cookies = parseCookies();
-    const source = (document.getElementById("originText") as HTMLInputElement).value;
-    const destination = (document.getElementById("destinationText") as HTMLInputElement)
-      .value;
-    const currentOrigin: any = originListPlaces?.find?.(
-      (item: any) => item?.label === source
-    );
-    if (!currentOrigin) {
-      return;
-    }
-    const currentDestination: any = destinationListPlaces?.find?.(
-      (item: any) => item?.label === destination
-    );
-    if (!currentDestination) {
-      return;
-    }
-    const directionsResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_API_URL}/directions?originId=${currentOrigin?.value}&destinationId=${currentDestination?.value}`,
-      { headers: { authorization: `Bearer ${cookies["belezixadmin.token"]}` } }
-    );
-    const directionsDataRes: DirectionsResponseData & { request: any } =
-      await directionsResponse.json();
-    setDirectionsData(directionsDataRes);
+    try {
+      const cookies = parseCookies();
+      const source = (document.getElementById("originText") as HTMLInputElement).value;
+      const destination = (document.getElementById("destinationText") as HTMLInputElement)
+        .value;
+      const currentOrigin: any = originListPlaces?.find?.(
+        (item: any) => item?.label === source
+      );
+      if (!currentOrigin) {
+        return;
+      }
+      const currentDestination: any = destinationListPlaces?.find?.(
+        (item: any) => item?.label === destination
+      );
+      if (!currentDestination) {
+        return;
+      }
+      const directionsResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_NEXT_API_URL}/directions?originId=${currentOrigin?.value}&destinationId=${currentDestination?.value}`,
+        { headers: { authorization: `Bearer ${cookies["belezixadmin.token"]}` } }
+      );
+      const directionsDataRes: DirectionsResponseData & { request: any } =
+        await directionsResponse.json();
+      setDirectionsData(directionsDataRes);
+    } catch (error) {}
   }, [
     originText,
     destinationText,
