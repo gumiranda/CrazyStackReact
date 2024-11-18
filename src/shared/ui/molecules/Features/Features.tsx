@@ -21,12 +21,21 @@ export const Features = ({ children, features, ...rest }: any) => {
     >
       <Stack gap={{ base: 10, md: 8 }} textAlign="center">
         <Stack align="center">
-          <Text fontWeight={"semibold"} textStyle={{ base: "md", md: "lg" }}>
+          <Text
+            fontWeight={"semibold"}
+            textStyle={{ base: "md", md: "lg" }}
+            color="gray.800"
+          >
             {t("PAGES:PIX_PAGE.titleBox", {
               defaultValue: "Plano mensal de apenas",
             })}
           </Text>
-          <Heading fontWeight={"semibold"} textStyle={{ base: "md", md: "lg" }}>
+          <Heading
+            fontWeight={"semibold"}
+            textStyle={{ base: "md", md: "lg" }}
+            color="gray.800"
+            fontSize="3rem"
+          >
             {t("PAGES:PIX_PAGE.price", {
               defaultValue: "R$ 29,90/mês",
             })}
@@ -34,14 +43,14 @@ export const Features = ({ children, features, ...rest }: any) => {
         </Stack>
         <List gap="4">
           {features.map((feature: string, index: number) => (
-            <ListItem key={feature} color="gray.300">
+            <Box key={feature} color="gray.300">
               <HStack gap="4">
                 <Icon as={FiCheck} color="accent" />
-                <Text key={index} textStyle={{ base: "sm", md: "md" }}>
+                <Text key={index} textStyle={{ base: "sm", md: "md" }} color="gray.800">
                   {feature}
                 </Text>
               </HStack>
-            </ListItem>
+            </Box>
           ))}
         </List>
         {children}

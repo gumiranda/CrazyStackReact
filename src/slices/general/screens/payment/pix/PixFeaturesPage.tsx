@@ -53,13 +53,13 @@ export const PixFeaturesPage = () => {
             backgroundSize={"cover"}
           />
           <Features features={features}>
-            <Link href="/payment/pix/pay">
-              <Button colorPalette={"green"} w="100%" onClick={() => {}}>
+            <Button colorPalette={"green"} w="100%" onClick={() => {}} asChild>
+              <Link href="/payment/pix/pay">
                 {t("PAGES:PIX_PAGE.buyNow", {
                   defaultValue: "Buy Now",
                 })}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </Features>
         </Flex>
       </Flex>
