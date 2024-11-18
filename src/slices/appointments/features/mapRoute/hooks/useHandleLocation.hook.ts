@@ -110,7 +110,9 @@ export const useHandleLocation = ({
       const directionsDataRes: DirectionsResponseData & { request: any } =
         await directionsResponse.json();
       setDirectionsData(directionsDataRes);
-    } catch (error) {}
+    } catch (error) {
+      /* empty */
+    }
   }, [
     originText,
     destinationText,
