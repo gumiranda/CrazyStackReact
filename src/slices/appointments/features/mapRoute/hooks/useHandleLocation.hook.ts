@@ -8,6 +8,8 @@ export interface HandleLocationProps {
   destinationText: string;
   mapContainerRef: any;
   currentMapRoute?: any;
+  originSelectedValue: string | null;
+  destinationSelectedValue: string | null;
 }
 
 export const useHandleLocation = ({
@@ -15,6 +17,8 @@ export const useHandleLocation = ({
   destinationText,
   mapContainerRef,
   currentMapRoute = null,
+  originSelectedValue,
+  destinationSelectedValue,
 }: HandleLocationProps) => {
   const map = useLoadMap(mapContainerRef);
   const [directionsData, setDirectionsData] = useState<
@@ -82,18 +86,20 @@ export const useHandleLocation = ({
   const fetchDirections = useCallback(async () => {
     try {
       const cookies = parseCookies();
-      const source = (document.getElementById("originText") as HTMLInputElement).value;
-      const destination = (document.getElementById("destinationText") as HTMLInputElement)
-        .value;
+      const source =
+        (document.getElementById("originText") as HTMLInputElement)?.value ?? originText;
+      const destination =
+        (document.getElementById("destinationText") as HTMLInputElement)?.value ??
+        destinationText;
       const currentOrigin: any = originListPlaces?.find?.(
         (item: any) => item?.label === source
-      );
+      ) ?? { value: originSelectedValue };
       if (!currentOrigin) {
         return;
       }
       const currentDestination: any = destinationListPlaces?.find?.(
         (item: any) => item?.label === destination
-      );
+      ) ?? { value: destinationSelectedValue };
       if (!currentDestination) {
         return;
       }

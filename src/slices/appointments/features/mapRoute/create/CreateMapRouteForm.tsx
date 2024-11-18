@@ -31,6 +31,8 @@ export const CreateMapRouteForm = () => {
     originText,
     destinationText,
     setValue,
+    setOriginSelectedValue,
+    setDestinationSelectedValue,
   } = useCreateMapRoute({ mapContainerRef });
   return (
     <>
@@ -69,6 +71,7 @@ export const CreateMapRouteForm = () => {
                   bgColor: "gray.800",
                   color: "white",
                   onClick: ({ value }) => {
+                    setOriginSelectedValue(value);
                     if (value?.length > 0) {
                       const origin = (
                         originListPlaces?.find?.(
@@ -101,6 +104,7 @@ export const CreateMapRouteForm = () => {
                   bgColor: "gray.800",
                   color: "white",
                   onClick: ({ value }) => {
+                    setDestinationSelectedValue(value);
                     if (value?.length > 0) {
                       const destination = (
                         destinationListPlaces?.find?.(
