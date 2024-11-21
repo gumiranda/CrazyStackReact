@@ -51,6 +51,7 @@ export const SignupForm = ({ children, defaultEmail }: any) => {
           name: "cnpjActive",
           defaultChecked: false,
           checked: cnpjActive,
+          value: cnpjActive,
           onCheckedChange: (e) => setValue("cnpjActive", !!e?.checked),
           colorPalette: "primary",
           label: t("PAGES:AUTH_PAGE.cnpjActive", {
