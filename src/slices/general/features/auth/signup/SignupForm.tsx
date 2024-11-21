@@ -1,15 +1,18 @@
+"use client";
+import { ClientOnly, Skeleton } from "@chakra-ui/react";
+
 import { Form, useBreakpointValue } from "@/shared/ui";
 import { useSignup } from "./signup.hook";
 import { useTranslation } from "react-i18next";
 
 export const SignupForm = ({ children, defaultEmail }: any) => {
-  const isDesktopVersion = useBreakpointValue({ base: false, md: true });
+  const isDesktopVersion = useBreakpointValue({ base: false, lg: true });
   const { t } = useTranslation(["PAGES"]);
 
-  const { formState, handleSubmit, register, handleSignup, cnpjActive } = useSignup({
-    defaultEmail,
-  });
-
+  const { formState, handleSubmit, register, handleSignup, cnpjActive, setValue } =
+    useSignup({
+      defaultEmail,
+    });
   const formProps = {
     formState,
     register,
@@ -29,8 +32,8 @@ export const SignupForm = ({ children, defaultEmail }: any) => {
         label: t("PAGES:AUTH_PAGE.cpf", {
           defaultValue: "CPF",
         }),
-        mask: "999.999.999-99",
-        hide: cnpjActive === true,
+        mask: "___.___.___-__",
+        hide: !!cnpjActive,
       },
       {
         type: "text",
@@ -38,15 +41,18 @@ export const SignupForm = ({ children, defaultEmail }: any) => {
         label: t("PAGES:AUTH_PAGE.cnpj", {
           defaultValue: "CNPJ",
         }),
-        mask: "99.999.999/9999-99",
+        mask: "__.___.___/____-__",
         hide: !cnpjActive,
       },
       {
         type: "text",
         name: "cnpjActive",
         checkboxprops: {
+          name: "cnpjActive",
           defaultChecked: false,
-          colorScheme: "primary",
+          checked: cnpjActive,
+          onCheckedChange: (e) => setValue("cnpjActive", !!e?.checked),
+          colorPalette: "primary",
           label: t("PAGES:AUTH_PAGE.cnpjActive", {
             defaultValue: "Cadastrar como pessoa jurídica?",
           }),
@@ -57,7 +63,7 @@ export const SignupForm = ({ children, defaultEmail }: any) => {
         label: t("PAGES:AUTH_PAGE.phone", {
           defaultValue: "Telefone",
         }),
-        mask: "(99) 99999-9999",
+        mask: "(__) _____-____",
         name: "phone",
       },
       {
@@ -86,5 +92,9 @@ export const SignupForm = ({ children, defaultEmail }: any) => {
     },
   } as any;
 
-  return <Form {...formProps}>{children}</Form>;
+  return (
+    <ClientOnly fallback={<Skeleton />}>
+      <Form {...formProps}>{children}</Form>
+    </ClientOnly>
+  );
 };

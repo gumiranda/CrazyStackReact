@@ -20,7 +20,6 @@ export const useCategoriesSelect = ({
     currentService?.categoryId ?? categoryList?.categorys?.[0]?._id ?? ""
   );
   const handleChangeCategorySelected = (event: any) => {
-    event.preventDefault();
     setCategorySelected(event.target.value);
   };
   const fetchCategoriesPaginated = async () => {

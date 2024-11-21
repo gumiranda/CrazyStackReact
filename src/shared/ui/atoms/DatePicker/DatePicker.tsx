@@ -2,16 +2,10 @@
 
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
-import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   InputProps as ChakraInputProps,
-  Menu,
-  MenuButton,
   Button,
-  MenuList,
   Input,
-  InputGroup,
-  InputRightElement,
   Text,
   Box,
   Grid,
@@ -20,13 +14,13 @@ import {
   IconButton,
   VStack,
   Heading,
-  useColorModeValue,
-  FormLabel,
-  ResponsiveValue,
+  Fieldset,
 } from "@chakra-ui/react";
 import React, { useState, createRef } from "react";
 import { daysMap, getMonthDetails, getMonthStr } from "./functions";
-
+import { FormLabel } from "../FormLabel";
+import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp =
   Date.now() - (Date.now() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60;
@@ -36,7 +30,7 @@ export interface IDatePickerProps extends Omit<ChakraInputProps, "onChange"> {
   onChange: (date: string) => void;
   label: string;
   labelColor?: string;
-  ta?: ResponsiveValue<any> | undefined;
+  ta?: any | undefined;
 }
 
 export const DatePicker = (props: IDatePickerProps) => {
@@ -54,7 +48,7 @@ export const DatePicker = (props: IDatePickerProps) => {
   const [monthDetails, setMonthDetails] = useState(getMonthDetails(year, month, 4));
   const [selectedDay, setSelectedDay] = useState<number>();
   const inputRef = createRef<HTMLInputElement>();
-  const color = useColorModeValue("gray.500", "white");
+  const color = "gray.500";
   const isCurrentDay = (day: any) => {
     return day.timestamp === todayTimestamp;
   };
@@ -99,42 +93,35 @@ export const DatePicker = (props: IDatePickerProps) => {
     setMonthDetails(getMonthDetails(_year, _month, 4));
   };
   return (
-    <Menu {...rest}>
-      <MenuButton w="100%" type="button">
-        <VStack>
-          <FormLabel color={labelColor} textAlign={ta ?? "left"}>
-            {label}
-          </FormLabel>
-          <InputGroup>
-            <Input color={color} ref={inputRef} {...rest} />
-            <InputRightElement children={<ChevronDownIcon w={5} h={5} />} />
-          </InputGroup>
-        </VStack>
-      </MenuButton>
-      <MenuList>
+    <MenuRoot>
+      <MenuTrigger w="100%" type="button">
+        <FormLabel color={labelColor} textAlign={ta ?? "left"}>
+          {label}
+        </FormLabel>
+        <Fieldset.Root>
+          <Input color={labelColor} ref={inputRef} {...rest} />
+        </Fieldset.Root>
+      </MenuTrigger>
+      <MenuContent>
         <Center p={3}>
           <HStack>
             <IconButton
               variant="ghost"
               aria-label="datepicker left button"
+              color={color}
               onClick={() => setMonthAction(-1)}
-              icon={<ArrowLeftIcon color={color} />}
+              children={<ArrowLeftIcon />}
             />
-            {/* <IconButton
-              variant="ghost"
-              aria-label="datepicker left button"
-              onClick={() => setMonthAction(-1)}
-              icon={<ChevronLeftIcon color={color} />}
-            /> */}
+
             <VStack align="center">
-              <Button variant="ghost" size="none">
+              <Button variant="ghost" size="md">
                 <Heading color={color} m={0} fontWeight={200} as="h5">
                   {year}
                 </Heading>
               </Button>
               <Button
                 variant="ghost"
-                size="none"
+                size="sm"
                 py="0px"
                 color={color}
                 margin="0px !important"
@@ -142,19 +129,12 @@ export const DatePicker = (props: IDatePickerProps) => {
                 {getMonthStr(month).toUpperCase()}
               </Button>
             </VStack>
-            {/* <IconButton
-              variant="ghost"
-              aria-label="datepicker right button"
-              color={color}
-              onClick={() => setMonthAction(1)}
-              icon={<ChevronRightIcon />}
-            /> */}
             <IconButton
               variant="ghost"
               aria-label="datepicker right button"
               color={color}
               onClick={() => setMonthAction(1)}
-              icon={<ArrowRightIcon />}
+              children={<ArrowRightIcon />}
             />
           </HStack>
         </Center>
@@ -197,7 +177,7 @@ export const DatePicker = (props: IDatePickerProps) => {
             })}
           </Grid>
         </Box>
-      </MenuList>
-    </Menu>
+      </MenuContent>
+    </MenuRoot>
   );
 };

@@ -23,9 +23,9 @@ export const useCategoryUi = ({ deleteSelectedAction }: any) => {
       newModalFooter: (
         <>
           <Button
-            colorScheme="red"
+            colorPalette="red"
             mr={3}
-            leftIcon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
+            //leftIcon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             onClick={() => {
               onClose();
               deleteSelectedAction(item);
@@ -35,8 +35,8 @@ export const useCategoryUi = ({ deleteSelectedAction }: any) => {
           </Button>
           <NextLink passHref href={`/categorys/edit/${item?._id}`}>
             <Button
-              colorScheme="purple"
-              leftIcon={<Icon fontSize="20" as={RiEditLine} />}
+              colorPalette="purple"
+              //leftIcon={<Icon fontSize="20" as={RiEditLine} />}
               onClick={onClose}
             >
               Editar

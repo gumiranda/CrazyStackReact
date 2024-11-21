@@ -16,7 +16,10 @@ export const useCreateMapRoute = ({ mapContainerRef }: any) => {
   const { showModal } = useUi();
   const router = useRouter();
   const [active, setActive] = useState(false);
-
+  const [originSelectedValue, setOriginSelectedValue] = useState<string | null>(null);
+  const [destinationSelectedValue, setDestinationSelectedValue] = useState<string | null>(
+    null
+  );
   const createMapRoute = useMutation({
     mutationFn: async (mapRoute: CreateMapRouteFormData) => {
       try {
@@ -68,16 +71,16 @@ export const useCreateMapRoute = ({ mapContainerRef }: any) => {
       }
     },
   });
-  const { register, handleSubmit, formState, watch } = useCreateMapRouteLib();
+  const { register, handleSubmit, formState, watch, setValue } = useCreateMapRouteLib();
   const handleCreateMapRoute: SubmitCreateMapRouteHandler = async (
     values: CreateMapRouteFormData
   ) => {
     const currentOrigin: any = originListPlaces?.find?.(
       (item: any) => item?.label === values?.originText
-    );
+    ) ?? { value: originSelectedValue };
     const currentDestination: any = destinationListPlaces?.find?.(
       (item: any) => item?.label === values?.destinationText
-    );
+    ) ?? { value: destinationSelectedValue };
     await createMapRoute.mutateAsync({
       ...values,
       active,
@@ -92,6 +95,8 @@ export const useCreateMapRoute = ({ mapContainerRef }: any) => {
       originText,
       destinationText,
       mapContainerRef,
+      originSelectedValue,
+      destinationSelectedValue,
     });
   return {
     formState,
@@ -106,5 +111,10 @@ export const useCreateMapRoute = ({ mapContainerRef }: any) => {
     fetchDirections,
     originText,
     destinationText,
+    setValue,
+    originSelectedValue,
+    setOriginSelectedValue,
+    destinationSelectedValue,
+    setDestinationSelectedValue,
   };
 };

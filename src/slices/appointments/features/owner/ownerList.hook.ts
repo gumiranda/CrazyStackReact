@@ -17,7 +17,6 @@ export const useOwnersSelect = ({ ownerList, currentUser }: UserFormProps) => {
     currentUser?.ownerId ?? ownerList?.owners?.[0]?._id ?? ""
   );
   const handleChangeOwnerSelected = (event: any): void => {
-    event.preventDefault();
     setOwnerSelected(event.target.value);
   };
   const fetchOwnersPaginated = async () => {

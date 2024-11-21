@@ -2,7 +2,6 @@ import { UserProps } from "@/slices/general/entidades/user";
 import { useEditUser } from "./editUser.hook";
 import {
   BoxCreateItem,
-  ControlledSelect,
   FormControl,
   GenericDetailsItem,
   GridForm,
@@ -30,12 +29,13 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    serviceIds,
+    setServiceIds,
   } = useEditUser({
     user,
     serviceList,
     ownerList,
   });
-  const ControlledSelectAux = ControlledSelect as (props: any) => any;
 
   return (
     <BoxCreateItem
@@ -49,24 +49,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
       isLoadingSaveButton={formState.isSubmitting}
       cancelRoute={"/users/1"}
     >
-      <GenericDetailsItem
-        item={user}
-        fields={[
-          {
-            id: "name",
-            label: t("PAGES:FIELDS.name", {
-              defaultValue: "Nome",
-            }),
-          },
-          {
-            id: "createdAt",
-            label: t("PAGES:FIELDS.createdAt", {
-              defaultValue: "Data de criação",
-            }),
-          },
-          { id: "email", label: "Email" },
-        ]}
-      />
       <GridForm>
         <FormControl
           label={t("PAGES:FIELDS.name", {
@@ -76,7 +58,6 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           {...register("name")}
         />
         <Select
-          bg="primary.500"
           name="ownerList"
           label={t("PAGES:HOME_PAGE.owner", {
             defaultValue: "Estabelecimento",
@@ -86,22 +67,20 @@ export const EditUserForm = ({ user, serviceList, ownerList }: EditUserFormProps
           onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
-        <ControlledSelectAux
-          isMulti
+        ></Select>
+        <Select
+          multiple
           control={control as any}
           label={t("PAGES:HOME_PAGE.servicesSelected", {
             defaultValue: "Serviços selecionados",
           })}
           placeholder="Selecione pelo menos 1 serviço"
-          options={serviceOptions}
+          list={serviceOptions}
           name={"serviceOptions"}
+          keyValue="value"
+          keyLabel="label"
+          value={serviceIds}
+          onChange={(e) => setServiceIds(e.target.value)}
         />
       </GridForm>
     </BoxCreateItem>

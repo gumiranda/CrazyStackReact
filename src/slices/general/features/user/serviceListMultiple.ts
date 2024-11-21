@@ -1,9 +1,8 @@
-import { OptionBase } from "chakra-react-select";
 import { GetServicesResponse } from "@/slices/appointments/entidades/service";
 import { useServicesSelect } from "@/slices/appointments/features/service/serviceList.hook";
 import { useEffect, useState } from "react";
 
-export interface ServiceOptions extends OptionBase {
+export interface ServiceOptions {
   label: string;
   value: string;
 }
@@ -27,7 +26,7 @@ export const useServiceListMultiple = ({
   );
   const serviceOptions =
     services
-      ?.filter?.((service) => !prevServicesSelected?.includes?.(service?._id))
+      // ?.filter?.((service) => !prevServicesSelected?.includes?.(service?._id))
       ?.map?.((service) => ({ label: service?.name, value: service?._id })) ?? [];
   useEffect(() => {
     if (services?.length < serviceList?.totalCount) {

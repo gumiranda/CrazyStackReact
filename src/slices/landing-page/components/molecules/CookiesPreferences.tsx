@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 export const CookieFooter = () => {
   const { setModalBody, onOpen, setModalFooter } = useUi();
   const { t } = useTranslation(["LANDING"]);
-  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
   const [cookiesAccepted, setCookiesAccepted] = useState(false);
   const [cookiesRejected, setCookiesRejected] = useState(false);
   useEffect(() => {
@@ -128,7 +128,7 @@ export const ButtonCookies = ({ setCookiesAccepted, setCookiesRejected }) => {
         w="100%"
         my={{ base: 4, md: 0 }}
         mx={{ base: 2, md: 2 }}
-        colorScheme="teal"
+        colorPalette="teal"
         _hover={{ bg: "teal.600", transform: "scale(1.05)" }}
         transition="all 0.3s"
         borderRadius="full"
@@ -143,7 +143,7 @@ export const ButtonCookies = ({ setCookiesAccepted, setCookiesRejected }) => {
         w="100%"
         my={{ base: 4, md: 0 }}
         mx={{ base: 2, md: 2 }}
-        colorScheme="red"
+        colorPalette="red"
         _hover={{ bg: "red.600", transform: "scale(1.05)" }}
         transition="all 0.3s"
         borderRadius="full"
@@ -229,7 +229,7 @@ export const CookiesPreferencesBox = () => {
   );
 };
 const CookiePreferenceMolecule = ({ id, label, value }) => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [checked, setIsChecked] = useState(true);
   return (
     <Flex justify="space-between" align="start" my={4}>
       <Box>
@@ -239,11 +239,11 @@ const CookiePreferenceMolecule = ({ id, label, value }) => {
         </Text>
       </Box>
       <Switch
-        colorScheme="teal"
+        colorPalette="teal"
         id={id}
         ml="auto"
-        isChecked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        checked={checked}
+        onChange={() => setIsChecked(!checked)}
       />
     </Flex>
   );

@@ -23,8 +23,8 @@ export const ClientDetails = ({ client }: ClientDetailsProps) => {
           <Button
             size="sm"
             fontSize={"sm"}
-            colorScheme="green"
-            leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+            colorPalette="green"
+            //leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             {t("PAGES:MESSAGES.edit", {
               defaultValue: "Editar",

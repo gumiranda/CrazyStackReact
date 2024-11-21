@@ -6,18 +6,16 @@ import {
   Circle,
   Flex,
   Heading,
-  keyframes,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useStyleConfig } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-30px); }
-  60% { transform: translateY(-15px); }
-`;
+// const bounce = keyframes`
+//   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+//   40% { transform: translateY(-30px); }
+//   60% { transform: translateY(-15px); }
+// `;
 export const PricingSection = () => {
   const { t } = useTranslation(["LANDING"]);
 
@@ -77,16 +75,16 @@ export const PricingSection = () => {
       <VStack>
         <Heading
           as="h2"
-          size="3xl"
+          size={{ base: "4xl", md: "5xl" }}
           letterSpacing={"tighter"}
           textAlign="center"
-          color="gray.700"
+          color="gray.200"
           fontFamily={fonts.inter.style.fontFamily}
           mb={6}
         >
           {t("LANDING:PRICING_PLANS", { defaultValue: "Planos e preços" })}
         </Heading>
-        <Stack spacing={8} mt={8} direction={{ base: "column", md: "row" }}>
+        <Stack gap={8} mt={8} direction={{ base: "column", md: "row" }}>
           {pricingPlans.map((plan, index) => (
             <PricingCard key={index} {...plan} />
           ))}
@@ -109,7 +107,7 @@ export const PricingFeature = ({ children, ...props }: any) => {
 };
 
 export const PricingCard = ({ title, price, features, popular }: any) => {
-  const gradientButtonStyles = useStyleConfig("GradientButton");
+  // const gradientButtonStyles = useStyleConfig("GradientButton");
   const { t } = useTranslation(["LANDING"]);
   return (
     <Box
@@ -130,7 +128,9 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
           py={1}
           fontSize="sm"
           color="white"
-          bgGradient={"linear(to-r,pink.500,purple.500)"}
+          bgGradient={"to-r"}
+          gradientFrom="purple.500"
+          gradientTo="pink.500"
           rounded="full"
           position="absolute"
           top={0}
@@ -165,13 +165,23 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
       <Box mt={8}>
         <Button
           w="full"
-          sx={
+          css={
             popular
-              ? gradientButtonStyles
+              ? {
+                  bgGradient: "to-r",
+                  gradientFrom: "purple.500",
+                  gradientTo: "pink.500",
+                  color: "white",
+                  _hover: {
+                    bgGradient: "to-r",
+                    gradientFrom: "purple.400",
+                    gradientTo: "pink.400",
+                  },
+                } // gradientButtonStyles
               : { bg: "gray.800", color: "white", _hover: { bg: "gray.700" } }
           }
           onClick={() => handleWhatsappClick("Quero assinar o plano" + title)}
-          animation={popular ? `${bounce} 1s infinite` : (null as any)}
+          //animation={popular ? `${bounce} 1s infinite` : (null as any)}
           transition="background-color 3.3s ease"
         >
           {t("LANDING:SUBSCRIBE", { defaultValue: "Assinar" })}
@@ -182,7 +192,7 @@ export const PricingCard = ({ title, price, features, popular }: any) => {
 };
 export const PricingFeatureList = ({ features }: any) => {
   return (
-    <VStack spacing={2} mt={4}>
+    <VStack gap={2} mt={4}>
       {features.map((feature: any, index: number) => (
         <PricingFeature key={index}>{feature}</PricingFeature>
       ))}

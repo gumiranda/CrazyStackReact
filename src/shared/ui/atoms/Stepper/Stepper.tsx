@@ -1,20 +1,12 @@
-import {
-  Step,
-  StepDescription,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
-  Stepper as StepperChakra,
-  Box,
-  useBreakpointValue,
-  Container,
-} from "@chakra-ui/react";
+import { Box, Container, StepsCompletedContent } from "@chakra-ui/react";
+import { StepsContent, StepsItem, StepsList, StepsRoot } from "@/components/ui/steps";
+import { useBreakpointValue } from "../Hooks";
+import React from "react";
 export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const StepNumberAny = StepNumber as (props: any) => any;
+  if (steps?.length < 1) {
+    return null;
+  }
   return (
     <Container maxW={"5xl"}>
       <Box
@@ -22,33 +14,37 @@ export const Stepper = ({ children, activeStep, steps, stepsComponents }: any) =
         alignItems={"center"}
         justifyContent={"center"}
       >
-        {activeStep < steps.length && (
-          <StepperChakra
-            orientation={isMobile ? "vertical" : "horizontal"}
-            m={8}
-            height={isMobile ? "200px" : "auto"}
-            index={activeStep}
-            colorScheme="tertiary"
-          >
-            {steps.map((step: any, index: number) => (
-              <Step key={index}>
-                <StepIndicator>
-                  <StepStatus
-                    complete={<StepIcon />}
-                    incomplete={<StepNumberAny mt={1} color="primary.500" />}
-                    active={<StepNumberAny mt={1} color="tertiary.500" />}
-                  />
-                </StepIndicator>
-                <Box flexShrink={"0"}>
-                  <StepTitle>{step.title}</StepTitle>
-                  <StepDescription>{step.description}</StepDescription>
-                </Box>
-              </Step>
+        <StepsRoot
+          defaultValue={1}
+          count={steps.length}
+          orientation={isMobile ? "vertical" : "horizontal"}
+          colorPalette="purple"
+          defaultStep={activeStep}
+          step={activeStep}
+          flexDir={"column"}
+        >
+          <StepsList m={8}>
+            {steps?.map?.((step: any, index: number) => (
+              <StepsItem
+                key={index}
+                index={index}
+                title={step.title}
+                description={step.description}
+                icon={step.icon}
+                mt={index > 0 && isMobile ? 4 : 0}
+              />
             ))}
-          </StepperChakra>
-        )}
+          </StepsList>
+          {steps?.map?.((step: any, index: number) => (
+            <StepsContent key={index} index={index}>
+              {stepsComponents[index]}
+            </StepsContent>
+          ))}
+          <StepsCompletedContent>
+            {stepsComponents[steps.length - 1]}
+          </StepsCompletedContent>
+        </StepsRoot>
       </Box>
-      {stepsComponents[activeStep]}
       {children}
     </Container>
   );

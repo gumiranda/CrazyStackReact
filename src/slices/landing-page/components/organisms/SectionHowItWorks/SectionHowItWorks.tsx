@@ -1,27 +1,18 @@
-import { motion } from "framer-motion";
 import { Box, Container, Grid, Heading, Text, VStack } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { fonts } from "@/app/fonts";
-import { CalendarIcon, CheckIcon, SearchIcon } from "@chakra-ui/icons";
 import { FeatureItem } from "../../molecules/FeatureItem";
-const MotionBox = motion(Box as any);
-const MotionVStack = motion(VStack as any);
+import { CalendarIcon, CheckIcon, SearchIcon } from "lucide-react";
+import { colors } from "@/application/theme";
 
 export const SectionHowItWorks = () => {
   const { t } = useTranslation(["LANDING"]);
 
   return (
-    <MotionBox
-      as="section"
-      py={10}
-      bg="white"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <Box as="section" py={10} bg="white">
       <Container maxW="container.lg">
-        <MotionVStack
-          spacing={4}
+        <VStack
+          gap={4}
           textAlign="center"
           initial={{ y: -20 }}
           animate={{ y: 0 }}
@@ -32,7 +23,7 @@ export const SectionHowItWorks = () => {
             lineHeight="none"
             color="gray.700"
             as="h2"
-            size="2xl"
+            size={{ base: "4xl", md: "5xl" }}
             fontFamily={fonts.inter.style.fontFamily}
           >
             {t("LANDING:HOW_IT_WORKS_TITLE", { defaultValue: "Como Funciona" })}
@@ -42,10 +33,10 @@ export const SectionHowItWorks = () => {
               defaultValue: "Veja como é fácil utilizar a plataforma Belezix.",
             })}
           </Text>
-        </MotionVStack>
+        </VStack>
         <Grid templateColumns={{ base: "1fr", md: "repeat(3,1fr)" }} gap={6} mt={8}>
           <FeatureItem
-            icon={<SearchIcon boxSize={12} color="teal.500" />}
+            icon={<SearchIcon size={48} style={{ color: colors.teal[500].value }} />}
             title={t("LANDING:FIND_PROVIDER_TITLE", {
               defaultValue: "Encontre um Prestador",
             })}
@@ -54,7 +45,7 @@ export const SectionHowItWorks = () => {
             })}
           />
           <FeatureItem
-            icon={<CalendarIcon boxSize={12} color="teal.500" />}
+            icon={<CalendarIcon size={48} style={{ color: colors.teal[500].value }} />}
             title={t("LANDING:SCHEDULE_SERVICE_TITLE", {
               defaultValue: "Agende o Serviço",
             })}
@@ -64,7 +55,7 @@ export const SectionHowItWorks = () => {
             })}
           />
           <FeatureItem
-            icon={<CheckIcon boxSize={12} color="teal.500" />}
+            icon={<CheckIcon size={48} style={{ color: colors.teal[500].value }} />}
             title={t("LANDING:SERVICE_PERFORMED_TITLE", {
               defaultValue: "Serviço Realizado",
             })}
@@ -75,6 +66,6 @@ export const SectionHowItWorks = () => {
           />
         </Grid>
       </Container>
-    </MotionBox>
+    </Box>
   );
 };

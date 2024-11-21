@@ -28,7 +28,7 @@ export const SidebarPanel = () => {
         defaultValue: "Navegar",
       })}
     >
-      <Stack spacing="0" align="flex-start">
+      <Stack gap="0" align="flex-start">
         <NavSection title="GERAL">
           {/* <NavLink icon={RiCalendar2Line} href="/new-appointment">
             Novo agendamento

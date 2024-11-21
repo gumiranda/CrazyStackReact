@@ -18,7 +18,15 @@ import {
   useCreateRequestLib,
 } from "@/slices/appointments/features/request/create/createRequest.lib";
 import { useTranslation } from "react-i18next";
-
+const formatEndDate = ({ time, serviceDuration }) => {
+  try {
+    if (!time) return "";
+    const date = addMinutes(new Date(time), serviceDuration)?.toISOString?.() ?? "";
+    return date;
+  } catch (error) {
+    return "";
+  }
+};
 export const StepDate = ({ setActiveStep, currentOwner }) => {
   const { t } = useTranslation(["PAGES"]);
 
@@ -34,6 +42,11 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
     (service) => service._id === request?.serviceId
   );
   const serviceDuration = currentService?.duration;
+  const endDate = formatEndDate({
+    time: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
+    serviceDuration,
+  });
+
   const requestObjectIds = {
     haveDelivery: false,
     haveRecurrence: false,
@@ -47,10 +60,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
     createdForId: currentOwner?.createdById,
     clientUserId: request?.clientCreated?.userId,
     initDate: timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value,
-    endDate: addMinutes(
-      new Date(timeSelected ?? timeAvailable?.timeAvailable?.[0]?.value ?? null),
-      serviceDuration
-    )?.toISOString(),
+    endDate,
     duration: serviceDuration,
     serviceName: currentService?.name,
     ownerName: currentOwner?.name,
@@ -131,7 +141,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
       </Box>
       <Flex justifyContent={"flex-end"} mt={10}>
         <Button
-          colorScheme="purple"
+          colorPalette="purple"
           m={2}
           onClick={() => {
             setActiveStep(1);
@@ -141,13 +151,7 @@ export const StepDate = ({ setActiveStep, currentOwner }) => {
             defaultValue: "Voltar",
           })}
         </Button>
-        <Button
-          colorScheme="tertiary"
-          type="submit"
-          form="step3ID"
-          isLoading={false}
-          m={2}
-        >
+        <Button colorPalette="tertiary" type="submit" form="step3ID" m={2}>
           {t("PAGES:NEW_APPOINTMENT.next", {
             defaultValue: "Próximo",
           })}

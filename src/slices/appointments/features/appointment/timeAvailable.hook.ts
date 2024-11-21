@@ -43,7 +43,6 @@ export const useTimeAvailable = (params: Params) => {
     }
   };
   const handleChangeTimeSelected = (event: any) => {
-    event.preventDefault();
     setTimeSelected(event.target.value);
   };
   return { timeAvailable, timeSelected, handleChangeTimeSelected };

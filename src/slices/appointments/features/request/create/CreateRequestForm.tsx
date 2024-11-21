@@ -1,3 +1,4 @@
+"use client";
 import { useCreateRequest } from "./createRequest.hook";
 import {
   BoxCreateItem,
@@ -53,7 +54,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
     >
       <GridForm>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="ownerList"
           label={t("PAGES:HOME_PAGE.owner", {
             defaultValue: "Estabelecimento",
@@ -63,15 +64,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="userList"
           label={t("PAGES:HOME_PAGE.professional", {
             defaultValue: "Profissional prestador",
@@ -81,15 +76,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeUserSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="serviceList"
           label={t("PAGES:HOME_PAGE.service", {
             defaultValue: "Serviço",
@@ -99,15 +88,9 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeServiceSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="clientList"
           label={t("PAGES:HOME_PAGE.client", {
             defaultValue: "Cliente",
@@ -117,13 +100,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           onChange={handleChangeClientSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         {ownerSelected &&
           ownerSelected?.length > 0 &&
           serviceSelected?.length > 0 &&
@@ -147,7 +124,7 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           userSelected?.length > 0 &&
           timeAvailable?.timeAvailable?.length > 0 && (
             <Select
-              bg="secondary.600"
+              bg="secondary.500"
               name="timeList"
               label={t("PAGES:NEW_APPOINTMENT.timeAvailable", {
                 defaultValue: "Horário disponível",
@@ -170,8 +147,8 @@ export const CreateRequestForm = ({ ownerList }: CreateRequestFormProps) => {
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme="green"
-          isChecked={active}
+          colorPalette="green"
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

@@ -1,27 +1,18 @@
-import { Box, ChakraLink, Circle, Img, VisuallyHidden } from "@/shared/ui";
+import { Box, ChakraLink, Img, VisuallyHidden } from "@/shared/ui";
 import { FaPlay } from "react-icons/fa";
-import { motion } from "framer-motion";
-
-const MotionBox = motion(Box as any);
-const MotionCircle = motion(Circle as any);
 
 export const ScreenshotSection = () => {
   return (
-    <ChakraLink href="https://youtube.com/devdoido">
-      <MotionBox
-        cursor="pointer"
-        position="relative"
-        rounded="lg"
-        overflow="hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
+    <ChakraLink isExternal href="https://youtube.com/devdoido">
+      <Box cursor="pointer" position="relative" rounded="lg" overflow="hidden">
         <Img
           alt="Screenshot do sistema"
           src="https://res.cloudinary.com/chakra-ui-pro/image/upload/v1621085270/pro-website/app-screenshot-light_kit2sp.png"
         />
-        <MotionCircle
-          size="20"
+        <Box
+          borderRadius={"50%"}
+          width="20"
+          height="20"
           as="button"
           bg="white"
           shadow="lg"
@@ -36,8 +27,8 @@ export const ScreenshotSection = () => {
         >
           <VisuallyHidden>Iniciar vídeo de demonstração</VisuallyHidden>
           <FaPlay />
-        </MotionCircle>
-      </MotionBox>
+        </Box>
+      </Box>
     </ChakraLink>
   );
 };

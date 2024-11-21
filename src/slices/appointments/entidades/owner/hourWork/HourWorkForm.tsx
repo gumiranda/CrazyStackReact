@@ -1,24 +1,26 @@
 "use client";
-import { Select, ControlledSelect, Checkbox } from "@/shared/ui";
-import { OptionBase } from "chakra-react-select";
+import { Checkbox, Select } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
 export type HourValidatorInput = {
   hourStart1: string;
   hourEnd1: string;
-  hourLunchStart1?: string;
-  hourLunchEnd1?: string;
-  hourStart2?: string;
-  hourEnd2?: string;
-  hourLunchStart2?: string;
-  hourLunchEnd2?: string;
-  hourStart3?: string;
-  hourEnd3?: string;
-  hourLunchStart3?: string;
-  hourLunchEnd3?: string;
+  hourLunchStart1?: string | null;
+  hourLunchEnd1?: string | null;
+  hourStart2?: string | null;
+  hourEnd2?: string | null;
+  hourLunchStart2?: string | null;
+  hourLunchEnd2?: string | null;
+  hourStart3?: string | null;
+  hourEnd3?: string | null;
+  hourLunchStart3?: string | null;
+  hourLunchEnd3?: string | null;
+  days1?: any;
+  days2?: any;
+  days3?: any;
 };
 
-export interface DaysOptions extends OptionBase {
+export interface DaysOptions {
   label: string;
   value: string;
 }
@@ -65,6 +67,9 @@ type HourWorkFormInput = {
     onChangeHourLunchEnd: any;
     valueHourEnd: string;
     onChangeHourEnd: any;
+    onChangedays: any;
+    valueDays: any;
+    defaultValueDays: any;
   };
 };
 
@@ -86,6 +91,9 @@ type HourWorkProps = {
   setHaveLunchTime2: any;
   haveLunchTime3: boolean;
   setHaveLunchTime3: any;
+  daysOptionsSelected1: any;
+  daysOptionsSelected2: any;
+  daysOptionsSelected3: any;
 };
 type HourWorksInput = {
   props: HourWorkProps;
@@ -110,6 +118,9 @@ export const HourWorks = ({
     setHaveAlternativeHour,
     haveAlternativeHour2,
     setHaveAlternativeHour2,
+    daysOptionsSelected1,
+    daysOptionsSelected2,
+    daysOptionsSelected3,
   },
 }: HourWorksInput) => {
   const {
@@ -125,6 +136,9 @@ export const HourWorks = ({
     onChangehourEnd3,
     onChangehourLunchStart3,
     onChangehourLunchEnd3,
+    onChangedays1,
+    onChangedays2,
+    onChangedays3,
   } = useOnChanges({ changeHour });
   const { t } = useTranslation(["PAGES"]);
 
@@ -160,11 +174,14 @@ export const HourWorks = ({
           onChangeHourLunchEnd: onChangehourLunchEnd1,
           valueHourEnd: hourWork.hourEnd1,
           onChangeHourEnd: onChangehourEnd1,
+          onChangedays: onChangedays1,
+          valueDays: hourWork.days1,
+          defaultValueDays: daysOptionsSelected1,
         }}
       />
       <Checkbox
-        colorScheme={"tertiary"}
-        isChecked={haveLunchTime1}
+        colorPalette={"tertiary"}
+        checked={haveLunchTime1}
         label={t("PAGES:FIELDS.haveLunchTime", {
           defaultValue: "Possui horário de almoço?",
         })}
@@ -172,10 +189,11 @@ export const HourWorks = ({
           e.preventDefault();
           setHaveLunchTime1(e.target.checked);
         }}
+        children={undefined}
       />
       <Checkbox
-        colorScheme={"tertiary"}
-        isChecked={haveAlternativeHour}
+        colorPalette={"tertiary"}
+        checked={haveAlternativeHour}
         label={t("PAGES:FIELDS.haveAlternativeDaysWorked", {
           defaultValue: "Possui horário alternativo?",
         })}
@@ -188,8 +206,8 @@ export const HourWorks = ({
         <>
           <HourWorkForm
             props={{
-              labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
-                defaultValue: "Dias de funcionamento 1",
+              labelDayWork: t("PAGES:FIELDS.daysOfHourWorked2", {
+                defaultValue: "Dias de funcionamento 2",
               }),
               labelHourStart: t("PAGES:FIELDS.hourInit", {
                 defaultValue: "Hora de início",
@@ -216,11 +234,14 @@ export const HourWorks = ({
               onChangeHourLunchEnd: onChangehourLunchEnd2,
               valueHourEnd: hourWork.hourEnd2,
               onChangeHourEnd: onChangehourEnd2,
+              onChangedays: onChangedays2,
+              valueDays: hourWork.days2,
+              defaultValueDays: daysOptionsSelected2,
             }}
           />
           <Checkbox
-            colorScheme={"tertiary"}
-            isChecked={haveLunchTime2}
+            colorPalette={"tertiary"}
+            checked={haveLunchTime2}
             label={t("PAGES:FIELDS.haveLunchTime", {
               defaultValue: "Possui horário de almoço?",
             })}
@@ -228,10 +249,11 @@ export const HourWorks = ({
               e.preventDefault();
               setHaveLunchTime2(e.target.checked);
             }}
+            children={undefined}
           />
           <Checkbox
-            colorScheme={"tertiary"}
-            isChecked={haveAlternativeHour2}
+            colorPalette={"tertiary"}
+            checked={haveAlternativeHour2}
             label={t("PAGES:FIELDS.haveAnotherAlternativeDaysWorked", {
               defaultValue: "Possui horário alternativo?",
             })}
@@ -244,8 +266,8 @@ export const HourWorks = ({
             <>
               <HourWorkForm
                 props={{
-                  labelDayWork: t("PAGES:FIELDS.daysOfHourWorked", {
-                    defaultValue: "Dias de funcionamento 1",
+                  labelDayWork: t("PAGES:FIELDS.daysOfHourWorked3", {
+                    defaultValue: "Dias de funcionamento 3",
                   }),
                   labelHourStart: t("PAGES:FIELDS.hourInit", {
                     defaultValue: "Hora de início",
@@ -272,11 +294,14 @@ export const HourWorks = ({
                   onChangeHourLunchEnd: onChangehourLunchEnd3,
                   valueHourEnd: hourWork.hourEnd3,
                   onChangeHourEnd: onChangehourEnd3,
+                  onChangedays: onChangedays3,
+                  valueDays: hourWork.days3,
+                  defaultValueDays: daysOptionsSelected3,
                 }}
               />
               <Checkbox
-                colorScheme={"tertiary"}
-                isChecked={haveLunchTime3}
+                colorPalette={"tertiary"}
+                checked={haveLunchTime3}
                 label={t("PAGES:FIELDS.haveAnotherAlternativeLunchTimeDaysWorked", {
                   defaultValue: "Possui horário de almoço alternativo?",
                 })}
@@ -307,62 +332,15 @@ const useOnChanges = ({ changeHour }: any) => {
     "hourEnd3",
     "hourLunchStart3",
     "hourLunchEnd3",
+    "days1",
+    "days2",
+    "days3",
   ];
   const onChange = fields.reduce((acc: any, field) => {
     acc[`onChange${field}`] = createOnChange(field);
     return acc;
   }, {});
   return onChange;
-  // const onChangeHourStart1 = (event: any) => {
-  //   changeHour(event, "hourStart1");
-  // };
-  // const onChangeHourStart2 = (event: any) => {
-  //   changeHour(event, "hourStart2");
-  // };
-  // const onChangeHourStart3 = (event: any) => {
-  //   changeHour(event, "hourStart3");
-  // };
-  // const onChangeHourEnd1 = (event: any) => {
-  //   changeHour(event, "hourEnd1");
-  // };
-  // const onChangeHourEnd2 = (event: any) => {
-  //   changeHour(event, "hourEnd2");
-  // };
-  // const onChangeHourEnd3 = (event: any) => {
-  //   changeHour(event, "hourEnd3");
-  // };
-  // const onChangeHourLunchStart1 = (event: any) => {
-  //   changeHour(event, "hourStart1");
-  // };
-  // const onChangeHourLunchStart2 = (event: any) => {
-  //   changeHour(event, "hourStart2");
-  // };
-  // const onChangeHourLunchStart3 = (event: any) => {
-  //   changeHour(event, "hourStart3");
-  // };
-  // const onChangeHourLunchEnd1 = (event: any) => {
-  //   changeHour(event, "hourEnd1");
-  // };
-  // const onChangeHourLunchEnd2 = (event: any) => {
-  //   changeHour(event, "hourEnd2");
-  // };
-  // const onChangeHourLunchEnd3 = (event: any) => {
-  //   changeHour(event, "hourEnd3");
-  // };
-  // return {
-  //   onChangeHourStart1,
-  //   onChangeHourStart2,
-  //   onChangeHourStart3,
-  //   onChangeHourEnd1,
-  //   onChangeHourEnd2,
-  //   onChangeHourEnd3,
-  //   onChangeHourLunchStart1,
-  //   onChangeHourLunchStart2,
-  //   onChangeHourLunchStart3,
-  //   onChangeHourLunchEnd1,
-  //   onChangeHourLunchEnd2,
-  //   onChangeHourLunchEnd3,
-  // };
 };
 export const HourWorkForm = ({
   props: {
@@ -384,22 +362,29 @@ export const HourWorkForm = ({
     onChangeHourLunchEnd,
     valueHourEnd,
     onChangeHourEnd,
+    onChangedays,
+    valueDays,
+    defaultValueDays,
   },
 }: HourWorkFormInput) => {
-  const ControlledSelectAux = ControlledSelect as (props: any) => any;
-
   return (
     <>
-      <ControlledSelectAux
-        isMulti
+      <Select
+        bg="secondary.500"
+        list={daysOptions}
+        onChange={onChangedays}
+        multiple
         control={control as any}
         label={labelDayWork}
         name={daysOptionsName}
         placeholder="Selecione pelo menos 1 dia"
-        options={daysOptions}
+        keyValue="value"
+        keyLabel="label"
+        value={valueDays}
+        defaultValue={defaultValueDays?.map?.((item: any) => item?.value) ?? null}
       />
       <Select
-        bg="secondary.600"
+        bg="secondary.500"
         name="openHour"
         label={labelHourStart}
         value={valueHourStart}
@@ -409,7 +394,7 @@ export const HourWorkForm = ({
         onChange={onChangeHourStart}
       />
       <Select
-        bg="secondary.600"
+        bg="secondary.500"
         name="endHour"
         label={labelHourEnd}
         value={valueHourEnd}
@@ -421,7 +406,7 @@ export const HourWorkForm = ({
       {flagDependent && (
         <>
           <Select
-            bg="secondary.600"
+            bg="secondary.500"
             name="openHourLunch"
             label={labelHourLunchStart}
             value={valueHourLunchStart}
@@ -431,7 +416,7 @@ export const HourWorkForm = ({
             onChange={onChangeHourLunchStart}
           />
           <Select
-            bg="secondary.600"
+            bg="secondary.500"
             name="endHourLunch"
             label={labelHourLunchEnd}
             value={valueHourLunchEnd}

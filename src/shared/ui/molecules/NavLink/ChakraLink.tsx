@@ -1,2 +1,4 @@
-import { Link } from "@chakra-ui/next-js";
-export const ChakraLink = Link;
+import { Link } from "@chakra-ui/react";
+export const ChakraLink = (props) => {
+  return <Link {...props} />;
+};

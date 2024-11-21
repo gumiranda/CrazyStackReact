@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { getRequests } from "@/slices/appointments/entidades/request";
 import { useRequestInfiniteList } from "@/slices/appointments/entidades/request/requestInfiniteList.hook";
 import { useAuth } from "@/shared/libs";
@@ -17,7 +17,7 @@ export const useHome = () => {
   });
   const description = t("PAGES:HOME_PAGE.description", {
     defaultValue: "Bem-vindo ao",
-    systemName: config?.systemName,
+    systemName: whitelabel?.systemName,
   });
   const {
     isFetching,

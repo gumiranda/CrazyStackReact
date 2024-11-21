@@ -9,6 +9,7 @@ import {
   Heading,
   Text,
 } from "@/shared/ui";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export const FAQSection = () => {
@@ -111,6 +112,8 @@ export const FAQSection = () => {
       }),
     },
   ];
+  const [value, setValue] = useState(["second-item"]);
+
   return (
     <Box
       as="section"
@@ -123,7 +126,7 @@ export const FAQSection = () => {
     >
       <Heading
         letterSpacing="tighter"
-        lineHeight="none"
+        lineHeight="3.4rem"
         as="h2"
         textAlign="center"
         fontWeight="semibold"
@@ -145,24 +148,21 @@ export const FAQSection = () => {
         })}
       </Text>
       <Container maxW={{ base: "90%", xl: "70%" }}>
-        <Accordion allowMultiple>
+        <Accordion value={value} onValueChange={(e) => setValue(e.value)}>
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} py={5}>
-              <h2>
-                <AccordionButton>
-                  <Box
-                    display="flex"
-                    flex="1"
-                    textAlign="left"
-                    fontSize={{ base: "xl", md: "2xl" }}
-                    fontWeight="bold"
-                    color="primary.500"
-                  >
-                    {faq.question}
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
+            <AccordionItem key={index} py={5} value={faq.question}>
+              <AccordionButton>
+                <Box
+                  display="flex"
+                  flex="1"
+                  textAlign="left"
+                  fontSize={{ base: "xl", md: "2xl" }}
+                  fontWeight="bold"
+                  color="primary.500"
+                >
+                  {faq.question}
+                </Box>
+              </AccordionButton>
               <AccordionPanel
                 fontSize={{ base: "lg", md: "xl" }}
                 fontWeight="extralight"

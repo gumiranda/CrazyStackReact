@@ -1,15 +1,11 @@
 //@ts-nocheck
 import { Input as InputChakra, InputProps as ChakraInputProps } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import React from "react";
-import { ForwardRefRenderFunction, forwardRef } from "react";
+import React, { memo } from "react";
 interface InputProps extends ChakraInputProps {
   name: string;
 }
-const InputAtom: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  { name, ...rest },
-  ref
-) => {
+const InputAtom = ({ name, ...rest }) => {
   const router = useRouter();
   const handleKeyDown = (event: any) => {
     const newurl = router?.route?.replace?.("[page]", router?.query?.page as any);
@@ -25,10 +21,9 @@ const InputAtom: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       type="search"
       data-testid="InputSearchId"
       id={name}
-      ref={ref}
       onKeyDown={handleKeyDown}
       pr="1.5rem"
     />
   );
 };
-export const SearchBar = forwardRef(InputAtom);
+export const SearchBar = memo(InputAtom);

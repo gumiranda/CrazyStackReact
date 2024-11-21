@@ -1,5 +1,5 @@
 import { fonts } from "@/app/fonts";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Heading, Text } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 
@@ -10,7 +10,7 @@ export const HeadingSection = () => {
     <>
       <Heading
         as="h1"
-        size={{ base: "2xl", md: "3xl" }}
+        size={{ base: "4xl", md: "5xl" }}
         fontWeight="extrabold"
         fontFamily={fonts.inter.style.fontFamily}
         letterSpacing="tighter"
@@ -29,8 +29,8 @@ export const HeadingSection = () => {
       >
         {t("LANDING:FIRST_BLOCK.subtitle", {
           defaultValue: `Economize tempo, ganhe mais clientes e simplifique a gestão do seu negócio
-      com o ${config.systemName}!`,
-          systemName: config.systemName,
+      com o ${whitelabel.systemName}!`,
+          systemName: whitelabel.systemName,
         })}
       </Text>
     </>

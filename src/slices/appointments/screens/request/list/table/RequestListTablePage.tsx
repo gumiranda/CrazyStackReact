@@ -24,7 +24,8 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
     page,
     initialData: data,
   });
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const fieldsMobile = [
     {
       id: "datePickerSelected",

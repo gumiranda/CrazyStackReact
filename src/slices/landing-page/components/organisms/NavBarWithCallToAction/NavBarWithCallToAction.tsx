@@ -1,17 +1,7 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  Logo,
-  SelectTranslate,
-  ToggleButton,
-  useDisclosure,
-} from "@/shared/ui";
-import { MobileDrawer } from "@/widgets/NavBar/MobileNavbar";
+"use client";
+import { Box, Flex, HStack, Logo, SelectTranslate, ToggleButton } from "@/shared/ui";
 
-export const NavBarWithCallToAction = () => {
-  const mobileNavbar = useDisclosure();
-
+export const NavBarWithCallToAction = ({ children }) => {
   return (
     <Box as="section">
       <Box position="relative" zIndex="tooltip">
@@ -19,13 +9,8 @@ export const NavBarWithCallToAction = () => {
           <Logo haveLink={false} marginBottom={0} />
           <HStack>
             <SelectTranslate />
-            <ToggleButton
-              onClick={mobileNavbar.onToggle}
-              isOpen={mobileNavbar.isOpen}
-              aria-label="Mostrar menu"
-            />
+            {children}
           </HStack>
-          <MobileDrawer isOpen={mobileNavbar.isOpen} onClose={mobileNavbar.onClose} />
         </Flex>
       </Box>
     </Box>

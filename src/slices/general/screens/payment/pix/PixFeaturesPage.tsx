@@ -1,6 +1,6 @@
 "use client";
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Button, Features, Flex, Text, Heading, Image } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import pixPicture from "../../../../../../public/modal-complete-register.png";
@@ -26,14 +26,14 @@ export const PixFeaturesPage = () => {
       <Flex p="8" mt={2} flex="1" flexDir="column" borderRadius={8} bg="secondary.500">
         <Heading>
           {t("PAGES:PIX_PAGE.title", {
-            defaultValue: `Assinatura ${config.systemName}`,
-            systemName: config.systemName,
+            defaultValue: `Assinatura ${whitelabel.systemName}`,
+            systemName: whitelabel.systemName,
           })}
         </Heading>
         <Text>
           {t("PAGES:PIX_PAGE.subtitle", {
-            defaultValue: `Aproveite todos os benefícios do plano mensal ${config.systemName} e tenha acesso a todos os recursos exclusivos.`,
-            systemName: config.systemName,
+            defaultValue: `Aproveite todos os benefícios do plano mensal ${whitelabel.systemName} e tenha acesso a todos os recursos exclusivos.`,
+            systemName: whitelabel.systemName,
           })}
         </Text>
         <Flex
@@ -53,13 +53,13 @@ export const PixFeaturesPage = () => {
             backgroundSize={"cover"}
           />
           <Features features={features}>
-            <Link href="/payment/pix/pay">
-              <Button colorScheme={"green"} w="100%" onClick={() => {}}>
+            <Button colorPalette={"green"} w="100%" onClick={() => {}} asChild>
+              <Link href="/payment/pix/pay">
                 {t("PAGES:PIX_PAGE.buyNow", {
                   defaultValue: "Buy Now",
                 })}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </Features>
         </Flex>
       </Flex>

@@ -1,11 +1,11 @@
-import { Grid as GridChakra, GridProps } from "@chakra-ui/react";
-import { forwardRef } from "react";
-export const Grid_ = ({ children, ...rest }: GridProps, ref) => {
+import { Grid as GridChakra } from "@chakra-ui/react";
+import { memo } from "react";
+export const Grid_ = ({ children = null, ...rest }: any) => {
   return (
-    <GridChakra {...rest} data-testid="GridTestId" ref={ref}>
+    <GridChakra {...rest} data-testid="GridTestId">
       {children}
     </GridChakra>
   );
 };
 
-export const Grid = forwardRef(Grid_);
+export const Grid = memo(Grid_);

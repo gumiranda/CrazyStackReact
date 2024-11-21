@@ -1,25 +1,40 @@
-import { ChakraLink, Logo } from "@/shared/ui";
+"use client";
+import { ChakraLink, Icon, Logo } from "@/shared/ui";
+
 import {
-  Button,
-  Drawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerProps,
-  Stack,
-} from "@chakra-ui/react";
+  DrawerRoot,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { useTranslation } from "react-i18next";
+import { RiMenuLine } from "react-icons/ri";
+import { IconButton, Stack } from "@chakra-ui/react";
+import { Button } from "@/components/ui/button";
 
-export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
+export const MobileDrawer = (props: any) => {
   const { t } = useTranslation(["LANDING"]);
   return (
-    <Drawer placement="left" {...props}>
+    <DrawerRoot placement="start">
+      <DrawerTrigger asChild>
+        <IconButton
+          aria-label="Open sidebar"
+          fontSize="24"
+          children={<Icon as={RiMenuLine} />}
+          variant="ghost"
+          color={"white"}
+          mr="1"
+          mt={2}
+          onClick={props?.onToggle}
+        />
+      </DrawerTrigger>
       <DrawerContent bgColor={"secondary.500"}>
         <DrawerHeader>
           <Logo haveLink={false} marginBottom={0} />
         </DrawerHeader>
         <DrawerBody>
-          <Stack spacing="6" align="stretch">
+          <Stack gap="6" align="stretch">
             {[
               {
                 label: t("PAGES:AUTH_PAGE.signIn", {
@@ -28,32 +43,31 @@ export const MobileDrawer = (props: Omit<DrawerProps, "children">) => {
                 route: "/login",
               },
             ].map((item) => (
-              <ChakraLink key={item.label} href={item.route}>
-                <Button
-                  bgColor={"secondary.500"}
-                  color="white"
-                  _hover={{ bgColor: "secondary.600" }}
-                  size="lg"
-                  colorScheme="gray"
-                >
-                  {item.label}
-                </Button>
-              </ChakraLink>
-            ))}
-            <ChakraLink href={"/signup"}>
               <Button
-                bgColor="primary.600"
+                bgColor={"secondary.400"}
                 color="white"
-                _hover={{ bgColor: "primary.700" }}
+                _hover={{ bgColor: "secondary.600" }}
+                asChild
+                key={item.label}
               >
+                <ChakraLink href={item.route}>{item.label}</ChakraLink>
+              </Button>
+            ))}
+            <Button
+              bgColor="primary.600"
+              color="white"
+              _hover={{ bgColor: "primary.700" }}
+              asChild
+            >
+              <ChakraLink href={"/signup"}>
                 {t("PAGES:AUTH_PAGE.buttonSignUp", {
                   defaultValue: "Cadastrar negócio",
                 })}
-              </Button>
-            </ChakraLink>
+              </ChakraLink>
+            </Button>
           </Stack>
         </DrawerBody>
       </DrawerContent>
-    </Drawer>
+    </DrawerRoot>
   );
 };

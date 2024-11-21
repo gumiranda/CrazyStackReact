@@ -18,7 +18,7 @@ export const PaginationGroupItems = ({
   lastPage,
 }: PaginationGroupItemsProps) => {
   return (
-    <Stack direction="row" spacing="2">
+    <Stack direction="row" gap="2">
       {currentPage > 1 + siblingsCount && (
         <>
           <PaginationItem onPageChange={onPageChange} number={1} />

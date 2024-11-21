@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 export const TimeSlots = ({ list }) => {
   const { t } = useTranslation(["PAGES"]);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
   const [requestsSelected, setRequestsSelected] = useState<any>(null);
   const timeSlots = Array.from({ length: 18 }, (_, i) => ({
     start: `${i + 6}h`,
@@ -104,7 +104,7 @@ export const TimeSlots = ({ list }) => {
                       <IconButton
                         aria-label="Ver detalhes do agendamento"
                         bg="primary.500"
-                        icon={<SlOptions />}
+                        children={<SlOptions />}
                         onClick={() => {
                           setRequestsSelected(item);
                           onOpen();
@@ -118,7 +118,7 @@ export const TimeSlots = ({ list }) => {
         })}
       </Flex>
       <Modal
-        isOpen={isOpen}
+        open={open}
         onClose={onClose}
         modalHeaderText={t("PAGES:FIELDS.appointmentDetails", {
           defaultValue: "Detalhes do agendamento",

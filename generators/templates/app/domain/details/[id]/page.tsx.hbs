@@ -3,17 +3,17 @@ import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
 import { {{pascalCase name}}DetailsPage } from "@/slices/appointments/screens/{{camelCase name}}/details";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Detalhes da {{pascalCase label}}`,
-  description: `Página de detalhes de {{camelCase label}}s do ${config.systemName}. Aqui você pode ver os detalhes de {{camelCase label}}.`,
+  title: `${whitelabel.systemName} | Detalhes da {{pascalCase label}}`,
+  description: `Página de detalhes de {{camelCase label}}s do ${whitelabel.systemName}. Aqui você pode ver os detalhes de {{camelCase label}}.`,
 };
 
 async function getData(id) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   const parsedCookies = parseCookies(allCookies);
   if (!parsedCookies?.["belezixadmin.token"]) {
     return null;

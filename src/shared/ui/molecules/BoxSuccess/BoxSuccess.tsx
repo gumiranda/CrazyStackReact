@@ -1,8 +1,8 @@
 "use client";
 
-import { CheckCircleIcon } from "@chakra-ui/icons";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Icon } from "@chakra-ui/react";
 import { Text, Box } from "@/shared/ui/atoms";
+import { CheckCircleIcon } from "lucide-react";
 type BoxSuccessProps = {
   title?: string;
   content: string;
@@ -10,8 +10,11 @@ type BoxSuccessProps = {
 };
 export const BoxSuccess = ({ title, content, children, ...rest }: BoxSuccessProps) => {
   return (
-    <Box textAlign={"center"} py={4} px={2} {...rest} datatestid="BoxSuccessTestId">
-      <CheckCircleIcon boxSize="50px" color="green.500" />
+    <Box textAlign={"center"} py={4} px={2} {...rest}>
+      <Icon fontSize="50px" color="tertiary.500">
+        <CheckCircleIcon size="50px" />
+      </Icon>
+
       {title && (
         <Heading as="h2" size="xl" mt={6} mb={2} color="gray.500">
           {title}

@@ -14,7 +14,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
           letterSpacing="tighter"
           lineHeight="none"
           as="h2"
-          size="3xl"
+          size={{ base: "4xl", md: "5xl" }}
           fontFamily={fonts.inter.style.fontFamily}
         >
           {t("LANDING:FEATURES_TITLE", { defaultValue: "Principais Funcionalidades" })}
@@ -30,11 +30,12 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
           })}
         </Text>
       </Box>
+
       <ContentGrid>
         <Box mt={{ base: 5, md: 10 }}>
           <FeatureItem
             color="gray.50"
-            icon={<Icon as={FaHandshake} boxSize="12" color="primary.500" />}
+            icon={<Icon as={FaHandshake} color="primary.500" />}
             title={t("LANDING:FEATURE_1_TITLE", {
               defaultValue: "Seja um Belezeiro",
             })}
@@ -48,7 +49,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
         <Box mt={{ base: 5, md: 10 }}>
           <FeatureItem
             color="gray.50"
-            icon={<Icon as={FaUserTie} boxSize="12" color="primary.500" />}
+            icon={<Icon as={FaUserTie} color="primary.500" />}
             title={t("LANDING:FEATURE_2_TITLE", { defaultValue: "Agende um Serviço" })}
             description={t("LANDING:FEATURE_2_DESCRIPTION", {
               defaultValue:
@@ -60,7 +61,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
         <Box mt={{ base: 5, md: 10 }}>
           <FeatureItem
             color="gray.50"
-            icon={<Icon as={FaBriefcase} boxSize="12" color="primary.500" />}
+            icon={<Icon as={FaBriefcase} color="primary.500" />}
             title={t("LANDING:FEATURE_3_TITLE", {
               defaultValue: "Ganhe como profissional",
             })}

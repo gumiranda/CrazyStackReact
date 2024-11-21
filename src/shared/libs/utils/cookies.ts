@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
-export function getCookies(): any {
+export async function getCookies(): Promise<any> {
   try {
-    const cookieStore = cookies().getAll();
+    const cookieStore = (await cookies()).getAll();
     return cookieStore;
   } catch (error) {
     return null;

@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Box, Flex, Text, ChakraLink, Image } from "@/shared/ui";
 
 export const Footer = () => {
@@ -7,7 +7,7 @@ export const Footer = () => {
       <StoreApps />
       <Flex mt={10} px={{ base: 4, md: 6 }} flexDirection={{ base: "column", sm: "row" }}>
         <Text fontSize="lg" color="gray.300">
-          {`© ${new Date().getFullYear()} ${config.systemName} . Todos os direitos reservados.`}
+          {`© ${new Date().getFullYear()} ${whitelabel.systemName} . Todos os direitos reservados.`}
         </Text>
         <Flex ml={{ sm: 4 }}>
           <CustomLink href={"/"}>Termos de serviço</CustomLink>

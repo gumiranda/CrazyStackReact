@@ -1,4 +1,4 @@
-import { IconButton, Hide, Box } from "@chakra-ui/react";
+import { IconButton, Box } from "@chakra-ui/react";
 import { Button, Flex, Text } from "../../atoms";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
@@ -28,23 +28,19 @@ export const WeekDaysSelector = ({
       boxShadow="md"
       color="white"
     >
-      <Hide breakpoint="(max-width: 765px)">
-        <Flex my={4} justifyContent={"space-between"} w={{ base: "100%", md: "auto" }}>
-          <IconButton
-            size={["xs", "sm", "md", "lg"]}
-            aria-label="Voltar dia"
-            icon={<BsChevronLeft />}
-            mr={{ base: 0, md: 4 }}
-            onClick={() => {
-              if (selectedDay > 0 && selectedDay < 7) {
-                onDayClick({ dayIndex: selectedDay - 1, extraDiff: 0 });
-              } else if (selectedDay === 0) {
-                onDayClick({ dayIndex: 6, extraDiff: -7 });
-              }
-            }}
-          />
-        </Flex>
-      </Hide>
+      <IconButton
+        size={["xs", "sm", "md", "lg"]}
+        aria-label="Voltar dia"
+        children={<BsChevronLeft />}
+        mr={{ base: 0, md: 4 }}
+        onClick={() => {
+          if (selectedDay > 0 && selectedDay < 7) {
+            onDayClick({ dayIndex: selectedDay - 1, extraDiff: 0 });
+          } else if (selectedDay === 0) {
+            onDayClick({ dayIndex: 6, extraDiff: -7 });
+          }
+        }}
+      />
       <Flex my={4} justifyContent={"center"} w="100%">
         {daysOfWeek.map((day, index) => {
           const newdaynumber = Number(dayFormatted) + (index - selectedDay);
@@ -60,7 +56,7 @@ export const WeekDaysSelector = ({
               <Text fontSize="md" fontWeight="bold" color="white">
                 {dayNumberOfWeek}
               </Text>
-              <Text fontSize="sm" color="gray.400">
+              <Text fontSize="sm" color="gray.50">
                 {monthNumberOfWeek?.replace?.(".", "")}
               </Text>
               <Button
@@ -80,9 +76,19 @@ export const WeekDaysSelector = ({
           );
         })}
       </Flex>
-      <Hide breakpoint="(max-width: 765px)">
-        <IconRight props={{ selectedDay, onDayClick }} />
-      </Hide>
+      <IconButton
+        size={["xs", "sm", "md", "lg"]}
+        aria-label="Voltar dia"
+        children={<BsChevronRight />}
+        mr={{ base: 0, md: 4 }}
+        onClick={() => {
+          if (selectedDay >= 6) {
+            onDayClick({ dayIndex: 0, extraDiff: 7 });
+            return;
+          }
+          onDayClick({ dayIndex: selectedDay + 1, extraDiff: 0 });
+        }}
+      />
     </Flex>
   );
 };
@@ -91,7 +97,7 @@ export const IconRight = ({ props: { selectedDay, onDayClick } }) => {
     <IconButton
       size={["xs", "sm", "md", "lg"]}
       aria-label="Avançar dia"
-      icon={<BsChevronRight />}
+      children={<BsChevronRight />}
       ml={{ base: 0, md: 4 }}
       onClick={() => {
         if (selectedDay >= 6) {

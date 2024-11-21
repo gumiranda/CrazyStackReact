@@ -1,8 +1,5 @@
-import { List as ListChakra, ListProps } from "@chakra-ui/react";
-export const List = ({ children, ...rest }: ListProps) => {
-  return (
-    <ListChakra {...rest} data-testid="ListTestId">
-      {children}
-    </ListChakra>
-  );
+import { List as ListChakra } from "@chakra-ui/react";
+
+export const List = ({ children, ...rest }) => {
+  return <ListChakra.Root {...rest}>{children}</ListChakra.Root>;
 };

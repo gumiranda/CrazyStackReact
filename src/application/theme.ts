@@ -1,159 +1,85 @@
-import { extendTheme } from "@chakra-ui/react";
-const colors = {
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react";
+
+export const colors = {
   primary: {
-    500: "#9f7aea",
-    600: "#6936d1",
-    700: "#5932b7",
+    500: { value: "#9f7aea" },
+    600: { value: "#6936d1" },
+    700: { value: "#5932b7" },
   },
   secondary: {
-    400: "#3f3f3f",
-    500: "#2e2e2e",
-    600: "#212121",
-    900: "#212121",
+    400: { value: "#3f3f3f" },
+    500: { value: "#2e2e2e" },
+    600: { value: "#212121" },
+    900: { value: "#212121" },
+  },
+  gray: {
+    400: { value: "#3f3f3f" },
+    500: { value: "#2e2e2e" },
+    600: { value: "#212121" },
+    900: { value: "#212121" },
   },
   tertiary: {
-    300: "#3ee360",
-    500: "#04D361",
+    300: { value: "#3ee360" },
+    500: { value: "#04D361" },
   },
   grayscale: {
-    500: "#f0f0f0",
-    600: "#949191",
+    500: { value: "#f0f0f0" },
+    600: { value: "#949191" },
   },
-  "bg.canvas": {
-    default: "gray.25",
-    _dark: "gray.950",
+  teal: {
+    400: { value: "##38B2AC" },
+    500: { value: "#319795" },
+    600: { value: "#2C7A7B" },
+    700: { value: "#285E61" },
   },
-  "bg.surface": {
-    default: "white",
-    _dark: "gray.900",
-  },
-  "bg.subtle": {
-    default: "gray.50",
-    _dark: "gray.800",
-  },
-  "bg.muted": {
-    default: "gray.100",
-    _dark: "gray.700",
-  },
-
-  "fg.default": {
-    default: "gray.900",
-    _dark: "white",
-  },
-  "fg.emphasized": {
-    default: "gray.700",
-    _dark: "gray.200",
-  },
-  "fg.muted": {
-    default: "gray.600",
-    _dark: "gray.300",
-  },
-  "fg.subtle": {
-    default: "gray.500",
-    _dark: "gray.400",
-  },
-  "fg.inverted": {
-    default: "white",
-    _dark: "gray.950",
-  },
-
-  "border.default": {
-    default: "gray.200",
-    _dark: "gray.800",
-  },
-  "border.emphasized": {
-    default: "gray.300",
-    _dark: "gray.700",
-  },
-  "border.active": {
-    default: "gray.400",
-    _dark: "gray.600",
-  },
-
-  "bg.accent.default": "brand.600",
-  "bg.accent.subtle": "brand.500",
-  "bg.accent.muted": "brand.400",
-
-  "fg.accent.subtle": "brand.100",
-  "fg.accent.muted": "brand.50",
-  "fg.accent.default": "white",
-
-  accent: {
-    default: "brand.500",
-    _dark: "brand.200",
-  },
-  success: {
-    default: "green.500",
-    _dark: "green.200",
-  },
-  error: {
-    default: "red.500",
-    _dark: "red.200",
-  },
+  accent: { value: "brand.500" },
+  success: { value: "green.500" },
+  error: { value: "red.500" },
   purpleDark: {
-    900: "#2a254b",
-    800: "#3c2b64",
-    700: "#4b3780",
+    900: { value: "#2a254b" },
+    800: { value: "#3c2b64" },
+    700: { value: "#4b3780" },
   },
   pink: {
-    400: "#ff0080",
+    400: { value: "#ff0080" },
   },
 };
-const shadows = {
-  xs: {
-    default: "0px 0px 1px rgba(45, 55, 72, 0.05), 0px 1px 2px rgba(45, 55, 72,  0.1)",
-    _dark: "0px 0px 1px rgba(13, 14, 20, 1), 0px 1px 2px rgba(13, 14, 20, 0.9)",
+const config = defineConfig({
+  globalCss: {
+    body: { bg: "secondary.900", color: "white" },
   },
-  sm: {
-    default: "0px 0px 1px rgba(45, 55, 72, 0.05), 0px 2px 4px rgba(45, 55, 72,  0.1)",
-    _dark: "0px 0px 1px rgba(13, 14, 20, 1), 0px 2px 4px rgba(13, 14, 20, 0.9)",
-  },
-  md: {
-    default: "0px 0px 1px rgba(45, 55, 72, 0.05), 0px 4px 8px rgba(45, 55, 72,  0.1)",
-    _dark: "0px 0px 1px rgba(13, 14, 20, 1), 0px 4px 8px rgba(13, 14, 20, 0.9)",
-  },
-  lg: {
-    default: "0px 0px 1px rgba(45, 55, 72, 0.05), 0px 8px 16px rgba(45, 55, 72,  0.1)",
-    _dark: "0px 0px 1px rgba(13, 14, 20, 1), 0px 8px 16px rgba(13, 14, 20, 0.9)",
-  },
-  xl: {
-    default: "0px 0px 1px rgba(45, 55, 72, 0.05), 0px 16px 24px rgba(45, 55, 72,  0.1)",
-    _dark: "0px 0px 1px rgba(13, 14, 20, 1), 0px 16px 24px rgba(13, 14, 20, 0.9)",
-  },
-  focus: {
-    default: "0 0 0 4px #EDF2F7",
-    _dark: "0 0 0 4px #2D3748",
-  },
-};
-export const theme = extendTheme({
-  fonts: {
-    heading: "var(--font-league-spartan)",
-    body: "var(--font-league-spartan)",
-  },
-  colors,
-  shadows,
-  styles: { global: { body: { bg: "secondary.900", color: "white" } } },
-  sizes: {
-    container: {
-      sm: "320px",
-    },
-  },
-  components: {
-    Stepper: {
-      baseStyle: {
-        title: {
-          color: "black",
-        },
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: "var(--font-league-spartan)" },
+        body: { value: "var(--font-league-spartan)" },
       },
-    },
-    GradientButton: {
-      baseStyle: {
-        bgGradient: "linear(to-r, pink.500, purple.500)",
-        color: "white",
-        _hover: {
-          bgGradient: "linear(to-r, pink.600, purple.600)",
-        },
-      },
+      colors,
+      // components: {
+      //   Stepper: {
+      //     baseStyle: {
+      //       title: {
+      //         color: "black",
+      //       },
+      //     },
+      //   },
+      //   GradientButton: {
+      //     baseStyle: {
+      //       bgGradient: "linear(to-r, pink.500, purple.500)",
+      //       color: "white",
+      //       _hover: {
+      //         bgGradient: "linear(to-r, pink.600, purple.600)",
+      //       },
+      //     },
+      //   },
+      // },
     },
   },
 });
+const finalConfig = mergeConfigs(defaultConfig, config);
+export const theme = createSystem(finalConfig);

@@ -48,11 +48,11 @@ export const CreateClientForm = ({ userList, owners }: ClientCreateFormProps) =>
           bgColor="secondary.500"
           bgColorHover="secondary.600"
           type="tel"
-          mask="(99) 99999-9999"
+          mask="(__) _____-____"
           {...register("phone")}
         />
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="clientList"
           label={t("PAGES:AUTH_PAGE.userAssociatedToClient", {
             defaultValue: "Usuário associado ao cliente",
@@ -62,19 +62,13 @@ export const CreateClientForm = ({ userList, owners }: ClientCreateFormProps) =>
           onChange={handleChangeUserSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Checkbox
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme="green"
-          isChecked={active}
+          colorPalette="green"
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

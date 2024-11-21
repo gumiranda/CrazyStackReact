@@ -1,3 +1,4 @@
+"use client";
 import { AppointmentProps } from "@/slices/appointments/entidades/appointment";
 import { useEditAppointment } from "./editAppointment.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";

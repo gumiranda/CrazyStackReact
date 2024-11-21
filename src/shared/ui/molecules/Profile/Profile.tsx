@@ -1,15 +1,13 @@
-import { Box, Flex, Text, Avatar } from "@/shared/ui/atoms";
+import { Box, Flex, Text } from "@/shared/ui/atoms";
 import { useAuth } from "@/shared/libs";
 import { useProfile } from "./useProfile.hook";
-import { Divider } from "@chakra-ui/react";
+import { Separator } from "@chakra-ui/react";
 import { IoExitOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { Avatar } from "@/components/ui/avatar";
 
-type ProfileProps = {
-  showProfileData?: boolean;
-};
-export const Profile = ({ showProfileData }: ProfileProps) => {
+export const Profile = () => {
   const { t } = useTranslation(["PAGES"]);
   const { user, logout, userPhoto } = useAuth() || {};
   const router = useRouter();
@@ -41,12 +39,12 @@ export const Profile = ({ showProfileData }: ProfileProps) => {
             backgroundColor={"secondary.500"}
             borderRadius={4}
           >
-            <Box datatestid="ProfileTestId" pl={4} pr={4}>
+            <Box pl={4} pr={4}>
               <Text fontSize="sm">{user?.name}</Text>
               <Text color="tertiary.500" fontSize="xs">
                 {user?.email}
               </Text>
-              <Divider orientation="horizontal" color="gray.600" mt={2} mb={2} />
+              <Separator orientation="horizontal" color="gray.600" mt={2} mb={2} />
             </Box>
             <Flex
               cursor="pointer"

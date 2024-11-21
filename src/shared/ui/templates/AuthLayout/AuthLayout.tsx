@@ -1,8 +1,9 @@
-import { config } from "@/application/config";
+"use client";
+import { whitelabel } from "@/application/whitelabel";
 import { Flex, Box, Text, SelectTranslate, useBreakpointValue } from "../../atoms";
 
 export const AuthLayout = ({ children, ...rest }: any) => {
-  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
   return (
     <Flex
       bgColor="secondary.600"
@@ -35,7 +36,7 @@ export const AuthLayout = ({ children, ...rest }: any) => {
             backgroundColor="rgba(255,255,255,0.2)"
           >
             <Text fontWeight={"bold"} fontSize={"6xl"} color="white">
-              Pensou {config.typeSystem},
+              Pensou {whitelabel.typeSystem},
             </Text>
             <Flex>
               <Text fontWeight={"bold"} fontSize={"6xl"} color="white">
@@ -43,7 +44,7 @@ export const AuthLayout = ({ children, ...rest }: any) => {
               </Text>
               <Box>
                 <Text fontWeight={"bold"} fontSize={"6xl"} color="white">
-                  {config.systemName}.
+                  {whitelabel.systemName}.
                 </Text>
                 <Flex h={1} bgColor="tertiary.500" />
               </Box>

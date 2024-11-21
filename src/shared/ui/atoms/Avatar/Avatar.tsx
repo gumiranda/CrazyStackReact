@@ -1,8 +1,9 @@
-import { Avatar as AvatarChakra, AvatarProps } from "@chakra-ui/react";
-export const Avatar = ({ children, ...rest }: AvatarProps) => {
+import { Avatar as Avatar2 } from "@/components/ui/avatar";
+
+export const Avatar = ({ children = null, ...rest }) => {
   return (
-    <AvatarChakra {...rest} data-testid="AvatarTestId">
+    <Avatar2 {...rest} data-testid="AvatarTestId">
       {children}
-    </AvatarChakra>
+    </Avatar2>
   );
 };

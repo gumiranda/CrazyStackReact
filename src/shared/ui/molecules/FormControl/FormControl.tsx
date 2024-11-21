@@ -1,15 +1,10 @@
 "use client";
-import React, { forwardRef, ForwardRefRenderFunction, memo } from "react";
-import {
-  FormLabel,
-  FormControl as FormControlChakra,
-  InputProps as ChakraInputProps,
-  FormErrorMessage,
-} from "@chakra-ui/react";
-import { AutoComplete } from "./AutoComplete";
+import React, { memo } from "react";
+import { InputProps as ChakraInputProps } from "@chakra-ui/react";
 import { Input, Checkbox } from "@/shared/ui";
-import InputMask from "react-input-mask";
-
+import { InputMask } from "@react-input/mask";
+import { Field } from "@/components/ui/field";
+import { AutoComplete } from "./NewAutocomplete";
 interface InputProps extends ChakraInputProps {
   name: string;
   bgColorHover?: string;
@@ -22,16 +17,12 @@ interface InputProps extends ChakraInputProps {
   maskChar?: string | null;
   hide?: any;
 }
-const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  props,
-  ref
-) => {
+const FormControlMolecules = (props) => {
   const {
     name,
     size = "lg",
-    focusBorderColor = "tertiary.500",
     variant = "filled",
-    bgColor = "#7159C1",
+    bgColor = "secondary.500",
     bgColorHover = "primary.600",
     label,
     error = null,
@@ -45,62 +36,62 @@ const FormControlMolecules: ForwardRefRenderFunction<HTMLInputElement, InputProp
   if (hide) {
     return null;
   }
-  const AutoCompleteInput = AutoComplete as (props: any) => any;
 
   return (
-    <FormControlChakra {...rest} data-testid="FormControlTestId" isInvalid={!!error}>
-      {!!label && (
-        <FormLabel htmlFor={name} color={labelColor}>
-          {label}
-        </FormLabel>
-      )}
-
-      {!autoCompleteProps ? (
-        <FormControlInputMask {...props} ref={ref} />
-      ) : (
-        <AutoCompleteInput
-          label={label}
-          renderInput={(currentProps: any) => {
-            return <DefaultInput ref={ref} {...props} {...currentProps} />;
-          }}
-          ref={ref}
-          placeholder={autoCompleteProps?.placeholder ?? "Digite para pesquisar"}
-          _placeholder={{ opacity: 1, color: "gray.500" }}
-          items={autoCompleteProps?.list}
-          listStyleProps={
-            autoCompleteProps?.listStyleProps ?? {
-              bgColor: "primary.600",
-              color: "white",
-            }
-          }
-          listItemStyleProps={
-            autoCompleteProps?.listItemStyleProps ?? {
-              bgColor: "primary.600",
-              color: "white",
-            }
-          }
-          highlightItemBg={autoCompleteProps?.highlightItemBg ?? "primary.500"}
-        />
-      )}
-
-      {!!error && <FormErrorMessage>{error?.message}</FormErrorMessage>}
-    </FormControlChakra>
+    <Field
+      {...rest}
+      label={label}
+      data-testid="FormControlTestId"
+      invalid={!!error}
+      recipe={undefined}
+      errorText={error?.message}
+      color={labelColor}
+    >
+      <>
+        {!autoCompleteProps ? (
+          <FormControlInputMask {...props} labelColor={labelColor} />
+        ) : (
+          <AutoComplete {...props} />
+        )}
+      </>
+    </Field>
   );
 };
-const FormControlInputMask_ = (props, ref) => {
-  const { mask, hide, checkboxprops, ...other } = props;
+const FormControlInputMask_ = (props) => {
+  const { mask, hide, checkboxprops, ref, labelColor, ...other } = props;
   if (hide) {
     return null;
   }
   if (mask) {
-    return <DefaultInput mask={mask} {...other} ref={ref} as={InputMask} />;
+    return (
+      <InputMask
+        //{...other}
+        color={labelColor}
+        name={other?.name}
+        type={other?.type}
+        showMask
+        onMask={other?.onChange}
+        ref={ref}
+        style={{ color: labelColor }}
+        component={DefaultInput}
+        mask={mask}
+        replacement={{ _: /\d/, A: /[a-zA-Z0-9]/, X: /[a-zA-Z]/ }}
+      />
+    );
+    // return <DefaultInput {...other} ref={ref} />;
   }
   if (checkboxprops) {
-    return <Checkbox {...other} {...checkboxprops} ref={ref} />;
+    return (
+      <Checkbox
+        // {...other}
+        {...checkboxprops}
+        ref={ref}
+      />
+    );
   }
   return <DefaultInput {...other} ref={ref} />;
 };
-const DefaultInput_ = (props, ref) => {
+const DefaultInput_ = (props) => {
   const {
     name,
     size = "lg",
@@ -121,18 +112,17 @@ const DefaultInput_ = (props, ref) => {
       {...rest}
       id={name}
       name={name}
-      focusBorderColor={focusBorderColor}
+      focusbordercolor={focusBorderColor}
       bgColor={bgColor}
       variant={variant}
       _hover={{ bgColor: bgColorHover }}
       size={size}
       type={type}
       _placeholder={{ opacity: 1, color: "gray.500" }}
-      color={labelColor}
-      ref={ref}
+      ref={props?.ref}
     />
   );
 };
-export const DefaultInput = memo(forwardRef(DefaultInput_));
-export const FormControlInputMask = memo(forwardRef(FormControlInputMask_));
-export const FormControl = memo(forwardRef(FormControlMolecules));
+export const DefaultInput = memo(DefaultInput_);
+export const FormControlInputMask = memo(FormControlInputMask_);
+export const FormControl = memo(FormControlMolecules);

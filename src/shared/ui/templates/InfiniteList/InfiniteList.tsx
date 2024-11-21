@@ -17,7 +17,7 @@ export const InfiniteList = ({
   entityName,
 }: InfiniteListProps) => {
   const [element, setElement] = useState<any>(null);
-  const observer = useRef<IntersectionObserver>();
+  const observer = useRef<IntersectionObserver | null>(null);
   const prevY = useRef(0);
   useEffect(() => {
     observer.current = new IntersectionObserver(

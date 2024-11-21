@@ -1,5 +1,6 @@
-import { Tr, Th, Checkbox } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { Checkbox } from "../../atoms";
 export type Field = {
   id: string;
   label: string;
@@ -23,11 +24,11 @@ export const Head = ({
   const { t } = useTranslation(["PAGES"]);
 
   return (
-    <Tr>
-      <Th px={["2", "2", "3"]} color="purple.200" width={["2", "4", "8"]}>
+    <Box as="tr">
+      <Box as="th" px={["2", "2", "3"]} color="purple.200" width={["2", "4", "8"]}>
         <Checkbox
-          colorScheme="green"
-          isChecked={mainChecked}
+          colorPalette="green"
+          checked={mainChecked}
           onChange={(e) => {
             setMainChecked(!mainChecked);
             setItems((prevState: any) =>
@@ -37,18 +38,22 @@ export const Head = ({
               }))
             );
           }}
+          children={undefined}
+          label={undefined}
         />
-      </Th>
+      </Box>
       {fields.map((field, index) => (
-        <Th
+        <Box
+          as="th"
           key={`${Math.random() * 10}-${index}`}
           fontSize={["9", "xs", "sm", "sm"]}
           color="white.50"
         >
           {field.label}
-        </Th>
+        </Box>
       ))}
-      <Th
+      <Box
+        as="th"
         color="purple.300"
         fontSize={["9", "xs", "sm", "sm"]}
         style={{ textAlign: "end" }}
@@ -56,7 +61,7 @@ export const Head = ({
         {t("PAGES:MESSAGES.actions", {
           defaultValue: "Ações",
         })}
-      </Th>
-    </Tr>
+      </Box>
+    </Box>
   );
 };

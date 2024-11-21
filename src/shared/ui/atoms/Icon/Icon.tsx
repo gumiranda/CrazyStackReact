@@ -1,4 +1,9 @@
 import { Icon as IconChakra, IconProps } from "@chakra-ui/react";
-export const Icon = (props: IconProps & { as: any }) => {
-  return <IconChakra {...props} data-testid="IconTestId" />;
+import React from "react";
+export const Icon = ({ as, ...rest }: IconProps & { as: any }) => {
+  return (
+    <IconChakra {...rest} data-testid="IconTestId">
+      {React.createElement(as, { ...rest })}
+    </IconChakra>
+  );
 };

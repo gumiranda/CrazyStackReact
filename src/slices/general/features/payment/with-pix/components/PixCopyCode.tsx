@@ -43,7 +43,7 @@ export const PixCopyCode = ({ code }) => {
         w="100%"
       >
         <Text
-          noOfLines={2}
+          lineClamp={2}
           wordBreak={"break-all"}
           onClick={() => copyCodePixToClipboard(code)}
           cursor={"pointer"}
@@ -52,7 +52,7 @@ export const PixCopyCode = ({ code }) => {
         </Text>
       </Flex>
       <Button
-        colorScheme={"green"}
+        colorPalette={"green"}
         w="100%"
         mt={10}
         onClick={() => {

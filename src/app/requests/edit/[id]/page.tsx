@@ -2,19 +2,19 @@ import { getRequestById } from "@/slices/appointments/entidades/request/request.
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 export const revalidate = 3000;
 
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { RequestEditPage } from "@/slices/appointments/screens/request/edit";
 import { getOwners } from "@/slices/appointments/entidades/owner/owner.api";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Editar Solicitacoes`,
-  description: `Página de edição de solicitações do ${config.systemName}. Aqui você pode editar solicitacoes.`,
+  title: `${whitelabel.systemName} | Editar Solicitacoes`,
+  description: `Página de edição de solicitações do ${whitelabel.systemName}. Aqui você pode editar solicitacoes.`,
 };
 
 async function getData(id) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   const parsedCookies = parseCookies(allCookies);
   if (!parsedCookies?.["belezixadmin.token"]) {
     return null;
@@ -28,7 +28,11 @@ async function getData(id) {
   }
   return { data, owners };
 }
-export default async function Page({ params: { id } }: { params: { id: string } }) {
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+
+  const { id } = params;
+
   const { data, owners } = (await getData(id)) || {};
   if (!data || !owners) {
     redirect("/login");

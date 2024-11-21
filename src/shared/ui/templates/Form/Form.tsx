@@ -52,7 +52,7 @@ export const Form = ({
         {...formControlContainerProps}
       >
         <FormControlGroup
-          spacing="4"
+          gap="4"
           formControls={formControls}
           register={register}
           formState={formState}

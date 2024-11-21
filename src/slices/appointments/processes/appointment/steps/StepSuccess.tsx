@@ -4,9 +4,10 @@ import { useRouter } from "next/navigation";
 import { Box, Button, Text, Heading } from "@/shared/ui";
 import { editRequestMutation } from "@/slices/appointments/features/request/edit/editRequest.hook";
 import { format, startOfDay } from "date-fns";
-import { CheckCircleIcon } from "@chakra-ui/icons";
 import { ptBR } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
+import { CheckCircleIcon } from "lucide-react";
+import { Icon } from "@chakra-ui/react";
 
 export const StepSuccess = ({ title, content, setActiveStep }) => {
   const { t } = useTranslation(["PAGES"]);
@@ -34,7 +35,9 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
   };
   return (
     <Box textAlign="center" px={2} py={4}>
-      <CheckCircleIcon boxSize="50px" color="tertiary.500" />
+      <Icon fontSize="50px" color="tertiary.500">
+        <CheckCircleIcon size="50px" />
+      </Icon>
       {title && (
         <Heading color="gray.600" mt={4}>
           {title}
@@ -69,7 +72,7 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
           <Button
             mt={20}
             w={"100%"}
-            colorScheme={"tertiary"}
+            bgColor={"tertiary.300"}
             onClick={confirmAppointment}
           >
             {t("PAGES:NEW_APPOINTMENT.confirm", {
@@ -79,7 +82,7 @@ export const StepSuccess = ({ title, content, setActiveStep }) => {
           <Button
             w={"100%"}
             mt={16}
-            colorScheme={"purple"}
+            colorPalette={"purple"}
             onClick={() => {
               setActiveStep(2);
             }}

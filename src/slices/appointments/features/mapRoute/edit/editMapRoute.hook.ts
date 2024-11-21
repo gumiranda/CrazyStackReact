@@ -70,6 +70,8 @@ export const useEditMapRoute = (props: EditMapRouteFormProps) => {
       destinationText,
       mapContainerRef,
       currentMapRoute,
+      originSelectedValue: originText,
+      destinationSelectedValue: destinationText,
     });
   const handleEditMapRoute: SubmitEditMapRouteHandler = async (
     values: EditMapRouteFormData

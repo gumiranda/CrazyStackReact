@@ -63,7 +63,7 @@ export const EditClientForm = ({ client, id, users }: EditClientFormProps) => {
           bgColor="secondary.500"
           bgColorHover="secondary.600"
           type="tel"
-          mask="(99) 99999-9999"
+          mask="(__) _____-____"
           {...register("phone")}
         />
       </GridForm>

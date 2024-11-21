@@ -4,7 +4,7 @@ import { IconButton } from "@chakra-ui/react";
 export const NotificationsNav = () => {
   return (
     <HStack
-      spacing={["3", "4"]}
+      gap={["3", "4"]}
       mx={["3", "4"]}
       pr={["3", "4"]}
       py="1"
@@ -12,7 +12,7 @@ export const NotificationsNav = () => {
     >
       <IconButton
         aria-label="Ver notificações"
-        icon={<RiNotificationLine />}
+        children={<RiNotificationLine />}
         fontSize="20"
       />
     </HStack>

@@ -74,6 +74,9 @@ export const CreateOwnerForm = ({ data }) => {
             setHaveLunchTime2,
             haveLunchTime3,
             setHaveLunchTime3,
+            daysOptionsSelected1: [],
+            daysOptionsSelected2: [],
+            daysOptionsSelected3: [],
           }}
         />
         <FormControl

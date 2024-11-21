@@ -104,7 +104,6 @@ export const useCreateOwner = ({ data }) => {
     });
   };
   const changeHour = (event: any, nameField: string) => {
-    event.preventDefault();
     setHourWork((prev) => ({ ...prev, [nameField]: event.target.value }));
   };
   const daysOptions1 = daysOptions.map((item) => ({
@@ -143,7 +142,7 @@ export const useCreateOwner = ({ data }) => {
     setHaveAlternativeHour2,
   };
 };
-function applyDefaultLunchTime(haveLunchTime: boolean, field: string | undefined) {
+function applyDefaultLunchTime(haveLunchTime: boolean, field: string | null | undefined) {
   if (!haveLunchTime) {
     return;
   }

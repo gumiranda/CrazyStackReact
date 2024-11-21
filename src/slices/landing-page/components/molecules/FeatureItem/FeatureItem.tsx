@@ -1,12 +1,9 @@
-import { motion } from "framer-motion";
 import { Heading, Text, VStack } from "@/shared/ui";
-
-const MotionVStack = motion(VStack as any);
 
 export const FeatureItem = ({ icon, title, description, color = "gray.700" }) => {
   return (
-    <MotionVStack
-      spacing={4}
+    <VStack
+      gap={4}
       p={5}
       border="1px"
       borderColor="gray.200"
@@ -23,6 +20,6 @@ export const FeatureItem = ({ icon, title, description, color = "gray.700" }) =>
       <Text color={color} fontSize={18}>
         {description}
       </Text>
-    </MotionVStack>
+    </VStack>
   );
 };

@@ -1,37 +1,28 @@
 import {
-  Modal as ModalChakra,
-  ModalProps as ModalPropsChakra,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-} from "@chakra-ui/react";
-interface ModalProps extends ModalPropsChakra {
-  children: React.ReactNode;
-  modalFooter: React.ReactNode;
-  modalHeaderText: string;
-}
+  DialogCloseTrigger,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { DialogContent, DialogHeader, DialogBody, DialogFooter } from "@chakra-ui/react";
 export const Modal = ({
   children,
-  isOpen,
-  onClose,
-  modalHeaderText,
-  modalFooter,
+  open,
+  dialogHeaderText,
+  dialogFooter,
   ...rest
-}: ModalProps) => {
+}: any) => {
   return (
-    <ModalChakra isOpen={isOpen} onClose={onClose} isCentered {...rest}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader color="purple.700" textAlign={"center"}>
-          {modalHeaderText}
-        </ModalHeader>
-        <ModalCloseButton color="purple.700" />
-        <ModalBody>{children}</ModalBody>
-        <ModalFooter>{modalFooter}</ModalFooter>
-      </ModalContent>
-    </ModalChakra>
+    <DialogRoot open={open}>
+      <DialogTrigger />
+      <DialogContent>
+        <DialogHeader color="purple.700" textAlign={"center"}>
+          <DialogTitle>{dialogHeaderText}</DialogTitle>
+        </DialogHeader>
+        <DialogCloseTrigger color="purple.700" />
+        <DialogBody>{children}</DialogBody>
+        <DialogFooter>{dialogFooter}</DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 };

@@ -20,8 +20,8 @@ export const AppointmentDetails = ({ appointment }: AppointmentDetailsProps) => 
           <Button
             size="sm"
             fontSize={"sm"}
-            colorScheme="green"
-            leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+            colorPalette="green"
+            //leftIcon={<Icon fontSize="20" as={RiAddLine} />}
           >
             Editar
           </Button>

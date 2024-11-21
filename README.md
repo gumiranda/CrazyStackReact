@@ -1,4 +1,3 @@
-
 # 🚀 CrazystackReact
 
 Bem-vindo ao **CrazystackReact**! Este projeto foi desenvolvido usando **Next.js** com foco em escalabilidade, modularidade e performance. Ele segue os princípios de **Atomic Design** e **Feature Sliced Design** para garantir uma arquitetura limpa e organizada, além de utilizar o **Context API** para gerenciamento de estado. 😎
@@ -23,7 +22,9 @@ Aqui estão algumas das principais tecnologias que fazem este projeto brilhar:
 Este projeto segue duas abordagens de design para a organização de componentes e funcionalidades:
 
 ### ⚛️ Atomic Design
+
 Utilizamos o **Atomic Design** para dividir os componentes de interface em cinco níveis de granularidade:
+
 1. **Átomos**: Componentes básicos, como botões e inputs.
 2. **Moléculas**: Combinações simples de átomos, como formulários e grupos de campos.
 3. **Organismos**: Componentes mais complexos, como cabeçalhos e áreas de conteúdo.
@@ -31,6 +32,7 @@ Utilizamos o **Atomic Design** para dividir os componentes de interface em cinco
 5. **Páginas**: Instâncias de templates com dados reais.
 
 ### 🧩 Feature Sliced Design
+
 No sistema de agendamentos, seguimos o **Feature Sliced Design**, onde as funcionalidades são organizadas em módulos e slices, com foco na escalabilidade do código. Cada slice é responsável por uma feature específica e contém toda a lógica e UI associada.
 
 ## 📂 Estrutura de Pastas
@@ -81,6 +83,7 @@ src/
 ## 🧪 Rodando os Testes
 
 Para rodar os testes unitários:
+
 ```bash
 npm run test
 ```

@@ -1,29 +1,27 @@
 "use client";
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Tooltip,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FileIcon } from "lucide-react";
 import { FileUpload } from "@ark-ui/react";
 import { Box, Button, Flex, Spinner, VStack, Text } from "@/shared/ui";
 import { parseCookies } from "nookies";
+import { toaster } from "@/components/ui/toaster";
+import { Tooltip } from "@/components/ui/tooltip";
+import {
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+} from "@/components/ui/dialog";
 
 export const PhotoUpload = ({ userId, updateUserPhoto }) => {
   const router = useRouter();
   const [filesAccepted, setFilesAccepted] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
-  const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
   const validateFile = (file) => {
     const errors: any = [];
     if (file.size > 5000000) {
@@ -33,12 +31,12 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
   };
   const handleFileAccept = (details) => {
     setFilesAccepted(details.files);
-    toast({
+    toaster.create({
       title: "File accepted.",
       description: "Your file has been accepted.",
-      status: "success",
+      // status: "success",
       duration: 3000,
-      isClosable: true,
+      // isClosable: true,
     });
   };
   const handleFileChange = (details) => {
@@ -73,12 +71,12 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           }
         );
         if (result.ok) {
-          toast({
+          toaster.create({
             title: "Upload successful.",
             description: "Your file has been uploaded.",
-            status: "success",
+            // status: "success",
             duration: 3000,
-            isClosable: true,
+            // isClosable: true,
           });
           setIsUploading(false);
           onClose();
@@ -87,20 +85,20 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           return;
         }
       }
-      toast({
+      toaster.create({
         title: "Upload failed.",
         description: "There was an error uploading your file.",
-        status: "error",
+        // status: "error",
         duration: 3000,
-        isClosable: true,
+        // isClosable: true,
       });
     } catch (error) {
-      toast({
+      toaster.create({
         title: "Upload failed.",
         description: "There was an error uploading your file.",
-        status: "error",
+        // status: "error",
         duration: 3000,
-        isClosable: true,
+        // isClosable: true,
       });
     } finally {
       setIsUploading(false);
@@ -140,13 +138,13 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           flexDir={{ base: "column", md: "row" }}
         >
           <Tooltip
-            label="Clique aqui para trocar a foto de perfil"
+            content="Clique aqui para trocar a foto de perfil"
             aria-label="Trocar foto de perfil"
           >
             <FileUpload.Trigger asChild>
               <Button
                 id="file-upload-trigger"
-                colorScheme="primary"
+                colorPalette="primary"
                 size="md"
                 mt={{ base: 4, md: 8 }}
                 mb={{ base: 0, md: 4 }}
@@ -164,12 +162,12 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
 
           {filesAccepted?.length > 0 && (
             <Tooltip
-              label="Clique para confirmar o upload da nova foto"
+              content="Clique para confirmar o upload da nova foto"
               aria-label="Confirmar foto"
             >
               <Button
                 id="file-upload-trigger"
-                colorScheme="tertiary"
+                colorPalette="tertiary"
                 size="md"
                 mt={{ base: 4, md: 8 }}
                 mb={{ base: 0, md: 4 }}
@@ -187,7 +185,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           )}
         </Flex>
         <FileUpload.ItemGroup asChild>
-          <VStack id="file-upload-item-group" spacing={4} mt={4}>
+          <VStack id="file-upload-item-group" gap={4} mt={4}>
             <FileUpload.Context>
               {({ acceptedFiles }) =>
                 acceptedFiles.map((file) => (
@@ -210,11 +208,14 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
                                 alt={`Preview of ${file.name}`}
                               />
                             </FileUpload.ItemPreview>
-                            <Tooltip label="Remover arquivo" aria-label="Remover arquivo">
+                            <Tooltip
+                              content="Remover arquivo"
+                              aria-label="Remover arquivo"
+                            >
                               <FileUpload.ItemDeleteTrigger asChild>
                                 <Button
                                   id={`file-upload-item-delete-trigger-${file.name}`}
-                                  colorScheme="red"
+                                  colorPalette="red"
                                   size="sm"
                                   ml={4}
                                   _focus={{
@@ -275,7 +276,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
         </FileUpload.ItemGroup>
         <FileUpload.Dropzone asChild>
           <Tooltip
-            label="Arraste o arquivo aqui ou clique para fazer upload"
+            content="Arraste o arquivo aqui ou clique para fazer upload"
             aria-label="Área de dropzone"
           >
             <Box
@@ -302,24 +303,23 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
           <input id="file-upload-hidden-input" type="file" />
         </FileUpload.HiddenInput>
       </FileUpload.Root>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader color="gray.700">Confirmar Upload</ModalHeader>
-          <ModalCloseButton color="gray.700" />
-          <ModalBody color="gray.700">
+      <DialogRoot open={open}>
+        <DialogContent>
+          <DialogHeader color="gray.700">Confirmar Upload</DialogHeader>
+          <DialogCloseTrigger color="gray.700" />
+          <DialogBody color="gray.700">
             Tem certeza que deseja fazer o upload desse arquivo?
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="gray" mr={3} onClick={onClose}>
+          </DialogBody>
+          <DialogFooter>
+            <Button colorPalette="gray" mr={3} onClick={onClose}>
               Cancelar
             </Button>
-            <Button colorScheme="green" onClick={() => uploadFiles(filesAccepted)}>
+            <Button colorPalette="green" onClick={() => uploadFiles(filesAccepted)}>
               {isUploading ? <Spinner size="sm" /> : "Confirmar"}
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DialogFooter>
+        </DialogContent>
+      </DialogRoot>
     </>
   );
 };

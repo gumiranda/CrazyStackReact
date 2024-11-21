@@ -1,5 +1,13 @@
-import { theme } from "@/application/theme";
-import { Select as SelectChakra, SelectProps, Flex, FormLabel } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
+import {
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectTrigger,
+  SelectValueText,
+} from "@/components/ui/select";
+import { createListCollection } from "@chakra-ui/react";
 
 export const Select = ({
   children,
@@ -8,36 +16,58 @@ export const Select = ({
   keyLabel,
   label,
   labelColor = "white",
+  defaultValue,
   ...rest
-}: SelectProps & {
-  list: any[];
-  keyValue: string;
-  keyLabel: string;
-  label: string;
-  labelColor?: string;
-}) => {
+}: any) => {
   if (rest?.value === null) {
     rest.value = "";
   }
+  const listCollection = createListCollection({
+    items: list
+      ?.map?.((item) => ({ label: item?.[keyLabel], value: item?.[keyValue] }))
+      ?.concat?.([{ label: "Carregar mais", value: "loadMore" }]),
+  });
   return (
-    <Flex alignItems="flex-start" justifyContent={"center"} flexDir="column">
-      {!!label && (
-        <FormLabel color={labelColor} htmlFor={rest?.name ?? rest?.id}>
-          {label}
-        </FormLabel>
-      )}
-      <SelectChakra bg="secondary.500" {...rest} data-testid="SelectTestId">
-        {list?.map?.((item, index) => (
-          <option
-            style={{ backgroundColor: theme.colors.secondary[500] }}
-            key={`${item?.[keyValue]}${item?.[keyLabel]}` ?? index}
-            value={item?.[keyValue]}
-          >
-            {item?.[keyLabel]}
-          </option>
-        ))}
-        {children}
-      </SelectChakra>
+    <Flex
+      alignItems="flex-start"
+      justifyContent={"center"}
+      flexDir="column"
+      bgColor={"transparent"}
+      minW="100%"
+    >
+      <SelectRoot
+        {...rest}
+        data-testid="SelectTestId"
+        collection={listCollection}
+        defaultValue={defaultValue ?? []}
+        value={rest?.multiple ? rest?.value : [rest?.value]}
+        onValueChange={(e) => {
+          rest?.onChange?.({
+            target: { value: rest?.multiple ? e?.value : (e?.value?.[0] ?? e?.value) },
+          });
+        }}
+      >
+        <SelectLabel bgColor={"transparent"}>{label}</SelectLabel>
+        <SelectTrigger>
+          <SelectValueText placeholder="Selecione uma opção" color={labelColor} />
+        </SelectTrigger>
+        <SelectContent>
+          {listCollection?.items?.map?.((item: any, index) => {
+            return (
+              <SelectItem
+                key={item?.value}
+                item={item}
+                colorPalette="secondary.500"
+                bgColor={"secondary.500"}
+              >
+                {item?.label}
+              </SelectItem>
+            );
+          })}
+
+          {children}
+        </SelectContent>
+      </SelectRoot>
     </Flex>
   );
 };

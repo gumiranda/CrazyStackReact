@@ -21,7 +21,6 @@ export const useClientsSelect = ({
     clientList?.clients?.[0]?._id ?? ""
   );
   const handleChangeClientSelected = (event: any) => {
-    event.preventDefault();
     setClientSelected(event.target.value);
   };
   const fetchClientsPaginated = useCallback(async () => {

@@ -2,18 +2,17 @@ import { ReactNode } from "react";
 import {
   Heading,
   HStack,
-  Tooltip,
   FlexProps,
   Spinner,
-  Icon,
   Flex,
   Button,
-  useBreakpointValue,
   IconButton,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { RiAddLine, RiFileListLine, RiDeleteBin6Line } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
+import { Tooltip } from "@/components/ui/tooltip";
+import { Icon, useBreakpointValue } from "../../atoms";
 
 interface TableHeadProps extends FlexProps {
   children?: ReactNode;
@@ -35,7 +34,7 @@ export const TableHead = ({
   ...rest
 }: TableHeadProps) => {
   const { t } = useTranslation(["PAGES"]);
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return (
     <Flex
@@ -49,7 +48,7 @@ export const TableHead = ({
         {title}
         {!isLoading && isFetching && <Spinner size="sm" color="white" ml="4" />}
       </Heading>
-      <HStack spacing="2">
+      <HStack gap="2">
         <NextLink passHref href={routeCreate}>
           {!isMobile ? (
             <Button
@@ -57,7 +56,7 @@ export const TableHead = ({
               fontSize="sm"
               bgColor={"tertiary.500"}
               _hover={{ bgColor: "tertiary.500" }}
-              leftIcon={<Icon fontSize="20" as={RiAddLine} />}
+              // leftIcon={<Icon fontSize="20" as={RiAddLine} />}
             >
               {t("PAGES:MESSAGES.createNew", {
                 defaultValue: "Cadastrar",
@@ -65,7 +64,7 @@ export const TableHead = ({
             </Button>
           ) : (
             <Tooltip
-              label={t("PAGES:MESSAGES.createNew", {
+              content={t("PAGES:MESSAGES.createNew", {
                 defaultValue: "Cadastrar",
               })}
             >
@@ -74,7 +73,7 @@ export const TableHead = ({
                 fontSize="sm"
                 bgColor={"tertiary.500"}
                 _hover={{ bgColor: "tertiary.500" }}
-                icon={<Icon fontSize="20" as={RiAddLine} />}
+                children={<Icon fontSize="20" as={RiAddLine} />}
                 aria-label={t("PAGES:MESSAGES.createNew", {
                   defaultValue: "Cadastrar",
                 })}
@@ -87,8 +86,8 @@ export const TableHead = ({
             <Button
               size="sm"
               fontSize="sm"
-              colorScheme={"purple"}
-              leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
+              colorPalette={"purple"}
+              // leftIcon={<Icon fontSize="20" as={RiFileListLine} />}
             >
               {t("PAGES:MESSAGES.list", {
                 defaultValue: "Lista",
@@ -96,15 +95,15 @@ export const TableHead = ({
             </Button>
           ) : (
             <Tooltip
-              label={t("PAGES:MESSAGES.list", {
+              content={t("PAGES:MESSAGES.list", {
                 defaultValue: "Lista",
               })}
             >
               <IconButton
                 size="sm"
                 fontSize="sm"
-                colorScheme={"purple"}
-                icon={<Icon fontSize="20" as={RiFileListLine} />}
+                colorPalette={"purple"}
+                children={<Icon fontSize="20" as={RiFileListLine} />}
                 aria-label={t("PAGES:MESSAGES.list", {
                   defaultValue: "Lista",
                 })}
@@ -113,16 +112,16 @@ export const TableHead = ({
           )}
         </NextLink>
         <Tooltip
-          label={t("PAGES:MESSAGES.delete", {
+          content={t("PAGES:MESSAGES.delete", {
             defaultValue: "Deletar selecionados",
           })}
         >
           <IconButton
             size="sm"
             fontSize="sm"
-            colorScheme={"red"}
+            colorPalette={"red"}
             onClick={deleteSelectedAction}
-            icon={<Icon fontSize="20" as={RiDeleteBin6Line} />}
+            children={<Icon fontSize="20" as={RiDeleteBin6Line} />}
             aria-label={t("PAGES:MESSAGES.list", {
               defaultValue: "Lista",
             })}

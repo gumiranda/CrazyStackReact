@@ -1,5 +1,5 @@
 import { fonts } from "@/app/fonts";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Box, ChakraLink, Flex, Heading, Stack, Text } from "@/shared/ui";
 import { getWhatsappLink } from "@/slices/landing-page/utils/landingUtils";
 import { useTranslation } from "react-i18next";
@@ -9,13 +9,15 @@ export const HeroTop = () => {
     <Box
       as="section"
       w="full"
-      bgGradient="linear(to-r, #6366F1,#8B5CF6)"
+      bgGradient="to-r"
+      gradientFrom="#6366F1"
+      gradientTo="#8B5CF6"
       py={{ base: 12, md: 24, lg: 32 }}
     >
       <Box px={{ base: 4, md: 6 }}>
         <Flex direction={{ base: "column", lg: "row" }}>
           <HeroContent />
-          <Stack spacing="4">
+          <Stack gap="4">
             <HowToUseCard />
             <LearnMoreLink />
           </Stack>
@@ -28,12 +30,9 @@ function HeroTitle() {
   const { t } = useTranslation(["LANDING"]);
   return (
     <Heading
-      as="h1"
-      fontSize={{ base: "4xl", sm: "5xl", xl: "6xl" }}
+      size={{ base: "4xl", md: "5xl" }}
       fontWeight="bold"
-      letterSpacing="tighter"
       color="white"
-      lineHeight="none"
       fontFamily={fonts.inter.style.fontFamily}
     >
       {t("LANDING:HERO_TITLE", {
@@ -73,7 +72,7 @@ function HowToUseCard() {
       >
         {t("LANDING:HOW_TO_USE_TITLE", { defaultValue: "Como Usar" })}
       </Heading>
-      <Stack mt="4" spacing="2">
+      <Stack mt="4" gap="2">
         <Text color="black" fontFamily={fonts.inter.style.fontFamily}>
           {t("LANDING:HOW_TO_USE_STEP_1", {
             defaultValue:
@@ -94,7 +93,7 @@ function LearnMoreLink() {
   const { t } = useTranslation(["LANDING"]);
   return (
     <ChakraLink
-      href={getWhatsappLink(`Quero saber mais sobre o sistema ${config.systemName}!`)}
+      href={getWhatsappLink(`Quero saber mais sobre o sistema ${whitelabel.systemName}!`)}
       display="inline-flex"
       h="10"
       m={5}
@@ -125,7 +124,7 @@ function LearnMoreLink() {
 }
 function HeroContent() {
   return (
-    <Stack spacing="4" mx={5}>
+    <Stack gap="4" mx={5}>
       <HeroTitle />
       <HeroDescription />
     </Stack>

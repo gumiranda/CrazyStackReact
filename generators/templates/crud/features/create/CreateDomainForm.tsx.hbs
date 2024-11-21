@@ -20,8 +20,8 @@ export const Create{{pascalCase name}}Form = () => {
         />
         <Checkbox
           label="Ativo"
-          colorScheme="green"
-          isChecked={active}
+          colorPalette="green"
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

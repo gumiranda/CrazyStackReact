@@ -2,15 +2,15 @@ import { SignUpPage } from "@/slices/general/screens/auth/signup/SignUpPage";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Cadastrar`,
-  description: `Cadastre-se no ${config.systemName} para acessar o sistema.`,
+  title: `${whitelabel.systemName} | Cadastrar`,
+  description: `Cadastre-se no ${whitelabel.systemName} para acessar o sistema.`,
 };
 
 async function getData() {
-  const cookies = getCookies();
+  const cookies = await getCookies();
   if (!cookies) {
     return null;
   }

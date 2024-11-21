@@ -1,14 +1,7 @@
-import { Input as InputChakra, InputProps as ChakraInputProps } from "@chakra-ui/react";
-import { ForwardRefRenderFunction, forwardRef } from "react";
-interface InputProps extends ChakraInputProps {
-  name: string;
-}
-const InputAtom: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  { name, ...rest },
-  ref
-) => {
-  return (
-    <InputChakra {...rest} data-testid="InputTestId" id={name} name={name} ref={ref} />
-  );
+import { Input as InputChakra } from "@chakra-ui/react";
+import { memo } from "react";
+
+const InputAtom = ({ name, ...rest }) => {
+  return <InputChakra {...rest} data-testid="InputTestId" id={name} name={name} />;
 };
-export const Input = forwardRef(InputAtom);
+export const Input = memo(InputAtom);

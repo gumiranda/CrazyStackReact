@@ -132,52 +132,46 @@ export const EditServiceForm = ({ service, categoryList }: EditServiceFormProps)
           onChange={handleChangeCategorySelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
         <Checkbox
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme="green"
-          isChecked={active}
+          colorPalette="green"
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);
           }}
         />
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           label={t("PAGES:FIELDS.havePromotionalPrice", {
             defaultValue: "Possui preço promocional?",
           })}
-          isChecked={havePromotionalPrice}
+          checked={havePromotionalPrice}
           onChange={(e) => {
             e.preventDefault();
             setHavePromotionalPrice(e.target.checked);
           }}
         />
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           label={t("PAGES:FIELDS.hasFidelityGenerator", {
             defaultValue: "Gera pontos de fidelidade?",
           })}
-          isChecked={hasFidelityGenerator}
+          checked={hasFidelityGenerator}
           onChange={(e) => {
             e.preventDefault();
             setHasFidelityGenerator(e.target.checked);
           }}
         />
         <Checkbox
-          colorScheme="green"
+          colorPalette="green"
           label={t("PAGES:FIELDS.canPayWithFidelityPoints", {
             defaultValue: "Pontos de fidelidade podem ser usados na compra?",
           })}
-          isChecked={canPayWithFidelityPoints}
+          checked={canPayWithFidelityPoints}
           onChange={(e) => {
             e.preventDefault();
             setCanPayWithFidelityPoints(e.target.checked);

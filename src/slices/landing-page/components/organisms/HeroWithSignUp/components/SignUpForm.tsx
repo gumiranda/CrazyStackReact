@@ -1,3 +1,4 @@
+"use client";
 import { fonts } from "@/app/fonts";
 import { useUi } from "@/shared/libs";
 import { Stack, Input, Button, Text, ChakraLink } from "@/shared/ui";
@@ -9,6 +10,7 @@ export const SignUpForm = () => {
   const { showModal } = useUi();
   const { t } = useTranslation(["LANDING"]);
   const [email, setEmail] = useState("");
+
   const router = useRouter();
   const handleSignUp = () => {
     if (email === "") {
@@ -40,14 +42,14 @@ export const SignUpForm = () => {
     router.push("/signup?email=" + email);
   };
   return (
-    <Stack spacing="3">
-      <Stack spacing="3" direction={{ base: "column", md: "row" }}>
+    <Stack gap="3">
+      <Stack gap="3" direction={{ base: "column", md: "row" }}>
         <Input
           placeholder={t("LANDING:THIRD_BLOCK.input", {
             defaultValue: "Digite seu e-mail",
           })}
           size={"lg"}
-          colorScheme="tertiary"
+          colorPalette="tertiary"
           borderColor="primary.500"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -55,7 +57,6 @@ export const SignUpForm = () => {
         />
         <Button
           size="lg"
-          w={"100%"}
           bgColor="primary.600"
           color="white"
           _hover={{ bgColor: "primary.700" }}
@@ -69,13 +70,14 @@ export const SignUpForm = () => {
           })}
         </Button>
       </Stack>
-      <Text textStyle="xs" color="fg.subtle" fontFamily={fonts.inter.style.fontFamily}>
+      <Text textStyle="xs" color="gray.300" fontFamily={fonts.inter.style.fontFamily}>
         {t("LANDING:THIRD_BLOCK.footerText", {
           defaultValue: "Ao cadastrar, você concorda com os nossos ",
         })}
         <ChakraLink
           href="/termos-de-uso"
           fontWeight={"bold"}
+          color="gray.300"
           fontFamily={fonts.inter.style.fontFamily}
         >
           {t("LANDING:THIRD_BLOCK.footerLink", {

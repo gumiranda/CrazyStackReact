@@ -1,6 +1,6 @@
-import { CloseIcon } from "@chakra-ui/icons";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Icon } from "@chakra-ui/react";
 import { Box, Flex, Text } from "@/shared/ui/atoms";
+import { X } from "lucide-react";
 type BoxErrorProps = {
   title?: string;
   content: string;
@@ -8,7 +8,7 @@ type BoxErrorProps = {
 };
 export const BoxError = ({ title, content, children, ...rest }: BoxErrorProps) => {
   return (
-    <Box textAlign={"center"} py={4} px={2} {...rest} datatestid="BoxErrorTestId">
+    <Box textAlign={"center"} py={4} px={2} {...rest}>
       <Box display="inline-block">
         <Flex
           flexDir={"column"}
@@ -20,7 +20,9 @@ export const BoxError = ({ title, content, children, ...rest }: BoxErrorProps) =
           h="55px"
           textAlign={"center"}
         >
-          <CloseIcon boxSize="20px" color="white" />
+          <Icon fontSize="20px" color="white">
+            <X size="20px" color="white" />
+          </Icon>
         </Flex>
       </Box>
       {title && (

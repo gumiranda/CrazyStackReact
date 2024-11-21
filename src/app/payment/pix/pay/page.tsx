@@ -1,4 +1,4 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { PayPixPage } from "@/slices/general/screens/payment/pix/PayPixPage";
 import { getCookies, parseCookies } from "@/shared/libs/utils";
 import { parseJSON } from "@/shared/libs/utils/parseJSON";
@@ -6,12 +6,12 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: `${config.systemName} | Minha assinatura`,
-  description: `Preencha os seus dados pessoais para garantir a assinatura do ${config.systemName}.`,
+  title: `${whitelabel.systemName} | Minha assinatura`,
+  description: `Preencha os seus dados pessoais para garantir a assinatura do ${whitelabel.systemName}.`,
 };
 export const revalidate = 3000;
 async function getData() {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const cookies: any = parseCookies(allCookies);
   const { "belezixadmin.user": userComingFromCookie } = cookies;

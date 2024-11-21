@@ -15,7 +15,7 @@ export const PaginationItem = ({
         size="sm"
         fontSize="xs"
         width="4"
-        colorScheme={"green"}
+        colorPalette={"green"}
         disabled
         _disabled={{ bgColor: "green.500", cursor: "default" }}
       >

@@ -3,7 +3,7 @@ import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { {{pascalCase name}}ListTablePage } from "@/slices/appointments/screens/{{camelCase name}}/list/table/{{pascalCase name}}ListTablePage";
 export const revalidate = 3000;
 async function getData(pageNumber) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const res = await get{{pascalCase name}}s(pageNumber, parseCookies(allCookies), {});
   if (!res) {

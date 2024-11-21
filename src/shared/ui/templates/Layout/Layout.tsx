@@ -6,8 +6,10 @@ import { Spinner, Flex } from "@chakra-ui/react";
 export const Layout = ({ children, logoOnHeader = true }: any) => {
   return (
     <>
-      <NavBar showLogo={logoOnHeader} />
-      <SidebarPanel />
+      <NavBar showLogo={logoOnHeader}>
+        <SidebarPanel />
+      </NavBar>
+
       {logoOnHeader === false && <Logo haveLink={false} />}
       <Suspense
         fallback={

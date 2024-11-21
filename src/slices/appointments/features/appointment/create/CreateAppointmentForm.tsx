@@ -1,4 +1,4 @@
-import { AppointmentProps } from "@/slices/appointments/entidades/appointment";
+"use client";
 import { useCreateAppointment } from "./createAppointment.hook";
 import { BoxCreateItem, FormControl, Checkbox, GridForm } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
@@ -37,8 +37,8 @@ export const CreateAppointmentForm = ({ data }) => {
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme="green"
-          isChecked={active}
+          colorPalette="green"
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

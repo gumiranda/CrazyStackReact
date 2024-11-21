@@ -21,7 +21,7 @@ export const RouteDriverDetailsPage = ({ data, mapRoute }: RouteDriverDetailsPro
 
   const props = { routeDriver: data, mapRoute };
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const map = useLoadMap(mapContainerRef);
+  const map = useLoadMap(mapContainerRef as React.RefObject<HTMLDivElement>);
   const [socketClosed, setSocketClosed] = useState(false);
   const [newPoints, setNewPoints] = useState<any>([]);
   const { wsInstance: socket } = useWS();

@@ -1,40 +1,51 @@
-// @ts-nocheck
-
+import { Box, IconButton } from "@chakra-ui/react";
 import {
-  Box,
-  Drawer,
-  DrawerCloseButton,
+  DrawerBackdrop,
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerOverlay,
-  DrawerBody,
-} from "@chakra-ui/react";
-import { useSidebarDrawer } from "@/shared/libs";
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { ScrollbarCss } from "@/shared/css";
+import { useState } from "react";
+import { Icon } from "../Icon";
+import { RiMenuLine } from "react-icons/ri";
 
 type SidebarProps = {
   children?: React.ReactNode;
   title: string;
 };
 export const Sidebar = ({ title = "Navegação", children }: SidebarProps) => {
-  const { isOpen, onClose } = useSidebarDrawer();
+  const [open, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
   const isDrawerSidebar = true; //useBreakpointValue({ base: true, lg: false });
   if (isDrawerSidebar) {
     return (
-      <Drawer
-        isOpen={isOpen}
-        onClose={onClose}
-        data-testid="SidebarTestId"
-        placement="left"
+      <DrawerRoot
+        placement={"start"}
+        //onOpenChange={(e) => setIsOpen(e.open)}
       >
-        <DrawerOverlay>
-          <DrawerContent bg="secondary.500" p="4">
-            <DrawerCloseButton mt="6" />
-            <DrawerHeader>{title}</DrawerHeader>
-            <DrawerBody css={ScrollbarCss}>{children}</DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+        <DrawerBackdrop />
+        <DrawerTrigger asChild>
+          <IconButton
+            aria-label="Open sidebar"
+            fontSize="24"
+            children={<Icon as={RiMenuLine} />}
+            variant="ghost"
+            color={"white"}
+            mr="1"
+            mt={2}
+          />
+        </DrawerTrigger>
+        <DrawerContent bgColor="secondary.500">
+          <DrawerHeader>
+            <DrawerTitle>{title}</DrawerTitle>
+          </DrawerHeader>
+          <DrawerBody>{children}</DrawerBody>
+        </DrawerContent>
+      </DrawerRoot>
     );
   }
   return (

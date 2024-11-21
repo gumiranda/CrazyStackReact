@@ -1,15 +1,15 @@
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { UserCreatePage } from "@/slices/general/screens/user/create";
 import type { Metadata } from "next";
 import { getServices } from "@/slices/appointments/entidades/service/service.api";
 import { parseCookies, getCookies } from "@/shared/libs/utils";
 import { getOwners } from "@/slices/appointments/entidades/owner";
-import LayoutPayAuthenticated, { getUser } from "@/shared/libs/utils/layoutPayAsync";
+import { getUser } from "@/shared/libs/utils/layoutPayAsync";
 import { redirect } from "next/navigation";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {
-  const allCookies = getCookies();
+  const allCookies = await getCookies();
   if (!allCookies) return null;
   const user = await getUser();
   if (user?.daysToNextCharge && user?.daysToNextCharge < 0) {
@@ -30,8 +30,8 @@ async function getData(pageNumber) {
   };
 }
 export const metadata: Metadata = {
-  title: `${config.systemName} | Criar Profissional`,
-  description: `Página de criação de profissionals do ${config.systemName}. Aqui você pode criar profissional.`,
+  title: `${whitelabel.systemName} | Criar Profissional`,
+  description: `Página de criação de profissionals do ${whitelabel.systemName}. Aqui você pode criar profissional.`,
 };
 
 export default async function Page() {

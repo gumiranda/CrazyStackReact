@@ -1,13 +1,6 @@
 import { GetServicesResponse } from "@/slices/appointments/entidades/service";
 import { useCreateUser } from "./createUser.hook";
-import {
-  BoxCreateItem,
-  FormControl,
-  Checkbox,
-  GridForm,
-  Select,
-  ControlledSelect,
-} from "@/shared/ui";
+import { BoxCreateItem, FormControl, Checkbox, GridForm, Select } from "@/shared/ui";
 import { GetOwnersResponse } from "@/slices/appointments/entidades/owner";
 import { useTranslation } from "react-i18next";
 
@@ -29,8 +22,9 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
     handleChangeOwnerSelected,
     owners,
     ownerSelected,
+    serviceIds,
+    setServiceIds,
   } = useCreateUser({ ownerList, serviceList });
-  const ControlledSelectAux = ControlledSelect as (props: any) => any;
 
   return (
     <BoxCreateItem
@@ -77,7 +71,7 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           {...register("passwordConfirmation")}
         />
         <Select
-          bg="secondary.600"
+          bg="secondary.500"
           name="ownerList"
           label={t("PAGES:HOME_PAGE.owner", {
             defaultValue: "Estabelecimento",
@@ -87,31 +81,28 @@ export const CreateUserForm = ({ ownerList, serviceList }: UserCreateFormProps) 
           onChange={handleChangeOwnerSelected}
           keyValue="_id"
           keyLabel="name"
-        >
-          <option style={{ backgroundColor: "#7159c1" }} value="loadMore">
-            {t("PAGES:NEW_APPOINTMENT.loadMore", {
-              defaultValue: "Carregar mais",
-            })}
-          </option>
-        </Select>
+        ></Select>
 
-        <ControlledSelectAux
-          isMulti
+        <Select
+          multiple
           control={control as any}
           label={t("PAGES:HOME_PAGE.servicesSelected", {
             defaultValue: "Serviços selecionados",
           })}
-          placeholder="Selecione os serviços"
-          options={serviceOptions}
+          placeholder="Selecione pelo menos 1 serviço"
+          list={serviceOptions}
           name={"serviceOptions"}
+          keyValue="value"
+          keyLabel="label"
+          value={serviceIds}
+          onChange={(e) => setServiceIds(e.target.value)}
         />
-
         <Checkbox
           label={t("PAGES:FIELDS.active", {
             defaultValue: "Ativo",
           })}
-          colorScheme={"tertiary"}
-          isChecked={active}
+          colorPalette={"tertiary"}
+          checked={active}
           onChange={(e) => {
             e.preventDefault();
             setActive(e.target.checked);

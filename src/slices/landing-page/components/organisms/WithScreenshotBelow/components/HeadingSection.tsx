@@ -1,20 +1,16 @@
 import { fonts } from "@/app/fonts";
-import { config } from "@/application/config";
+import { whitelabel } from "@/application/whitelabel";
 import { Box, Heading, Text } from "@/shared/ui";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-const MotionBox = motion(Box as any);
-const MotionHeading = motion(Heading as any);
-const MotionText = motion(Text as any);
 
 export const HeadingSection = () => {
   const { t } = useTranslation(["LANDING"]);
 
   return (
-    <MotionBox textAlign="center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <MotionHeading
+    <Box textAlign="center">
+      <Heading
         as="h1"
-        size={{ base: "2xl", md: "3xl" }}
+        size={{ base: "4xl", md: "5xl" }}
         fontWeight="extrabold"
         maxW="48rem"
         mx="auto"
@@ -27,8 +23,8 @@ export const HeadingSection = () => {
         {t("LANDING:SECOND_BLOCK.title", {
           defaultValue: "Chega de complicações, comece a usar agora",
         })}
-      </MotionHeading>
-      <MotionText
+      </Heading>
+      <Text
         as="p"
         mt={4}
         fontSize={{ base: "lg", md: "xl" }}
@@ -40,10 +36,10 @@ export const HeadingSection = () => {
         animate={{ y: 0 }}
       >
         {t("LANDING:SECOND_BLOCK.subtitle", {
-          defaultValue: `Com o ${config.systemName}, você pode criar e gerenciar seus agendamentos de forma simples e eficiente.`,
-          systemName: config.systemName,
+          defaultValue: `Com o ${whitelabel.systemName}, você pode criar e gerenciar seus agendamentos de forma simples e eficiente.`,
+          systemName: whitelabel.systemName,
         })}
-      </MotionText>
-    </MotionBox>
+      </Text>
+    </Box>
   );
 };

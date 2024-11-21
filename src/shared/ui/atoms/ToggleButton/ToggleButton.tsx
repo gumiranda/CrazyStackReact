@@ -1,19 +1,15 @@
-import { Box, IconButton, chakra, type IconButtonProps } from "@chakra-ui/react";
+import { Box, IconButton, type IconButtonProps } from "@chakra-ui/react";
 
 interface ToggleButtonProps extends IconButtonProps {
-  isOpen: boolean;
+  open: boolean;
 }
 
 export const ToggleButton = (props: ToggleButtonProps) => {
-  const { isOpen, ...iconButtonProps } = props;
+  const { open, ...iconButtonProps } = props;
   return (
-    <IconButton
-      variant="unstyled"
-      display="inline-flex"
-      size="xs"
-      icon={<ToggleIcon active={isOpen} />}
-      {...iconButtonProps}
-    />
+    <IconButton variant="ghost" display="inline-flex" size="xs" {...iconButtonProps}>
+      <ToggleIcon active={open} />
+    </IconButton>
   );
 };
 
@@ -31,28 +27,28 @@ const ToggleIcon = (props: { active: boolean }) => {
       aria-hidden
       pointerEvents="none"
     >
-      <Bar
+      {/* <Bar
         top="0.4375rem"
         _groupActive={{ top: "0.6875rem", transform: "rotate(45deg)" }}
       />
       <Bar
         bottom="0.4375rem"
         _groupActive={{ bottom: "0.6875rem", transform: "rotate(-45deg)" }}
-      />
+      /> */}
     </Box>
   );
 };
 
-const Bar = chakra("span", {
-  baseStyle: {
-    display: "block",
-    pos: "absolute",
-    w: "1.25rem",
-    h: "0.125rem",
-    rounded: "full",
-    bg: "currentcolor",
-    mx: "auto",
-    insetStart: "0.125rem",
-    transition: "all 0.12s",
-  },
-});
+// const Bar = chakra("span", {
+//   baseStyle: {
+//     display: "block",
+//     pos: "absolute",
+//     w: "1.25rem",
+//     h: "0.125rem",
+//     rounded: "full",
+//     bg: "currentcolor",
+//     mx: "auto",
+//     insetStart: "0.125rem",
+//     transition: "all 0.12s",
+//   },
+// });

@@ -20,7 +20,7 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
 
   const props = { mapRoute: data };
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const map = useLoadMap(mapContainerRef);
+  const map = useLoadMap(mapContainerRef as React.RefObject<HTMLDivElement>);
   const [routeInitialized, setRouteInitialized] = useState(false);
   const [socketClosed, setSocketClosed] = useState(false);
   const { wsInstance: socket } = useWS();
@@ -142,8 +142,8 @@ export const MapRouteDetailsPage = ({ data }: MapRouteDetailsProps) => {
       <Box display="flex" flexDir="column">
         <Button
           bgColor="green.500"
-          colorScheme="green"
-          variant="contained"
+          colorPalette="green"
+          //variant="contained"
           alignSelf={"flex-end"}
           onClick={startRoute}
           mb={10}
