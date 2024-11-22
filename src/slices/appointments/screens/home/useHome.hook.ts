@@ -52,7 +52,11 @@ export const useHome = () => {
   useEffect(() => {
     async function getRequestTotal() {
       const { initDate, endDate } = calculateDateRange(selectedRange);
-      const result = await getRequests(1, null, { initDate, endDate });
+      const result = await getRequests(1, null, {
+        initDate,
+        endDate,
+        ownerId: user?.ownerId,
+      });
       setResult(result);
     }
     getRequestTotal();

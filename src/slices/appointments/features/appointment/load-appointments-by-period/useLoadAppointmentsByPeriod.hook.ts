@@ -35,6 +35,7 @@ export const useLoadAppointmentsByPeriod = () => {
         initDate,
         endDate,
         createdById: user?._id,
+        ownerId: user?.ownerId,
       });
       setResult(result);
     }

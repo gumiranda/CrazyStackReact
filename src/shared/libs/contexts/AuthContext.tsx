@@ -17,6 +17,7 @@ type User = {
   _id: string;
   createdAt: string;
   phone: string;
+  ownerId: string;
 };
 type AuthProviderProps = {
   children: ReactNode;
@@ -108,7 +109,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         user: userResponse,
       } = response?.data || {};
       const userComing = userModel(userResponse).format();
-
+      console.log(userComing);
       setCookie(undefined, "belezixadmin.token", token, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
