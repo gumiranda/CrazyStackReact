@@ -11,8 +11,9 @@ import { useTranslation } from "react-i18next";
 
 export const TimeSlots = ({ list }) => {
   const { t } = useTranslation(["PAGES"]);
-
-  const { open, onOpen, onClose } = useDisclosure();
+  const [open, setOpen] = useState(false);
+  const onOpen = () => setOpen(true);
+  const onClose = () => setOpen(false);
   const [requestsSelected, setRequestsSelected] = useState<any>(null);
   const timeSlots = Array.from({ length: 18 }, (_, i) => ({
     start: `${i + 6}h`,
@@ -116,17 +117,17 @@ export const TimeSlots = ({ list }) => {
             </Flex>
           );
         })}
+        <Modal
+          open={open}
+          setOpen={setOpen}
+          modalHeaderText={t("PAGES:FIELDS.appointmentDetails", {
+            defaultValue: "Detalhes do agendamento",
+          })}
+          modalFooter={<></>}
+        >
+          <RequestDetailsV2 props={{ request: requestsSelected, onClose }} />
+        </Modal>
       </Flex>
-      <Modal
-        open={open}
-        onClose={onClose}
-        modalHeaderText={t("PAGES:FIELDS.appointmentDetails", {
-          defaultValue: "Detalhes do agendamento",
-        })}
-        modalFooter={null}
-      >
-        <RequestDetailsV2 props={{ request: requestsSelected, onClose }} />
-      </Modal>
     </>
   );
 };

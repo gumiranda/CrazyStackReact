@@ -1,27 +1,28 @@
 import {
+  DialogBody,
   DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
   DialogRoot,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { DialogContent, DialogHeader, DialogBody, DialogFooter } from "@chakra-ui/react";
 export const Modal = ({
   children,
   open,
   dialogHeaderText,
   dialogFooter,
-  ...rest
+  setOpen,
 }: any) => {
   return (
-    <DialogRoot open={open}>
-      <DialogTrigger />
+    <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
       <DialogContent>
-        <DialogHeader color="purple.700" textAlign={"center"}>
-          <DialogTitle>{dialogHeaderText}</DialogTitle>
+        <DialogHeader>
+          <DialogTitle color={"gray.500"}>{dialogHeaderText}</DialogTitle>
         </DialogHeader>
-        <DialogCloseTrigger color="purple.700" />
         <DialogBody>{children}</DialogBody>
         <DialogFooter>{dialogFooter}</DialogFooter>
+        <DialogCloseTrigger />
       </DialogContent>
     </DialogRoot>
   );
