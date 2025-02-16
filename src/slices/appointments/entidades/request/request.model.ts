@@ -26,6 +26,8 @@ export type RequestProps = {
   haveFidelity: boolean;
   haveDelivery: boolean;
   duration?: number;
+  initHourWithoutFuso?: string;
+  endHourWithoutFuso?: string;
 };
 
 class Request {
@@ -149,6 +151,14 @@ class Request {
         minute: "2-digit",
       }),
       endHour: subHours(new Date(this.props.endDate), 3).toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      initHourWithoutFuso: new Date(this.props.initDate).toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      endHourWithoutFuso: new Date(this.props.endDate).toLocaleTimeString("pt-BR", {
         hour: "2-digit",
         minute: "2-digit",
       }),

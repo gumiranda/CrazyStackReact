@@ -94,7 +94,11 @@ export const TableItems = ({
                   })}
                 </>
               ) : (
-                <Text fontSize={["10", "xs", "sm", "md"]} fontWeight={"400"}>
+                <Text
+                  textAlign="center"
+                  fontSize={["10", "xs", "sm", "md"]}
+                  fontWeight={"400"}
+                >
                   {item[field?.id]}
                 </Text>
               )}
