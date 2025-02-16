@@ -58,11 +58,21 @@ export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) 
     onError,
     retry: 3,
   } as any);
+  const confirmSchedule = async (item) => {
+    editRequest.mutateAsync({ ...item, status: item?.status === 0 ? 1 : 7 } as any);
+  };
   const deleteSelectedAction = async (item) => {
     deleteRequest.mutateAsync([item] as any);
   };
   const updateRequest = async (newRequest) => {
     await editRequest.mutateAsync(newRequest as any);
   };
-  return { service, client, deleteSelectedAction, updateRequest, editRequest };
+  return {
+    service,
+    client,
+    deleteSelectedAction,
+    updateRequest,
+    editRequest,
+    confirmSchedule,
+  };
 };
