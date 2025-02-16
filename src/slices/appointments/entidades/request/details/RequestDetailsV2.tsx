@@ -79,7 +79,7 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
                 defaultValue: "Cancelar",
               })}
             </Button>
-            <Button colorPalette="primary" ml={6} onClick={onReschedule}>
+            <Button colorPalette="purple" ml={6} onClick={onReschedule}>
               {t("PAGES:FIELDS.reschedule", {
                 defaultValue: "Reagendar",
               })}

@@ -6,6 +6,7 @@ import { useUi } from "@/shared/libs";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { startOfDay } from "date-fns";
 
 export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) => {
   const { t } = useTranslation(["PAGES"]);
@@ -59,7 +60,17 @@ export const useRequestDetailsOwner = ({ serviceId, clientId, currentRequest }) 
     retry: 3,
   } as any);
   const confirmSchedule = async (item) => {
-    editRequest.mutateAsync({ ...item, status: item?.status === 0 ? 1 : 7 } as any);
+    editRequest.mutateAsync({
+      status: item?.status === 0 ? 1 : 7,
+      date: startOfDay(item?.initDate),
+      initDate: item?.initDate,
+      endDate: item?.endDate,
+      serviceId: item?.serviceId,
+      clientId: item?.clientId,
+      _id: item?._id,
+      ownerId: item?.ownerId,
+      professionalId: item?.professionalId,
+    } as any);
   };
   const deleteSelectedAction = async (item) => {
     deleteRequest.mutateAsync([item] as any);
