@@ -25,7 +25,7 @@ export const Head = ({
 
   return (
     <Box as="tr">
-      <Box as="th" px={["2", "2", "3"]} color="purple.200" width={["2", "4", "8"]}>
+      <Box as="th" color="purple.200" ml="1px">
         <Checkbox
           colorPalette="green"
           checked={mainChecked}
