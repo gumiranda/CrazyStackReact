@@ -17,16 +17,19 @@ export const ProfilePhotoCover = ({
   profileImage,
   handleProfileChange,
 }) => {
-  const [filesAccepted, setFilesAccepted] = useState([]);
   const [currentCoverImage, setCurrentCoverImage] = useState(coverImage);
+  const [currentProfileImage, setCurrentProfileImage] = useState(profileImage);
   const [isUploading, setIsUploading] = useState(false);
 
-  const handleFileAccept = (details) => {
-    setFilesAccepted(details.files);
+  const handleUploadCover = (details) => {
     setCurrentCoverImage(URL.createObjectURL(details.files[0]));
-    uploadFiles(details.files);
+    uploadFiles({ files: details?.files, typePhoto: "cover" });
   };
-  const uploadFiles = async (files) => {
+  const handleUploadProfile = (details) => {
+    setCurrentProfileImage(URL.createObjectURL(details.files[0]));
+    uploadFiles({ files: details?.files, typePhoto: "profile" });
+  };
+  const uploadFiles = async ({ files, typePhoto }) => {
     setIsUploading(true);
     const cookies = parseCookies();
     const formData = new FormData();
@@ -36,7 +39,8 @@ export const ProfilePhotoCover = ({
       const response = await uploadFilesApi({ formData, cookies });
       if (response.ok) {
         const data = await response.json();
-
+        typePhoto === "cover" && handleCoverChange(data?._id);
+        typePhoto === "profile" && handleProfileChange(data?._id);
         toaster.create({
           title: "Upload successful.",
           description: "Your file has been uploaded.",
@@ -70,8 +74,9 @@ export const ProfilePhotoCover = ({
         <Box
           position="relative"
           h="300px"
-          bg={currentCoverImage ? `url(${currentCoverImage})` : "gray.100"}
+          bg={currentCoverImage ? `url(${currentCoverImage})` : "gray.400"}
           backgroundSize="cover"
+          bgColor="gray.400"
           backgroundPosition="center"
           borderRadius="lg"
         >
@@ -83,7 +88,7 @@ export const ProfilePhotoCover = ({
               maxFileSize={5000000}
               minFileSize={1024}
               name="coverImage"
-              onFileAccept={handleFileAccept}
+              onFileAccept={handleUploadCover}
             >
               <FileUploadTrigger asChild>
                 <Button>
@@ -104,31 +109,39 @@ export const ProfilePhotoCover = ({
               <Avatar
                 w="150px"
                 h="150px"
-                src={profileImage || undefined}
+                src={currentProfileImage || undefined}
                 border="4px solid white"
                 boxShadow="md"
               />
               <Box position="absolute" bottom={0} right={0}>
-                <Input
-                  type="file"
+                <FileUploadRoot
                   accept="image/*"
-                  id="profile-upload"
-                  onChange={handleProfileChange}
-                  display="none"
-                  name={"profile-upload"}
-                />
-                <label htmlFor="profile-upload">
-                  <Button
-                    as="span"
-                    borderRadius="full"
-                    p={2}
-                    bg="gray.600"
-                    boxShadow="md"
-                    _hover={{ bg: "gray.700" }}
-                  >
-                    <Icon as={EditIcon} />
-                  </Button>
-                </label>
+                  locale="pt-BR"
+                  maxFiles={1}
+                  maxFileSize={5000000}
+                  minFileSize={1024}
+                  name="coverImage"
+                  onFileAccept={handleUploadProfile}
+                >
+                  <FileUploadTrigger asChild>
+                    <Button
+                      as="span"
+                      borderRadius="full"
+                      p={2}
+                      bg="gray.600"
+                      boxShadow="md"
+                      _hover={{ bg: "gray.700" }}
+                    >
+                      {isUploading ? (
+                        <Spinner size="sm" />
+                      ) : (
+                        <>
+                          <EditIcon />
+                        </>
+                      )}
+                    </Button>
+                  </FileUploadTrigger>
+                </FileUploadRoot>
               </Box>
             </Box>
           </Box>

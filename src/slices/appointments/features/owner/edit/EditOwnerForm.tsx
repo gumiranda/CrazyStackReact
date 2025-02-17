@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { ProfilePhotoCover } from "./ProfilePhotoCover";
 
 export interface EditOwnerFormProps {
-  owner: OwnerProps;
+  owner: OwnerProps & { place: { cover?: string; profilephoto: string } };
   id: string;
   users: any;
 }
@@ -41,22 +41,22 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
     users,
     id,
   });
-  const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
+  const handleCoverChange = (photoUploaded) => {
+    console.log({
+      photoUploaded,
+    });
   };
-  const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
+  const handleProfileChange = (photoUploaded) => {
+    console.log({
+      photoUploaded,
+    });
   };
-  const profileImage =
-    "https://images.unsplash.com/photo-1619367901998-73b3a70b3898?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-  const coverImage =
-    "https://images.unsplash.com/photo-1619367901998-73b3a70b3898?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
   return (
     <>
       <ProfilePhotoCover
-        coverImage={coverImage}
+        coverImage={owner?.place?.cover}
         handleCoverChange={handleCoverChange}
-        profileImage={profileImage}
+        profileImage={owner?.place?.profilephoto}
         handleProfileChange={handleProfileChange}
       />
 
