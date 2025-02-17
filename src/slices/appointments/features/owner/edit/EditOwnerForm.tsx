@@ -4,17 +4,10 @@ import { BoxCreateItem, FormControl, GridForm } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { ProfilePhotoCover } from "./ProfilePhotoCover";
 import { updatePlace } from "@/slices/appointments/entidades/place/place.api";
+import type { OwnerPlaceProps } from "@/slices/appointments/entidades/owner/owner.model";
 
 export interface EditOwnerFormProps {
-  owner: OwnerProps & {
-    place: {
-      _id?: string;
-      cover?: string;
-      profilephoto: string;
-      address?: string;
-      phone?: string;
-    };
-  };
+  owner: OwnerPlaceProps;
   id: string;
   users: any;
 }

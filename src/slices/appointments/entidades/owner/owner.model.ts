@@ -1,3 +1,12 @@
+export type OwnerPlaceProps = OwnerProps & {
+  place: {
+    _id?: string;
+    cover?: string;
+    profilephoto: string;
+    address?: string;
+    phone?: string;
+  };
+};
 export type OwnerProps = {
   _id: string;
   name: string;
