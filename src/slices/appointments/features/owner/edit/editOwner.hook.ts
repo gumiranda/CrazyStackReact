@@ -15,6 +15,7 @@ import {
   EditOwnerFormData,
 } from "@/slices/appointments/entidades/owner";
 import { useTranslation } from "react-i18next";
+import { updatePlace } from "@/slices/appointments/entidades/place/place.api";
 
 export const useEditOwner = (props: EditOwnerFormProps) => {
   const { t } = useTranslation(["PAGES"]);
@@ -128,6 +129,14 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
   });
   const { register, handleSubmit, formState, control } = useEditOwnerLib(props);
   const handleEditOwner: SubmitEditOwnerHandler = async (values: EditOwnerFormData) => {
+    const { name = "", description = "", phone = "", address = "" } = values || {};
+    await updatePlace({
+      _id: currentOwner?.place?._id,
+      name,
+      description,
+      phone,
+      address,
+    });
     await editOwner.mutateAsync({
       ...hourWork,
       ...values,

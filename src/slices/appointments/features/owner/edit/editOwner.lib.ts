@@ -10,6 +10,12 @@ export const editOwnerFormSchema = yup.object({
   name: yup.string().required("Nome é obrigatório"),
   description: yup.string().required("Descrição é obrigatória"),
   minimumTimeForReSchedule: yup.number().min(30).required("tempo mínimo é obrigatório"),
+  address: yup.string(),
+  phone: yup.string().test("phone", "Telefone inválido", (value) => {
+    if (!value) return true;
+    const cleanedPhone = value?.replace?.(/\D/g, "");
+    return cleanedPhone?.length === 11;
+  }),
 });
 export type YupSchema = yup.InferType<typeof editOwnerFormSchema>;
 
@@ -21,6 +27,8 @@ export const useEditOwnerLib = (props: EditOwnerFormProps) => {
       name: currentOwner?.name ?? "",
       description: currentOwner?.description ?? "",
       minimumTimeForReSchedule: currentOwner?.minimumTimeForReSchedule ?? 30,
+      address: currentOwner?.place?.address ?? "",
+      phone: currentOwner?.place?.phone ?? "",
     },
   });
   return { ...formProps };

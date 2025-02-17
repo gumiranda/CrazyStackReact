@@ -74,7 +74,7 @@ export const ProfilePhotoCover = ({
   };
   return (
     <>
-      <Container maxW="container.lg" py={8}>
+      <Container maxW="container.2xl" py={[8, 0]} mb={16}>
         <Box
           position="relative"
           h="300px"
@@ -84,7 +84,7 @@ export const ProfilePhotoCover = ({
           backgroundPosition="center"
           borderRadius="lg"
         >
-          <Box position="absolute" bottom={4} left={4}>
+          <Box position="absolute" top={4} left={4}>
             <FileUploadRoot
               accept="image/*"
               locale="pt-BR"

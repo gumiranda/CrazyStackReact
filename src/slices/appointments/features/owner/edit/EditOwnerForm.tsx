@@ -6,7 +6,15 @@ import { ProfilePhotoCover } from "./ProfilePhotoCover";
 import { updatePlace } from "@/slices/appointments/entidades/place/place.api";
 
 export interface EditOwnerFormProps {
-  owner: OwnerProps & { place: { _id?: string; cover?: string; profilephoto: string } };
+  owner: OwnerProps & {
+    place: {
+      _id?: string;
+      cover?: string;
+      profilephoto: string;
+      address?: string;
+      phone?: string;
+    };
+  };
   id: string;
   users: any;
 }
@@ -117,6 +125,25 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
             label="Tempo limite para reagendamento/cancelamento (em minutos)"
             error={formState.errors.minimumTimeForReSchedule}
             {...register("minimumTimeForReSchedule")}
+          />
+          <FormControl
+            label={t("PAGES:AUTH_PAGE.phone", {
+              defaultValue: "Telefone",
+            })}
+            error={formState.errors.phone}
+            labelColor="white"
+            bgColor="secondary.500"
+            bgColorHover="secondary.600"
+            type="tel"
+            mask="(__) _____-____"
+            {...register("phone")}
+          />{" "}
+          <FormControl
+            label={t("PAGES:FIELDS.address", {
+              defaultValue: "Endereço",
+            })}
+            error={formState.errors.address}
+            {...register("address")}
           />
         </GridForm>
       </BoxCreateItem>
