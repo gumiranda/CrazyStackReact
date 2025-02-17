@@ -40,6 +40,14 @@ export const SidebarPanel = () => {
               defaultValue: "Minha agenda",
             })}
           </NavLink>
+          {user?.ownerId && user?.ownerId?.length > 0 && (
+            <NavLink icon={RiLuggageDepositLine} href={`/owners/edit/${user?.ownerId}`}>
+              {t("PAGES:HOME_PAGE.myowner", {
+                defaultValue: "Meu Estabelecimento",
+              })}
+            </NavLink>
+          )}
+
           <NavLink icon={RiCalendar2Line} href="/appointments/new">
             {t("PAGES:HOME_PAGE.createAppointment", {
               defaultValue: "Criar agendamento",
@@ -70,6 +78,7 @@ export const SidebarPanel = () => {
               defaultValue: "Estabelecimentos",
             })}
           </NavLink>
+
           <NavLink icon={RiUser2Fill} href="/users/1">
             {t("PAGES:HOME_PAGE.professionals", {
               defaultValue: "Profissionais",
