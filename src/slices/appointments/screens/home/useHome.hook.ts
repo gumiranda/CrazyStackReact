@@ -59,7 +59,9 @@ export const useHome = () => {
       });
       setResult(result);
     }
-    getRequestTotal();
+    if (user?.ownerId) {
+      getRequestTotal();
+    }
   }, [selectedRange]);
 
   return {

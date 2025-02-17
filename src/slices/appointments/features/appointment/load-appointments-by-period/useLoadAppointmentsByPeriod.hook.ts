@@ -39,7 +39,7 @@ export const useLoadAppointmentsByPeriod = () => {
       });
       setResult(result);
     }
-    if (user?._id) {
+    if (user?._id && user?.ownerId) {
       getRequestTotal();
     }
   }, [selectedRange, user?._id]);
