@@ -3,9 +3,10 @@ import { useEditOwner } from "./editOwner.hook";
 import { BoxCreateItem, FormControl, GridForm } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { ProfilePhotoCover } from "./ProfilePhotoCover";
+import { updatePlace } from "@/slices/appointments/entidades/place/place.api";
 
 export interface EditOwnerFormProps {
-  owner: OwnerProps & { place: { cover?: string; profilephoto: string } };
+  owner: OwnerProps & { place: { _id?: string; cover?: string; profilephoto: string } };
   id: string;
   users: any;
 }
@@ -41,15 +42,17 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
     users,
     id,
   });
-  const handleCoverChange = (photoUploaded) => {
-    console.log({
-      photoUploaded,
-    });
+  const handleCoverChange = async (photoUploaded) => {
+    if (owner?.place?._id) {
+      await updatePlace({ cover: photoUploaded, _id: owner?.place?._id });
+      return;
+    }
   };
-  const handleProfileChange = (photoUploaded) => {
-    console.log({
-      photoUploaded,
-    });
+  const handleProfileChange = async (photoUploaded) => {
+    if (owner?.place?._id) {
+      await updatePlace({ profilephoto: photoUploaded, _id: owner?.place?._id });
+      return;
+    }
   };
   return (
     <>

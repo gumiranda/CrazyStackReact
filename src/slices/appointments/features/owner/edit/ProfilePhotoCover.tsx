@@ -20,6 +20,7 @@ export const ProfilePhotoCover = ({
   const [currentCoverImage, setCurrentCoverImage] = useState(coverImage);
   const [currentProfileImage, setCurrentProfileImage] = useState(profileImage);
   const [isUploading, setIsUploading] = useState(false);
+  const [isUploadingProfile, setIsUploadingProfile] = useState(false);
 
   const handleUploadCover = (details) => {
     setCurrentCoverImage(URL.createObjectURL(details.files[0]));
@@ -30,7 +31,8 @@ export const ProfilePhotoCover = ({
     uploadFiles({ files: details?.files, typePhoto: "profile" });
   };
   const uploadFiles = async ({ files, typePhoto }) => {
-    setIsUploading(true);
+    typePhoto === "cover" && setIsUploading(true);
+    typePhoto === "profile" && setIsUploadingProfile(true);
     const cookies = parseCookies();
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -46,7 +48,8 @@ export const ProfilePhotoCover = ({
           description: "Your file has been uploaded.",
           duration: 3000,
         });
-        setIsUploading(false);
+        typePhoto === "cover" && setIsUploading(false);
+        typePhoto === "profile" && setIsUploadingProfile(false);
         return;
       }
       toaster.create({
@@ -65,7 +68,8 @@ export const ProfilePhotoCover = ({
         // isClosable: true,
       });
     } finally {
-      setIsUploading(false);
+      typePhoto === "cover" && setIsUploading(false);
+      typePhoto === "profile" && setIsUploadingProfile(false);
     }
   };
   return (
@@ -132,7 +136,7 @@ export const ProfilePhotoCover = ({
                       boxShadow="md"
                       _hover={{ bg: "gray.700" }}
                     >
-                      {isUploading ? (
+                      {isUploadingProfile ? (
                         <Spinner size="sm" />
                       ) : (
                         <>
