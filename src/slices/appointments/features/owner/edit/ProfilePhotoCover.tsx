@@ -34,7 +34,7 @@ export const ProfilePhotoCover = ({
                 colorScheme="gray"
                 variant="solid"
                 size="sm"
-                onClick={() => {}}
+                onClick={handleCoverChange}
               >
                 Alterar Capa
               </Button>
