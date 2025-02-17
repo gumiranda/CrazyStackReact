@@ -2,7 +2,6 @@ import React from "react";
 import { useUi } from "@/shared/libs";
 import { Button, CustomCard, Text, Icon } from "@/shared/ui";
 import NextLink from "next/link";
-import { RiEditLine, RiDeleteBin6Line } from "react-icons/ri";
 
 export const usePlaceUi = ({ deleteSelectedAction }: any) => {
   const { showModal, onClose } = useUi();
