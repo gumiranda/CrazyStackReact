@@ -88,6 +88,12 @@ export class MapGoogle implements MapProtocol {
   getRoute(id: string): RouteGoogle {
     return this.routes[id];
   }
+  setZoom(zoom: number) {
+    this.map.setZoom(zoom);
+  }
+  setCenter(location: google.maps.LatLngLiteral) {
+    this.map.setCenter(location);
+  }
 }
 const customStyles = [
   { elementType: "geometry", stylers: [{ color: "#242f3e" }] },

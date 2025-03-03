@@ -11,6 +11,7 @@ export const editOwnerFormSchema = yup.object({
   description: yup.string().required("Descrição é obrigatória"),
   minimumTimeForReSchedule: yup.number().min(30).required("tempo mínimo é obrigatório"),
   address: yup.string(),
+  coord: yup.object(),
   phone: yup.string().test("phone", "Telefone inválido", (value) => {
     if (!value) return true;
     const cleanedPhone = value?.replace?.(/\D/g, "");
@@ -29,6 +30,10 @@ export const useEditOwnerLib = (props: EditOwnerFormProps) => {
       minimumTimeForReSchedule: currentOwner?.minimumTimeForReSchedule ?? 30,
       address: currentOwner?.place?.address ?? "",
       phone: currentOwner?.place?.phone ?? "",
+      coord: {
+        lat: currentOwner?.place?.coord?.coordinates?.[0],
+        lng: currentOwner?.place?.coord?.coordinates?.[1],
+      },
     },
   });
   return { ...formProps };

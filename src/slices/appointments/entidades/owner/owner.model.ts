@@ -5,6 +5,7 @@ export type OwnerPlaceProps = OwnerProps & {
     profilephoto: string;
     address?: string;
     phone?: string;
+    coord?: any;
   };
 };
 export type OwnerProps = {

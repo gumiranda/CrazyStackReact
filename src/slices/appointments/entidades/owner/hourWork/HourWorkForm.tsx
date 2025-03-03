@@ -47,6 +47,7 @@ export type EditOwnerFormData = {
   days3Options?: DaysOptions[];
   address?: string;
   phone?: string;
+  coord?: any;
 };
 
 type HourWorkFormInput = {

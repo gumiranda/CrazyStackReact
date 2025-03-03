@@ -1,10 +1,12 @@
 import { HourWorks, OwnerProps } from "@/slices/appointments/entidades/owner";
 import { useEditOwner } from "./editOwner.hook";
-import { BoxCreateItem, FormControl, GridForm } from "@/shared/ui";
+import { BoxCreateItem, FormControl, Grid, GridForm } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { ProfilePhotoCover } from "./ProfilePhotoCover";
 import { updatePlace } from "@/slices/appointments/entidades/place/place.api";
 import type { OwnerPlaceProps } from "@/slices/appointments/entidades/owner/owner.model";
+import { useRef } from "react";
+import { useHandleLocation } from "../../mapRoute/hooks";
 
 export interface EditOwnerFormProps {
   owner: OwnerPlaceProps;
@@ -38,10 +40,25 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
     daysOptionsSelected1,
     daysOptionsSelected2,
     daysOptionsSelected3,
+    addressText,
+    setValue,
+    originSelectedValue,
+    coordObject,
+    setOriginSelectedValue,
   } = useEditOwner({
     owner,
     users,
     id,
+  });
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+
+  const { originListPlaces } = useHandleLocation({
+    originText: addressText || "",
+    destinationText: "",
+    mapContainerRef,
+    originSelectedValue,
+    destinationSelectedValue: null,
+    coordObject,
   });
   const handleCoverChange = async (photoUploaded) => {
     if (owner?.place?._id) {
@@ -55,6 +72,7 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
       return;
     }
   };
+
   return (
     <>
       <ProfilePhotoCover
@@ -131,15 +149,41 @@ export const EditOwnerForm = ({ owner, id, users }: EditOwnerFormProps) => {
             mask="(__) _____-____"
             {...register("phone")}
           />{" "}
-          <FormControl
-            label={t("PAGES:FIELDS.address", {
-              defaultValue: "Endereço",
-            })}
-            error={formState.errors.address}
-            {...register("address")}
-          />
+          {originListPlaces && (
+            <FormControl
+              label="Endereço"
+              bgColor="secondary.500"
+              color="white"
+              labelColor="white"
+              error={formState.errors.address}
+              autoCompleteProps={{
+                defaultsuggestionsOpen: originListPlaces?.length > 0,
+                list: originListPlaces,
+                placeholder: "Digite para pesquisar a origem",
+                listItemStyleProps: {
+                  bgColor: "gray.800",
+                  color: "white",
+                  onClick: ({ value }) => {
+                    setOriginSelectedValue(value);
+                    if (value?.length > 0) {
+                      const origin = originListPlaces?.find?.(
+                        (item: any) => item?.value === value
+                      ) as any;
+                      if (origin) {
+                        setValue("address", origin?.label);
+                        setValue("coord", origin?.location);
+                      }
+                    }
+                  },
+                },
+                highlightItemBg: "gray.200",
+              }}
+              {...register("address")}
+            />
+          )}
         </GridForm>
       </BoxCreateItem>
+      <Grid id="map" p={40} ref={mapContainerRef}></Grid>
     </>
   );
 };
