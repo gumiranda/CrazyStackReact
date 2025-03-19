@@ -1,9 +1,9 @@
 "use client";
-import { Box, Head } from "@/shared/ui";
+import { Box } from "@/shared/ui";
+import type { OwnerPlaceProps } from "@/slices/appointments/entidades/owner/owner.model";
 import { EditOwnerForm } from "@/slices/appointments/features/owner/edit";
-import { OwnerProps } from "@/slices/appointments/entidades/owner";
 type OwnerEditProps = {
-  data: OwnerProps;
+  data: OwnerPlaceProps;
   id: string;
   users: any;
 };

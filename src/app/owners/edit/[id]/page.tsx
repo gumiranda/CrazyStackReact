@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { OwnerEditPage } from "@/slices/appointments/screens/owner/edit";
 import { getUsers } from "@/slices/general/entidades/user/user.api";
+import type { OwnerPlaceProps } from "@/slices/appointments/entidades/owner/owner.model";
 
 export const metadata: Metadata = {
   title: `${whitelabel.systemName} | Editar Estabelecimento`,
@@ -37,5 +38,5 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   if (!data || !users) {
     redirect("/login");
   }
-  return <OwnerEditPage data={data} id={id} users={users} />;
+  return <OwnerEditPage data={data as OwnerPlaceProps} id={id} users={users} />;
 }

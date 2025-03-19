@@ -1,10 +1,11 @@
-import { HourWorks, OwnerProps } from "@/slices/appointments/entidades/owner";
+import { HourWorks } from "@/slices/appointments/entidades/owner";
 import { useEditOwner } from "./editOwner.hook";
 import { BoxCreateItem, FormControl, GenericDetailsItem, GridForm } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
+import type { OwnerPlaceProps } from "@/slices/appointments/entidades/owner/owner.model";
 
 export interface EditOwnerFormProps {
-  owner: OwnerProps;
+  owner: OwnerPlaceProps;
   id: string;
   users: any;
 }
