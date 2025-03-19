@@ -15,6 +15,7 @@ import {
   EditOwnerFormData,
 } from "@/slices/appointments/entidades/owner";
 import { useTranslation } from "react-i18next";
+import { updatePlace } from "@/slices/appointments/entidades/place/place.api";
 
 export const useEditOwner = (props: EditOwnerFormProps) => {
   const { t } = useTranslation(["PAGES"]);
@@ -29,6 +30,8 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
   const [haveLunchTime1, setHaveLunchTime1] = useState(!!currentOwner?.hourLunchStart1);
   const [haveLunchTime2, setHaveLunchTime2] = useState(!!currentOwner?.hourLunchStart2);
   const [haveLunchTime3, setHaveLunchTime3] = useState(!!currentOwner?.hourLunchStart2);
+  const [originSelectedValue, setOriginSelectedValue] = useState<string | null>(null);
+
   const daysOptions1 =
     daysOptions?.map?.((item) => ({
       ...item,
@@ -126,8 +129,26 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
       }
     },
   });
-  const { register, handleSubmit, formState, control } = useEditOwnerLib(props);
+  const { register, handleSubmit, formState, control, watch, setValue } =
+    useEditOwnerLib(props);
+  const addressText = watch("address");
+  const coordObject = watch("coord");
   const handleEditOwner: SubmitEditOwnerHandler = async (values: EditOwnerFormData) => {
+    const {
+      name = "",
+      description = "",
+      phone = "",
+      address = "",
+      coord = {},
+    } = values || {};
+    await updatePlace({
+      _id: currentOwner?.place?._id,
+      name,
+      description,
+      phone,
+      address,
+      coord: { type: "Point", coordinates: [coord?.lat, coord?.lng] },
+    });
     await editOwner.mutateAsync({
       ...hourWork,
       ...values,
@@ -207,6 +228,7 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     haveAlternativeHour,
     haveAlternativeHour2,
   ]);
+
   return {
     formState,
     register,
@@ -232,5 +254,10 @@ export const useEditOwner = (props: EditOwnerFormProps) => {
     daysOptionsSelected1,
     daysOptionsSelected2,
     daysOptionsSelected3,
+    addressText,
+    setValue,
+    originSelectedValue,
+    setOriginSelectedValue,
+    coordObject,
   };
 };
