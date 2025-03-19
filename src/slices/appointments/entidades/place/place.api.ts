@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { api, setupAPIClient } from "@/shared/api";
 import type { PlaceProps } from ".";
 import { placeModel } from "./place.model";
 export type GetPlacesResponse = {
@@ -8,6 +8,19 @@ export type GetPlacesResponse = {
   prev?: number;
 };
 const registerByPage = 10;
+export const updatePlace = async (props): Promise<PlaceProps | null> => {
+  if (!props?._id) {
+    return null;
+  }
+  const { data } = await api.patch(`/place/update?_id=${props?._id}`, {
+    ...props,
+    updatedAt: new Date(),
+  });
+  if (!data) {
+    return null;
+  }
+  return placeModel(data).format();
+};
 export const getPlaces = async (
   page: number,
   ctx: any,
