@@ -1,10 +1,10 @@
-import { parseCookies } from "nookies";
-import { uploadFilesApi } from "@/slices/general/screens/user/details/PhotoUpload";
+import { Avatar, Box, Button, Container, Spinner } from "@/shared/ui";
+import { EditIcon } from "lucide-react";
+import { FileUploadRoot, FileUploadTrigger } from "@/components/ui/file-upload";
 import { useState } from "react";
 import { toaster } from "@/components/ui/toaster";
-import { Avatar, Box, Button, Container, Spinner } from "@/shared/ui";
-import { FileUploadRoot, FileUploadTrigger } from "@ark-ui/react";
-import { EditIcon } from "lucide-react";
+import { parseCookies } from "nookies";
+import { uploadFilesApi } from "@/slices/general/screens/user/details/PhotoUpload";
 
 export const ProfilePhotoCover = ({
   coverImage,
@@ -16,7 +16,8 @@ export const ProfilePhotoCover = ({
   const [currentProfileImage, setCurrentProfileImage] = useState(profileImage);
   const [isUploading, setIsUploading] = useState(false);
   const [isUploadingProfile, setIsUploadingProfile] = useState(false);
-  const handleUploadCover = async (details) => {
+
+  const handleUploadCover = (details) => {
     setCurrentCoverImage(URL.createObjectURL(details.files[0]));
     uploadFiles({ files: details?.files, typePhoto: "cover" });
   };
@@ -30,6 +31,7 @@ export const ProfilePhotoCover = ({
     const cookies = parseCookies();
     const formData = new FormData();
     formData.append("file", files[0]);
+
     try {
       const response = await uploadFilesApi({ formData, cookies });
       if (response.ok) {
@@ -38,7 +40,7 @@ export const ProfilePhotoCover = ({
         typePhoto === "profile" && handleProfileChange(data?._id);
         toaster.create({
           title: "Upload successful.",
-          description: "Your file has been uploaded successfully.",
+          description: "Your file has been uploaded.",
           duration: 3000,
         });
         typePhoto === "cover" && setIsUploading(false);
@@ -73,10 +75,9 @@ export const ProfilePhotoCover = ({
           h="300px"
           bg={currentCoverImage ? `url(${currentCoverImage})` : "gray.400"}
           backgroundSize="cover"
-          backgroundPosition="center"
-          backgroundRepeat="no-repeat"
-          borderRadius="lg"
           bgColor="gray.400"
+          backgroundPosition="center"
+          borderRadius="lg"
         >
           <Box position="absolute" top={4} left={4}>
             <FileUploadRoot
@@ -89,56 +90,58 @@ export const ProfilePhotoCover = ({
               onFileAccept={handleUploadCover}
             >
               <FileUploadTrigger asChild>
-                {isUploading ? (
-                  <Spinner size="sm" />
-                ) : (
-                  <Button>
-                    <EditIcon />
-                    Alterar capa
-                  </Button>
-                )}
+                <Button>
+                  {isUploading ? (
+                    <Spinner size="sm" />
+                  ) : (
+                    <>
+                      <EditIcon /> Alterar capa
+                    </>
+                  )}
+                </Button>
               </FileUploadTrigger>
             </FileUploadRoot>
           </Box>
-        </Box>
-        <Box position="absolute" bottom="-75px" left="50%" transform="translateX(-50%)">
-          <Box position="relative">
-            <Avatar
-              w="150px"
-              h="150px"
-              src={currentProfileImage || undefined}
-              border="4px solid white"
-              boxShadow="md"
-            />
-            <Box position="absolute" bottom={0} right={0}>
-              <FileUploadRoot
-                accept="image/*"
-                locale="pt-BR"
-                maxFiles={1}
-                maxFileSize={5000000}
-                minFileSize={1024}
-                name="coverImage"
-                onFileAccept={handleUploadProfile}
-              >
-                <FileUploadTrigger asChild>
-                  <Button
-                    as="span"
-                    borderRadius="full"
-                    p={2}
-                    bg="gray.600"
-                    boxShadow="md"
-                    _hover={{ bg: "gray.700" }}
-                  >
-                    {isUploadingProfile ? (
-                      <Spinner size="sm" />
-                    ) : (
-                      <>
-                        <EditIcon />
-                      </>
-                    )}
-                  </Button>
-                </FileUploadTrigger>
-              </FileUploadRoot>
+
+          <Box position="absolute" bottom="-75px" left="50%" transform="translateX(-50%)">
+            <Box position="relative">
+              <Avatar
+                w="150px"
+                h="150px"
+                src={currentProfileImage || undefined}
+                border="4px solid white"
+                boxShadow="md"
+              />
+              <Box position="absolute" bottom={0} right={0}>
+                <FileUploadRoot
+                  accept="image/*"
+                  locale="pt-BR"
+                  maxFiles={1}
+                  maxFileSize={5000000}
+                  minFileSize={1024}
+                  name="coverImage"
+                  onFileAccept={handleUploadProfile}
+                >
+                  <FileUploadTrigger asChild>
+                    <Button
+                      as="span"
+                      borderRadius="full"
+                      p={2}
+                      bg="gray.600"
+                      boxShadow="md"
+                      _hover={{ bg: "gray.700" }}
+                    >
+                      {isUploadingProfile ? (
+                        <Spinner size="sm" />
+                      ) : (
+                        <>
+                          <EditIcon />
+                        </>
+                      )}
+                    </Button>
+                  </FileUploadTrigger>
+                </FileUploadRoot>
+              </Box>
             </Box>
           </Box>
         </Box>
