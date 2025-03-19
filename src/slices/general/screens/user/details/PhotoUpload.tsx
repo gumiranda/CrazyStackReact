@@ -50,13 +50,7 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
     const formData = new FormData();
     formData.append("file", files[0]);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploadPhoto`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${cookies["belezixadmin.token"]}`,
-        },
-        body: formData,
-      });
+      const response = await uploadFilesApi({ formData, cookies });
       if (response.ok) {
         const data = await response.json();
         const result = await fetch(
@@ -322,4 +316,14 @@ export const PhotoUpload = ({ userId, updateUserPhoto }) => {
       </DialogRoot>
     </>
   );
+};
+export const uploadFilesApi = async ({ formData, cookies }) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploadPhoto`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${cookies["belezixadmin.token"]}`,
+    },
+    body: formData,
+  });
+  return response;
 };
