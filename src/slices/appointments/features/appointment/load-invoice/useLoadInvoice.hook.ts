@@ -17,7 +17,7 @@ export const useLoadInvoice = () => {
       );
       setResultInvoice(result?.appointments);
     }
-    if (user?._id) {
+    if (user?._id && user?.ownerId) {
       getInvoiceTotal();
     }
   }, [selectedRangeInvoice, user?._id]);

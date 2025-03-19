@@ -8,11 +8,12 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
   const { t } = useTranslation(["PAGES"]);
   const router = useRouter();
   const { serviceId, clientId, initDate, endDate } = request;
-  const { service, client, deleteSelectedAction }: any = useRequestDetailsOwner({
-    serviceId,
-    clientId,
-    currentRequest: request,
-  });
+  const { service, client, deleteSelectedAction, confirmSchedule }: any =
+    useRequestDetailsOwner({
+      serviceId,
+      clientId,
+      currentRequest: request,
+    });
   const duration = `${service?.duration ?? 0} min`;
   const onReschedule = () => {
     router.push(`/requests/edit/${request._id}`);
@@ -21,6 +22,10 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
     deleteSelectedAction(request);
     onClose();
     router.push(`/requests/edit/${request._id}`);
+  };
+  const onConfirm = () => {
+    confirmSchedule(request);
+    onClose();
   };
   return (
     <Box bgColor="white">
@@ -67,18 +72,25 @@ export const RequestDetailsV2 = ({ props: { request, onClose } }) => {
         <ViewField.PriceText>{service?.price}</ViewField.PriceText>
       </ViewField>
       <Box position="relative" float="right" mt={10}>
-        {[0, 1, 7].includes(request?.status) && (
+        {[0, 1, 4, 6, 7].includes(request?.status) && (
           <>
             <Button onClick={onCancel} colorPalette="red">
               {t("PAGES:MESSAGES.cancel", {
                 defaultValue: "Cancelar",
               })}
             </Button>
-            <Button colorPalette="primary" ml={6} onClick={onReschedule}>
+            <Button colorPalette="purple" ml={6} onClick={onReschedule}>
               {t("PAGES:FIELDS.reschedule", {
                 defaultValue: "Reagendar",
               })}
             </Button>
+            {[0, 6].includes(request?.status) && (
+              <Button colorPalette="green" ml={6} onClick={onConfirm}>
+                {t("PAGES:FIELDS.confirm", {
+                  defaultValue: "Confirmar",
+                })}
+              </Button>
+            )}
           </>
         )}
       </Box>
