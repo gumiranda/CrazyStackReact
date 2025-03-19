@@ -10,6 +10,7 @@ export interface HandleLocationProps {
   currentMapRoute?: any;
   originSelectedValue: string | null;
   destinationSelectedValue: string | null;
+  coordObject?: any;
 }
 
 export const useHandleLocation = ({
@@ -19,6 +20,7 @@ export const useHandleLocation = ({
   currentMapRoute = null,
   originSelectedValue,
   destinationSelectedValue,
+  coordObject,
 }: HandleLocationProps) => {
   const map = useLoadMap(mapContainerRef);
   const [directionsData, setDirectionsData] = useState<
@@ -26,6 +28,7 @@ export const useHandleLocation = ({
   >(currentMapRoute?.directionsJson);
   const [originListPlaces, setOriginListPlaces] = useState([]);
   const [destinationListPlaces, setDestinationListPlaces] = useState([]);
+  const [mapWasLoaded, setMapWasLoaded] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
   const fetchTextOptions = async (text: string, setPlaces: any) => {
     if (text?.length < 1) {
@@ -48,11 +51,13 @@ export const useHandleLocation = ({
       }
       const sourcePlace = await sourceResponse.json();
       setPlaces(
-        sourcePlace?.candidates?.map?.(({ name, place_id }: any) => ({
+        sourcePlace?.candidates?.map?.(({ name, place_id, geometry }: any) => ({
           label: name,
           value: place_id,
+          location: geometry?.location,
         })) ?? []
       );
+      return sourcePlace;
     } catch (error) {
       console.error(error);
     }
@@ -62,11 +67,11 @@ export const useHandleLocation = ({
       await fetchTextOptions(originText, setOriginListPlaces);
     }
     if (timeoutId === null) {
-      const id: any = window.setTimeout(getTextPlaces, 1500);
+      const id: any = window.setTimeout(getTextPlaces, 50);
       setTimeoutId(id);
     } else {
       window.clearTimeout(timeoutId);
-      const id: any = window.setTimeout(getTextPlaces, 1500);
+      const id: any = window.setTimeout(getTextPlaces, 50);
       setTimeoutId(id);
     }
   }, [originText]);
@@ -125,6 +130,11 @@ export const useHandleLocation = ({
       updateMapView();
     }
   }, [map, directionsData]);
+  useEffect(() => {
+    if (map && !mapWasLoaded) {
+      setMapWasLoaded(true);
+    }
+  }, [map, mapWasLoaded]);
   const updateMapView = async () => {
     map?.removeAllRoutes();
     await map?.addRouteWithIcons({
@@ -139,6 +149,20 @@ export const useHandleLocation = ({
         position: directionsData?.routes?.[0]?.legs?.[0]?.start_location,
       },
     });
+  };
+  useEffect(() => {
+    if (coordObject && mapWasLoaded) {
+      zoomToOrigin(coordObject);
+    }
+  }, [coordObject, mapWasLoaded]);
+  const zoomToOrigin = (location) => {
+    if (map && location) {
+      map.setZoom(15);
+      map.setCenter({
+        lat: location.lat,
+        lng: location.lng,
+      });
+    }
   };
   return {
     originListPlaces,
