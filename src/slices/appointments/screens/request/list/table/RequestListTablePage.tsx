@@ -35,14 +35,14 @@ export const RequestListTablePage = ({ page = 0, data }: RequestListTablePagePro
       displayKeyText: true,
     },
     {
-      id: "initHour",
+      id: "initHourWithoutFuso",
       label: t("PAGES:FIELDS.initHour", {
         defaultValue: "Horário Início",
       }),
       displayKeyText: true,
     },
     {
-      id: "endHour",
+      id: "endHourWithoutFuso",
       label: t("PAGES:FIELDS.endHour", {
         defaultValue: "Horário Fim",
       }),
