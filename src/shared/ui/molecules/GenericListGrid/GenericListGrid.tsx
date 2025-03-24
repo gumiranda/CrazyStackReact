@@ -29,7 +29,7 @@ export const GenericListGrid = ({ items, renderItem, children }: GenericListProp
             >
               {items?.map?.((item, index) => (
                 <ListItem key={`${Math.random() * 10}-${index}`}>
-                  {renderItem(item)}
+                  {React.createElement(renderItem, { ...item })}
                 </ListItem>
               ))}
             </List>
