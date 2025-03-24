@@ -27,7 +27,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
         >
           {t("LANDING:FEATURES_DESCRIPTION", {
             defaultValue:
-              "Descubra as poderosas funcionalidades que fazem da nossa plataforma a melhor escolha para suas necessidades de mudança.",
+              "Descubra as poderosas funcionalidades que fazem da nossa plataforma a melhor escolha para o seu agendamento.",
           })}
         </Text>
       </Box>
