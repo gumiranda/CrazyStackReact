@@ -38,7 +38,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
             color="gray.50"
             icon={<Icon as={FaHandshake} color="primary.500" />}
             title={t("LANDING:FEATURE_1_TITLE", {
-              defaultValue: "Seja um Belezeiro",
+              defaultValue: `Faça parte do ${whitelabel.systemName}`,
             })}
             description={t("LANDING:FEATURE_1_DESCRIPTION", {
               defaultValue:
