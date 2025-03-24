@@ -4,6 +4,7 @@ import { fonts } from "@/app/fonts";
 import { FeatureItem } from "../../molecules/FeatureItem";
 import { CalendarIcon, CheckIcon, SearchIcon } from "lucide-react";
 import { colors } from "@/application/theme";
+import { whitelabel } from "@/application/whitelabel";
 
 export const SectionHowItWorks = () => {
   const { t } = useTranslation(["LANDING"]);
@@ -30,7 +31,7 @@ export const SectionHowItWorks = () => {
           </Heading>
           <Text color="gray.700" fontSize={22}>
             {t("LANDING:HOW_IT_WORKS_SUBTITLE", {
-              defaultValue: "Veja como é fácil utilizar a plataforma Belezix.",
+              defaultValue: `Veja como é fácil utilizar a plataforma ${whitelabel.systemName}.`,
             })}
           </Text>
         </VStack>

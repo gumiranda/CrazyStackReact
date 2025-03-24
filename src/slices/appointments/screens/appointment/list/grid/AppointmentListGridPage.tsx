@@ -1,5 +1,5 @@
 "use client";
-import { InfiniteList, GenericGrid, Head } from "@/shared/ui";
+import { InfiniteList, GenericGrid } from "@/shared/ui";
 import { useAppointmentInfiniteList } from "../appointmentInfiniteList.hook";
 import { useAppointmentUi } from "@/slices/appointments/entidades/appointment/appointment.ui";
 import { useTranslation } from "react-i18next";
@@ -46,10 +46,6 @@ export const AppointmentGridPage = () => {
   const { renderItem } = useAppointmentUi({ deleteSelectedAction });
   return (
     <>
-      <Head
-        title={"Belezix Admin | Agendamentos"}
-        description="Página de listagem de agendamentos do painel de Admin Belezix"
-      />
       <InfiniteList
         hasNextPage={hasNextPage as any}
         fetchNextPage={fetchNextPage}

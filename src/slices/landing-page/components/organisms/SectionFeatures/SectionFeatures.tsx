@@ -3,6 +3,7 @@ import { Box, Flex, Grid, Heading, Icon, Text } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
 import { FeatureItem } from "../../molecules/FeatureItem";
 import { FaBriefcase, FaHandshake, FaUserTie } from "react-icons/fa6";
+import { whitelabel } from "@/application/whitelabel";
 
 export const SectionFeatures = ({ children = null, ...rest }) => {
   const { t } = useTranslation(["LANDING"]);
@@ -26,7 +27,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
         >
           {t("LANDING:FEATURES_DESCRIPTION", {
             defaultValue:
-              "Descubra as poderosas funcionalidades que fazem da nossa plataforma a melhor escolha para suas necessidades de mudança.",
+              "Descubra as poderosas funcionalidades que fazem da nossa plataforma a melhor escolha para o seu agendamento.",
           })}
         </Text>
       </Box>
@@ -37,7 +38,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
             color="gray.50"
             icon={<Icon as={FaHandshake} color="primary.500" />}
             title={t("LANDING:FEATURE_1_TITLE", {
-              defaultValue: "Seja um Belezeiro",
+              defaultValue: `Faça parte do ${whitelabel.systemName}`,
             })}
             description={t("LANDING:FEATURE_1_DESCRIPTION", {
               defaultValue:
@@ -66,8 +67,7 @@ export const SectionFeatures = ({ children = null, ...rest }) => {
               defaultValue: "Ganhe como profissional",
             })}
             description={t("LANDING:FEATURE_3_DESCRIPTION", {
-              defaultValue:
-                "Torne-se um profissional Belezix e ganhe renda extra oferecendo serviços de beleza.",
+              defaultValue: `Torne-se um profissional ${whitelabel.systemName} e ganhe renda extra oferecendo serviços de beleza.`,
             })}
           />
         </Box>

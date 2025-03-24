@@ -14,7 +14,7 @@ export const FeatureItem = ({ icon, title, description, color = "gray.700" }) =>
       transition={{ duration: 0.5 }}
     >
       {icon}
-      <Heading color={color} size="md">
+      <Heading color={color} fontSize="lg" size="lg">
         {title}
       </Heading>
       <Text color={color} fontSize={18}>
