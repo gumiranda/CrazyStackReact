@@ -36,7 +36,7 @@ function HeroTitle() {
       fontFamily={fonts.inter.style.fontFamily}
     >
       {t("LANDING:HERO_TITLE", {
-        defaultValue: "Simplifique Sua Mudança com a Mudix",
+        defaultValue: `Simplifique sua vida com o ${whitelabel.systemName}`,
       })}
     </Heading>
   );
