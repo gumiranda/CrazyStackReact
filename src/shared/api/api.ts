@@ -62,7 +62,7 @@ export function setupAPIClient(ctx = undefined) {
               .catch((err: any) => {
                 failedRequestsQueue.forEach((request: any) => request.onFailure(err));
                 failedRequestsQueue = [];
-                if (process.browser) {
+                if (typeof window !== "undefined") {
                   signOut();
                 }
               })
@@ -82,7 +82,7 @@ export function setupAPIClient(ctx = undefined) {
             });
           });
         }
-        if (process.browser) {
+        if (typeof window !== "undefined") {
           signOut();
         }
       }
