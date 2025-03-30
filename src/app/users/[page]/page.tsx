@@ -1,5 +1,6 @@
 import { getUsers } from "@/slices/general/entidades/user/user.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { UserListTablePage } from "@/slices/general/screens/user/list/table/UserListTablePage";
 import { parseJSON } from "@/shared/libs";
 

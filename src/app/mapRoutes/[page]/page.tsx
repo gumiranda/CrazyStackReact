@@ -1,5 +1,6 @@
 import { getMapRoutes } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { MapRouteListTablePage } from "@/slices/appointments/screens/mapRoute/list/table/MapRouteListTablePage";
 
 export const revalidate = 3000;

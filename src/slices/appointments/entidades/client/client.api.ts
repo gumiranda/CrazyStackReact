@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { ClientProps, clientModel } from "./client.model";
 export type GetClientsResponse = {
   clients: ClientProps[];
@@ -12,7 +12,7 @@ export const getClients = async (
   ctx: any,
   params: any = {}
 ): Promise<GetClientsResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/client/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/client/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { clients, total } = data || {};
@@ -47,7 +47,7 @@ export const getClientById = async (
   ctx: any
 ): Promise<ClientProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/client/load", {
+    const { data } = await getAPIClient(ctx).get("/client/load", {
       params: { _id: id },
     });
     if (!data) {

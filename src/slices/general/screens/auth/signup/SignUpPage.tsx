@@ -1,8 +1,6 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Flex, Text, Box, AuthLayout, Logo, useBreakpointValue } from "@/shared/ui";
-import { useAuth } from "@/shared/libs";
-import { useEffect } from "react";
 import { whitelabel } from "@/application/whitelabel";
 import { SignupForm } from "@/slices/general/features/auth/signup";
 import Link from "next/link";
@@ -10,17 +8,10 @@ import { useTranslation } from "react-i18next";
 
 export function SignUpPage() {
   const searchParams = useSearchParams();
-  const email = searchParams.get("email");
+  const email = searchParams?.get("email");
   const { t } = useTranslation(["PAGES"]);
-  const { isAuthenticated = false } = useAuth() || {};
-  const router = useRouter();
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.push("/home");
-    }
-  }, [isAuthenticated]);
   return (
     <AuthLayout>
       <Logo marginBottom={4} mt={5} haveLink={false} />

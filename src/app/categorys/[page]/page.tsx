@@ -1,6 +1,7 @@
 import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
 import { CategoryListTablePage } from "@/slices/appointments/screens/category/list/table/CategoryListTablePage";
+import { getCookies } from "@/shared/libs/cookies";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {

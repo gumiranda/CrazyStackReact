@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { ServiceProps, serviceModel } from "./service.model";
 export type GetServicesResponse = {
   services: ServiceProps[];
@@ -12,7 +12,7 @@ export const getServices = async (
   ctx: any,
   params: any = {}
 ): Promise<GetServicesResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/service/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/service/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { services, total } = data || {};
@@ -47,7 +47,7 @@ export const getServiceById = async (
   ctx: any
 ): Promise<ServiceProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/service/load", {
+    const { data } = await getAPIClient(ctx).get("/service/load", {
       params: { _id: id },
     });
     if (!data) {

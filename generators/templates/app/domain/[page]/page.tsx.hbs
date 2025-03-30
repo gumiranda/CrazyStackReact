@@ -1,5 +1,5 @@
 import { get{{pascalCase name}}s } from "@/slices/appointments/entidades/{{camelCase name}}/{{camelCase name}}.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies} from "@/shared/libs/utils";
 import { {{pascalCase name}}ListTablePage } from "@/slices/appointments/screens/{{camelCase name}}/list/table/{{pascalCase name}}ListTablePage";
 export const revalidate = 3000;
 async function getData(pageNumber) {

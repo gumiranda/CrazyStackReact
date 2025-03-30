@@ -1,4 +1,5 @@
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { parseJSON } from "./parseJSON";
 import { redirect } from "next/navigation";
 import { Layout } from "@/shared/ui/templates/Layout";

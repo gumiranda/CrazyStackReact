@@ -1,5 +1,7 @@
 import { getMapRouteById } from "@/slices/appointments/entidades/mapRoute/mapRoute.api";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
+
 export const revalidate = 3000;
 
 import { whitelabel } from "@/application/whitelabel";

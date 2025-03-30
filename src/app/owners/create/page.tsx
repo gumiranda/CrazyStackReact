@@ -2,7 +2,8 @@ import { whitelabel } from "@/application/whitelabel";
 import { OwnerCreatePage } from "@/slices/appointments/screens/owner/create";
 import type { Metadata } from "next";
 import { getUsers } from "@/slices/general/entidades/user/user.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {

@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { ChargeData } from "./charge.types";
 export type GetChargesResponse = {
   charges: ChargeData[];
@@ -12,7 +12,7 @@ export const getCharges = async (
   ctx: any,
   params: any = {}
 ): Promise<GetChargesResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/charge/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/charge/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { charges, total } = data || {};
@@ -44,7 +44,7 @@ export const getInfiniteCharges = async ({
 };
 export const getChargeById = async (id: string, ctx: any): Promise<ChargeData | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/charge/load", {
+    const { data } = await getAPIClient(ctx).get("/charge/load", {
       params: { _id: id },
     });
     if (!data) {

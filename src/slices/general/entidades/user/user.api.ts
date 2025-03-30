@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { UserProps, userModel } from "./user.model";
 export type GetUsersResponse = {
   users: UserProps[];
@@ -12,7 +12,7 @@ export const getUsers = async (
   ctx: any,
   params: any = {}
 ): Promise<GetUsersResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/user/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/user/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { users = [], total } = data || {};
@@ -44,7 +44,7 @@ export const getInfiniteUsers = async ({
 };
 export const getUserById = async (id: string, ctx: any): Promise<UserProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/user/load", {
+    const { data } = await getAPIClient(ctx).get("/user/load", {
       params: { _id: id },
     });
     if (!data) {
@@ -57,7 +57,7 @@ export const getUserById = async (id: string, ctx: any): Promise<UserProps | nul
 };
 export const deleteUserById = async (id: string, ctx: any): Promise<any> => {
   try {
-    const { data } = await setupAPIClient(ctx).delete("/user/delete", {
+    const { data } = await getAPIClient(ctx).delete("/user/delete", {
       params: { _id: id },
     });
     if (!data) {

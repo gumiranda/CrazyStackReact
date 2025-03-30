@@ -101,10 +101,26 @@ export function setupAPIClient(ctx = undefined) {
       return Promise.reject(error);
     }
   );
-  return api;
+  return (
+    api ??
+    axios.create({
+      baseURL: process.env.NEXT_PUBLIC_API_URL,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  );
 }
 
-export const api = setupAPIClient();
+export function getAPIClient(ctx = undefined) {
+  const client = setupAPIClient(ctx);
+  if (!client) {
+    throw new Error("Failed to initialize API client");
+  }
+  return client;
+}
+
+export const api = getAPIClient();
 
 export function signOut() {
   destroyCookie(undefined, "belezixadmin.token");

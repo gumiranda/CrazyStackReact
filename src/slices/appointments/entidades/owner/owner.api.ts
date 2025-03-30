@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { OwnerProps, ownerModel } from "./owner.model";
 export type GetOwnersResponse = {
   owners: OwnerProps[];
@@ -12,7 +12,7 @@ export const getOwners = async (
   ctx: any,
   params: any = {}
 ): Promise<GetOwnersResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/owner/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/owner/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { owners, total } = data || {};
@@ -44,7 +44,7 @@ export const getInfiniteOwners = async ({
 };
 export const getOwnerById = async (id: string, ctx: any): Promise<OwnerProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/owner/load", {
+    const { data } = await getAPIClient(ctx).get("/owner/load", {
       params: { _id: id },
     });
     if (!data) {

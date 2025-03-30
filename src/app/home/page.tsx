@@ -1,6 +1,7 @@
 import { whitelabel } from "@/application/whitelabel";
 import { HomePage } from "@/slices/appointments/screens/home/HomePage";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 

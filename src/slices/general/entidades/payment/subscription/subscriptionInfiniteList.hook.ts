@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useGetInfiniteSubscriptions } from "./subscription.lib";
-import { queryClientInstance, setupAPIClient } from "@/shared/api";
+import { getAPIClient, queryClientInstance, setupAPIClient } from "@/shared/api";
 import { useTranslation } from "react-i18next";
 
 export const useSubscriptionInfiniteList = () => {
@@ -44,7 +44,7 @@ export const useSubscriptionInfiniteList = () => {
         if (subscriptionsToDelete?.length > 0) {
           return Promise.all(
             subscriptionsToDelete?.map?.((subscription: any) =>
-              setupAPIClient().delete(`/subscription/delete?_id=${subscription._id}`)
+              getAPIClient().delete(`/subscription/delete?_id=${subscription._id}`)
             )
           );
         }

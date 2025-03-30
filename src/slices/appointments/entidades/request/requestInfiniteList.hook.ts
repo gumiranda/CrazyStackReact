@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useGetInfiniteRequests } from "./request.lib";
 import { endOfDay, startOfDay } from "date-fns";
-import { queryClientInstance, setupAPIClient } from "@/shared/api";
+import { getAPIClient, queryClientInstance, setupAPIClient } from "@/shared/api";
 import { useTranslation } from "react-i18next";
 
 export const useRequestInfiniteList = () => {
@@ -47,16 +47,16 @@ export const useRequestInfiniteList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error?.response?.status]);
   const deleteRequest = useMutation({
-    mutationFn: async (requestsToDelete: any) => {
+    mutationFn: async (requestsToDelete: Array<{ _id: string }>) => {
       try {
-        if (requestsToDelete?.length > 0) {
-          return Promise.all(
-            requestsToDelete?.map?.((request: any) =>
-              setupAPIClient().delete(`/request/delete?_id=${request._id}`)
-            )
-          );
+        if (!requestsToDelete || requestsToDelete.length === 0) {
+          return null;
         }
-        return null;
+        return Promise.all(
+          requestsToDelete.map((request) =>
+            getAPIClient().delete(`/request/delete?_id=${request._id}`)
+          )
+        );
       } catch (error) {
         showModal({
           content: t("PAGES:MESSAGES.errorMessage", {

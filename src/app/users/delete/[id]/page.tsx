@@ -1,5 +1,6 @@
 import { getUserById } from "@/slices/general/entidades/user/user.api";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 export const revalidate = 3000;
 
 import { UserDetailsPage } from "@/slices/general/screens/user/details";

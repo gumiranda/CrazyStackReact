@@ -1,11 +1,11 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { TimeAvailableProps, timeAvailableModel } from "./timeAvailable.model";
 
 export const getTimeAvailables = async (
   params: any = {},
   ctx: any
 ): Promise<TimeAvailableProps | null> => {
-  const { data } = await setupAPIClient(ctx).get("/appointment/loadAvailableTimes", {
+  const { data } = await getAPIClient(ctx).get("/appointment/loadAvailableTimes", {
     params,
   });
   const { timeAvailable, timeAvailableProfessional } = data || {};

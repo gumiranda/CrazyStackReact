@@ -1,5 +1,6 @@
 import { getServices } from "@/slices/appointments/entidades/service/service.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { ServiceListTablePage } from "@/slices/appointments/screens/service/list/table/ServiceListTablePage";
 
 export const revalidate = 3000;

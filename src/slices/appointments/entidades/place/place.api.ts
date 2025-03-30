@@ -1,5 +1,5 @@
-import { api, setupAPIClient } from "@/shared/api";
-import type { PlaceProps } from ".";
+import { getAPIClient } from "@/shared/api/api";
+import type { PlaceProps } from "./place.model";
 import { placeModel } from "./place.model";
 export type GetPlacesResponse = {
   places: PlaceProps[];
@@ -12,7 +12,7 @@ export const updatePlace = async (props): Promise<PlaceProps | null> => {
   if (!props?._id) {
     return null;
   }
-  const { data } = await api.patch(`/place/update?_id=${props?._id}`, {
+  const { data } = await getAPIClient().patch(`/place/update?_id=${props?._id}`, {
     ...props,
     updatedAt: new Date(),
   });
@@ -26,7 +26,7 @@ export const getPlaces = async (
   ctx: any,
   params: any = {}
 ): Promise<GetPlacesResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/place/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/place/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { places, total } = data || {};
@@ -58,7 +58,7 @@ export const getInfinitePlaces = async ({
 };
 export const getPlaceById = async (id: string, ctx: any): Promise<PlaceProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/place/load", {
+    const { data } = await getAPIClient(ctx).get("/place/load", {
       params: { _id: id },
     });
     if (!data) {

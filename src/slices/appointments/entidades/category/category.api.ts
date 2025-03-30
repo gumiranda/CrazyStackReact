@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { CategoryProps, categoryModel } from "./category.model";
 export type GetCategorysResponse = {
   categorys: CategoryProps[];
@@ -12,7 +12,7 @@ export const getCategorys = async (
   ctx: any,
   params: any = {}
 ): Promise<GetCategorysResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/category/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/category/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { categorys, total } = data || {};
@@ -47,7 +47,7 @@ export const getCategoryById = async (
   ctx: any
 ): Promise<CategoryProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/category/load", {
+    const { data } = await getAPIClient(ctx).get("/category/load", {
       params: { _id: id },
     });
     if (!data) {

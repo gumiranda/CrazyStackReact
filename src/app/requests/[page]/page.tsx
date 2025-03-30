@@ -1,5 +1,6 @@
 import { getRequests } from "@/slices/appointments/entidades/request/request.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { RequestListTablePage } from "@/slices/appointments/screens/request/list/table/RequestListTablePage";
 import { parseJSON } from "@/shared/libs";
 

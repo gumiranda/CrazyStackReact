@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { MapRouteProps, mapRouteModel } from "./mapRoute.model";
 export type GetMapRoutesResponse = {
   mapRoutes: MapRouteProps[];
@@ -12,7 +12,7 @@ export const getMapRoutes = async (
   ctx: any,
   params: any = {}
 ): Promise<GetMapRoutesResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/mapRoute/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/mapRoute/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { mapRoutes, total } = data || {};
@@ -47,7 +47,7 @@ export const getMapRouteById = async (
   ctx: any
 ): Promise<MapRouteProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/mapRoute/load", {
+    const { data } = await getAPIClient(ctx).get("/mapRoute/load", {
       params: { _id: id },
     });
     if (!data) {

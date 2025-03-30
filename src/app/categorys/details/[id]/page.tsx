@@ -1,5 +1,7 @@
 import { getCategoryById } from "@/slices/appointments/entidades/category/category.api";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
+
 export const revalidate = 3000;
 
 import { CategoryDetailsPage } from "@/slices/appointments/screens/category/details";

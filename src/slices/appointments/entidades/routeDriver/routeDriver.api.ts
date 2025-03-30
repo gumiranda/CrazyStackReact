@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { RouteDriverProps, routeDriverModel } from "./routeDriver.model";
 export type GetRouteDriversResponse = {
   routeDrivers: RouteDriverProps[];
@@ -12,7 +12,7 @@ export const getRouteDrivers = async (
   ctx: any,
   params: any = {}
 ): Promise<GetRouteDriversResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/routeDriver/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/routeDriver/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { routeDrivers, total } = data || {};
@@ -49,7 +49,7 @@ export const getRouteDriverById = async (
   ctx: any
 ): Promise<RouteDriverProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/routeDriver/load", {
+    const { data } = await getAPIClient(ctx).get("/routeDriver/load", {
       params: { _id: id },
     });
     if (!data) {

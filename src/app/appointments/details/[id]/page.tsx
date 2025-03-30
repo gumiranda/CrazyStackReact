@@ -1,5 +1,7 @@
 import { getAppointmentById } from "@/slices/appointments/entidades/appointment/appointment.api";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
+
 export const revalidate = 3000;
 
 import { AppointmentDetailsPage } from "@/slices/appointments/screens/appointment/details";

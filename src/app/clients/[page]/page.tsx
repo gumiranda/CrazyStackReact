@@ -1,5 +1,6 @@
 import { getClients } from "@/slices/appointments/entidades/client/client.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { ClientListTablePage } from "@/slices/appointments/screens/client/list/table/ClientListTablePage";
 
 export const revalidate = 3000;

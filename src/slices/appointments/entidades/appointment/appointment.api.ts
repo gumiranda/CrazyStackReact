@@ -1,5 +1,6 @@
-import { setupAPIClient } from "@/shared/api";
 import { AppointmentProps, appointmentModel } from "./appointment.model";
+import { getAPIClient } from "@/shared/api/api";
+
 export type GetAppointmentsResponse = {
   appointments: AppointmentProps[];
   totalCount: number;
@@ -12,7 +13,7 @@ export const getAppointments = async (
   ctx: any,
   params: any = {}
 ): Promise<GetAppointmentsResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/appointment/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/appointment/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { appointments, total } = data || {};
@@ -49,7 +50,7 @@ export const getAppointmentById = async (
   ctx: any
 ): Promise<AppointmentProps | null> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/appointment/load", {
+    const { data } = await getAPIClient(ctx).get("/appointment/load", {
       params: { _id: id },
     });
     if (!data) {
@@ -62,7 +63,7 @@ export const getAppointmentById = async (
 };
 export const loadInvoice = async (params: any, ctx: any): Promise<any> => {
   try {
-    const { data } = await setupAPIClient(ctx).get("/appointment/loadInvoice", {
+    const { data } = await getAPIClient(ctx).get("/appointment/loadInvoice", {
       params,
     });
     if (!data) {

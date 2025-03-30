@@ -1,6 +1,7 @@
 import { whitelabel } from "@/application/whitelabel";
 import { PayPixPage } from "@/slices/general/screens/payment/pix/PayPixPage";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 import { parseJSON } from "@/shared/libs/utils/parseJSON";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";

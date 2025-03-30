@@ -5,7 +5,7 @@ import { createContext, useEffect, useContext, ReactNode, useState } from "react
 import { setCookie, destroyCookie, parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
 import { useUi } from "./UiContext";
-import { api } from "@/shared/api";
+import { api } from "@/shared/api/api";
 import { useTranslation } from "react-i18next";
 import { parseJSON } from "../utils/parseJSON";
 import { userModel } from "@/slices/general/entidades/user/user.model";
@@ -89,15 +89,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUserPhoto(parsedPhoto);
     }
   }, []);
-  useEffect(() => {
-    if (user?.role === "client") {
-      Router.push("/login");
-    }
-  }, [user]);
+
   const login = async ({ email, password }: LoginCredentials) => {
     try {
       setLoading(true);
-
+      if (!api) {
+        throw new Error("API client not initialized");
+      }
       const response = await api.post("auth/login", {
         email,
         password,
@@ -153,7 +151,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }: SignupCredentials) => {
     try {
       setLoading(true);
-
+      if (!api) {
+        throw new Error("API client not initialized");
+      }
       const response = await api.post("auth/signup", {
         email,
         password,

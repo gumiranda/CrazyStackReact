@@ -2,7 +2,7 @@ import { whitelabel } from "@/application/whitelabel";
 import { {{pascalCase name}}CreatePage } from "@/slices/appointments/screens/{{camelCase name}}/create";
 import type { Metadata } from "next";
 import { get{{pascalCase subdomain}}s } from "@/slices/appointments/entidades/{{camelCase subdomain}}/{{camelCase subdomain}}.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies} from "@/shared/libs/utils";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {

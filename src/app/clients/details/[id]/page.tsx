@@ -1,5 +1,7 @@
 import { getClientById } from "@/slices/appointments/entidades/client/client.api";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
+
 export const revalidate = 3000;
 
 import { ClientDetailsPage } from "@/slices/appointments/screens/client/details";

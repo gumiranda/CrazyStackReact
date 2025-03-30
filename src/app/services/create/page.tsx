@@ -2,7 +2,8 @@ import { whitelabel } from "@/application/whitelabel";
 import { ServiceCreatePage } from "@/slices/appointments/screens/service/create";
 import type { Metadata } from "next";
 import { getCategorys } from "@/slices/appointments/entidades/category/category.api";
-import { parseCookies, getCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 
 export const revalidate = 3000;
 async function getData(pageNumber) {

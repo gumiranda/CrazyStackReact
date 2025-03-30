@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useGetInfiniteCharges } from "./charge.lib";
-import { queryClientInstance, setupAPIClient } from "@/shared/api";
+import { getAPIClient, queryClientInstance, setupAPIClient } from "@/shared/api";
 import { useTranslation } from "react-i18next";
 
 export const useChargeInfiniteList = () => {
@@ -44,7 +44,7 @@ export const useChargeInfiniteList = () => {
         if (chargesToDelete?.length > 0) {
           return Promise.all(
             chargesToDelete?.map?.((charge: any) =>
-              setupAPIClient().delete(`/charge/delete?_id=${charge._id}`)
+              getAPIClient().delete(`/charge/delete?_id=${charge._id}`)
             )
           );
         }

@@ -1,4 +1,4 @@
-import { setupAPIClient } from "@/shared/api";
+import { getAPIClient } from "@/shared/api/api";
 import { SubscriptionData } from "./subscription.types";
 export type GetSubscriptionsResponse = {
   subscriptions: SubscriptionData[];
@@ -12,7 +12,7 @@ export const getSubscriptions = async (
   ctx: any,
   params: any = {}
 ): Promise<GetSubscriptionsResponse> => {
-  const { data } = await setupAPIClient(ctx).get("/subscription/loadByPage", {
+  const { data } = await getAPIClient(ctx).get("/subscription/loadByPage", {
     params: { page, sortBy: "createdAt", typeSort: "desc", ...params },
   });
   const { subscriptions, total } = data || {};
@@ -47,7 +47,7 @@ export const getMySubscription = async (
   ctx: any
 ): Promise<SubscriptionData | null> => {
   try {
-    const result = await setupAPIClient(ctx).get("/subscription/load", {
+    const result = await getAPIClient(ctx).get("/subscription/load", {
       params: { id },
     });
     const { data } = result;

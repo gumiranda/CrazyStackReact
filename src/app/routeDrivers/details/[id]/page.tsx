@@ -1,5 +1,6 @@
 import { getRouteDriverById } from "@/slices/appointments/entidades/routeDriver/routeDriver.api";
-import { getCookies, parseCookies } from "@/shared/libs/utils";
+import { parseCookies } from "@/shared/libs/utils";
+import { getCookies } from "@/shared/libs/cookies";
 export const revalidate = 3000;
 
 import { RouteDriverDetailsPage } from "@/slices/appointments/screens/routeDriver/details";
